@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>KMI Skaičiuoklė</title>
+    <title>KMI skaičiuoklė</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -56,20 +56,18 @@
                                             <div class="col-sm-6">
                                                 <div class="input-group">
                                                     <div class="form-group label-floating">
-                                                        <label class="control-label">Svoris (kg)</label>
-                                                        <input name="weight" type="number" class="form-control">
+                                                        <label class="control-label">Svoris <small>(kg)</small></label>
+                                                        <input id="weight" name="weight" type="number" class="form-control">
                                                     </div>
                                                 </div>
 
                                                 <div class="input-group">
                                                     <div class="form-group label-floating">
-                                                        <label class="control-label">Ūgis (cm)</label>
-                                                        <input name="height" type="number" class="form-control">
+                                                        <label class="control-label">Ūgis <small>(cm)</small></label>
+                                                        <input id="height" name="height" type="number" class="form-control">
                                                     </div>
                                                 </div>
-
-
-                                                <div class="form-group label-floating">
+                                                <!-- <div class="form-group label-floating">
                                                     <label class="control-label">Lytis</label>
                                                     <select class="form-control">
 		                                            	<option disabled="" selected=""></option>
@@ -82,7 +80,7 @@
                                                         <label class="control-label">Amžius</label>
                                                         <input name="age" type="number" class="form-control">
                                                     </div>
-                                                </div>
+                                                </div> -->
                                             </div>
                                             <div class="col-sm-3"></div>
                                         </div>
@@ -126,14 +124,14 @@
                                                 </table>
                                             </div>
                                             <div class="col-md-6 text-center">
-                                                <h4>Jūsų KMI: <b>19</b></h4>
+                                                <h4>Jūsų KMI: <b id="calculatedBMI"></b></h4>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="wizard-footer">
                                     <div class="pull-right">
-                                        <input type='button' class='btn btn-next btn-fill btn-danger btn-wd' name='next' value='Skaičiuoti' />
+                                        <input type='button' class='btn btn-next btn-fill btn-danger btn-wd' onclick='getResult()' name='next' value='Skaičiuoti' />
                                     </div>
                                     <div class="pull-left">
                                         <input type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='Atgal' />
@@ -162,5 +160,7 @@
 
 <!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
 <script src="assets/js/jquery.validate.min.js"></script>
+
+<script src="assets/js/calculate-result.js"></script>
 
 </html>
