@@ -9,51 +9,123 @@
     <link href="./assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="./assets/css/index.css" rel="stylesheet" />
   </head>
-  <body>
-    <div class="container py-3">
-      <header>
-        <div
-          class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4"
-        >
-          <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-            <button type="button" class="me-3 btn btn-light">
-              Skaičiuoklė
-            </button>
-            <button type="button" class="me-3 btn btn-dark">
-              Tinklaraštis
-            </button>
-          </nav>
-        </div>
-      </header>
 
-      <main>
-        <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
-          <div class="col">
-            <div class="card mb-4 rounded-3 shadow-sm">
-              <div class="card-header py-3">
-                <h4 class="my-0 fw-normal">Free</h4>
-              </div>
-              <div class="card-body">
-                <h1 class="card-title pricing-card-title">
-                  $0<small class="text-muted fw-light">/mo</small>
-                </h1>
-                <ul class="list-unstyled mt-3 mb-4">
-                  <li>10 users included</li>
-                  <li>2 GB of storage</li>
-                  <li>Email support</li>
-                  <li>Help center access</li>
-                </ul>
-                <button
-                  type="button"
-                  class="w-100 btn btn-lg btn-outline-primary"
+  <body>
+    <header class="border-bottom p-2">
+      <nav id="top-navigation" class="d-flex justify-content-end">
+        <button
+          onclick="window.location.href='/'"
+          type="button"
+          class="btn btn-light me-3"
+        >
+          Skaičiuoklė
+        </button>
+        <button
+          onclick="window.location.href='blog.html'"
+          type="button"
+          class="btn btn-dark"
+        >
+          Tinklaraštis
+        </button>
+      </nav>
+    </header>
+    <main class="row px-5">
+      <div class="col-6 bg-white mt-4">
+        <div class="row">
+          <div class="col-12">
+            <form class="row">
+              <div class="col-6 mb-2">
+                <label for="weight" class="form-label"
+                  >Svoris</label
                 >
-                  Sign up for free
-                </button>
+                <div class="input-group mb-3">
+                  <input type="number"
+                  class="form-control"
+                  id="weight"
+                  aria-describedby="kg">
+                  <span class="input-group-text" id="kg">kg</span>
+                </div>
               </div>
-            </div>
+              
+              <div class="col-6 mb-2">
+                <label for="height" class="form-label"
+                  >Ūgis</label
+                >
+                <div class="input-group mb-3">
+                  <input type="number"
+                  class="form-control"
+                  id="height"
+                  aria-describedby="cm">
+                  <span class="input-group-text" id="cm">cm</span>
+                </div>
+              </div>
+  
+              <div class="col-6 mb-2">
+                <label for="height" class="form-label"
+                  >Lytis</label
+                >
+                <select class="form-select input-group mb-3" id="inputGroupSelect01">
+                  <option selected>Pasirinkti...</option>
+                  <option value="1">Moteris</option>
+                  <option value="2">Vyras</option>
+                  <option value="3">Kita</option>
+                </select>
+              </div>
+  
+              <div class="col-6 mb-2">
+                <label for="age" class="form-label"
+                  >Amžius</label
+                >
+                <div class="input-group mb-3">
+                  <input type="number"
+                  class="form-control"
+                  id="age">
+                </div>
+              </div>
+              <div>
+                <button type="submit" class="btn btn-dark">Skaičiuoti</button>
+              </div>
+            </form>
+          </div>
+          <div class="col-12">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>KMI</th>
+                  <th class="text-right">Kūno svoris</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>&lt; 18,5</td>
+                  <td class="text-right">Per mažas</td>
+                </tr>
+                <tr>
+                  <td>18,5 - 24,9</td>
+                  <td class="text-right">Normalus</td>
+                </tr>
+                <tr>
+                  <td>25 - 29,9</td>
+                  <td class="text-right">Antsvoris</td>
+                </tr>
+                <tr>
+                  <td>30 - 34,9</td>
+                  <td class="text-right">Pirmo lygio nutukimas</td>
+                </tr>
+                <tr>
+                  <td>35 - 39,9</td>
+                  <td class="text-right">Antro lygio nutukimas</td>
+                </tr>
+                <tr>
+                  <td>&gt; 40,0</td>
+                  <td class="text-right">Trečio lygio nutukimas</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
-      </main>
-    </div>
+      </div>
+      <div class="col-3 bg-white mt-4"><p>test</p></div>
+    </main>
   </body>
 </html>
