@@ -11,7 +11,7 @@
   </head>
 
   <body>
-    <header class="border-bottom p-2">
+    <header class="box-shadow-custom p-2">
       <nav id="top-navigation" class="d-flex justify-content-end">
         <button
           onclick="window.location.href='/'"
@@ -29,57 +29,54 @@
         </button>
       </nav>
     </header>
-    <main class="row px-5">
-      <div class="col-6 bg-white mt-4">
+    <main class="row justify-content-center px-2">
+      <div class="col-7 box-shadow-custom rounded-1 bg-white my-5 p-4">
         <div class="row">
-          <div class="col-12">
+          <div class="bmi-calculator">
             <form class="row">
               <div class="col-6 mb-2">
-                <label for="weight" class="form-label"
-                  >Svoris</label
-                >
+                <label for="weight" class="form-label">Svoris</label>
                 <div class="input-group mb-3">
-                  <input type="number"
-                  class="form-control"
-                  id="weight"
-                  aria-describedby="kg">
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="weight"
+                    aria-describedby="kg"
+                  />
                   <span class="input-group-text" id="kg">kg</span>
                 </div>
               </div>
-              
+
               <div class="col-6 mb-2">
-                <label for="height" class="form-label"
-                  >Ūgis</label
-                >
+                <label for="height" class="form-label">Ūgis</label>
                 <div class="input-group mb-3">
-                  <input type="number"
-                  class="form-control"
-                  id="height"
-                  aria-describedby="cm">
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="height"
+                    aria-describedby="cm"
+                  />
                   <span class="input-group-text" id="cm">cm</span>
                 </div>
               </div>
-  
+
               <div class="col-6 mb-2">
-                <label for="height" class="form-label"
-                  >Lytis</label
+                <label for="height" class="form-label">Lytis</label>
+                <select
+                  class="form-select input-group mb-3"
+                  id="inputGroupSelect01"
                 >
-                <select class="form-select input-group mb-3" id="inputGroupSelect01">
                   <option selected>Pasirinkti...</option>
                   <option value="1">Moteris</option>
                   <option value="2">Vyras</option>
                   <option value="3">Kita</option>
                 </select>
               </div>
-  
+
               <div class="col-6 mb-2">
-                <label for="age" class="form-label"
-                  >Amžius</label
-                >
+                <label for="age" class="form-label">Amžius</label>
                 <div class="input-group mb-3">
-                  <input type="number"
-                  class="form-control"
-                  id="age">
+                  <input type="number" class="form-control" id="age" />
                 </div>
               </div>
               <div>
@@ -87,7 +84,7 @@
               </div>
             </form>
           </div>
-          <div class="col-12">
+          <div class="bmi-table">
             <table class="table">
               <thead>
                 <tr>
@@ -125,7 +122,7 @@
           </div>
         </div>
       </div>
-      <div class="col-3 bg-white mt-4"><p>test</p></div>
+      <div class="col-3 box-shadow-custom rounded-1 bg-white my-5 p-4"><p>test</p></div>
     </main>
   </body>
 </html>
