@@ -1,6 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
 body {
     font-family: "Poppins", sans-serif;
+    background-color: #f7f7f7;
+    height: 100%;
 }
 
 .box-shadow-custom {
@@ -13,13 +15,25 @@ header {
 }
 
 main {
-    background-color: #f7f7f7;
-    height: 100vh;
-    column-gap: 3rem;
+    column-gap: 24px;
+    padding-top: 24px;
+    margin-bottom: 24px;
+}
+
+@media (min-width: 992px) {
+    main {
+        column-gap: 48px;
+        padding-top: 48px;
+        margin-bottom: 48px;
+    }
+}
+
+.bg-yellow {
+    background-color: #EFC345;
 }
 
 button {
-    padding: 12px 20px !important;
+    padding: 10px 16px !important;
     font-weight: 500;
     letter-spacing: 0.4px;
     line-height: 23px;
@@ -31,20 +45,31 @@ button {
     border-color: #dadce0;  
 }
 
+.btn-light:hover {
+    border-color: #1a73e8;
+    background-color: #f4f8fe;
+    color: #1a73e8;
+}
+
 .btn-dark {
     color: #fff;
     background-color: #1a73e8;
     border-color: #1a73e8;
 }
 
+.btn-dark:hover {
+    background-color: #185abc;
+    border-color: #185abc;
+}
+
 .input-group-text {
     background-color: #fff;
 }
 
-.bmi-table {
-    max-width: 314px;
+.bmi-calculator {
+    max-width: 480px;
 }
 
-.bmi-calculator {
-    max-width: 314px;
+.bmi-table {
+    max-width: 340px;
 }
