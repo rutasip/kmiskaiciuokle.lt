@@ -20,12 +20,28 @@ main {
     margin-bottom: 24px;
 }
 
+.bmi-wrapper {
+    column-gap: 24px;
+}
+
 @media (min-width: 992px) {
     main {
         column-gap: 48px;
         padding-top: 48px;
         margin-bottom: 48px;
     }
+
+    .bmi-wrapper {
+        column-gap: 48px;
+    }
+}
+
+table {
+    margin-bottom: 0 !important;
+}
+
+tbody tr:last-child {
+    border-bottom: hidden;
 }
 
 .bg-yellow {
@@ -67,9 +83,11 @@ button {
 }
 
 .bmi-calculator {
-    max-width: 480px;
+    min-width: 316px;
+    width: 380px;
 }
 
 .bmi-table {
-    max-width: 340px;
+    min-width: 316px;
+    width: 380px;
 }
