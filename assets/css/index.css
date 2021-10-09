@@ -5,6 +5,19 @@ body {
     height: 100%;
 }
 
+a {
+    text-decoration: none;
+    color: initial;
+}
+
+a:hover {
+    color: initial;
+}
+
+b, strong, th {
+    font-weight: 500;
+}
+
 .box-shadow-custom {
     box-shadow: 0 .125rem .25rem rgba(0,0,0,.075) !important;
 }
@@ -17,31 +30,13 @@ header {
 main {
     column-gap: 24px;
     padding-top: 24px;
-    margin-bottom: 24px;
-}
-
-.bmi-wrapper {
-    column-gap: 24px;
 }
 
 @media (min-width: 992px) {
     main {
         column-gap: 48px;
         padding-top: 48px;
-        margin-bottom: 48px;
     }
-
-    .bmi-wrapper {
-        column-gap: 48px;
-    }
-}
-
-table {
-    margin-bottom: 0 !important;
-}
-
-tbody tr:last-child {
-    border-bottom: hidden;
 }
 
 .bg-yellow {
@@ -78,16 +73,25 @@ button {
     border-color: #185abc;
 }
 
+.btn-transparent {
+    color: #185abc;
+    border: none;
+    background: #fff;
+    padding: 0 !important;
+}
+
 .input-group-text {
     background-color: #fff;
 }
 
 .bmi-calculator {
-    min-width: 316px;
-    width: 380px;
+    max-width: 440px;
 }
 
 .bmi-table {
-    min-width: 316px;
-    width: 380px;
+    max-width: 440px;
+}
+
+.blog-thumbnail img {
+    object-fit: cover;
 }
