@@ -88,18 +88,26 @@ button {
     max-width: 500px;
 }
 
-@media (min-width: 1480px) {
-    .bmi-wrapper {
-        max-width: 1060px;
-    }
-}
-
 .bmi-calculator {
     max-width: 450px;
 }
 
 .bmi-table {
     max-width: 450px;
+}
+
+.bmi-text-result {
+    max-width: 450px;
+}
+
+@media (min-width: 1480px) {
+    .bmi-wrapper {
+        max-width: 1060px;
+    }
+
+    .bmi-text-result {
+        max-width: unset;
+    }
 }
 
 .blog-thumbnail {
