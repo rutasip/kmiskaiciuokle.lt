@@ -1,37 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="" />
-    <title>KMI skaičiuoklė</title>
+    <title>Tinklaraštis</title>
 
     <link href="./assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="./assets/css/index.css" rel="stylesheet" />
-</head>
+  </head>
 
-<body>
-    <header class="border-bottom px-5 py-3">
-        <nav id="top-navigation" class="d-flex justify-content-end">
-            <button onclick="window.location.href='/'" type="button" class="me-3 btn btn-outline-warning">
-          Skaičiuoklė
+  <body>
+    <header class="box-shadow-custom bg-white p-2">
+      <nav id="top-navigation" class="d-flex justify-content-end">
+        <button
+          onclick="window.location.href='/'"
+          type="button"
+          class="btn btn-light me-3"
+        >
+          KMI skaičiuoklė
         </button>
-            <button onclick="window.location.href='blog.html'" type="button" class="btn btn-warning">
+        <button
+          onclick="window.location.href='blog.html'"
+          type="button"
+          class="btn btn-dark"
+        >
           Tinklaraštis
         </button>
-        </nav>
+      </nav>
     </header>
-    <div class="px-4 mt-5">
-        <main class="row">
-            <div class="row-cols-6">
-                <p>test</p>
+    <main class="row justify-content-center mx-2">
+      <div
+        class="
+          bmi-wrapper
+          col-lg-6 col-xl-7 col-xxl-8
+          box-shadow-custom
+          rounded
+          bg-white
+          mb-5
+          p-4
+        "
+      >
+        <div class="row d-flex justify-content-between g-0">
+            <a
+            href="#"
+            class="blog-thumbnail row bg-white box-shadow-custom rounded g-0 mt-3"
+          >
+            <img
+              class="col-3 rounded-start"
+              src="https://source.unsplash.com/OvNsLemoVEw"
+            />
+            <div class="col-9 my-auto p-3">
+              <p class="fs-6 mb-1">7 būdai, kaip numesti svorio nesportuojant</p>
+              <button class="btn-transparent">Skaityti</button>
             </div>
-            <div class="row-cols-6">
-                <p>test</p>
+          </a>
+          <a
+            href="#"
+            class="blog-thumbnail row bg-white box-shadow-custom rounded g-0 mt-3"
+          >
+            <img
+              class="col-3 rounded-start"
+              src="https://source.unsplash.com/jr3YNY2T2xI"
+            />
+            <div class="col-9 my-auto p-3">
+              <p class="fs-6 mb-1">
+                5 maisto produktai, kurie nėra tokie sveiki, kaip galvojame
+              </p>
+              <button class="btn-transparent">Skaityti</button>
             </div>
-        </main>
-    </div>
-</body>
-
+          </a>
+          <a
+            href="#"
+            class="blog-thumbnail row bg-white box-shadow-custom rounded g-0 mt-3"
+          >
+            <img
+              class="col-3 rounded-start"
+              src="https://source.unsplash.com/YmyFBvW7oG8"
+            />
+            <div class="col-9 my-auto p-3">
+              <p class="fs-6 mb-1">Keletas paprastų organizmo valymo būdų</p>
+              <button class="btn-transparent">Skaityti</button>
+            </div>
+          </a>
+          <a
+            href="#"
+            class="blog-thumbnail row bg-white box-shadow-custom rounded g-0 mt-3"
+          >
+            <img
+              class="col-3 rounded-start"
+              src="https://source.unsplash.com/NOiOdWc2Jpk"
+            />
+            <div class="col-9 my-auto p-3">
+              <p class="fs-6 mb-1">10 būdų, kaip numesti riebalus nuo pilvo</p>
+              <button class="btn-transparent">Skaityti</button>
+            </div>
+          </a>
+        </div>
+      </div>
+    </main>
+  </body>
 </html>

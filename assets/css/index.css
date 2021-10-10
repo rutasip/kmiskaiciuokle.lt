@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
 body {
     font-family: "Poppins", sans-serif;
-    background-color: #f7f7f7;
+    background-color: #F8F9FA;
     height: 100%;
 }
 
@@ -84,16 +84,26 @@ button {
     background-color: #fff;
 }
 
+.bmi-wrapper {
+    max-width: 500px;
+}
+
+@media (min-width: 1480px) {
+    .bmi-wrapper {
+        max-width: 1060px;
+    }
+}
+
 .bmi-calculator {
-    max-width: 440px;
+    max-width: 450px;
 }
 
 .bmi-table {
-    max-width: 440px;
+    max-width: 450px;
 }
 
 .blog-thumbnail {
-    max-width: 560px;
+    max-width: 500px;
     margin: auto;
 }
 
@@ -102,6 +112,6 @@ button {
 }
 
 .blog-thumbnail__title {
-    max-width: 560px;
+    max-width: 500px;
     margin: auto;
 }
