@@ -11,7 +11,7 @@
   </head>
 
   <body>
-    <header class="box-shadow-custom bg-white p-2">
+    <header class="box-shadow-custom bg-white px-2 py-2">
       <nav id="top-navigation" class="d-flex justify-content-end">
         <button
           onclick="window.location.href='/'"
@@ -29,9 +29,9 @@
         </button>
       </nav>
     </header>
-    <main class="row justify-content-center mx-2">
-      <div class="bmi-wrapper col-lg-6 col-xl-7 col-xxl-8 mb-5">
-        <div class="row d-flex justify-content-between g-0">
+    <main class="d-flex justify-content-center px-5 pt-4">
+      <div class="bmi-wrapper mb-5 p-0">
+        <div class="d-flex justify-content-between g-0">
           <div
             class="
               bmi-calculator
@@ -41,11 +41,11 @@
               mb-5
             "
           >
-            <p class="fs-5 rounded-top bg-yellow mb-0 py-2 px-3">
+            <p class="fs-5 rounded-top bg-yellow mb-0 py-2 px-4">
               KMI skaičiuoklė
             </p>
 
-            <form class="p-3">
+            <form class="p-4">
               <div class="row">
                 <div class="col-6 mb-2">
                   <label for="weight" class="form-label">Svoris</label>
@@ -154,23 +154,20 @@
         </div>
       </div>
 
-      <div class="col-lg-5 col-xl-4 col-xxl-3 mb-5">
-        <div class="d-flex justify-content-between blog-thumbnail__title">
-          <p class="fs-4 align-self-center mb-0"><b>Tinklaraštis</b></p>
-          <button type="submit" class="btn btn-dark">Žr. daugiau</button>
-        </div>
-
+      <div class="blog-wrapper mb-5 p-0">
         <a
           href="#"
-          class="blog-thumbnail row bg-white box-shadow-custom rounded g-0 mt-3"
+          class="blog-thumbnail row bg-white box-shadow-custom rounded g-0"
         >
           <img
             class="col-3 rounded-start"
             src="https://source.unsplash.com/OvNsLemoVEw"
           />
           <div class="col-9 my-auto p-3">
-            <p class="fs-6 mb-1">7 būdai, kaip numesti svorio nesportuojant</p>
-            <button class="btn-transparent">Skaityti</button>
+            <p class="fs-6 fw-bold mb-2">7 būdai, kaip numesti svorio nesportuojant</p>
+            <p class="fs-7 mb-0 text-secondary">
+              Rūta Š. • prieš mėnesį
+            </p>
           </div>
         </a>
         <a
@@ -182,10 +179,12 @@
             src="https://source.unsplash.com/jr3YNY2T2xI"
           />
           <div class="col-9 my-auto p-3">
-            <p class="fs-6 mb-1">
+            <p class="fs-6 fw-bold mb-2">
               5 maisto produktai, kurie nėra tokie sveiki, kaip galvojame
             </p>
-            <button class="btn-transparent">Skaityti</button>
+            <p class="fs-7 mb-0 text-secondary">
+              Rūta Š. • prieš mėnesį
+            </p>
           </div>
         </a>
         <a
@@ -197,21 +196,10 @@
             src="https://source.unsplash.com/YmyFBvW7oG8"
           />
           <div class="col-9 my-auto p-3">
-            <p class="fs-6 mb-1">Keletas paprastų organizmo valymo būdų</p>
-            <button class="btn-transparent">Skaityti</button>
-          </div>
-        </a>
-        <a
-          href="#"
-          class="blog-thumbnail row bg-white box-shadow-custom rounded g-0 mt-3"
-        >
-          <img
-            class="col-3 rounded-start"
-            src="https://source.unsplash.com/NOiOdWc2Jpk"
-          />
-          <div class="col-9 my-auto p-3">
-            <p class="fs-6 mb-1">10 būdų, kaip numesti riebalus nuo pilvo</p>
-            <button class="btn-transparent">Skaityti</button>
+            <p class="fs-6 fw-bold mb-2">Keletas paprastų organizmo valymo būdų</p>
+            <p class="fs-7 mb-0 text-secondary">
+              Rūta Š. • prieš mėnesį
+            </p>
           </div>
         </a>
       </div>

@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+
 body {
     font-family: "Poppins", sans-serif;
     background-color: #F8F9FA;
@@ -29,25 +30,24 @@ header {
 
 main {
     column-gap: 24px;
-    padding-top: 24px;
-}
-
-@media (min-width: 992px) {
-    main {
-        column-gap: 48px;
-        padding-top: 48px;
-    }
 }
 
 .bg-yellow {
-    background-color: #EFC345;
+    background-color: #e8ebef;
+}
+
+.fs-7 {
+    font-size: 14px;
+}
+
+.fw-bold {
+    font-weight: 500 !important;
 }
 
 button {
     padding: 10px 16px !important;
-    font-weight: 500;
     letter-spacing: 0.4px;
-    line-height: 23px;
+    font-weight: 500;
 }
 
 .btn-light {
@@ -73,46 +73,24 @@ button {
     border-color: #185abc;
 }
 
-.btn-transparent {
-    color: #185abc;
-    border: none;
-    background: #fff;
-    padding: 0 !important;
-}
-
 .input-group-text {
     background-color: #fff;
 }
 
 .bmi-wrapper {
-    max-width: 500px;
+    width: 74%;
 }
 
 .bmi-calculator {
-    max-width: 450px;
+    width: 50%;
 }
 
 .bmi-table {
-    max-width: 450px;
+    width: 50%;
 }
 
-.bmi-text-result {
-    max-width: 450px;
-}
-
-@media (min-width: 1480px) {
-    .bmi-wrapper {
-        max-width: 1060px;
-    }
-
-    .bmi-text-result {
-        max-width: unset;
-    }
-}
-
-.blog-thumbnail {
-    max-width: 500px;
-    margin: auto;
+.blog-wrapper {
+    max-width: 26%;
 }
 
 .blog-thumbnail img {
@@ -120,6 +98,5 @@ button {
 }
 
 .blog-thumbnail__title {
-    max-width: 500px;
     margin: auto;
 }
