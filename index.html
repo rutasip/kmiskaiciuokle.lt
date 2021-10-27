@@ -11,14 +11,14 @@
   </head>
 
   <body>
-    <header class="box-shadow-custom bg-white px-2 py-2">
-      <nav id="top-navigation" class="d-flex justify-content-end">
+    <header class="border-bottom bg-white p-3">
+      <nav id="top-navigation" class="d-flex justify-content-center">
         <button
           onclick="window.location.href='/'"
           type="button"
-          class="btn btn-light me-3"
+          class="btn btn-light me-3 border"
         >
-          KMI skaičiuoklė
+          Skaičiuoklė
         </button>
         <button
           onclick="window.location.href='blog.html'"
@@ -29,120 +29,111 @@
         </button>
       </nav>
     </header>
-    <main class="d-flex justify-content-center px-5 pt-4">
-      <div class="bmi-wrapper mb-5 p-0">
-        <div class="d-flex justify-content-between g-0">
-          <div
-            class="
-              bmi-calculator
-              bg-white
-              box-shadow-custom
-              rounded
-              mb-5
-            "
-          >
-            <p class="fs-5 rounded-top bg-yellow mb-0 py-2 px-4">
-              KMI skaičiuoklė
-            </p>
-
-            <form class="p-4">
-              <div class="row">
-                <div class="col-6 mb-2">
-                  <label for="weight" class="form-label">Svoris</label>
-                  <div class="input-group mb-3">
-                    <input
-                      type="number"
-                      class="form-control"
-                      id="weight"
-                      aria-describedby="kg"
-                    />
-                    <span class="input-group-text" id="kg">kg</span>
-                  </div>
-                </div>
-
-                <div class="col-6 mb-2">
-                  <label for="height" class="form-label">Ūgis</label>
-                  <div class="input-group mb-3">
-                    <input
-                      type="number"
-                      class="form-control"
-                      id="height"
-                      aria-describedby="cm"
-                    />
-                    <span class="input-group-text" id="cm">cm</span>
-                  </div>
-                </div>
-
-                <div class="col-6 mb-2">
-                  <label for="height" class="form-label">Lytis</label>
-                  <select
-                    class="form-select input-group mb-3"
-                    id="inputGroupSelect01"
-                  >
-                    <option selected>Pasirinkti...</option>
-                    <option value="1">Moteris</option>
-                    <option value="2">Vyras</option>
-                    <option value="3">Kita</option>
-                  </select>
-                </div>
-
-                <div class="col-6 mb-2">
-                  <label for="age" class="form-label">Amžius</label>
-                  <div class="input-group mb-3">
-                    <input type="number" class="form-control" id="age" />
-                  </div>
-                </div>
-                <div class="text-end">
-                  <button type="submit" class="btn btn-dark">Skaičiuoti</button>
+    <main class="justify-content-center px-2">
+      <div class="bmi-wrapper">
+        <div class="bmi-calculator bg-white border rounded">
+          <form class="p-4">
+            <div class="row">
+              <div class="col-6 mb-2">
+                <label for="weight" class="form-label">Svoris</label>
+                <div class="input-group mb-3">
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="weight"
+                    aria-describedby="kg"
+                  />
+                  <span class="input-group-text" id="kg">kg</span>
                 </div>
               </div>
-            </form>
-          </div>
-          <div
-            class="bmi-table bg-white box-shadow-custom rounded mb-5 p-4"
-          >
-            <table class="table table-borderless mb-0">
-              <thead>
-                <tr>
-                  <th class="pt-0">KMI</th>
-                  <th class="text-right pt-0">Kūno svoris</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>&lt; 18,5</td>
-                  <td class="text-right">Per mažas</td>
-                </tr>
-                <tr class="bg-yellow">
-                  <td>18,5 - 24,9</td>
-                  <td class="text-right">Normalus</td>
-                </tr>
-                <tr>
-                  <td>25 - 29,9</td>
-                  <td class="text-right">Antsvoris</td>
-                </tr>
-                <tr>
-                  <td>30 - 34,9</td>
-                  <td class="text-right">Pirmo lygio nutukimas</td>
-                </tr>
-                <tr>
-                  <td>35 - 39,9</td>
-                  <td class="text-right">Antro lygio nutukimas</td>
-                </tr>
-                <tr>
-                  <td class="pb-0">&gt; 40,0</td>
-                  <td class="text-right pb-0">Trečio lygio nutukimas</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
 
-        <div class="bmi-text-result bg-white box-shadow-custom rounded p-4">
+              <div class="col-6 mb-2">
+                <label for="height" class="form-label">Ūgis</label>
+                <div class="input-group mb-3">
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="height"
+                    aria-describedby="cm"
+                  />
+                  <span class="input-group-text" id="cm">cm</span>
+                </div>
+              </div>
+
+              <div class="col-6 mb-2">
+                <label for="height" class="form-label">Lytis</label>
+                <select
+                  class="form-select input-group mb-3"
+                  id="inputGroupSelect01"
+                >
+                  <option selected>Pasirinkti...</option>
+                  <option value="1">Moteris</option>
+                  <option value="2">Vyras</option>
+                  <option value="3">Kita</option>
+                </select>
+              </div>
+
+              <div class="col-6 mb-2">
+                <label for="age" class="form-label">Amžius</label>
+                <div class="input-group mb-3">
+                  <input type="number" class="form-control" id="age" />
+                </div>
+              </div>
+              <div class="text-end">
+                <button type="submit" class="btn btn-dark">Skaičiuoti</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="bmi-table bg-white border rounded p-4">
+          <table class="table table-borderless mb-0">
+            <thead>
+              <tr>
+                <th class="pt-0">KMI</th>
+                <th class="text-right pt-0">Kūno svoris</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>&lt; 18,5</td>
+                <td class="text-right">Per mažas</td>
+              </tr>
+              <tr>
+                <td>18,5 - 24,9</td>
+                <td class="text-right">Normalus</td>
+              </tr>
+              <tr>
+                <td>25 - 29,9</td>
+                <td class="text-right">Antsvoris</td>
+              </tr>
+              <tr>
+                <td>30 - 34,9</td>
+                <td class="text-right">Pirmo lygio nutukimas</td>
+              </tr>
+              <tr>
+                <td>35 - 39,9</td>
+                <td class="text-right">Antro lygio nutukimas</td>
+              </tr>
+              <tr>
+                <td class="pb-0">&gt; 40,0</td>
+                <td class="text-right pb-0">Trečio lygio nutukimas</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div
+          class="
+            bmi-text-result
+            bg-white
+            border
+            rounded
+            p-4
+          "
+        >
           <p class="fs-4 lh-1">
             Tavo KMI: <span class="fs-2"><b>19,50</b></span>
           </p>
-          <p class="lh-base mb-0">
+          <p class="fs-6 lh-base mb-0">
             But I must explain to you how all this mistaken idea of denouncing
             pleasure and praising pain was born and I will give you a complete
             account of the system, and expound the actual teachings of the great
@@ -154,25 +145,25 @@
         </div>
       </div>
 
-      <div class="blog-wrapper mb-5 p-0">
+      <div class="blog-wrapper mb-5">
         <a
           href="#"
-          class="blog-thumbnail row bg-white box-shadow-custom rounded g-0"
+          class="blog-thumbnail row bg-white border rounded g-0"
         >
           <img
             class="col-3 rounded-start"
             src="https://source.unsplash.com/OvNsLemoVEw"
           />
           <div class="col-9 my-auto p-3">
-            <p class="fs-6 fw-bold mb-2">7 būdai, kaip numesti svorio nesportuojant</p>
-            <p class="fs-7 mb-0 text-secondary">
-              Rūta Š. • prieš mėnesį
+            <p class="fs-6 fw-bold mb-2">
+              7 būdai, kaip numesti svorio nesportuojant
             </p>
+            <p class="fs-7 mb-0 text-secondary">Rūta Š. • prieš mėnesį</p>
           </div>
         </a>
         <a
           href="#"
-          class="blog-thumbnail row bg-white box-shadow-custom rounded g-0 mt-3"
+          class="blog-thumbnail row bg-white border rounded g-0 mt-3"
         >
           <img
             class="col-3 rounded-start"
@@ -182,24 +173,22 @@
             <p class="fs-6 fw-bold mb-2">
               5 maisto produktai, kurie nėra tokie sveiki, kaip galvojame
             </p>
-            <p class="fs-7 mb-0 text-secondary">
-              Rūta Š. • prieš mėnesį
-            </p>
+            <p class="fs-7 mb-0 text-secondary">Rūta Š. • prieš mėnesį</p>
           </div>
         </a>
         <a
           href="#"
-          class="blog-thumbnail row bg-white box-shadow-custom rounded g-0 mt-3"
+          class="blog-thumbnail row bg-white border rounded g-0 mt-3"
         >
           <img
             class="col-3 rounded-start"
             src="https://source.unsplash.com/YmyFBvW7oG8"
           />
           <div class="col-9 my-auto p-3">
-            <p class="fs-6 fw-bold mb-2">Keletas paprastų organizmo valymo būdų</p>
-            <p class="fs-7 mb-0 text-secondary">
-              Rūta Š. • prieš mėnesį
+            <p class="fs-6 fw-bold mb-2">
+              Keletas paprastų organizmo valymo būdų
             </p>
+            <p class="fs-7 mb-0 text-secondary">Rūta Š. • prieš mėnesį</p>
           </div>
         </a>
       </div>

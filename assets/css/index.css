@@ -2,8 +2,6 @@
 
 body {
     font-family: "Poppins", sans-serif;
-    background-color: #F8F9FA;
-    height: 100%;
 }
 
 a {
@@ -19,21 +17,15 @@ b, strong, th {
     font-weight: 500;
 }
 
-.box-shadow-custom {
-    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075) !important;
-}
-
 header {
     position: relative;
     z-index: 10;
 }
 
 main {
-    column-gap: 24px;
-}
-
-.bg-yellow {
-    background-color: #e8ebef;
+    column-gap: 40px;
+    padding-top: 40px;
+    display: block;
 }
 
 .fs-7 {
@@ -53,7 +45,7 @@ button {
 .btn-light {
     color: #1a73e8;
     background-color: #fff;
-    border-color: #dadce0;  
+    border: none !important;
 }
 
 .btn-light:hover {
@@ -78,25 +70,67 @@ button {
 }
 
 .bmi-wrapper {
-    width: 74%;
-}
-
-.bmi-calculator {
-    width: 50%;
-}
-
-.bmi-table {
-    width: 50%;
+    width: 100%;
+    max-width: 500px;
+    margin: auto auto 42px auto;
 }
 
 .blog-wrapper {
-    max-width: 26%;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0;
+    border: none;
 }
+
+.bmi-calculator {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.bmi-table {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+    main {
+        display: flex;
+    }
+
+    .bmi-wrapper {
+        width: 74%;
+        max-width: 1020px;
+        margin: unset;
+    }
+
+    .bmi-calculator {
+        width: 500px;
+        float: left;
+        margin-right: 10px;
+    }
+
+    .bmi-table {
+        width: 500px;
+        float: right;
+        margin-left: 10px;
+    }
+
+    .bmi-text-result {
+        float: right;
+    }
+    
+    .blog-wrapper {
+        width: 26%;
+        margin-left: unset;
+        margin-right: unset;
+        padding-left: 40px;
+        max-width: 420px;
+        border-left: 1px solid #dee2e6 !important;
+    }
+}
+
 
 .blog-thumbnail img {
     object-fit: cover;
-}
-
-.blog-thumbnail__title {
-    margin: auto;
 }
