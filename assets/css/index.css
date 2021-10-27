@@ -2,6 +2,7 @@
 
 body {
     font-family: "Poppins", sans-serif;
+    background-color: #fdfdfd;
 }
 
 a {
@@ -18,13 +19,14 @@ b, strong, th {
 }
 
 header {
-    position: relative;
-    z-index: 10;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
 }
 
 main {
     column-gap: 40px;
-    padding-top: 40px;
+    padding-top: 120px;
     display: block;
 }
 
@@ -37,6 +39,10 @@ main {
 }
 
 button {
+    font-weight: 500;
+}
+
+.btn {
     padding: 10px 16px !important;
     letter-spacing: 0.4px;
     font-weight: 500;
@@ -90,30 +96,29 @@ button {
 
 .bmi-table {
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 28px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
     main {
         display: flex;
     }
 
     .bmi-wrapper {
-        width: 74%;
-        max-width: 1020px;
+        width: 50%;
+        max-width: 980px;
         margin: unset;
+        margin-bottom: 28px;
     }
 
     .bmi-calculator {
-        width: 500px;
         float: left;
-        margin-right: 10px;
+        margin-right: 14px;
     }
 
     .bmi-table {
-        width: 500px;
         float: right;
-        margin-left: 10px;
+        margin-left: 14px;
     }
 
     .bmi-text-result {
@@ -121,7 +126,7 @@ button {
     }
     
     .blog-wrapper {
-        width: 26%;
+        width: 50%;
         margin-left: unset;
         margin-right: unset;
         padding-left: 40px;
@@ -130,6 +135,23 @@ button {
     }
 }
 
+@media (min-width: 1400px) {
+    .bmi-wrapper {
+        width: 72%;
+    }
+
+    .bmi-calculator {
+        width: 54%;
+    }
+
+    .bmi-table {
+        width: 43%;
+    }
+
+    .blog-wrapper {
+        width: 28%;
+    }
+}
 
 .blog-thumbnail img {
     object-fit: cover;

@@ -31,11 +31,14 @@
     </header>
     <main class="justify-content-center px-2">
       <div class="bmi-wrapper">
-        <div class="bmi-calculator bg-white border rounded">
-          <form class="p-4">
-            <div class="row">
+        <div class="bmi-calculator bg-white border rounded p-4">
+          <p class="fs-5 mb-4">
+            <b>Kūno masės indekso skaičiuoklė</b>
+          </p>
+          <form class="row">
               <div class="col-6 mb-2">
-                <label for="weight" class="form-label">Svoris</label>
+                <label for="weight" class="form-label m-1">Jūsų svoris</label>
+                <p class="fs-7 text-secondary">(kilogramais, pvz.: 60)</p>
                 <div class="input-group mb-3">
                   <input
                     type="number"
@@ -48,7 +51,8 @@
               </div>
 
               <div class="col-6 mb-2">
-                <label for="height" class="form-label">Ūgis</label>
+                <label for="weight" class="form-label m-1">Jūsų ūgis</label>
+                <p class="fs-7 text-secondary">(centimetrais, pvz.: 170)</p>
                 <div class="input-group mb-3">
                   <input
                     type="number"
@@ -61,7 +65,7 @@
               </div>
 
               <div class="col-6 mb-2">
-                <label for="height" class="form-label">Lytis</label>
+                <label for="height" class="form-label">Jūsų lytis</label>
                 <select
                   class="form-select input-group mb-3"
                   id="inputGroupSelect01"
@@ -74,18 +78,20 @@
               </div>
 
               <div class="col-6 mb-2">
-                <label for="age" class="form-label">Amžius</label>
+                <label for="age" class="form-label">Jūsų amžius</label>
                 <div class="input-group mb-3">
                   <input type="number" class="form-control" id="age" />
                 </div>
               </div>
               <div class="text-end">
-                <button type="submit" class="btn btn-dark">Skaičiuoti</button>
+                <button type="submit" class="btn-light">Skaičiuoti kūno masės indeksą</button>
               </div>
-            </div>
           </form>
         </div>
         <div class="bmi-table bg-white border rounded p-4">
+          <p class="fs-5 mb-4">
+            <b>Indekso reikšmės</b>
+          </p>
           <table class="table table-borderless mb-0">
             <thead>
               <tr>
@@ -130,8 +136,8 @@
             p-4
           "
         >
-          <p class="fs-4 lh-1">
-            Tavo KMI: <span class="fs-2"><b>19,50</b></span>
+          <p class="fs-5 lh-1">
+            Jūsų kūno masės indeksas (KMI): <span class="fs-3"><b>19,50</b></span>
           </p>
           <p class="fs-6 lh-base mb-0">
             But I must explain to you how all this mistaken idea of denouncing
