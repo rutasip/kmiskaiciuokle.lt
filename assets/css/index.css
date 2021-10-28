@@ -160,3 +160,16 @@ button {
 .blog-thumbnail img {
     object-fit: cover;
 }
+
+
+/* Blog page */
+
+.big-article-card {
+    max-width: 625px;
+    width: 100%;
+}
+
+.big-article-card img {
+    max-height: 300px;
+    object-fit: cover;
+}
