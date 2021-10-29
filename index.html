@@ -2,182 +2,141 @@
 layout: default
 title: Skaičiuoklė
 ---
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-  </head>
-  <body>
-    <main class="justify-content-center px-2">
-      <div class="bmi-wrapper">
-        <div class="bmi-calculator bg-white border rounded p-4">
-          <p class="fs-5 mb-4">
-            <b>Kūno masės indekso skaičiuoklė</b>
-          </p>
-          <form class="row">
-              <div class="col-6 mb-2">
-                <label for="weight" class="form-label mb-1">Jūsų svoris</label>
-                <p class="fs-7 text-secondary">(kilogramais, pvz.: 60)</p>
-                <div class="input-group mb-3">
-                  <input
-                    type="number"
-                    class="form-control"
-                    id="weight"
-                    aria-describedby="kg"
-                  />
-                  <span class="input-group-text" id="kg">kg</span>
-                </div>
-              </div>
 
-              <div class="col-6 mb-2">
-                <label for="weight" class="form-label mb-1">Jūsų ūgis</label>
-                <p class="fs-7 text-secondary">(centimetrais, pvz.: 170)</p>
-                <div class="input-group mb-3">
-                  <input
-                    type="number"
-                    class="form-control"
-                    id="height"
-                    aria-describedby="cm"
-                  />
-                  <span class="input-group-text" id="cm">cm</span>
-                </div>
-              </div>
-
-              <div class="col-6 mb-2">
-                <label for="height" class="form-label">Jūsų lytis</label>
-                <select
-                  class="form-select input-group mb-3"
-                  id="inputGroupSelect01"
-                >
-                  <option selected>Pasirinkti...</option>
-                  <option value="1">Moteris</option>
-                  <option value="2">Vyras</option>
-                  <option value="3">Kita</option>
-                </select>
-              </div>
-
-              <div class="col-6 mb-2">
-                <label for="age" class="form-label">Jūsų amžius</label>
-                <div class="input-group mb-3">
-                  <input type="number" class="form-control" id="age" />
-                </div>
-              </div>
-              <div class="text-end">
-                <button type="submit" class="btn-light">Skaičiuoti kūno masės indeksą</button>
-              </div>
-          </form>
+<main class="justify-content-center px-2">
+  <div class="bmi-wrapper">
+    <div class="bmi-calculator bg-white border rounded p-4">
+      <p class="fs-5 mb-4">
+        <b>Kūno masės indekso skaičiuoklė</b>
+      </p>
+      <form class="row">
+        <div class="col-6 mb-2">
+          <label for="weight" class="form-label mb-1">Jūsų svoris</label>
+          <p class="fs-7 text-secondary">(kilogramais, pvz.: 60)</p>
+          <div class="input-group mb-3">
+            <input type="number" class="form-control" id="weight" aria-describedby="kg" />
+            <span class="input-group-text" id="kg">kg</span>
+          </div>
         </div>
-        <div class="bmi-table bg-white border rounded p-4">
-          <p class="fs-5 mb-4">
-            <b>Indekso reikšmės</b>
-          </p>
-          <table class="table table-borderless mb-0">
-            <thead>
-              <tr>
-                <th class="pt-0">KMI</th>
-                <th class="text-right pt-0">Kūno svoris</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>&lt; 18,5</td>
-                <td class="text-right">Per mažas</td>
-              </tr>
-              <tr>
-                <td>18,5 - 24,9</td>
-                <td class="text-right">Normalus</td>
-              </tr>
-              <tr>
-                <td>25 - 29,9</td>
-                <td class="text-right">Antsvoris</td>
-              </tr>
-              <tr>
-                <td>30 - 34,9</td>
-                <td class="text-right">Pirmo lygio nutukimas</td>
-              </tr>
-              <tr>
-                <td>35 - 39,9</td>
-                <td class="text-right">Antro lygio nutukimas</td>
-              </tr>
-              <tr>
-                <td class="pb-0">&gt; 40,0</td>
-                <td class="text-right pb-0">Trečio lygio nutukimas</td>
-              </tr>
-            </tbody>
-          </table>
+
+        <div class="col-6 mb-2">
+          <label for="weight" class="form-label mb-1">Jūsų ūgis</label>
+          <p class="fs-7 text-secondary">(centimetrais, pvz.: 170)</p>
+          <div class="input-group mb-3">
+            <input type="number" class="form-control" id="height" aria-describedby="cm" />
+            <span class="input-group-text" id="cm">cm</span>
+          </div>
         </div>
-        <div
-          class="
+
+        <div class="col-6 mb-2">
+          <label for="height" class="form-label">Jūsų lytis</label>
+          <select class="form-select input-group mb-3" id="inputGroupSelect01">
+            <option selected>Pasirinkti...</option>
+            <option value="1">Moteris</option>
+            <option value="2">Vyras</option>
+            <option value="3">Kita</option>
+          </select>
+        </div>
+
+        <div class="col-6 mb-2">
+          <label for="age" class="form-label">Jūsų amžius</label>
+          <div class="input-group mb-3">
+            <input type="number" class="form-control" id="age" />
+          </div>
+        </div>
+        <div class="text-end">
+          <button type="submit" class="btn-light">Skaičiuoti kūno masės indeksą</button>
+        </div>
+      </form>
+    </div>
+    <div class="bmi-table bg-white border rounded p-4">
+      <p class="fs-5 mb-4">
+        <b>Indekso reikšmės</b>
+      </p>
+      <table class="table table-borderless mb-0">
+        <thead>
+          <tr>
+            <th class="pt-0">KMI</th>
+            <th class="text-right pt-0">Kūno svoris</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>&lt; 18,5</td>
+            <td class="text-right">Per mažas</td>
+          </tr>
+          <tr>
+            <td>18,5 - 24,9</td>
+            <td class="text-right">Normalus</td>
+          </tr>
+          <tr>
+            <td>25 - 29,9</td>
+            <td class="text-right">Antsvoris</td>
+          </tr>
+          <tr>
+            <td>30 - 34,9</td>
+            <td class="text-right">Pirmo lygio nutukimas</td>
+          </tr>
+          <tr>
+            <td>35 - 39,9</td>
+            <td class="text-right">Antro lygio nutukimas</td>
+          </tr>
+          <tr>
+            <td class="pb-0">&gt; 40,0</td>
+            <td class="text-right pb-0">Trečio lygio nutukimas</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="
             bmi-text-result
             bg-white
             border
             rounded
             p-4
-          "
-        >
-          <p class="fs-5 lh-1">
-            Jūsų kūno masės indeksas (KMI): <span class="fs-3"><b>19,50</b></span>
-          </p>
-          <p class="fs-6 lh-base mb-0">
-            But I must explain to you how all this mistaken idea of denouncing
-            pleasure and praising pain was born and I will give you a complete
-            account of the system, and expound the actual teachings of the great
-            explorer of the truth, the master-builder of human happiness. No one
-            rejects, dislikes, or avoids pleasure itself, because it is
-            pleasure, but because those who do not know how to pursue pleasure
-            rationally encounter consequences.
-          </p>
-        </div>
-      </div>
+          ">
+      <p class="fs-5 lh-1">
+        Jūsų kūno masės indeksas (KMI): <span class="fs-3"><b>19,50</b></span>
+      </p>
+      <p class="fs-6 lh-base mb-0">
+        But I must explain to you how all this mistaken idea of denouncing
+        pleasure and praising pain was born and I will give you a complete
+        account of the system, and expound the actual teachings of the great
+        explorer of the truth, the master-builder of human happiness. No one
+        rejects, dislikes, or avoids pleasure itself, because it is
+        pleasure, but because those who do not know how to pursue pleasure
+        rationally encounter consequences.
+      </p>
+    </div>
+  </div>
 
-      <div class="blog-wrapper mb-5">
-        <a
-          href="#"
-          class="blog-thumbnail row bg-white border rounded g-0"
-        >
-          <img
-            class="col-3 rounded-start"
-            src="https://source.unsplash.com/OvNsLemoVEw"
-          />
-          <div class="col-9 my-auto p-3">
-            <p class="fs-6 fw-bold mb-2">
-              7 būdai, kaip numesti svorio nesportuojant
-            </p>
-            <p class="fs-7 mb-0 text-secondary">Rūta Š. • prieš mėnesį</p>
-          </div>
-        </a>
-        <a
-          href="#"
-          class="blog-thumbnail row bg-white border rounded g-0 mt-3"
-        >
-          <img
-            class="col-3 rounded-start"
-            src="https://source.unsplash.com/jr3YNY2T2xI"
-          />
-          <div class="col-9 my-auto p-3">
-            <p class="fs-6 fw-bold mb-2">
-              5 maisto produktai, kurie nėra tokie sveiki, kaip galvojame
-            </p>
-            <p class="fs-7 mb-0 text-secondary">Rūta Š. • prieš mėnesį</p>
-          </div>
-        </a>
-        <a
-          href="#"
-          class="blog-thumbnail row bg-white border rounded g-0 mt-3"
-        >
-          <img
-            class="col-3 rounded-start"
-            src="https://source.unsplash.com/YmyFBvW7oG8"
-          />
-          <div class="col-9 my-auto p-3">
-            <p class="fs-6 fw-bold mb-2">
-              Keletas paprastų organizmo valymo būdų
-            </p>
-            <p class="fs-7 mb-0 text-secondary">Rūta Š. • prieš mėnesį</p>
-          </div>
-        </a>
+  <div class="blog-wrapper mb-5">
+    <a href="#" class="blog-thumbnail row bg-white border rounded g-0">
+      <img class="col-3 rounded-start" src="https://source.unsplash.com/OvNsLemoVEw" />
+      <div class="col-9 my-auto p-3">
+        <p class="fs-6 fw-bold mb-2">
+          7 būdai, kaip numesti svorio nesportuojant
+        </p>
+        <p class="fs-7 mb-0 text-secondary">Rūta Š. • prieš mėnesį</p>
       </div>
-    </main>
-  </body>
-</html>
+    </a>
+    <a href="#" class="blog-thumbnail row bg-white border rounded g-0 mt-3">
+      <img class="col-3 rounded-start" src="https://source.unsplash.com/jr3YNY2T2xI" />
+      <div class="col-9 my-auto p-3">
+        <p class="fs-6 fw-bold mb-2">
+          5 maisto produktai, kurie nėra tokie sveiki, kaip galvojame
+        </p>
+        <p class="fs-7 mb-0 text-secondary">Rūta Š. • prieš mėnesį</p>
+      </div>
+    </a>
+    <a href="#" class="blog-thumbnail row bg-white border rounded g-0 mt-3">
+      <img class="col-3 rounded-start" src="https://source.unsplash.com/YmyFBvW7oG8" />
+      <div class="col-9 my-auto p-3">
+        <p class="fs-6 fw-bold mb-2">
+          Keletas paprastų organizmo valymo būdų
+        </p>
+        <p class="fs-7 mb-0 text-secondary">Rūta Š. • prieš mėnesį</p>
+      </div>
+    </a>
+  </div>
+</main>
