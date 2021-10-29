@@ -1,0 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+body { font-family: "Poppins", sans-serif; background-color: #F7F9FD; }
+
+a { text-decoration: none; color: initial; }
+
+a:hover { color: initial; }
+
+b, strong, th { font-weight: 500; }
+
+th, td { padding-left: 0 !important; }
+
+header { position: fixed; width: 100%; z-index: 1; }
+
+main { column-gap: 24px; padding-top: 103px; display: block; }
+
+.fs-7 { font-size: 14px; }
+
+.fw-bold { font-weight: 500 !important; }
+
+button { font-weight: 500; }
+
+.btn { padding: 10px 16px !important; letter-spacing: 0.4px; font-weight: 500; }
+
+.btn-light { color: #1a73e8; background-color: #fff; border: none !important; }
+
+.btn-light:hover { border-color: #1a73e8; background-color: #f4f8fe; color: #1a73e8; }
+
+.btn-dark { color: #fff; background-color: #1a73e8; border-color: #1a73e8; }
+
+.btn-dark:hover { background-color: #185abc; border-color: #185abc; }
+
+.input-group-text { background-color: #fff; }
+
+.bmi-wrapper { width: 100%; max-width: 500px; margin: auto auto 42px auto; }
+
+.blog-wrapper { max-width: 500px; margin-left: auto; margin-right: auto; padding-left: 0; border: none; }
+
+.bmi-calculator { width: 100%; margin-bottom: 16px; }
+
+.bmi-table { width: 100%; margin-bottom: 16px; }
+
+@media (min-width: 992px) { main { display: flex; } .bmi-wrapper { width: 50%; max-width: 980px; margin: unset; margin-bottom: 16px; } .bmi-calculator { float: left; margin-right: 8px; } .bmi-table { float: right; margin-left: 8px; } .bmi-text-result { float: right; } .blog-wrapper { width: 50%; margin-left: unset; margin-right: unset; padding-left: 24px; max-width: 420px; border-left: 1px solid #dee2e6 !important; } }
+
+@media (min-width: 1400px) { .bmi-wrapper { width: 72%; } .bmi-calculator { width: 481.4px; } .bmi-table { width: 481.4px; } .blog-wrapper { width: 28%; } }
+
+.blog-thumbnail img { object-fit: cover; }
+
+/* Blog page */
+.big-article-card { max-width: 625px; width: 100%; }
+
+.big-article-card img { max-height: 300px; object-fit: cover; }
+
+/*# sourceMappingURL=styles.css.map */
