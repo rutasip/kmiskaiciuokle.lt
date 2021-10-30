@@ -32,7 +32,7 @@
 </header>
     <main class="justify-content-center px-2">
   <div class="bmi-wrapper">
-    <div class="bmi-calculator bg-white border rounded p-4">
+    <div class="bmi-calculator bg-white border rounded p-3 p-sm-4">
       <p class="fs-5 mb-4">
         <b>Kūno masės indekso skaičiuoklė</b>
       </p>
@@ -57,6 +57,7 @@
 
         <div class="col-6 mb-2">
           <label for="height" class="form-label">Jūsų lytis</label>
+          <p class="fs-7 text-secondary">(neprivaloma)</p>
           <select class="form-select input-group mb-3" id="inputGroupSelect01">
             <option selected>Pasirinkti...</option>
             <option value="1">Moteris</option>
@@ -67,6 +68,7 @@
 
         <div class="col-6 mb-2">
           <label for="age" class="form-label">Jūsų amžius</label>
+          <p class="fs-7 text-secondary">(neprivaloma)</p>
           <div class="input-group mb-3">
             <input type="number" class="form-control" id="age" />
           </div>
@@ -76,40 +78,40 @@
         </div>
       </form>
     </div>
-    <div class="bmi-table bg-white border rounded p-4">
+    <div class="bmi-table bg-white border rounded p-3 p-sm-4">
       <p class="fs-5 mb-4">
         <b>Indekso reikšmės</b>
       </p>
       <table class="table table-borderless mb-0">
         <thead>
           <tr>
-            <th class="pt-0">KMI</th>
+            <th class="ps-0">KMI</th>
             <th class="text-right pt-0">Kūno svoris</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>&lt; 18,5</td>
+            <td class="ps-0">&lt; 18,5</td>
             <td class="text-right">Per mažas</td>
           </tr>
           <tr>
-            <td>18,5 - 24,9</td>
+            <td class="ps-0">18,5 - 24,9</td>
             <td class="text-right">Normalus</td>
           </tr>
           <tr>
-            <td>25 - 29,9</td>
+            <td class="ps-0">25 - 29,9</td>
             <td class="text-right">Antsvoris</td>
           </tr>
           <tr>
-            <td>30 - 34,9</td>
+            <td class="ps-0">30 - 34,9</td>
             <td class="text-right">Pirmo lygio nutukimas</td>
           </tr>
           <tr>
-            <td>35 - 39,9</td>
+            <td class="ps-0">35 - 39,9</td>
             <td class="text-right">Antro lygio nutukimas</td>
           </tr>
           <tr>
-            <td class="pb-0">&gt; 40,0</td>
+            <td class="ps-0 pb-0">&gt; 40,0</td>
             <td class="text-right pb-0">Trečio lygio nutukimas</td>
           </tr>
         </tbody>
@@ -120,9 +122,10 @@
             bg-white
             border
             rounded
-            p-4
+            p-3
+            p-sm-4
           ">
-      <p class="fs-5 lh-1">
+      <p class="fs-5">
         Jūsų kūno masės indeksas (KMI): <span class="fs-3"><b>19,50</b></span>
       </p>
       <p class="fs-6 lh-base mb-0">
@@ -138,34 +141,57 @@
   </div>
 
   <div class="blog-wrapper mb-5">
-    <a href="#" class="blog-thumbnail row bg-white border rounded g-0">
-      <img class="col-3 rounded-start" src="https://source.unsplash.com/OvNsLemoVEw" />
-      <div class="col-9 my-auto p-3">
-        <p class="fs-6 fw-bold mb-2">
-          7 būdai, kaip numesti svorio nesportuojant
-        </p>
-        <p class="fs-7 mb-0 text-secondary">Rūta Š. • prieš mėnesį</p>
-      </div>
-    </a>
-    <a href="#" class="blog-thumbnail row bg-white border rounded g-0 mt-3">
-      <img class="col-3 rounded-start" src="https://source.unsplash.com/jr3YNY2T2xI" />
-      <div class="col-9 my-auto p-3">
-        <p class="fs-6 fw-bold mb-2">
-          5 maisto produktai, kurie nėra tokie sveiki, kaip galvojame
-        </p>
-        <p class="fs-7 mb-0 text-secondary">Rūta Š. • prieš mėnesį</p>
-      </div>
-    </a>
-    <a href="#" class="blog-thumbnail row bg-white border rounded g-0 mt-3">
-      <img class="col-3 rounded-start" src="https://source.unsplash.com/YmyFBvW7oG8" />
+    
+    <a href="/2021/10/29/keletas-paprast%C5%B3-organizmo-valymo-b%C5%ABd%C5%B3.html" class="blog-thumbnail row bg-white border rounded mb-3 g-0">
+      <img
+        class="col-3 rounded-start"
+        src="/assets/images/placeholder3.jpg"
+        alt="Keletas Paprastų Organizmo Valymo Būdų"
+        title="Keletas Paprastų Organizmo Valymo Būdų"
+      />
       <div class="col-9 my-auto p-3">
         <p class="fs-6 fw-bold mb-2">
           Keletas paprastų organizmo valymo būdų
         </p>
-        <p class="fs-7 mb-0 text-secondary">Rūta Š. • prieš mėnesį</p>
+        <p class="fs-7 mb-0 text-secondary">Rūta Š. • 29 Oct 2021</p>
       </div>
     </a>
+    
+    <a href="/2021/10/29/7-b%C5%ABdai,-kaip-numesti-svorio-nesportuojant.html" class="blog-thumbnail row bg-white border rounded mb-3 g-0">
+      <img
+        class="col-3 rounded-start"
+        src="/assets/images/placeholder1.jpg"
+        alt="7 Būdai, Kaip Numesti Svorio Nesportuojant"
+        title="7 Būdai, Kaip Numesti Svorio Nesportuojant"
+      />
+      <div class="col-9 my-auto p-3">
+        <p class="fs-6 fw-bold mb-2">
+          7 būdai, kaip numesti svorio nesportuojant
+        </p>
+        <p class="fs-7 mb-0 text-secondary">Rūta Š. • 29 Oct 2021</p>
+      </div>
+    </a>
+    
+    <a href="/2021/10/29/5-maisto-produktai,-kurie-n%C4%97ra-tokie-sveiki,-kaip-galvojame.html" class="blog-thumbnail row bg-white border rounded mb-3 g-0">
+      <img
+        class="col-3 rounded-start"
+        src="/assets/images/placeholder2.jpg"
+        alt="5 Maisto Produktai, Kurie Nėra Tokie Sveiki, Kaip Galvojame"
+        title="5 Maisto Produktai, Kurie Nėra Tokie Sveiki, Kaip Galvojame"
+      />
+      <div class="col-9 my-auto p-3">
+        <p class="fs-6 fw-bold mb-2">
+          5 maisto produktai, kurie nėra tokie sveiki, kaip galvojame
+        </p>
+        <p class="fs-7 mb-0 text-secondary">Rūta Š. • 29 Oct 2021</p>
+      </div>
+    </a>
+    
   </div>
 </main>
+    <a target="_blank" href="http://www.hey.lt/details.php?id=kmiskaiciuokle"><img width="88" height="31" border="0" src="http://www.hey.lt/count.php?id=kmiskaiciuokle" alt="Hey.lt - Nemokamas lankytojų skaitliukas"></a>
+  </body>
+</html>
+
   </body>
 </html>

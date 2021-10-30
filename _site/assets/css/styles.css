@@ -7,10 +7,6 @@ a:hover { color: initial; }
 
 b, strong, th { font-weight: 500; }
 
-th, td { padding-left: 0 !important; }
-
-header { position: fixed; width: 100%; z-index: 1; }
-
 main { column-gap: 24px; padding-top: 103px; display: block; }
 
 .fs-7 { font-size: 14px; }
@@ -49,5 +45,7 @@ button { font-weight: 500; }
 .big-article-card { max-width: 625px; width: 100%; }
 
 .big-article-card img { max-height: 300px; object-fit: cover; }
+
+header { position: fixed; width: 100%; z-index: 1; }
 
 /*# sourceMappingURL=styles.css.map */

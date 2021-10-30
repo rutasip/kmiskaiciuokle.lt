@@ -2,7 +2,7 @@
 layout: default
 title: Tinklaraštis
 ---
-<main class="align-items-center flex-column px-2">
+<main class="d-flex align-items-center flex-column px-2">
   {% for post in site.posts %}
   <a href="{{ post.url }}" class="big-article-card bg-white border rounded mb-4">
     <img
@@ -11,9 +11,9 @@ title: Tinklaraštis
       alt="{{ post.title }}"
       title="{{ post.title }}"
     />
-    <div class="my-auto p-4">
+    <div class="my-auto p-3 p-sm-4">
       <p class="fs-5 fw-bold mb-2">
-        {{ post.title }}
+        {{ post.title | capitalize }}
       </p>
       <p class="fs-6 text-secondary">{{ post.excerpt }}</p>
       <p class="fs-7 mb-0 text-secondary">{{ post.author }} • {{ post.date | date_to_string }}</p>
