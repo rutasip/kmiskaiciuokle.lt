@@ -7,15 +7,15 @@ title: Tinklaraštis
   <a href="{{ post.url }}" class="big-article-card bg-white border rounded mb-4">
     <img
       class="container-fluid rounded-top p-0"
-      src="{{ post.image | prepend: site.baseurl }}"
+      src="{{ post.image }}"
       alt="{{ post.title }}"
       title="{{ post.title }}"
     />
     <div class="my-auto p-3 p-sm-4">
-      <p class="fs-5 fw-bold mb-2">
+      <h4 class="fw-bold mb-2">
         {{ post.title | capitalize }}
-      </p>
-      <p class="fs-6 text-secondary">{{ post.excerpt }}</p>
+      </h4>
+      <p class="fs-6 text-secondary">{{ post.description }}</p>
       <p class="fs-7 mb-0 text-secondary">{{ post.author }} • {{ post.date | date_to_string }}</p>
     </div>
   </a>

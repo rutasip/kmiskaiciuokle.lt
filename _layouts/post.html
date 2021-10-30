@@ -1,7 +1,29 @@
 ---
 layout: default
 ---
-<h1>{{ page.title }}</h1>
-<p>{{ page.date | date_to_string }} - {{ page.author }}</p>
+<main class="justify-content-center px-2">
+    <div class="bmi-wrapper post bg-white border rounded mb-5 p-3 p-sm-4 pb-0 pb-sm-0">
+        <h1 class="fw-bolder">{{ page.title | capitalize }}</h1>
+        <p class="post__subtext lh-base mt-0">{{ page.description }}</p>
+        <img class="rounded my-4" src="{{ page.image }}" alt="{{ page.title }}" title="{{ page.title }}" />
 
-{{ content }}
+        {{ content }}
+    </div>
+
+    <div class="blog-wrapper mb-5">
+        <div class="blog__fixed">
+            {% for post in site.posts %}
+            <a href="{{ post.url }}" class="blog-thumbnail thumbnail-fixed row bg-white border rounded mb-3 g-0">
+                <img class="col-3 rounded-start" src="{{ post.image }}" alt="{{ post.title }}"
+                    title="{{ post.title }}" />
+                <div class="col-9 my-auto p-3">
+                    <p class="fs-6 fw-bold mb-2">
+                        {{ post.title | capitalize }}
+                    </p>
+                    <p class="fs-7 mb-0 text-secondary">{{ post.author }} • {{ post.date | date_to_string }}</p>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</main>

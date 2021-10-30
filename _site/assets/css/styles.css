@@ -27,24 +27,42 @@ button { font-weight: 500; }
 
 .input-group-text { background-color: #fff; }
 
-.bmi-wrapper { width: 100%; max-width: 500px; margin: auto auto 42px auto; }
+.bmi-wrapper { width: 100%; max-width: 750px; margin: auto auto 42px auto; }
 
-.blog-wrapper { max-width: 500px; margin-left: auto; margin-right: auto; padding-left: 0; border: none; }
+.blog-wrapper { max-width: 750px; margin-left: auto; margin-right: auto; padding-left: 0; border: none; }
+
+.blog-wrapper .thumbnail-fixed { max-width: 726px; }
+
+.blog-wrapper .blog__fixed { position: initial; }
 
 .bmi-calculator { width: 100%; margin-bottom: 16px; }
 
 .bmi-table { width: 100%; margin-bottom: 16px; }
 
-@media (min-width: 992px) { main { display: flex; } .bmi-wrapper { width: 50%; max-width: 980px; margin: unset; margin-bottom: 16px; } .bmi-calculator { float: left; margin-right: 8px; } .bmi-table { float: right; margin-left: 8px; } .bmi-text-result { float: right; } .blog-wrapper { width: 50%; margin-left: unset; margin-right: unset; padding-left: 24px; max-width: 420px; border-left: 1px solid #dee2e6 !important; } }
+@media (min-width: 992px) { main { display: flex; } .bmi-wrapper { width: 50%; max-width: 980px; margin: unset; margin-bottom: 16px; } .bmi-calculator { float: left; margin-right: 8px; } .bmi-table { float: right; margin-left: 8px; } .bmi-text-result { float: right; } .blog-wrapper { width: 50%; margin-left: unset; margin-right: unset; padding-left: 24px; max-width: 420px; border-left: 1px solid #dee2e6 !important; } .blog-wrapper .thumbnail-fixed { max-width: 396px; } .blog-wrapper .blog__fixed { position: fixed; } }
 
 @media (min-width: 1400px) { .bmi-wrapper { width: 72%; } .bmi-calculator { width: 481.4px; } .bmi-table { width: 481.4px; } .blog-wrapper { width: 28%; } }
 
 .blog-thumbnail img { object-fit: cover; }
 
 /* Blog page */
-.big-article-card { max-width: 625px; width: 100%; }
+.big-article-card { max-width: 750px; width: 100%; }
 
-.big-article-card img { max-height: 300px; object-fit: cover; }
+.big-article-card img { max-height: 340px; object-fit: cover; }
+
+.post { max-width: 750px; }
+
+.post img { width: 100%; max-height: 44vw; }
+
+.post p { font-size: 20px; line-height: 36px; margin-bottom: 22px; }
+
+.post h1 { font-size: 34px; line-height: 42px; }
+
+.post h2 { font-size: 30px; line-height: 42px; margin: 52px 0 22px; }
+
+.post__subtext { color: #5b616e; }
+
+@media (min-width: 992px) { .post img { max-height: 24vw; } }
 
 header { position: fixed; width: 100%; z-index: 1; }
 

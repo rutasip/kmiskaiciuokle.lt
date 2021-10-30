@@ -71,16 +71,24 @@ button {
 
 .bmi-wrapper {
     width: 100%;
-    max-width: 500px;
+    max-width: 750px;
     margin: auto auto 42px auto;
 }
 
 .blog-wrapper {
-    max-width: 500px;
+    max-width: 750px;
     margin-left: auto;
     margin-right: auto;
     padding-left: 0;
     border: none;
+
+    .thumbnail-fixed {
+        max-width: 726px;
+    }
+
+    .blog__fixed {
+        position: initial;
+    }
 }
 
 .bmi-calculator {
@@ -126,6 +134,14 @@ button {
         padding-left: 24px;
         max-width: 420px;
         border-left: 1px solid #dee2e6 !important;
+
+        .thumbnail-fixed {
+            max-width: 396px;
+        }
+
+        .blog__fixed {
+            position: fixed;
+        }
     }
 }
 
@@ -155,11 +171,50 @@ button {
 /* Blog page */
 
 .big-article-card {
-    max-width: 625px;
+    max-width: 750px;
     width: 100%;
 }
 
 .big-article-card img {
-    max-height: 300px;
+    max-height: 340px;
     object-fit: cover;
+}
+
+// Post page
+.post {
+    max-width: 750px;
+
+    img {
+        width: 100%; 
+        max-height: 44vw;
+    }
+
+    p {
+        font-size: 20px;
+        line-height: 36px;
+        margin-bottom: 22px;
+    }
+
+    h1 {
+        font-size: 34px;
+        line-height: 42px;
+    }
+
+    h2 {
+        font-size: 30px;
+        line-height: 42px;
+        margin: 52px 0 22px;
+    }
+
+    &__subtext {
+        color: #5b616e;
+    }
+}
+
+@media (min-width: 992px) {
+    .post {
+        img { 
+            max-height: 24vw;
+        }
+    }
 }
