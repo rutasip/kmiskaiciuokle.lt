@@ -39,7 +39,7 @@
       <form class="row">
         <div class="col-6 mb-2">
           <label for="weight" class="form-label mb-1">Jūsų svoris</label>
-          <p class="fs-7 text-secondary">(kilogramais, pvz.: 60)</p>
+          <p class="fs-7 text-secondary mb-1">(kilogramais, pvz.: 60)</p>
           <div class="input-group mb-3">
             <input type="number" class="form-control" id="weight" aria-describedby="kg" required />
             <span class="input-group-text" id="kg">kg</span>
@@ -48,7 +48,7 @@
 
         <div class="col-6 mb-2">
           <label for="weight" class="form-label mb-1">Jūsų ūgis</label>
-          <p class="fs-7 text-secondary">(centimetrais, pvz.: 170)</p>
+          <p class="fs-7 text-secondary mb-1">(centimetrais, pvz.: 170)</p>
           <div class="input-group mb-3">
             <input type="number" class="form-control" id="height" aria-describedby="cm" required />
             <span class="input-group-text" id="cm">cm</span>
@@ -73,6 +73,7 @@
             <input type="number" class="form-control" id="age" />
           </div>
         </div>
+        <p id="required-fields-error" class="fs-7 text-danger visually-hidden">Užpildykite reikiamus laukus - ūgį ir svorį.</p>
         <div class="text-end">
           <button onclick="calculateBmi()" type="button" class="btn-light">Skaičiuoti kūno masės indeksą</button>
         </div>
