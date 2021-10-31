@@ -1,5 +1,6 @@
 ---
 layout: post
+title: 7 būdai, kaip numesti svorio nesportuojant
 author: Rūta Š.
 image: /assets/images/placeholder1.jpg
 description: An apple is a sweet, edible fruit produced by an apple tree.

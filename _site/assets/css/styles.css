@@ -13,6 +13,8 @@ main { column-gap: 24px; padding-top: 103px; display: block; }
 
 .fw-bold { font-weight: 500 !important; }
 
+.bg-yellow { background-color: #FFCE43; }
+
 button { font-weight: 500; }
 
 .btn { padding: 10px 16px !important; letter-spacing: 0.4px; font-weight: 500; }

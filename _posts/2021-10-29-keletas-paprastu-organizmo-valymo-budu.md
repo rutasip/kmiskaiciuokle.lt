@@ -1,5 +1,6 @@
 ---
 layout: post
+title: Keletas paprastų organizmo valymo būdų
 author: Rūta Š.
 image: /assets/images/placeholder3.jpg
 description: Kiwifruit (often abbreviated as kiwi), or Chinese gooseberry is the edible berry of several species of woody vines in the genus Actinidia.
