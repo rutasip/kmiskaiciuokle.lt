@@ -41,7 +41,7 @@ button { font-weight: 500; }
 
 .bmi-table { width: 100%; margin-bottom: 16px; }
 
-@media (min-width: 992px) { main { display: flex; } .bmi-wrapper { width: 50%; max-width: 980px; margin: unset; margin-bottom: 16px; } .bmi-calculator { float: left; margin-right: 8px; } .bmi-table { float: right; margin-left: 8px; } .bmi-text-result { float: right; } .blog-wrapper { width: 50%; margin-left: unset; margin-right: unset; padding-left: 24px; max-width: 420px; border-left: 1px solid #dee2e6 !important; } .blog-wrapper .thumbnail-fixed { max-width: 396px; } .blog-wrapper .blog__fixed { position: fixed; } }
+@media (min-width: 992px) { main { display: flex; } .bmi-wrapper { width: 64%; max-width: 980px; margin: unset; margin-bottom: 16px; } .bmi-calculator { float: left; margin-right: 8px; } .bmi-table { float: right; margin-left: 8px; } .bmi-text-result { float: right; } .blog-wrapper { width: 36%; margin-left: unset; margin-right: unset; padding-left: 24px; max-width: 420px; border-left: 1px solid #dee2e6 !important; } .blog-wrapper .thumbnail-fixed { max-width: 396px; } .blog-wrapper .blog__fixed { position: fixed; } }
 
 @media (min-width: 1400px) { .bmi-wrapper { width: 72%; } .bmi-calculator { width: 481.4px; } .bmi-table { width: 481.4px; } .blog-wrapper { width: 28%; } }
 
@@ -56,15 +56,17 @@ button { font-weight: 500; }
 
 .post img { width: 100%; max-height: 44vw; }
 
-.post p { font-size: 20px; line-height: 36px; margin-bottom: 22px; }
+.post p { font-size: 16px; line-height: 26.4px; margin-bottom: 16px; }
 
-.post h1 { font-size: 34px; line-height: 42px; }
+.post h1 { font-size: 28.8px; line-height: 36.8px; }
 
-.post h2 { font-size: 30px; line-height: 42px; margin: 52px 0 22px; }
+.post h2 { font-size: 24.8px; line-height: 35px; margin: 48px 0 16px; }
 
 .post__subtext { color: #5b616e; }
 
-@media (min-width: 992px) { .post img { max-height: 24vw; } }
+@media (min-width: 768px) { .post p { font-size: 18px; line-height: 29.7px; margin-bottom: 18px; } .post h1 { font-size: 32.4px; line-height: 41.4px; } .post h2 { font-size: 27.9px; line-height: 40px; margin: 54px 0 18px; } }
+
+@media (min-width: 992px) { .post img { max-height: 24vw; } .post p { font-size: 20px; line-height: 33px; margin-bottom: 20px; } .post h1 { font-size: 36px; line-height: 46px; } .post h2 { font-size: 31px; line-height: 44px; margin: 60px 0 20px; } }
 
 header { position: fixed; width: 100%; z-index: 1; }
 
