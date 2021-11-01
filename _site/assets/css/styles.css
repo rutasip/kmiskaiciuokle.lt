@@ -9,7 +9,7 @@ b, strong, th { font-weight: 500; }
 
 main { column-gap: 24px; padding-top: 103px; display: block; }
 
-.fs-7 { font-size: 14px; }
+.fs-7 { font-size: 14px !important; }
 
 .fw-bold { font-weight: 500 !important; }
 

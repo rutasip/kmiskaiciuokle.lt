@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>http://localhost:4000/5-maisto-produktai-kurie-nera-tokie-sveiki-kaip-galvojame</loc>
-<lastmod>2021-10-29T00:00:00+03:00</lastmod>
-</url>
-<url>
-<loc>http://localhost:4000/7-budai-kaip-numesti-svorio-nesportuojant</loc>
-<lastmod>2021-10-29T00:00:00+03:00</lastmod>
-</url>
-<url>
-<loc>http://localhost:4000/keletas-paprastu-organizmo-valymo-budu</loc>
-<lastmod>2021-10-29T00:00:00+03:00</lastmod>
+<loc>http://localhost:4000/4-irodyti-budai-kaip-numesti-svorio-be-dietos-ar-aport</loc>
+<lastmod>2021-11-01T00:00:00+02:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000/about</loc>
