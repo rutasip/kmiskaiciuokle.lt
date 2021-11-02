@@ -15,7 +15,15 @@ function calculateBmi() {
 
     document.getElementById("calculated-bmi").innerText = bmi;
 
-    document.getElementById(this.highlightRow(bmi)).classList.add("bg-yellow");
+    const weightCategory = this.getWeightCategory(bmi);
+    document.getElementById(weightCategory).classList.add("bg-yellow");
+
+    document.getElementById("result").classList.remove("visually-hidden");
+    const children = Array.from(document.getElementById("weight-category-descriptions").children);
+    children.forEach(function (paragraph) {
+      paragraph.classList.add("visually-hidden");
+    });
+    document.getElementById(weightCategory + "-description").classList.remove("visually-hidden");
 
     if (gender == "female") {
       document
@@ -43,7 +51,7 @@ function calculateBmi() {
   }
 }
 
-function highlightRow(bmi) {
+function getWeightCategory(bmi) {
   document.querySelectorAll(".bg-yellow").forEach(function (row) {
     row.classList.remove("bg-yellow");
   });
