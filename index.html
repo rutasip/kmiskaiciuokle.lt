@@ -4,8 +4,8 @@ title: Skaičiuoklė
 ---
 
 <main class="justify-content-center px-2">
-  <div class="bmi-wrapper">
-    <div class="bmi-calculator bg-white border rounded p-3 p-sm-4">
+  <div class="column-wrapper">
+    <div class="column-wrapper__left bg-white border rounded p-3 p-sm-4">
       <p class="fs-5 mb-4">
         <b>Kūno masės indekso skaičiuoklė</b>
       </p>
@@ -46,13 +46,14 @@ title: Skaičiuoklė
             <input type="number" class="form-control" id="age" />
           </div>
         </div>
-        <p id="required-fields-error" class="fs-7 text-danger visually-hidden">Užpildykite privalomus laukus - ūgį ir svorį.</p>
+        <p id="required-fields-error" class="fs-7 text-danger visually-hidden">Užpildykite privalomus laukus - ūgį ir
+          svorį.</p>
         <div class="text-end">
           <button onclick="calculateBmi()" type="button" class="btn-light">Skaičiuoti kūno masės indeksą</button>
         </div>
       </form>
     </div>
-    <div class="bmi-table bg-white border rounded pt-3 pt-sm-4 pb-1 pb-sm-3">
+    <div class="column-wrapper__right bg-white border rounded pt-3 pt-sm-4 pb-1 pb-sm-3">
       <p class="fs-5 mb-4 ps-3 ps-sm-4">
         <b>Indekso reikšmės</b>
       </p>
@@ -92,7 +93,7 @@ title: Skaičiuoklė
       </table>
     </div>
     <div class="
-            bmi-text-result
+            float-end
             bg-white
             border
             rounded
@@ -102,40 +103,45 @@ title: Skaičiuoklė
       <p id="result" class="fs-5 visually-hidden">
         Jūsų kūno masės indeksas (KMI): <b><span id="calculated-bmi" class="fs-3">19,50</span></b>
       </p>
-      
+
       <div id="weight-category-descriptions">
         <p class="fs-6 lh-base">
-          Nėra „tobulo svorio“, kuris tiktų visiems. KMI arba kūno masės indeksas leidžia įvertinti, ar Jūsų svoris yra sveikas priklausomai nuo ūgio. 
+          KMI yra kūno masės indekso sutrumpinimas, kuris leidžia įsivertinti, ar svoris yra sveikas priklausomai nuo ūgio.
         </p>
         <p class="fs-6 lh-base">
-          Tai vienas iš būdų įvertinti, ar žmogus turi padidėjusią sveikatos problemų riziką, susijusią su svoriu.
+          Tai yra tik vienas iš būdų įsivertinti, ar yra padidėjusi sveikatos problemų rizika, susijusi su viršsvoriu arba per mažu svoriu.
         </p>
         <p class="fs-6 lh-base">
-          Skaičiuokle galima naudotis, jei Jums daugiau nei 20 metų ir nesate nėščia.
+          Skaičiuokle galima naudotis, tik jei Jums yra daugiau nei 20 metų ir nesate nėščia.
         </p>
         <p id="underweight-description" class="fs-6 lh-base visually-hidden">
-          Papildomi kilogramai gali sumažinti kaulų retėjimo ir susilpnėjusios imuninės sistemos tikimybę, bei sumažinti nuovargį. Moterims, turinčioms per mažą svorį, mėnesinės gali tapti nereguliarios arba visai nutrūkti. Mažo svorio vyrams gali sumažėti spermatozoidų skaičius.
+          <b>Per mažas svoris</b>. Papildomų kilogramų priaugimas gali sumažinti kaulų retėjimo ir susilpnėjusios imuninės sistemos tikimybę, bei sumažinti
+          nuovargį. Moterims, turinčioms per mažą svorį, mėnesinės gali tapti nereguliarios arba visai nutrūkti. Mažo
+          svorio vyrams gali sumažėti spermatozoidų skaičius.
         </p>
         <p id="normal-description" class="fs-6 lh-base visually-hidden">
-          Kūno masės indeksas tarp 18.5 ir 24.9 reiškia, kad svoris yra <b>normalus</b>. Laikykitės sveikų įpročių, kad išlaikytumėte savo svorį.
+          <b>Normalus</b> svoris. Laikykitės sveikų įpročių, kad
+          išlaikytumėte savo svorį.
         </p>
         <p id="overweight-description" class="fs-6 lh-base visually-hidden">
-          Kadangi Jūsų svoris yra <b>antsvorio</b> kategorijoje, papildomų kilogramų numetimas yra geras pirmasis žingsnis siekiant sumažinti sveikatos problemų tikimybę.
+          <b>Antsvoris</b>. papildomų kilogramų numetimas yra geras pirmasis
+          žingsnis siekiant sumažinti sveikatos problemų tikimybę.
 
-          Tačiau, jei turite labai raumeningą sudėjimą, galite turėti kūno masės indeksą antsvorio kategorijoje ir vis tiek būti sveiki.
+          Tačiau, jei esate labai raumeningo sudėjimo, galite būti antsvorio kategorijoje pagal kūno masės indeksą ir vis
+          tiek būti sveiki.
         </p>
         <p id="obese-type-1-description" class="fs-6 lh-base visually-hidden">
-          Kadangi Jūsų svoris yra <b>nutukimo</b> kategorijoje, daug didesnė tikimybė, kad turėsite rimtų sveikatos problemų.
+          <b>Nutukimas</b>. Yra didesnė tikimybė, kad turėsite rimtų sveikatos problemų.
         </p>
         <p id="obese-type-2-description" class="fs-6 lh-base visually-hidden">
-          Kadangi Jūsų svoris yra <b>nutukimo</b> kategorijoje, daug didesnė tikimybė, kad turėsite rimtų sveikatos problemų.
+          <b>Nutukimas</b>. Yra didesnė tikimybė, kad turėsite rimtų sveikatos problemų.
         </p>
         <p id="obese-type-3-description" class="fs-6 lh-base visually-hidden">
-          Kadangi Jūsų svoris yra <b>nutukimo</b> kategorijoje, daug didesnė tikimybė, kad turėsite rimtų sveikatos problemų.
+          <b>Nutukimas</b>. Yra didesnė tikimybė, kad turėsite rimtų sveikatos problemų.
         </p>
-        
+
       </div>
-      
+
       <p id="ideal-weight" class="fs-6 visually-hidden">
         Idealus svoris: <b><span id="calculated-ideal-weight"></span>kg</b>
       </p>
@@ -145,10 +151,11 @@ title: Skaičiuoklė
     </div>
   </div>
 
-  <div class="blog-wrapper mb-5">
+  <div class="posts-list-small mb-5">
     {% for post in site.posts %}
-    <a href="{{ post.url }}" class="blog-thumbnail row bg-white border rounded mb-3 g-0">
-      <img class="col-3 rounded-start" src="{{ post.image }}" alt="{{ post.title }}" title="{{ post.title }}" />
+    <a href="{{ post.url }}" class="row bg-white border rounded mb-3 g-0">
+      <img class="col-3 rounded-start object-fit-cover" src="{{ post.image }}" alt="{{ post.title }}"
+        title="{{ post.title }}" />
       <div class="col-9 my-auto p-3">
         <p class="fs-6 fw-bold mb-2">
           {{ post.title | capitalize }}
