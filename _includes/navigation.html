@@ -1,4 +1,4 @@
-<header class="border-bottom bg-white p-3">
+<header class="border-bottom bg-white p-2">
     <nav id="top-navigation" class="d-flex justify-content-center">
         {% for item in site.data.navigation %}
         <a href="{{ item.link }}" class="{% if '/'==item.link %}btn btn-light me-3 border{% else %}btn btn-dark{% endif %}" >{{ item.name }}</a>
