@@ -24,40 +24,40 @@
     <header class="border-bottom bg-white p-3">
     <nav id="top-navigation" class="d-flex justify-content-center">
         
-        <a href="/" class="btn btn-light me-3 border" >Skaičiuoklė</a>
+        <a href="/" class="btn theme-btn-light me-3" >Skaičiuoklė</a>
         
-        <a href="/tinklarastis.html" class="btn btn-dark" >Tinklaraštis</a>
+        <a href="/tinklarastis.html" class="btn theme-btn" >Tinklaraštis</a>
         
     </nav>
 </header>
     <main class="justify-content-center px-2">
   <div class="column-wrapper">
-    <div class="column-wrapper__left bg-white rounded shadow-sm">
-      <p class="bg-yellow rounded-top fs-5 mb-0 p-3">
+    <div class="float-start bg-white rounded shadow-sm">
+      <p class="bg-cyan rounded-top fs-6 mb-0 p-3">
         <b>Kūno masės indekso skaičiuoklė</b>
       </p>
       <form class="row p-3 p-sm-4">
         <div class="col-6 mb-2">
-          <label for="weight" class="form-label mb-1">Jūsų svoris</label>
-          <p class="fs-7 text-secondary mb-1">(kilogramais, pvz.: 60)</p>
+          <label for="weight" class="form-label">Jūsų svoris<span class="d-block fs-7 text-secondary">(kilogramais,
+              pvz.: 60)</span></label>
           <div class="input-group mb-3">
             <input type="number" class="form-control" id="weight" aria-describedby="kg" required />
-            <span class="input-group-text" id="kg">kg</span>
+            <span class="input-group-text bg-white" id="kg">kg</span>
           </div>
         </div>
 
         <div class="col-6 mb-2">
-          <label for="weight" class="form-label mb-1">Jūsų ūgis</label>
-          <p class="fs-7 text-secondary mb-1">(centimetrais, pvz.: 170)</p>
+          <label for="weight" class="form-label">Jūsų ūgis <span class="d-block fs-7 text-secondary">(centimetrais,
+              pvz.: 170)</span></label>
           <div class="input-group mb-3">
             <input type="number" class="form-control" id="height" aria-describedby="cm" required />
-            <span class="input-group-text" id="cm">cm</span>
+            <span class="input-group-text bg-white" id="cm">cm</span>
           </div>
         </div>
 
         <div class="col-6 mb-2">
-          <label for="height" class="form-label">Jūsų lytis</label>
-          <p class="fs-7 text-secondary">(neprivaloma)</p>
+          <label for="height" class="form-label">Jūsų lytis<span
+              class="d-block fs-7 text-secondary">(neprivaloma)</span></label>
           <select class="form-select input-group mb-3" id="gender">
             <option selected>Pasirinkti...</option>
             <option value="female">Moteris</option>
@@ -67,55 +67,56 @@
         </div>
 
         <div class="col-6 mb-2">
-          <label for="age" class="form-label">Jūsų amžius</label>
-          <p class="fs-7 text-secondary">(neprivaloma)</p>
+          <label for="age" class="form-label">Jūsų amžius<span
+              class="d-block fs-7 text-secondary">(neprivaloma)</span></label>
           <div class="input-group mb-3">
             <input type="number" class="form-control" id="age" />
           </div>
         </div>
         <p id="required-fields-error" class="fs-7 text-danger visually-hidden">Užpildykite privalomus laukus - ūgį ir
           svorį.</p>
+
         <div class="text-end">
-          <button onclick="calculateBmi()" type="button" class="btn btn-dark">Skaičiuoti</button>
+          <button onclick="calculateBmi()" type="button" class="btn theme-btn">Skaičiuoti</button>
         </div>
       </form>
     </div>
-    <div class="column-wrapper__right bg-white rounded shadow-sm">
-      <p class="bg-yellow rounded-top fs-5 mb-0 p-3">
+    <div class="float-end bg-white rounded shadow-sm">
+      <p class="bg-cyan rounded-top fs-6 mb-0 p-3">
         <b>Indekso reikšmės</b>
       </p>
       <div class="pt-2 pt-sm-3">
-        <table class="table table-borderless">
+        <table id="bmi-table" class="table table-borderless">
           <thead>
             <tr>
               <th class="ps-3 ps-sm-4">KMI</th>
-              <th class="text-right pt-0">Kūno svoris</th>
+              <th>Kūno svoris</th>
             </tr>
           </thead>
           <tbody>
             <tr id="underweight">
               <td class="ps-3 ps-sm-4">&lt; 18,5</td>
-              <td class="text-right">Per mažas</td>
+              <td>Per mažas</td>
             </tr>
             <tr id="normal">
               <td class="ps-3 ps-sm-4">18,5 - 24,9</td>
-              <td class="text-right">Normalus</td>
+              <td>Normalus</td>
             </tr>
             <tr id="overweight">
               <td class="ps-3 ps-sm-4">25 - 29,9</td>
-              <td class="text-right">Antsvoris</td>
+              <td>Antsvoris</td>
             </tr>
             <tr id="obese-type-1">
               <td class="ps-3 ps-sm-4">30 - 34,9</td>
-              <td class="text-right">Pirmo lygio nutukimas</td>
+              <td>Pirmo lygio nutukimas</td>
             </tr>
             <tr id="obese-type-2">
               <td class="ps-3 ps-sm-4">35 - 39,9</td>
-              <td class="text-right">Antro lygio nutukimas</td>
+              <td>Antro lygio nutukimas</td>
             </tr>
             <tr id="obese-type-3">
               <td class="ps-3 ps-sm-4">&gt; 40,0</td>
-              <td class="text-right">Trečio lygio nutukimas</td>
+              <td>Trečio lygio nutukimas</td>
             </tr>
           </tbody>
         </table>
@@ -125,6 +126,7 @@
             float-end
             bg-white
             rounded
+            fs-6
             p-3
             p-sm-4
             shadow-sm
@@ -134,28 +136,28 @@
       </p>
 
       <div id="weight-category-descriptions">
-        <p class="fs-6 lh-base">
+        <p>
           KMI yra kūno masės indekso sutrumpinimas, kuris leidžia įsivertinti, ar svoris yra sveikas priklausomai nuo
           ūgio.
         </p>
-        <p class="fs-6 lh-base">
+        <p>
           Tai yra tik vienas iš būdų įsivertinti, ar yra padidėjusi sveikatos problemų rizika, susijusi su viršsvoriu
           arba per mažu svoriu.
         </p>
-        <p class="fs-6 lh-base">
+        <p>
           Skaičiuokle galima naudotis, tik jei Jums yra daugiau nei 20 metų ir nesate nėščia.
         </p>
-        <p id="underweight-description" class="fs-6 lh-base visually-hidden">
+        <p id="underweight-description" class="visually-hidden">
           <b>Per mažas svoris</b>. Papildomų kilogramų priaugimas gali sumažinti kaulų retėjimo ir susilpnėjusios
           imuninės sistemos tikimybę, bei sumažinti
           nuovargį. Moterims, turinčioms per mažą svorį, mėnesinės gali tapti nereguliarios arba visai nutrūkti. Mažo
           svorio vyrams gali sumažėti spermatozoidų skaičius.
         </p>
-        <p id="normal-description" class="fs-6 lh-base visually-hidden">
+        <p id="normal-description" class="visually-hidden">
           <b>Normalus</b> svoris. Laikykitės sveikų įpročių, kad
           išlaikytumėte savo svorį.
         </p>
-        <p id="overweight-description" class="fs-6 lh-base visually-hidden">
+        <p id="overweight-description" class="visually-hidden">
           <b>Antsvoris</b>. papildomų kilogramų numetimas yra geras pirmasis
           žingsnis siekiant sumažinti sveikatos problemų tikimybę.
 
@@ -163,43 +165,46 @@
           vis
           tiek būti sveiki.
         </p>
-        <p id="obese-type-1-description" class="fs-6 lh-base visually-hidden">
+        <p id="obese-type-1-description" class="visually-hidden">
           <b>Nutukimas</b>. Yra didesnė tikimybė, kad turėsite rimtų sveikatos problemų.
         </p>
-        <p id="obese-type-2-description" class="fs-6 lh-base visually-hidden">
+        <p id="obese-type-2-description" class="visually-hidden">
           <b>Nutukimas</b>. Yra didesnė tikimybė, kad turėsite rimtų sveikatos problemų.
         </p>
-        <p id="obese-type-3-description" class="fs-6 lh-base visually-hidden">
+        <p id="obese-type-3-description" class="visually-hidden">
           <b>Nutukimas</b>. Yra didesnė tikimybė, kad turėsite rimtų sveikatos problemų.
         </p>
-
       </div>
 
-      <p id="ideal-weight" class="fs-6 visually-hidden">
+      <p id="ideal-weight" class="visually-hidden">
         Idealus svoris: <b><span id="calculated-ideal-weight"></span>kg</b>
       </p>
-      <p class="fs-6 mb-0">
+      <p class="mb-0">
         * Pateikta informacija yra tik švietimo tikslais ir nepakeičia profesionalių medicininių patarimų.
       </p>
     </div>
   </div>
 
   <div class="posts-list-small mb-5">
-    <p class="fs-5 pt-3">
-      <b>Tinklaraštis</b>
-    </p>
-    
-    <a href="/4-irodyti-budai-kaip-numesti-svorio-be-dietos-ar-sporto" class="row bg-white rounded shadow-sm mb-3 g-0">
-      <img class="rounded-top object-fit-cover" src="/assets/images/placeholder4.jpg" alt="4 įrodyti būdai, kaip numesti svorio be dietos ar sporto"
-        title="4 įrodyti būdai, kaip numesti svorio be dietos ar sporto" />
-      <div class="p-3">
-        <p class="fs-6 fw-bold mb-2">
-          4 įrodyti būdai, kaip numesti svorio be dietos ar sporto
-        </p>
-        <p class="fs-7 mb-0 text-secondary">Rūta Š. • 01 Nov 2021</p>
-      </div>
-    </a>
-    
+    <div class="posts-list-small__fixed">
+      <p class="fs-5">
+        <b>Tinklaraštis</b>
+      </p>
+      
+      <a href="/4-irodyti-budai-kaip-numesti-svorio-be-dietos-ar-sporto" class="row bg-white rounded shadow-sm mb-3 g-0">
+        <img class="rounded-top object-fit-cover" src="/assets/images/placeholder4.jpg" alt="4 įrodyti būdai, kaip numesti svorio be dietos ar sporto"
+          title="4 įrodyti būdai, kaip numesti svorio be dietos ar sporto" />
+        <div class="p-3">
+          <p class="fs-6 mb-2">
+            <b>
+              4 įrodyti būdai, kaip numesti svorio be dietos ar sporto
+            </b>
+          </p>
+          <p class="fs-7 mb-0 text-secondary">Rūta Š. • 01 Nov 2021</p>
+        </div>
+      </a>
+      
+    </div>
   </div>
 </main>
 <script src="/assets/js/calculate-result.js"></script>

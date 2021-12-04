@@ -1,7 +1,6 @@
 .posts-list-large {
   &__post {
-    max-width: 750px;
-    width: 100%;
+    max-width: 700px;
 
     img {
       max-height: 340px;
@@ -12,10 +11,7 @@
 
 .posts-list-small {
     max-width: 320px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 0;
-    border: none;
+    width: -webkit-fill-available;
 
     &__fixed {
         position: initial;
@@ -23,15 +19,12 @@
     }
 
     img {
-        max-height: 140px;
+        max-height: 160px;
     }
 }
 
 @media (min-width: 992px) {    
     .posts-list-small {
-        margin-left: unset;
-        margin-right: unset;
-
         &__fixed {
             position: fixed;
         }

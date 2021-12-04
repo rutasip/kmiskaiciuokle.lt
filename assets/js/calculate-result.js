@@ -16,7 +16,7 @@ function calculateBmi() {
     document.getElementById("calculated-bmi").innerText = bmi;
 
     const weightCategory = this.getWeightCategory(bmi);
-    document.getElementById(weightCategory).classList.add("bg-yellow");
+    document.getElementById(weightCategory).classList.add("bg-cyan");
 
     document.getElementById("result").classList.remove("visually-hidden");
     const children = Array.from(document.getElementById("weight-category-descriptions").children);
@@ -52,8 +52,8 @@ function calculateBmi() {
 }
 
 function getWeightCategory(bmi) {
-  document.querySelectorAll(".bg-yellow").forEach(function (row) {
-    row.classList.remove("bg-yellow");
+  document.getElementById("bmi-table").querySelectorAll(".bg-cyan").forEach(function (row) {
+    row.classList.remove("bg-cyan");
   });
 
   if (bmi < 18.5) return "underweight";
