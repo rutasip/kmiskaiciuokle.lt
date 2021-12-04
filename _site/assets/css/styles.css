@@ -5,25 +5,25 @@ a { text-decoration: none; color: initial; }
 
 b, strong, th { font-weight: 500; }
 
-main { column-gap: 24px; padding-top: 103px; display: block; }
+main { column-gap: 64px; padding-top: 111px; display: block; }
 
 .fs-7 { font-size: 14px !important; }
 
 .fw-bold { font-weight: 500 !important; }
 
-.bg-yellow { background-color: #FFCE43; }
+.bg-yellow { background-color: #A8D0E6; color: #fff; }
 
 button { font-weight: 500; }
 
 .btn { padding: 10px 16px !important; letter-spacing: 0.4px; font-weight: 500; }
 
-.btn-light { color: #1a73e8; background-color: #fff; border: none !important; }
+.btn-light { color: #F76C6C; background-color: #fff; border: none !important; }
 
-.btn-light:hover { border-color: #1a73e8; background-color: #f4f8fe; color: #1a73e8; }
+.btn-light:hover { border-color: #F76C6C; background-color: #f4f8fe; color: #F76C6C; }
 
-.btn-dark { color: #fff; background-color: #1a73e8; border-color: #1a73e8; }
+.btn-dark { color: #fff; background-color: #F76C6C; border-color: #F76C6C; }
 
-.btn-dark:hover { background-color: #185abc; border-color: #185abc; }
+.btn-dark:hover { background-color: #F76C6C; border-color: #F76C6C; }
 
 .input-group-text { background-color: #fff; }
 
@@ -31,11 +31,11 @@ button { font-weight: 500; }
 
 .column-wrapper { width: 100%; max-width: 750px; margin: auto auto 42px auto; }
 
-.column-wrapper__left, .column-wrapper__right { width: 100%; margin-bottom: 16px; }
+.column-wrapper__left, .column-wrapper__right { width: 100%; margin-bottom: 32px; }
 
-@media (min-width: 992px) { main { display: flex; } .column-wrapper { width: 64%; max-width: 980px; margin: unset; margin-bottom: 16px; } .column-wrapper__left { float: left; margin-right: 8px; } .column-wrapper__right { float: right; margin-left: 8px; } }
+@media (min-width: 992px) { main { display: flex; } .column-wrapper { width: 64%; max-width: 980px; margin: unset; margin-bottom: 16px; } .column-wrapper__left { float: left; margin-right: 16px; } .column-wrapper__right { float: right; margin-left: 16px; } }
 
-@media (min-width: 1400px) { .column-wrapper { width: 72%; } .column-wrapper__left, .column-wrapper__right { width: 481.4px; } }
+@media (min-width: 1400px) { .column-wrapper { width: 72%; } .column-wrapper__left, .column-wrapper__right { width: 473.4px; } }
 
 header { position: fixed; width: 100%; z-index: 1; }
 
@@ -59,12 +59,12 @@ header { position: fixed; width: 100%; z-index: 1; }
 
 .posts-list-large__post img { max-height: 340px; object-fit: cover; }
 
-.posts-list-small { max-width: 750px; margin-left: auto; margin-right: auto; padding-left: 0; border: none; }
+.posts-list-small { max-width: 320px; margin-left: auto; margin-right: auto; padding-left: 0; border: none; }
 
-.posts-list-small__fixed { position: initial; max-width: 726px; }
+.posts-list-small__fixed { position: initial; max-width: 320px; }
 
-@media (min-width: 992px) { .posts-list-small { width: 36%; margin-left: unset; margin-right: unset; padding-left: 24px; max-width: 420px; border-left: 1px solid #dee2e6 !important; } .posts-list-small__fixed { position: fixed; max-width: 396px; } }
+.posts-list-small img { max-height: 140px; }
 
-@media (min-width: 1400px) { .posts-list-small { width: 28%; } }
+@media (min-width: 992px) { .posts-list-small { margin-left: unset; margin-right: unset; } .posts-list-small__fixed { position: fixed; } }
 
 /*# sourceMappingURL=styles.css.map */

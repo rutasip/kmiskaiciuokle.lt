@@ -15,8 +15,8 @@ b, strong, th {
 }
 
 main {
-    column-gap: 24px;
-    padding-top: 87px;
+    column-gap: 64px;
+    padding-top: 111px;
     display: block;
 }
 
@@ -29,7 +29,8 @@ main {
 }
 
 .bg-yellow {
-    background-color: #FFCE43;
+    background-color: #A8D0E6;
+    color: #fff;
 }
 
 button {
@@ -43,26 +44,26 @@ button {
 }
 
 .btn-light {
-    color: #1a73e8;
+    color: #F76C6C;
     background-color: #fff;
     border: none !important;
 }
 
 .btn-light:hover {
-    border-color: #1a73e8;
+    border-color: #F76C6C;
     background-color: #f4f8fe;
-    color: #1a73e8;
+    color: #F76C6C;
 }
 
 .btn-dark {
     color: #fff;
-    background-color: #1a73e8;
-    border-color: #1a73e8;
+    background-color: #F76C6C;
+    border-color: #F76C6C;
 }
 
 .btn-dark:hover {
-    background-color: #185abc;
-    border-color: #185abc;
+    background-color: #F76C6C;
+    border-color: #F76C6C;
 }
 
 .input-group-text {
@@ -80,7 +81,7 @@ button {
 
     &__left, &__right {
         width: 100%;
-        margin-bottom: 16px;
+        margin-bottom: 32px;
     }
 }
 
@@ -97,12 +98,12 @@ button {
 
         &__left {
             float: left;
-            margin-right: 8px;
+            margin-right: 16px;
         }
 
         &__right {
             float: right;
-            margin-left: 8px;
+            margin-left: 16px;
         }
     }
 }
@@ -112,7 +113,7 @@ button {
         width: 72%;
 
         &__left, &__right {
-            width: 481.4px;
+            width: 473.4px;
         }
     }
 }

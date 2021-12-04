@@ -2,7 +2,7 @@
 layout: post
 title: 4 įrodyti būdai, kaip numesti svorio be dietos ar sporto
 author: Rūta Š.
-image: /assets/images/placeholder2.jpg
+image: /assets/images/placeholder4.jpg
 # description: A banana is an edible fruit – botanically a berry – produced by several kinds of large herbaceous flowering plants in the genus Musa.
 ---
 <h2>1. Naudokite mažesnes lėkštes nesveikam maistui</h2>

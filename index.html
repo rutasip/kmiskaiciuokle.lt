@@ -5,11 +5,11 @@ title: Skaičiuoklė
 
 <main class="justify-content-center px-2">
   <div class="column-wrapper">
-    <div class="column-wrapper__left bg-white border rounded p-3 p-sm-4">
-      <p class="fs-5 mb-4">
+    <div class="column-wrapper__left bg-white rounded shadow-sm">
+      <p class="bg-yellow rounded-top fs-5 mb-0 p-3">
         <b>Kūno masės indekso skaičiuoklė</b>
       </p>
-      <form class="row">
+      <form class="row p-3 p-sm-4">
         <div class="col-6 mb-2">
           <label for="weight" class="form-label mb-1">Jūsų svoris</label>
           <p class="fs-7 text-secondary mb-1">(kilogramais, pvz.: 60)</p>
@@ -49,56 +49,58 @@ title: Skaičiuoklė
         <p id="required-fields-error" class="fs-7 text-danger visually-hidden">Užpildykite privalomus laukus - ūgį ir
           svorį.</p>
         <div class="text-end">
-          <button onclick="calculateBmi()" type="button" class="btn-light">Skaičiuoti kūno masės indeksą</button>
+          <button onclick="calculateBmi()" type="button" class="btn btn-dark">Skaičiuoti</button>
         </div>
       </form>
     </div>
-    <div class="column-wrapper__right bg-white border rounded pt-3 pt-sm-4 pb-1 pb-sm-3">
-      <p class="fs-5 mb-4 ps-3 ps-sm-4">
+    <div class="column-wrapper__right bg-white rounded shadow-sm">
+      <p class="bg-yellow rounded-top fs-5 mb-0 p-3">
         <b>Indekso reikšmės</b>
       </p>
-      <table class="table table-borderless mb-0">
-        <thead>
-          <tr>
-            <th class="ps-3 ps-sm-4">KMI</th>
-            <th class="text-right pt-0">Kūno svoris</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr id="underweight">
-            <td class="ps-3 ps-sm-4">&lt; 18,5</td>
-            <td class="text-right">Per mažas</td>
-          </tr>
-          <tr id="normal">
-            <td class="ps-3 ps-sm-4">18,5 - 24,9</td>
-            <td class="text-right">Normalus</td>
-          </tr>
-          <tr id="overweight">
-            <td class="ps-3 ps-sm-4">25 - 29,9</td>
-            <td class="text-right">Antsvoris</td>
-          </tr>
-          <tr id="obese-type-1">
-            <td class="ps-3 ps-sm-4">30 - 34,9</td>
-            <td class="text-right">Pirmo lygio nutukimas</td>
-          </tr>
-          <tr id="obese-type-2">
-            <td class="ps-3 ps-sm-4">35 - 39,9</td>
-            <td class="text-right">Antro lygio nutukimas</td>
-          </tr>
-          <tr id="obese-type-3">
-            <td class="ps-3 ps-sm-4">&gt; 40,0</td>
-            <td class="text-right">Trečio lygio nutukimas</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="pt-2 pt-sm-3">
+        <table class="table table-borderless">
+          <thead>
+            <tr>
+              <th class="ps-3 ps-sm-4">KMI</th>
+              <th class="text-right pt-0">Kūno svoris</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr id="underweight">
+              <td class="ps-3 ps-sm-4">&lt; 18,5</td>
+              <td class="text-right">Per mažas</td>
+            </tr>
+            <tr id="normal">
+              <td class="ps-3 ps-sm-4">18,5 - 24,9</td>
+              <td class="text-right">Normalus</td>
+            </tr>
+            <tr id="overweight">
+              <td class="ps-3 ps-sm-4">25 - 29,9</td>
+              <td class="text-right">Antsvoris</td>
+            </tr>
+            <tr id="obese-type-1">
+              <td class="ps-3 ps-sm-4">30 - 34,9</td>
+              <td class="text-right">Pirmo lygio nutukimas</td>
+            </tr>
+            <tr id="obese-type-2">
+              <td class="ps-3 ps-sm-4">35 - 39,9</td>
+              <td class="text-right">Antro lygio nutukimas</td>
+            </tr>
+            <tr id="obese-type-3">
+              <td class="ps-3 ps-sm-4">&gt; 40,0</td>
+              <td class="text-right">Trečio lygio nutukimas</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
     <div class="
             float-end
             bg-white
-            border
             rounded
             p-3
             p-sm-4
+            shadow-sm
           ">
       <p id="result" class="fs-5 visually-hidden">
         Jūsų kūno masės indeksas (KMI): <b><span id="calculated-bmi" class="fs-3">19,50</span></b>
@@ -106,16 +108,19 @@ title: Skaičiuoklė
 
       <div id="weight-category-descriptions">
         <p class="fs-6 lh-base">
-          KMI yra kūno masės indekso sutrumpinimas, kuris leidžia įsivertinti, ar svoris yra sveikas priklausomai nuo ūgio.
+          KMI yra kūno masės indekso sutrumpinimas, kuris leidžia įsivertinti, ar svoris yra sveikas priklausomai nuo
+          ūgio.
         </p>
         <p class="fs-6 lh-base">
-          Tai yra tik vienas iš būdų įsivertinti, ar yra padidėjusi sveikatos problemų rizika, susijusi su viršsvoriu arba per mažu svoriu.
+          Tai yra tik vienas iš būdų įsivertinti, ar yra padidėjusi sveikatos problemų rizika, susijusi su viršsvoriu
+          arba per mažu svoriu.
         </p>
         <p class="fs-6 lh-base">
           Skaičiuokle galima naudotis, tik jei Jums yra daugiau nei 20 metų ir nesate nėščia.
         </p>
         <p id="underweight-description" class="fs-6 lh-base visually-hidden">
-          <b>Per mažas svoris</b>. Papildomų kilogramų priaugimas gali sumažinti kaulų retėjimo ir susilpnėjusios imuninės sistemos tikimybę, bei sumažinti
+          <b>Per mažas svoris</b>. Papildomų kilogramų priaugimas gali sumažinti kaulų retėjimo ir susilpnėjusios
+          imuninės sistemos tikimybę, bei sumažinti
           nuovargį. Moterims, turinčioms per mažą svorį, mėnesinės gali tapti nereguliarios arba visai nutrūkti. Mažo
           svorio vyrams gali sumažėti spermatozoidų skaičius.
         </p>
@@ -127,7 +132,8 @@ title: Skaičiuoklė
           <b>Antsvoris</b>. papildomų kilogramų numetimas yra geras pirmasis
           žingsnis siekiant sumažinti sveikatos problemų tikimybę.
 
-          Tačiau, jei esate labai raumeningo sudėjimo, galite būti antsvorio kategorijoje pagal kūno masės indeksą ir vis
+          Tačiau, jei esate labai raumeningo sudėjimo, galite būti antsvorio kategorijoje pagal kūno masės indeksą ir
+          vis
           tiek būti sveiki.
         </p>
         <p id="obese-type-1-description" class="fs-6 lh-base visually-hidden">
@@ -152,11 +158,14 @@ title: Skaičiuoklė
   </div>
 
   <div class="posts-list-small mb-5">
+    <p class="fs-5 pt-3">
+      <b>Tinklaraštis</b>
+    </p>
     {% for post in site.posts %}
-    <a href="{{ post.url }}" class="row bg-white border rounded mb-3 g-0">
-      <img class="col-3 rounded-start object-fit-cover" src="{{ post.image }}" alt="{{ post.title }}"
+    <a href="{{ post.url }}" class="row bg-white rounded shadow-sm mb-3 g-0">
+      <img class="rounded-top object-fit-cover" src="{{ post.image }}" alt="{{ post.title }}"
         title="{{ post.title }}" />
-      <div class="col-9 my-auto p-3">
+      <div class="p-3">
         <p class="fs-6 fw-bold mb-2">
           {{ post.title | capitalize }}
         </p>
