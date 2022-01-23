@@ -1,0 +1,23 @@
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 24px;
+}
+
+@media (min-width: 960px) {
+    .main-content {
+        grid-template-columns: 1fr 0.3fr;
+    }
+}
+
+.bmi {
+  display: grid;
+  grid-template-columns: minmax(auto, 582px);
+  grid-gap: 24px;
+}
+
+@media (min-width: 1260px) {
+  .bmi {
+    grid-template-columns: repeat(2, minmax(380px, 460px));
+  }
+}

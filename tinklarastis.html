@@ -2,15 +2,15 @@
 layout: default
 title: Tinklaraštis
 ---
-<main class="d-flex align-items-center flex-column px-2">
+<div class="posts-list-large px-2">
   {% for post in site.posts %}
   <a href="{{ post.url }}" class="posts-list-large__post bg-white shadow-sm rounded mb-4">
-    <img class="rounded-top full-width" src="{{ post.image }}" alt="{{ post.title }}" title="{{ post.title }}" />
+    <img class="rounded-top" src="{{ post.image }}" alt="{{ post.title }}" title="{{ post.title }}" />
     <div class="p-3 p-sm-4">
       <h4><b>{{ post.title | capitalize }}</b></h4>
-      <p class="fs-6 text-secondary">{{ post.description }}</p>
-      <p class="fs-7 mb-0 text-secondary">{{ post.author }} • {{ post.date | date_to_string }}</p>
+      <p class="text-secondary">{{ post.description }}</p>
+      <p class="fs-7 mb-0 text-secondary">{{ post.author }}</p>
     </div>
   </a>
   {% endfor %}
-</main>
+</div>

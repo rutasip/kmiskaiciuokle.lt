@@ -1,0 +1,58 @@
+// Utilities
+@import "utilities/variables";
+
+// Fonts
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f7f9fd;
+  font-size: 15px;
+}
+
+a {
+  text-decoration: none;
+  color: initial;
+}
+
+b,
+th {
+  font-weight: 500 !important;
+}
+
+main {
+  column-gap: 24px;
+  margin-top: $nav-height;
+}
+
+.fs-7 {
+  font-size: 14px !important;
+}
+
+.bg-cyan {
+  background-color: #a8d0e6;
+  color: #fff;
+}
+
+.theme-btn {
+  color: #fff;
+  background-color: $accent-color;
+  border-color: $accent-color;
+}
+
+.theme-btn:hover {
+  color: #fff;
+  background-color: $accent-color-darker;
+  border-color: $accent-color-darker;
+}
+
+.theme-btn-light {
+  color: $accent-color;
+  background-color: #fff;
+  border-color: $accent-color;
+}
+
+.theme-btn-light:hover {
+  background-color: rgba($accent-color, 0.05);
+  color: $accent-color;
+}

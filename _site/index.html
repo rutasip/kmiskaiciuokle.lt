@@ -1,12 +1,13 @@
 <!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Skaičiuoklė</title>
-    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/assets/css/styles.css">
-    <!-- Begin Jekyll SEO tag v2.7.1 -->
+<html lang="lt">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Skaičiuoklė</title>
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <!-- Begin Jekyll SEO tag v2.7.1 -->
 <title>Skaičiuoklė</title>
 <meta name="generator" content="Jekyll v4.2.1" />
 <meta property="og:title" content="Skaičiuoklė" />
@@ -19,10 +20,11 @@
 {"@type":"WebSite","headline":"Skaičiuoklė","url":"http://localhost:4000/","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
-  </head>
-  <body>
-    <header class="border-bottom bg-white p-3">
-    <nav id="top-navigation" class="d-flex justify-content-center">
+</head>
+
+<body>
+  <header class="fixed-top border-bottom bg-white p-2">
+    <nav class="d-flex justify-content-center">
         
         <a href="/" class="btn theme-btn-light me-3" >Skaičiuoklė</a>
         
@@ -30,15 +32,13 @@
         
     </nav>
 </header>
-    <main class="justify-content-center px-2">
-  <div class="column-wrapper">
+  <main class="d-flex justify-content-center p-2 p-sm-4">
+    <div class="main-content">
+  <div class="bmi">
     <div class="float-start bg-white rounded shadow-sm">
-      <p class="bg-cyan rounded-top fs-6 mb-0 p-3">
-        <b>Kūno masės indekso skaičiuoklė</b>
-      </p>
       <form class="row p-3 p-sm-4">
         <div class="col-6 mb-2">
-          <label for="weight" class="form-label">Jūsų svoris<span class="d-block fs-7 text-secondary">(kilogramais,
+          <label for="weight" class="form-label">Svoris<span class="d-block fs-7 text-secondary">(kilogramais,
               pvz.: 60)</span></label>
           <div class="input-group mb-3">
             <input type="number" class="form-control" id="weight" aria-describedby="kg" required />
@@ -47,7 +47,7 @@
         </div>
 
         <div class="col-6 mb-2">
-          <label for="weight" class="form-label">Jūsų ūgis <span class="d-block fs-7 text-secondary">(centimetrais,
+          <label for="weight" class="form-label">Ūgis <span class="d-block fs-7 text-secondary">(centimetrais,
               pvz.: 170)</span></label>
           <div class="input-group mb-3">
             <input type="number" class="form-control" id="height" aria-describedby="cm" required />
@@ -56,7 +56,7 @@
         </div>
 
         <div class="col-6 mb-2">
-          <label for="height" class="form-label">Jūsų lytis<span
+          <label for="height" class="form-label">Lytis<span
               class="d-block fs-7 text-secondary">(neprivaloma)</span></label>
           <select class="form-select input-group mb-3" id="gender">
             <option selected>Pasirinkti...</option>
@@ -67,7 +67,7 @@
         </div>
 
         <div class="col-6 mb-2">
-          <label for="age" class="form-label">Jūsų amžius<span
+          <label for="age" class="form-label">Amžius<span
               class="d-block fs-7 text-secondary">(neprivaloma)</span></label>
           <div class="input-group mb-3">
             <input type="number" class="form-control" id="age" />
@@ -82,9 +82,6 @@
       </form>
     </div>
     <div class="float-end bg-white rounded shadow-sm">
-      <p class="bg-cyan rounded-top fs-6 mb-0 p-3">
-        <b>Indekso reikšmės</b>
-      </p>
       <div class="pt-2 pt-sm-3">
         <table id="bmi-table" class="table table-borderless">
           <thead>
@@ -126,13 +123,12 @@
             float-end
             bg-white
             rounded
-            fs-6
             p-3
             p-sm-4
             shadow-sm
           ">
       <p id="result" class="fs-5 visually-hidden">
-        Jūsų kūno masės indeksas (KMI): <b><span id="calculated-bmi" class="fs-3">19,50</span></b>
+        Jūsų KMI: <b><span id="calculated-bmi" class="fs-3"></span></b>
       </p>
 
       <div id="weight-category-descriptions">
@@ -185,32 +181,49 @@
     </div>
   </div>
 
-  <div class="posts-list-small mb-5">
+  <div class="posts-list-small">
     <div class="posts-list-small__fixed">
-      <p class="fs-5">
-        <b>Tinklaraštis</b>
-      </p>
       
-      <a href="/4-irodyti-budai-kaip-numesti-svorio-be-dietos-ar-sporto" class="row bg-white rounded shadow-sm mb-3 g-0">
-        <img class="rounded-top object-fit-cover" src="/assets/images/placeholder4.jpg" alt="4 įrodyti būdai, kaip numesti svorio be dietos ar sporto"
-          title="4 įrodyti būdai, kaip numesti svorio be dietos ar sporto" />
-        <div class="p-3">
-          <p class="fs-6 mb-2">
-            <b>
-              4 įrodyti būdai, kaip numesti svorio be dietos ar sporto
-            </b>
+      <a href="/4-irodyti-budai-kaip-numesti-svorio-be-dietos-ar-sporto" class="row mb-3 g-0">
+        <img class="col-4 rounded" src="/assets/images/placeholder4.jpg" alt="4 įrodyti būdai, kaip numesti svorio be dietos ar sporto" title="4 įrodyti būdai, kaip numesti svorio be dietos ar sporto" />
+        <div class="col-8 d-flex flex-column justify-content-between px-3">
+          <p class="fs-7 mb-2">
+            4 įrodyti būdai, kaip numesti svorio be dietos ar sporto
           </p>
-          <p class="fs-7 mb-0 text-secondary">Rūta Š. • 01 Nov 2021</p>
+          <p class="fs-7 mb-0 text-secondary">Rūta Š.</p>
+        </div>
+      </a>
+      
+      <a href="/4-irodyti-budai-kaip-numesti-svorio-be-dietos-ar-sporto" class="row mb-3 g-0">
+        <img class="col-4 rounded" src="/assets/images/placeholder4.jpg" alt="4 įrodyti būdai, kaip numesti svorio be dietos ar sporto" title="4 įrodyti būdai, kaip numesti svorio be dietos ar sporto" />
+        <div class="col-8 d-flex flex-column justify-content-between px-3">
+          <p class="fs-7 mb-2">
+            4 įrodyti būdai, kaip numesti svorio be dietos ar sporto
+          </p>
+          <p class="fs-7 mb-0 text-secondary">Rūta Š.</p>
+        </div>
+      </a>
+      
+      <a href="/4-irodyti-budai-kaip-numesti-svorio-be-dietos-ar-sporto" class="row mb-3 g-0">
+        <img class="col-4 rounded" src="/assets/images/placeholder4.jpg" alt="4 įrodyti būdai, kaip numesti svorio be dietos ar sporto" title="4 įrodyti būdai, kaip numesti svorio be dietos ar sporto" />
+        <div class="col-8 d-flex flex-column justify-content-between px-3">
+          <p class="fs-7 mb-2">
+            4 įrodyti būdai, kaip numesti svorio be dietos ar sporto
+          </p>
+          <p class="fs-7 mb-0 text-secondary">Rūta Š.</p>
         </div>
       </a>
       
     </div>
   </div>
-</main>
+</div>
+
 <script src="/assets/js/calculate-result.js"></script>
-    <a target="_blank" href="http://www.hey.lt/details.php?id=kmiskaiciuokle"><img width="88" height="31" border="0" src="http://www.hey.lt/count.php?id=kmiskaiciuokle" alt="Hey.lt - Nemokamas lankytojų skaitliukas"></a>
+  </main>
+  <a target="_blank" href="http://www.hey.lt/details.php?id=kmiskaiciuokle"><img width="88" height="31" src="http://www.hey.lt/count.php?id=kmiskaiciuokle" alt="Hey.lt - Nemokamas lankytojų skaitliukas"></a>
   </body>
 </html>
 
-  </body>
+</body>
+
 </html>

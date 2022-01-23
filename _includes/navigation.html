@@ -1,7 +1,7 @@
-<header class="border-bottom bg-white p-3">
-    <nav id="top-navigation" class="d-flex justify-content-center">
+<header class="fixed-top border-bottom bg-white p-2">
+    <nav class="d-flex justify-content-center">
         {% for item in site.data.navigation %}
-        <a href="{{ item.link }}" class="{% if '/'==item.link %}btn theme-btn-light me-3{% else %}btn theme-btn{% endif %}" >{{ item.name }}</a>
+        <a href="{{ item.link }}" class="btn {% if '/'==item.link %}theme-btn-light me-3{% else %}theme-btn{% endif %}" >{{ item.name }}</a>
         {% endfor %}
     </nav>
 </header>

@@ -1,31 +1,26 @@
 ---
 layout: default
 ---
-<main class="justify-content-center px-2">
-    <div class="two-columns post bg-white shadow-sm rounded mb-5 p-3 p-sm-4 pb-0 pb-sm-0">
-        <h1><b>{{ page.title | capitalize }}</b></h1>
-        <p class="post__subtext">{{ page.description }}</p>
-        <img class="rounded mt-4" src="{{ page.image }}" alt="{{ page.title }}" title="{{ page.title }}" />
+<div class="two-columns post bg-white shadow-sm rounded mb-5 p-3 p-sm-4 pb-0 pb-sm-0">
+  <h1><b>{{ page.title | capitalize }}</b></h1>
+  <p class="post__subtext">{{ page.description }}</p>
+  <img class="rounded mt-4" src="{{ page.image }}" alt="{{ page.title }}" title="{{ page.title }}" />
 
-        {{ content }}
-    </div>
+  {{ content }}
+</div>
 
-    <div class="posts-list-small mb-5">
-        <div class="posts-list-small__fixed">
-            {% for post in site.posts %}
-            <a href="{{ post.url }}" class="row bg-white rounded shadow-sm mb-3 g-0">
-                <img class="rounded-top object-fit-cover" src="{{ post.image }}" alt="{{ post.title }}"
-                    title="{{ post.title }}" />
-                <div class="p-3">
-                    <p class="fs-6 mb-2">
-                        <b>
-                            {{ post.title | capitalize }}
-                        </b>
-                    </p>
-                    <p class="fs-7 mb-0 text-secondary">{{ post.author }} • {{ post.date | date_to_string }}</p>
-                </div>
-            </a>
-            {% endfor %}
-        </div>
-    </div>
-</main>
+<div class="posts-list-small">
+  <div class="posts-list-small__fixed">
+    {% for post in site.posts %}
+    <a href="{{ post.url }}" class="row mb-3 g-0">
+      <img class="col-4 rounded" src="{{ post.image }}" alt="{{ post.title }}" title="{{ post.title }}" />
+      <div class="col-8 d-flex flex-column justify-content-between px-3">
+        <p class="fs-7 mb-2">
+          {{ post.title | capitalize }}
+        </p>
+        <p class="fs-7 mb-0 text-secondary">{{ post.author }}</p>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</div>
