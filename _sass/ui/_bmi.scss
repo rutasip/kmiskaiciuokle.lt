@@ -1,7 +1,10 @@
+// Utilities
+@import "utilities/variables";
+
 .main-content {
     display: grid;
     grid-template-columns: 1fr;
-    grid-gap: 24px;
+    grid-gap: $grid-gap;
 }
 
 @media (min-width: 960px) {
@@ -12,8 +15,8 @@
 
 .bmi {
   display: grid;
-  grid-template-columns: minmax(auto, 582px);
-  grid-gap: 24px;
+  grid-template-columns: minmax(auto, 580px);
+  grid-gap: $grid-gap;
 }
 
 @media (min-width: 1260px) {

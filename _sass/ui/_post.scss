@@ -1,9 +1,12 @@
+// Utilities
+@import "utilities/variables";
+
 .post {
-    max-width: 750px;
+    max-width: 700px;
 
     img {
         width: 100%; 
-        max-height: 44vw;
+        max-height: 400px;
     }
 
     p {
@@ -51,10 +54,6 @@
 
 @media (min-width: 992px) {
     .post {
-        img { 
-            max-height: 24vw;
-        }
-
         p {
             font-size: 20px;
             line-height: 33px;

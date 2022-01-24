@@ -2,14 +2,14 @@
 layout: default
 title: Tinklaraštis
 ---
-<div class="posts-list-large px-2">
+<div class="posts-list-large justify-content-center px-2">
   {% for post in site.posts %}
-  <a href="{{ post.url }}" class="posts-list-large__post bg-white shadow-sm rounded mb-4">
+  <a href="{{ post.url }}" class="posts-list-large__post bg-white shadow-sm rounded">
     <img class="rounded-top" src="{{ post.image }}" alt="{{ post.title }}" title="{{ post.title }}" />
     <div class="p-3 p-sm-4">
-      <h4><b>{{ post.title | capitalize }}</b></h4>
-      <p class="text-secondary">{{ post.description }}</p>
-      <p class="fs-7 mb-0 text-secondary">{{ post.author }}</p>
+      <h4>{{ post.title | capitalize }}</h4>
+      <p class="fs-7 text-secondary">{{ post.description }}</p>
+      <p class="fs-8 mb-0 text-secondary">Autorius: <span class="float-end">{{ post.author }}</span></p>
     </div>
   </a>
   {% endfor %}

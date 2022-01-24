@@ -1,4 +1,10 @@
 $accent-color: #f76c6c;
+$accent-color-lighter: rgba($accent-color, 0.05);
 $accent-color-darker: darken($accent-color, 5%);
 
 $nav-height: 60px;
+$grid-gap: 24px;
+$default-font-size: 16px;
+$default-post-width: 360px;
+
+$phi: 1.6180339887498948482;
