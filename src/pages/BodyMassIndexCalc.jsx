@@ -53,49 +53,34 @@ const categoryList = [
 
 const faqs = [
   {
+    question: "Kas yra idealus svoris?",
+    answer:
+      "Idealus svoris yra apytikslė kūno svorio reikšmė, atsižvelgiant į jūsų ūgį ir lytį. Jis padeda įvertinti, ar jūsų svoris yra sveiko diapazono ribose.",
+  },
+  {
+    question: "Kaip apskaičiuojamas idealus svoris?",
+    answer:
+      "Idealus svoris apskaičiuojamas naudojant standartines formules, kurios atsižvelgia į jūsų ūgį ir lytį. Tai suteikia bendrą supratimą apie galimą sveiką svorio diapazoną.",
+  },
+  {
     question: "Ar KMI apskaičiavimas tikslus visiems?",
     answer:
-      "Ne visada. KMI gali būti netikslus tam tikroms žmonių grupėms, pvz., sportininkams, kurie turi daugiau raumenų masės, nėščioms ir žindančioms moterims, vaikams bei vyresnio amžiaus žmonėms. Tai tik apytikslis rodiklis, todėl norint išsamiau įvertinti sveikatos būklę, rekomenduojama kreiptis į sveikatos specialistą.",
+      "Ne visada. KMI gali būti netikslus tam tikroms žmonių grupėms, pvz., sportininkams, nėščioms ir žindančioms moterims, vaikams bei vyresnio amžiaus žmonėms. Tai tik apytikslis rodiklis.",
   },
   {
     question: "Ar pakanka remtis tik KMI vertinant sveikatą?",
     answer:
-      "Ne. KMI yra tik vienas iš būdų įvertinti kūno svorį ir sveikatą, bet jis nėra galutinis rodiklis. Sveikatai įtakos turi ir kiti veiksniai, tokie kaip kraujospūdis, cholesterolio lygis, genetika ir gyvenimo būdas. Jei turite abejonių dėl sveikatos, rekomenduojama kreiptis į sveikatos priežiūros specialistą.",
+      "Ne. KMI yra tik vienas iš būdų įvertinti kūno svorį. Sveikatai įtakos turi ir kiti veiksniai, tokie kaip kraujospūdis, cholesterolio lygis, genetika ir gyvenimo būdas.",
   },
   {
-    question: "Kaip apskaičiuojamas KMI?",
+    question: "Ar galiu pasikliauti skaičiuoklės rezultatais?",
     answer:
-      "KMI apskaičiuojamas pagal formulę: svoris (kg) / ūgis (m²). Pavyzdžiui, jei žmogus sveria 70 kg ir jo ūgis yra 1,75 m, KMI bus apskaičiuotas kaip 70 / (1,75 * 1,75) = 22,86.",
+      "Skaičiuoklės rezultatai yra informacinio pobūdžio ir neturėtų būti laikomi medicininiais patarimais. Jei turite abejonių, kreipkitės į sveikatos priežiūros specialistą.",
   },
   {
-    question: "Kokia yra normali KMI reikšmė?",
+    question: "Atsakomybės apribojimas",
     answer:
-      "Normalus KMI paprastai laikomas, kai jis yra tarp 18,5 ir 24,9. KMI žemiau 18,5 rodo, kad žmogus yra per mažo svorio, o KMI tarp 25 ir 29,9 rodo viršsvorį. KMI, kuris yra 30 ar daugiau, rodo nutukimą.",
-  },
-  {
-    question: "Ar galima naudoti KMI ligoms diagnozuoti?",
-    answer:
-      "Ne. KMI yra tik priemonė, skirta įvertinti svorio ir ūgio santykį. Jis nėra skirtas diagnozuoti ligų ar kitų sveikatos būklių. Norint tiksliai nustatyti sveikatos problemas, būtina konsultuotis su gydytoju.",
-  },
-  {
-    question: "Ar galiu naudoti KMI skaičiuoklę, jei esu nėščia ar žindanti?",
-    answer:
-      "KMI skaičiuoklė gali būti netiksli nėštumo ar žindymo metu, nes šie gyvenimo etapai gali labai pakeisti kūno svorį ir sudėtį. Nėščioms ir žindančioms moterims rekomenduojama pasitarti su sveikatos specialistu dėl tinkamo svorio valdymo.",
-  },
-  {
-    question: "Ar gali KMI būti netikslus žmonėms, turintiems daug raumenų?",
-    answer:
-      "Taip. KMI nesiskiria tarp raumenų masės ir riebalinio audinio, todėl žmonės, turintys daug raumenų (pvz., sportininkai), gali turėti didesnį KMI, nors jų kūno riebalų procentas yra mažas. Tokiais atvejais gali būti naudinga atlikti papildomus kūno sudėties tyrimus.",
-  },
-  {
-    question: "Kaip galiu pagerinti savo KMI?",
-    answer:
-      "Jei jūsų KMI yra už normalaus diapazono ribų, galite imtis sveikos mitybos pokyčių ir reguliariai sportuoti. Jei turite klausimų apie svorio valdymą, dietą ar fizinį aktyvumą, kreipkitės į dietologą ar kitą sveikatos specialistą.",
-  },
-  {
-    question: "Kaip dažnai turėčiau tikrinti savo KMI?",
-    answer:
-      "Nėra konkretaus dažnumo, kaip dažnai turėtumėte tikrinti savo KMI, tačiau paprastai pakanka atlikti matavimus, kai keičiasi jūsų svoris arba sveikatos būklė. Jei ketinate numesti arba priaugti svorio, KMI stebėjimas gali padėti sekti progresą.",
+      "Ši skaičiuoklė yra skirta tik informaciniams tikslams ir nėra medicininis patarimas. Mes neprisiimame atsakomybės už jokius sveikatos sutrikimus ar žalą, kuri gali atsirasti naudojantis šia skaičiuokle.",
   },
 ];
 
@@ -106,11 +91,28 @@ export default function BodyMassIndexCalc() {
   const [categories, setCategories] = useState(categoryList);
   const [currentCategory, setCurrentCategory] = useState(null);
   const [showIcon, setShowIcon] = useState(false);
+  const [showIdealWeight, setShowIdealWeight] = useState(false);
+  const [gender, setGender] = useState("");
+  const [idealWeight, setIdealWeight] = useState(null);
 
   const calculateBMI = (weight, height) => {
     const heightInMeters = height / 100;
     const bmi = weight / (heightInMeters * heightInMeters);
     return parseFloat(bmi.toFixed(1));
+  };
+
+  const calculateIdealWeight = (height, gender) => {
+    const heightInCm = parseFloat(height);
+    const heightInInches = heightInCm / 2.54;
+    let weight = 0;
+
+    if (gender === "male") {
+      weight = 50 + 2.3 * (heightInInches - 60);
+    } else if (gender === "female") {
+      weight = 45.5 + 2.3 * (heightInInches - 60);
+    }
+
+    return weight.toFixed(1);
   };
 
   const updateCategories = (bmi) => {
@@ -155,6 +157,13 @@ export default function BodyMassIndexCalc() {
 
     setBmi(bmiValue);
 
+    if (showIdealWeight && gender) {
+      const idealWeightValue = calculateIdealWeight(heightInCm, gender);
+      setIdealWeight(idealWeightValue);
+    } else {
+      setIdealWeight(null);
+    }
+
     // Show the tick icon after calculation
     setShowIcon(true);
 
@@ -177,6 +186,9 @@ export default function BodyMassIndexCalc() {
     setHeight("");
     setBmi(null);
     setCurrentCategory(null);
+    setShowIdealWeight(false);
+    setGender("");
+    setIdealWeight(null);
 
     setCategories(
       categoryList.map((category) => ({ ...category, isCurrent: false }))
@@ -227,7 +239,7 @@ export default function BodyMassIndexCalc() {
 
                 <div className="sm:col-span-3">
                   <label
-                    htmlFor="price"
+                    htmlFor="weight"
                     className="block text-sm font-medium leading-6 text-gray-900"
                   >
                     Svoris
@@ -253,6 +265,72 @@ export default function BodyMassIndexCalc() {
                     </div>
                   </div>
                 </div>
+
+                <div className="sm:col-span-3">
+                  <div className="flex items-center">
+                    <input
+                      id="showIdealWeight"
+                      name="showIdealWeight"
+                      type="checkbox"
+                      checked={showIdealWeight}
+                      onChange={(e) => setShowIdealWeight(e.target.checked)}
+                      className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                    />
+                    <label
+                      htmlFor="showIdealWeight"
+                      className="ml-2 block text-sm text-gray-900"
+                    >
+                      Noriu sužinoti savo idealų svorį
+                    </label>
+                  </div>
+                </div>
+
+                {showIdealWeight && (
+                  <div className="sm:col-span-3">
+                    <label className="block text-sm font-medium leading-6 text-gray-900">
+                      Lytis
+                    </label>
+                    <fieldset className="mt-2 sm:mt-3">
+                      <legend className="sr-only">Lyties pasirinkimas</legend>
+                      <div className="space-y-4 sm:flex sm:items-center sm:space-x-10 sm:space-y-0">
+                        <div className="flex items-center">
+                          <input
+                            id="female"
+                            name="gender"
+                            type="radio"
+                            value="female"
+                            checked={gender === "female"}
+                            onChange={(e) => setGender(e.target.value)}
+                            className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                          />
+                          <label
+                            htmlFor="female"
+                            className="ml-3 block text-sm font-medium text-gray-700"
+                          >
+                            Moteris
+                          </label>
+                        </div>
+                        <div className="flex items-center">
+                          <input
+                            id="male"
+                            name="gender"
+                            type="radio"
+                            value="male"
+                            checked={gender === "male"}
+                            onChange={(e) => setGender(e.target.value)}
+                            className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                          />
+                          <label
+                            htmlFor="male"
+                            className="ml-3 block text-sm font-medium text-gray-700"
+                          >
+                            Vyras
+                          </label>
+                        </div>
+                      </div>
+                    </fieldset>
+                  </div>
+                )}
               </div>
             </div>
             <div className="flex items-center justify-end gap-x-6 border-t border-gray-900/10 py-4 px-8">
@@ -296,13 +374,13 @@ export default function BodyMassIndexCalc() {
                 </div>
               </div>
             ) : (
-              <div className="flex w-full max-w-xl flex-col bg-white p-8 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl justify-between">
+              <div className="flex h-fit w-full max-w-xl flex-col bg-white p-8 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl justify-between">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="col-span-1 flex items-center">
                     <p className="text-sm">Apskaičiuotas KMI:</p>
                   </div>
                   <div className="col-span-1 flex text-gray-900">
-                    <p className="text-4xl font-bold">{bmi}</p>
+                    <p className="text-2xl font-bold">{bmi}</p>
                   </div>
 
                   <div className="col-span-1 flex">
@@ -313,6 +391,17 @@ export default function BodyMassIndexCalc() {
                       {currentCategory.category}
                     </span>
                   </div>
+
+                  {idealWeight && (
+                    <>
+                      <div className="col-span-1 flex">
+                        <p className="text-sm">Idealus svoris:</p>
+                      </div>
+                      <div className="col-span-1 flex">
+                        <span className="font-semibold">{idealWeight} kg</span>
+                      </div>
+                    </>
+                  )}
                 </div>
 
                 <div
@@ -320,7 +409,7 @@ export default function BodyMassIndexCalc() {
                     position: "relative",
                     width: "100%",
                     height: "16px",
-                    marginTop: "20px",
+                    marginTop: "40px",
                     marginBottom: "24px",
                     background:
                       "linear-gradient(to right, #87CEEB, #00FA9A, #FFD700, #FF6347)",
@@ -401,38 +490,45 @@ export default function BodyMassIndexCalc() {
                 <div className="sm:flex sm:items-center">
                   <div className="sm:flex-auto">
                     <p className="text-base leading-7 text-gray-600">
-                      <b>Kūno masės indeksas (KMI) </b> yra paprastas ir plačiai
+                      <b>Kūno masės indeksas (KMI)</b> yra paprastas ir plačiai
                       naudojamas įrankis, padedantis įsivertinti, ar Jūsų svoris
-                      yra normalus. KMI gali suteikti bendrą supratimą apie Jūsų
+                      yra normalus. KMI gali suteikti bendrą supratimą apie jūsų
                       kūno svorio kategoriją, tačiau tai tik vienas iš daugelio
                       būdų vertinti sveikatą.
                     </p>
-                    <div className="mt-2 text-base leading-7 text-gray-600">
+                    <p className="mt-4 text-base leading-7 text-gray-600">
+                      <b>Idealus svoris</b> yra apytikslė reikšmė, nustatoma
+                      pagal jūsų ūgį ir lytį. Tai gali padėti suprasti, koks
+                      svoris gali būti laikomas sveiku jums individualiai.
+                    </p>
+                    <div className="mt-4 text-base leading-7 text-gray-600">
                       Svarbu žinoti:
                       <ul className="list-inside list-disc">
                         <li>
-                          KMI skaičiuoklė yra skirta suaugusiems nuo 20 metų.
-                          Rezultatai gali būti netikslūs nėštumo, žindymo
-                          laikotarpiu arba kitų sveikatos būklių atveju.
+                          KMI ir idealaus svorio skaičiuoklės yra skirtos
+                          suaugusiems nuo 20 metų. Rezultatai gali būti
+                          netikslūs nėštumo, žindymo laikotarpiu arba kitų
+                          sveikatos būklių atveju.
                         </li>
                         <li>
-                          KMI nesuteikia visos informacijos apie sveikatą ar
-                          kūno sudėtį. Pavyzdžiui, jis neatsižvelgia į raumenų
+                          Šios skaičiuoklės nesuteikia visos informacijos apie
+                          sveikatą ar kūno sudėtį. Jos neatsižvelgia į raumenų
                           masę, kūno riebalų pasiskirstymą ar kitus svarbius
                           faktorius.
                         </li>
                         <li>
-                          Šis skaičiuoklės rezultatas neturėtų būti naudojamas
-                          ligų diagnozei. Jeigu turite sveikatos problemų arba
-                          kyla abejonių dėl savo sveikatos, kreipkitės į
-                          sveikatos priežiūros specialistą.
+                          Rezultatai yra informacinio pobūdžio ir neturėtų būti
+                          naudojami ligų diagnozei ar gydymui. Jei turite
+                          sveikatos problemų arba kyla abejonių dėl savo
+                          sveikatos, kreipkitės į sveikatos priežiūros
+                          specialistą.
                         </li>
                       </ul>
                     </div>
-                    <p className="mt-2 text-base leading-7 text-gray-600">
+                    <p className="mt-4 text-base leading-7 text-gray-600">
                       <b>
                         Pateikta informacija yra tik švietimo tikslais ir
-                        nepakeičia profesionalių medicininių patarimų.{" "}
+                        nepakeičia profesionalių medicininių patarimų.
                       </b>{" "}
                       Jei turite klausimų apie savo sveikatos būklę arba reikia
                       individualios konsultacijos, kreipkitės į kvalifikuotą

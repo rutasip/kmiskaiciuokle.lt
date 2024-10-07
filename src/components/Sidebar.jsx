@@ -4,7 +4,6 @@ import { Dialog, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
   CalculatorIcon,
-  HeartIcon,
   XMarkIcon,
   //   ScaleIcon,
     FireIcon,
@@ -12,7 +11,6 @@ import {
 
 const navigation = [
   { name: "Koks mano KMI?", href: "/", icon: CalculatorIcon },
-  { name: "Koks mano idealus svoris?", href: "/idealus-svoris", icon: HeartIcon },
   { name: 'Kiek kalorijų man reikia?', href: '/kaloriju-norma', icon: FireIcon },
 ];
 

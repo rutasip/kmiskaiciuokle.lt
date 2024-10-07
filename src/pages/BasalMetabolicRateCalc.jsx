@@ -39,7 +39,7 @@ const activityLevels = [
   {
     id: 1,
     name: "Sėdimas",
-    description: "Mažai arba jokio fizinio aktyvumo",
+    description: "Mažas arba jokio fizinio aktyvumo",
     value: "1.2",
   },
   {
@@ -79,20 +79,25 @@ export default function BasalMetabolicRateCalc() {
   const [height, setHeight] = useState("");
   const [weight, setWeight] = useState("");
   const [gender, setGender] = useState("female");
-  const [activityLevel, setActivityLevel] = useState(activityLevels[2]);
+  const [activityLevel, setActivityLevel] = useState(activityLevels[1]);
   const [calories, setCalories] = useState(null);
   const [weightLossCalories, setWeightLossCalories] = useState(null);
   const [weightGainCalories, setWeightGainCalories] = useState(null);
+  const [step, setStep] = useState(1);
 
   const calculateBMR = (weight, height, age, gender) => {
     if (gender === "male") {
-      return 10 * weight + 6.25 * height - 5 * age + 5;
+      return (
+        13.397 * weight + 4.799 * height - 5.677 * age + 88.362
+      );
     } else {
-      return 10 * weight + 6.25 * height - 5 * age - 161;
+      return (
+        9.247 * weight + 3.098 * height - 4.330 * age + 447.593
+      );
     }
   };
 
-  const handleCalculateCalories = (e) => {
+  const handleNext = (e) => {
     e.preventDefault();
     const weightInKg = parseFloat(weight);
     const heightInCm = parseFloat(height);
@@ -110,15 +115,23 @@ export default function BasalMetabolicRateCalc() {
       return;
     }
 
+    setStep(2);
+  };
+
+  const handleCalculateCalories = (e) => {
+    e.preventDefault();
+    const weightInKg = parseFloat(weight);
+    const heightInCm = parseFloat(height);
+    const ageInYears = parseFloat(age);
+
     const BMR = calculateBMR(weightInKg, heightInCm, ageInYears, gender);
-    const maintenanceCalories = BMR * parseFloat(activityLevel.value); // Maintenance calories based on activity level
+    const maintenanceCalories = BMR * parseFloat(activityLevel.value);
 
-    // Calculate the daily calorie deficit for weight loss
-    const caloriesForWeightLoss025kg = maintenanceCalories - (0.25 * 7700) / 7; // Deficit for 0.25 kg per week
-    const caloriesForWeightLoss05kg = maintenanceCalories - (0.5 * 7700) / 7; // Deficit for 0.5 kg per week
-    const caloriesForWeightLoss1kg = maintenanceCalories - (1 * 7700) / 7; // Deficit for 1 kg per week
+    const caloriesForWeightLoss025kg = maintenanceCalories - (0.25 * 7700) / 7;
+    const caloriesForWeightLoss05kg = maintenanceCalories - (0.5 * 7700) / 7;
+    const caloriesForWeightLoss1kg = maintenanceCalories - (1 * 7700) / 7;
 
-    const caloriesForWeightGain = maintenanceCalories + 500; // Calories for weight gain
+    const caloriesForWeightGain = maintenanceCalories + 500;
 
     setCalories(maintenanceCalories.toFixed(0));
     setWeightLossCalories({
@@ -126,7 +139,7 @@ export default function BasalMetabolicRateCalc() {
       "0.5kg": caloriesForWeightLoss05kg.toFixed(0),
       "1kg": caloriesForWeightLoss1kg.toFixed(0),
     });
-    setWeightGainCalories(caloriesForWeightGain.toFixed(0)); // Weight gain calories
+    setWeightGainCalories(caloriesForWeightGain.toFixed(0));
   };
 
   const handleReset = () => {
@@ -134,10 +147,11 @@ export default function BasalMetabolicRateCalc() {
     setHeight("");
     setWeight("");
     setGender("female");
-    setActivityLevel(activityLevels[2]);
+    setActivityLevel(activityLevels[1]);
     setCalories(null);
     setWeightLossCalories(null);
     setWeightGainCalories(null);
+    setStep(1);
   };
 
   return (
@@ -145,8 +159,8 @@ export default function BasalMetabolicRateCalc() {
       <div className="space-y-10 divide-y divide-gray-900/10">
         <div className="grid grid-cols-1 justify-items-center gap-x-8 gap-y-8 xl:grid-cols-2">
           <form
-            onSubmit={handleCalculateCalories}
-            className="w-full max-w-xl bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl"
+            onSubmit={step === 1 ? handleNext : handleCalculateCalories}
+            className="h-fit w-full max-w-xl bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl"
           >
             <div className="gap-x-6 border-b border-gray-900/10 p-8">
               <h1 className="text-base font-semibold leading-7 text-gray-900">
@@ -158,134 +172,138 @@ export default function BasalMetabolicRateCalc() {
               </p>
             </div>
             <div className="p-8">
-              <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                <div className="sm:col-span-3">
-                  <label
-                    htmlFor="age"
-                    className="block text-sm font-medium leading-6 text-gray-900"
-                  >
-                    Amžius
-                  </label>
-                  <div className="relative mt-2 rounded-md shadow-sm">
-                    <input
-                      type="number"
-                      value={age}
-                      id="age"
-                      className="block w-full rounded-md border-0 py-1.5 pl-7 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                      placeholder="25"
-                      aria-describedby="age-value"
-                      onChange={(e) => setAge(e.target.value)}
-                    />
-                  </div>
-                </div>
-
-                <div className="sm:col-span-3">
-                  <label
-                    htmlFor="height"
-                    className="block text-sm font-medium leading-6 text-gray-900"
-                  >
-                    Ūgis
-                  </label>
-                  <div className="relative mt-2 rounded-md shadow-sm">
-                    <input
-                      type="number"
-                      value={height}
-                      name="height"
-                      id="height"
-                      className="block w-full rounded-md border-0 py-1.5 pl-7 pr-12 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                      placeholder="170"
-                      aria-describedby="height-value"
-                      onChange={(e) => setHeight(e.target.value)}
-                    />
-                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                      <span
-                        className="text-gray-500 sm:text-sm"
-                        id="height-value"
-                      >
-                        cm
-                      </span>
+              {step === 1 && (
+                <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                  <div className="sm:col-span-3">
+                    <label
+                      htmlFor="age"
+                      className="block text-sm font-medium leading-6 text-gray-900"
+                    >
+                      Amžius
+                    </label>
+                    <div className="relative mt-2 rounded-md shadow-sm">
+                      <input
+                        type="number"
+                        value={age}
+                        id="age"
+                        className="block w-full rounded-md border-0 py-1.5 pl-7 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        placeholder="25"
+                        aria-describedby="age-value"
+                        onChange={(e) => setAge(e.target.value)}
+                      />
                     </div>
                   </div>
-                </div>
 
-                <div className="sm:col-span-3">
-                  <label
-                    htmlFor="weight"
-                    className="block text-sm font-medium leading-6 text-gray-900"
-                  >
-                    Svoris
-                  </label>
-                  <div className="relative mt-2 rounded-md shadow-sm">
-                    <input
-                      type="number"
-                      value={weight}
-                      name="weight"
-                      id="weight"
-                      className="block w-full rounded-md border-0 py-1.5 pl-7 pr-12 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                      placeholder="67"
-                      aria-describedby="weight-value"
-                      onChange={(e) => setWeight(e.target.value)}
-                    />
-                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                      <span
-                        className="text-gray-500 sm:text-sm"
-                        id="weight-value"
-                      >
-                        kg
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="sm:col-span-3">
-                  <label
-                    htmlFor="gender"
-                    className="block text-sm font-medium leading-6 text-gray-900"
-                  >
-                    Lytis
-                  </label>
-                  <fieldset className="mt-2 sm:mt-3">
-                    <legend className="sr-only">Lyties pasirinkimas</legend>
-                    <div className="space-y-4 sm:flex sm:items-center sm:space-x-10 sm:space-y-0">
-                      <div className="flex items-center">
-                        <input
-                          id="female"
-                          name="gender"
-                          type="radio"
-                          value="female"
-                          checked={gender === "female"}
-                          onChange={(e) => setGender(e.target.value)}
-                          className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                        />
-                        <label
-                          htmlFor="female"
-                          className="ml-3 block text-sm font-medium text-gray-700"
+                  <div className="sm:col-span-3">
+                    <label
+                      htmlFor="height"
+                      className="block text-sm font-medium leading-6 text-gray-900"
+                    >
+                      Ūgis
+                    </label>
+                    <div className="relative mt-2 rounded-md shadow-sm">
+                      <input
+                        type="number"
+                        value={height}
+                        name="height"
+                        id="height"
+                        className="block w-full rounded-md border-0 py-1.5 pl-7 pr-12 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        placeholder="170"
+                        aria-describedby="height-value"
+                        onChange={(e) => setHeight(e.target.value)}
+                      />
+                      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                        <span
+                          className="text-gray-500 sm:text-sm"
+                          id="height-value"
                         >
-                          Moteris
-                        </label>
-                      </div>
-                      <div className="flex items-center">
-                        <input
-                          id="male"
-                          name="gender"
-                          type="radio"
-                          value="male"
-                          checked={gender === "male"}
-                          onChange={(e) => setGender(e.target.value)}
-                          className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                        />
-                        <label
-                          htmlFor="male"
-                          className="ml-3 block text-sm font-medium text-gray-700"
-                        >
-                          Vyras
-                        </label>
+                          cm
+                        </span>
                       </div>
                     </div>
-                  </fieldset>
-                </div>
+                  </div>
 
-                <div className="sm:col-span-6">
+                  <div className="sm:col-span-3">
+                    <label
+                      htmlFor="weight"
+                      className="block text-sm font-medium leading-6 text-gray-900"
+                    >
+                      Svoris
+                    </label>
+                    <div className="relative mt-2 rounded-md shadow-sm">
+                      <input
+                        type="number"
+                        value={weight}
+                        name="weight"
+                        id="weight"
+                        className="block w-full rounded-md border-0 py-1.5 pl-7 pr-12 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        placeholder="67"
+                        aria-describedby="weight-value"
+                        onChange={(e) => setWeight(e.target.value)}
+                      />
+                      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                        <span
+                          className="text-gray-500 sm:text-sm"
+                          id="weight-value"
+                        >
+                          kg
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="sm:col-span-3">
+                    <label
+                      htmlFor="gender"
+                      className="block text-sm font-medium leading-6 text-gray-900"
+                    >
+                      Lytis
+                    </label>
+                    <fieldset className="mt-2 sm:mt-3">
+                      <legend className="sr-only">Lyties pasirinkimas</legend>
+                      <div className="space-y-4 sm:flex sm:items-center sm:space-x-10 sm:space-y-0">
+                        <div className="flex items-center">
+                          <input
+                            id="female"
+                            name="gender"
+                            type="radio"
+                            value="female"
+                            checked={gender === "female"}
+                            onChange={(e) => setGender(e.target.value)}
+                            className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                          />
+                          <label
+                            htmlFor="female"
+                            className="ml-3 block text-sm font-medium text-gray-700"
+                          >
+                            Moteris
+                          </label>
+                        </div>
+                        <div className="flex items-center">
+                          <input
+                            id="male"
+                            name="gender"
+                            type="radio"
+                            value="male"
+                            checked={gender === "male"}
+                            onChange={(e) => setGender(e.target.value)}
+                            className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                          />
+                          <label
+                            htmlFor="male"
+                            className="ml-3 block text-sm font-medium text-gray-700"
+                          >
+                            Vyras
+                          </label>
+                        </div>
+                      </div>
+                    </fieldset>
+                  </div>
+                </div>
+              )}
+
+              {step === 2 && (
+                <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8">
                   <RadioGroup value={activityLevel} onChange={setActivityLevel}>
                     <RadioGroup.Label className="block text-sm font-medium leading-6 text-gray-900">
                       Aktyvumo lygis
@@ -347,22 +365,38 @@ export default function BasalMetabolicRateCalc() {
                     </div>
                   </RadioGroup>
                 </div>
-              </div>
+              )}
             </div>
-            <div className="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-8 py-4">
-              <button
-                type="button"
-                onClick={handleReset}
-                className="text-sm font-semibold leading-6 text-gray-900"
-              >
-                Ištrinti
-              </button>
-              <button
-                type="submit"
-                className="rounded-md bg-indigo-50 px-2.5 py-1.5 text-sm font-semibold text-navy-blue shadow-sm hover:bg-indigo-100"
-              >
-                Skaičiuoti
-              </button>
+            <div
+              className={classNames(
+                step === 2 ? "justify-between" : "justify-end",
+                "flex items-center gap-x-6 border-t border-gray-900/10 px-8 py-4"
+              )}
+            >
+              {step === 2 && (
+                <button
+                  type="button"
+                  onClick={() => setStep(1)}
+                  className="text-sm font-semibold leading-6 text-gray-900"
+                >
+                  Atgal
+                </button>
+              )}
+              <div className="flex gap-x-6">
+                <button
+                  type="button"
+                  onClick={handleReset}
+                  className="text-sm font-semibold leading-6 text-gray-900"
+                >
+                  Ištrinti
+                </button>
+                <button
+                  type="submit"
+                  className="rounded-md bg-indigo-50 px-2.5 py-1.5 text-sm font-semibold text-navy-blue shadow-sm hover:bg-indigo-100"
+                >
+                  {step === 1 ? "Toliau" : "Skaičiuoti"}
+                </button>
+              </div>
             </div>
           </form>
 
