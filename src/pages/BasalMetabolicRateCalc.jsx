@@ -84,16 +84,13 @@ export default function BasalMetabolicRateCalc() {
   const [weightLossCalories, setWeightLossCalories] = useState(null);
   const [weightGainCalories, setWeightGainCalories] = useState(null);
   const [step, setStep] = useState(1);
+  const [showIcon, setShowIcon] = useState(false);
 
   const calculateBMR = (weight, height, age, gender) => {
     if (gender === "male") {
-      return (
-        13.397 * weight + 4.799 * height - 5.677 * age + 88.362
-      );
+      return 13.397 * weight + 4.799 * height - 5.677 * age + 88.362;
     } else {
-      return (
-        9.247 * weight + 3.098 * height - 4.330 * age + 447.593
-      );
+      return 9.247 * weight + 3.098 * height - 4.33 * age + 447.593;
     }
   };
 
@@ -120,6 +117,9 @@ export default function BasalMetabolicRateCalc() {
 
   const handleCalculateCalories = (e) => {
     e.preventDefault();
+
+    setShowIcon(true);
+
     const weightInKg = parseFloat(weight);
     const heightInCm = parseFloat(height);
     const ageInYears = parseFloat(age);
@@ -134,12 +134,17 @@ export default function BasalMetabolicRateCalc() {
     const caloriesForWeightGain = maintenanceCalories + 500;
 
     setCalories(maintenanceCalories.toFixed(0));
-    setWeightLossCalories({
-      "0.25kg": caloriesForWeightLoss025kg.toFixed(0),
-      "0.5kg": caloriesForWeightLoss05kg.toFixed(0),
-      "1kg": caloriesForWeightLoss1kg.toFixed(0),
-    });
-    setWeightGainCalories(caloriesForWeightGain.toFixed(0));
+
+    setTimeout(() => {
+      setShowIcon(false);
+
+      setWeightLossCalories({
+        "0.25kg": caloriesForWeightLoss025kg.toFixed(0),
+        "0.5kg": caloriesForWeightLoss05kg.toFixed(0),
+        "1kg": caloriesForWeightLoss1kg.toFixed(0),
+      });
+      setWeightGainCalories(caloriesForWeightGain.toFixed(0));
+    }, 1600);
   };
 
   const handleReset = () => {
@@ -400,111 +405,135 @@ export default function BasalMetabolicRateCalc() {
             </div>
           </form>
 
-          {calories && (
-            <div className="h-min w-full max-w-xl bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl">
-              <div className="grid grid-cols-1 col-span-2 gap-8 p-8">
-                <div className="rounded-2xl bg-gray-50 p-10">
-                  <div>
+          {calories &&
+            (showIcon ? (
+              <div className="flex w-full max-w-xl flex-col p-8 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl justify-center">
+                <div className="flex justify-center place-content-center">
+                  <svg
+                    className="checkmark"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 52 52"
+                  >
+                    <circle
+                      className="checkmark__circle"
+                      cx="26"
+                      cy="26"
+                      r="25"
+                      fill="none"
+                    />
+                    <path
+                      className="checkmark__check"
+                      fill="none"
+                      d="M14.1 27.2l7.1 7.2 16.7-16.8"
+                    />
+                  </svg>
+                </div>
+              </div>
+            ) : (
+              <div className="h-min w-full max-w-xl bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl">
+                <div className="grid grid-cols-1 col-span-2 gap-8 p-8">
+                  <div className="rounded-2xl bg-gray-50 p-10">
+                    <div>
+                      <div className="flex gap-3">
+                        <h3 className="text-base font-semibold leading-7 text-gray-900">
+                          Kalorijos esamam svoriui palaikyti
+                        </h3>
+                      </div>
+                      <dl className="mt-3 -mb-2 space-y-1 text-sm not-italic leading-6 text-gray-600">
+                        <div className="py-3 grid grid-cols-3 gap-4 content-center">
+                          <dt className="flex col-span-2 gap-2">
+                            <ArrowPathRoundedSquareIcon
+                              className="h-6 w-6 text-gray-900"
+                              aria-hidden="true"
+                            />
+                            <h3 className="text-sm leading-6 text-gray-700 sm:col-span-1">
+                              Esamam svoriui palaikyti:
+                            </h3>
+                          </dt>
+                          <dd className="col-span-1 text-base font-medium text-gray-900 text-right">
+                            {calories} kcal
+                          </dd>
+                        </div>
+                      </dl>
+                    </div>
+                  </div>
+                  <div className="rounded-2xl bg-blue-50 p-10">
                     <div className="flex gap-3">
                       <h3 className="text-base font-semibold leading-7 text-gray-900">
-                        Kalorijos esamam svoriui palaikyti
+                        Kalorijos svorio metimui
                       </h3>
                     </div>
                     <dl className="mt-3 -mb-2 space-y-1 text-sm not-italic leading-6 text-gray-600">
                       <div className="py-3 grid grid-cols-3 gap-4 content-center">
                         <dt className="flex col-span-2 gap-2">
-                          <ArrowPathRoundedSquareIcon
+                          <ArrowDownCircleIcon
                             className="h-6 w-6 text-gray-900"
                             aria-hidden="true"
                           />
                           <h3 className="text-sm leading-6 text-gray-700 sm:col-span-1">
-                            Esamam svoriui palaikyti:
+                            ~0.25 kg per savaitę:
                           </h3>
                         </dt>
                         <dd className="col-span-1 text-base font-medium text-gray-900 text-right">
-                          {calories} kcal
+                          {weightLossCalories["0.25kg"]} kcal
+                        </dd>
+                      </div>
+                      <div className="py-3 grid grid-cols-3 gap-4 content-center">
+                        <dt className="flex col-span-2 gap-2">
+                          <ArrowDownCircleIcon
+                            className="h-6 w-6 text-gray-900"
+                            aria-hidden="true"
+                          />
+                          <h3 className="text-sm leading-6 text-gray-700 sm:col-span-1">
+                            ~0.5 kg per savaitę:
+                          </h3>
+                        </dt>
+                        <dd className="col-span-1 text-base font-medium text-gray-900 text-right">
+                          {weightLossCalories["0.5kg"]} kcal
+                        </dd>
+                      </div>
+                      <div className="py-3 grid grid-cols-3 gap-4 content-center">
+                        <dt className="flex col-span-2 gap-2">
+                          <ArrowDownCircleIcon
+                            className="h-6 w-6 text-gray-900"
+                            aria-hidden="true"
+                          />
+                          <h3 className="text-sm leading-6 text-gray-700 sm:col-span-1">
+                            ~1 kg per savaitę:
+                          </h3>
+                        </dt>
+                        <dd className="col-span-1 text-base font-medium text-gray-900 text-right">
+                          {weightLossCalories["1kg"]} kcal
+                        </dd>
+                      </div>
+                    </dl>
+                  </div>
+                  <div className="rounded-2xl bg-orange-50 p-10">
+                    <div className="flex gap-3">
+                      <h3 className="text-base font-semibold leading-7 text-gray-900">
+                        Kalorijos svorio priaugimui
+                      </h3>
+                    </div>
+                    <dl className="mt-3 -mb-2 space-y-1 text-sm not-italic leading-6 text-gray-600">
+                      <div className="py-3 grid grid-cols-3 gap-4 content-center">
+                        <dt className="flex col-span-2 gap-2">
+                          <ArrowUpCircleIcon
+                            className="h-6 w-6 text-gray-900"
+                            aria-hidden="true"
+                          />
+                          <h3 className="text-sm leading-6 text-gray-700 sm:col-span-1">
+                            ~0.5 kg per savaitę:
+                          </h3>
+                        </dt>
+                        <dd className="col-span-1 text-base font-medium text-gray-900 text-right">
+                          {weightGainCalories} kcal
                         </dd>
                       </div>
                     </dl>
                   </div>
                 </div>
-                <div className="rounded-2xl bg-blue-50 p-10">
-                  <div className="flex gap-3">
-                    <h3 className="text-base font-semibold leading-7 text-gray-900">
-                      Kalorijos svorio metimui
-                    </h3>
-                  </div>
-                  <dl className="mt-3 -mb-2 space-y-1 text-sm not-italic leading-6 text-gray-600">
-                    <div className="py-3 grid grid-cols-3 gap-4 content-center">
-                      <dt className="flex col-span-2 gap-2">
-                        <ArrowDownCircleIcon
-                          className="h-6 w-6 text-gray-900"
-                          aria-hidden="true"
-                        />
-                        <h3 className="text-sm leading-6 text-gray-700 sm:col-span-1">
-                          ~0.25 kg per savaitę:
-                        </h3>
-                      </dt>
-                      <dd className="col-span-1 text-base font-medium text-gray-900 text-right">
-                        {weightLossCalories["0.25kg"]} kcal
-                      </dd>
-                    </div>
-                    <div className="py-3 grid grid-cols-3 gap-4 content-center">
-                      <dt className="flex col-span-2 gap-2">
-                        <ArrowDownCircleIcon
-                          className="h-6 w-6 text-gray-900"
-                          aria-hidden="true"
-                        />
-                        <h3 className="text-sm leading-6 text-gray-700 sm:col-span-1">
-                          ~0.5 kg per savaitę:
-                        </h3>
-                      </dt>
-                      <dd className="col-span-1 text-base font-medium text-gray-900 text-right">
-                        {weightLossCalories["0.5kg"]} kcal
-                      </dd>
-                    </div>
-                    <div className="py-3 grid grid-cols-3 gap-4 content-center">
-                      <dt className="flex col-span-2 gap-2">
-                        <ArrowDownCircleIcon
-                          className="h-6 w-6 text-gray-900"
-                          aria-hidden="true"
-                        />
-                        <h3 className="text-sm leading-6 text-gray-700 sm:col-span-1">
-                          ~1 kg per savaitę:
-                        </h3>
-                      </dt>
-                      <dd className="col-span-1 text-base font-medium text-gray-900 text-right">
-                        {weightLossCalories["1kg"]} kcal
-                      </dd>
-                    </div>
-                  </dl>
-                </div>
-                <div className="rounded-2xl bg-orange-50 p-10">
-                  <div className="flex gap-3">
-                    <h3 className="text-base font-semibold leading-7 text-gray-900">
-                      Kalorijos svorio priaugimui
-                    </h3>
-                  </div>
-                  <dl className="mt-3 -mb-2 space-y-1 text-sm not-italic leading-6 text-gray-600">
-                    <div className="py-3 grid grid-cols-3 gap-4 content-center">
-                      <dt className="flex col-span-2 gap-2">
-                        <ArrowUpCircleIcon
-                          className="h-6 w-6 text-gray-900"
-                          aria-hidden="true"
-                        />
-                        <h3 className="text-sm leading-6 text-gray-700 sm:col-span-1">
-                          ~0.5 kg per savaitę:
-                        </h3>
-                      </dt>
-                      <dd className="col-span-1 text-base font-medium text-gray-900 text-right">
-                        {weightGainCalories} kcal
-                      </dd>
-                    </div>
-                  </dl>
-                </div>
               </div>
-            </div>
-          )}
+            ))}
         </div>
 
         <div className="grid grid-cols-1 justify-items-center gap-x-8 gap-y-8 pt-10">

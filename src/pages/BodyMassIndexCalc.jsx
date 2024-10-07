@@ -136,6 +136,8 @@ export default function BodyMassIndexCalc() {
   const handleCalculateBMI = (e) => {
     e.preventDefault();
 
+    setShowIcon(true);
+
     setCategories(
       categoryList.map((category) => ({ ...category, isCurrent: false }))
     );
@@ -164,12 +166,9 @@ export default function BodyMassIndexCalc() {
       setIdealWeight(null);
     }
 
-    // Show the tick icon after calculation
-    setShowIcon(true);
-
-    // Optionally hide it after a few seconds
     setTimeout(() => {
       setShowIcon(false);
+      
       updateCategories(bmiValue);
     }, 1600);
   };
@@ -351,7 +350,7 @@ export default function BodyMassIndexCalc() {
           </form>
           {bmi &&
             (showIcon ? (
-              <div className="flex w-full max-w-xl flex-col bg-white p-8 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl justify-center">
+              <div className="flex w-full max-w-xl flex-col p-8 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl justify-center">
                 <div className="flex justify-center place-content-center">
                   <svg
                     className="checkmark"
