@@ -1,8 +1,7 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { RadioGroup } from "@headlessui/react";
 import { CheckCircleIcon } from "@heroicons/react/20/solid";
 import {
-  ArrowPathRoundedSquareIcon,
   ArrowDownCircleIcon,
   ArrowUpCircleIcon,
 } from "@heroicons/react/24/outline";
@@ -86,6 +85,8 @@ export default function BasalMetabolicRateCalc() {
   const [step, setStep] = useState(1);
   const [showIcon, setShowIcon] = useState(false);
 
+  const resultsRef = useRef(null);
+
   const calculateBMR = (weight, height, age, gender) => {
     if (gender === "male") {
       return 13.397 * weight + 4.799 * height - 5.677 * age + 88.362;
@@ -158,6 +159,12 @@ export default function BasalMetabolicRateCalc() {
     setWeightGainCalories(null);
     setStep(1);
   };
+
+  useEffect(() => {
+    if (showIcon && calories) {
+      resultsRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [showIcon, calories]);
 
   return (
     <>
@@ -407,7 +414,11 @@ export default function BasalMetabolicRateCalc() {
 
           {calories &&
             (showIcon ? (
-              <div className="flex w-full max-w-xl flex-col p-8 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl justify-center">
+              <div
+                ref={resultsRef}
+                style={{ scrollMarginTop: "80px" }}
+                className="flex w-full max-w-xl flex-col p-8 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl justify-center"
+              >
                 <div className="flex justify-center place-content-center">
                   <svg
                     className="checkmark"
@@ -430,24 +441,19 @@ export default function BasalMetabolicRateCalc() {
                 </div>
               </div>
             ) : (
-              <div className="h-min w-full max-w-xl bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl">
+              <div
+                ref={resultsRef}
+                style={{ scrollMarginTop: "80px" }}
+                className="h-min w-full max-w-xl bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl"
+              >
                 <div className="grid grid-cols-1 col-span-2 gap-8 p-8">
                   <div className="rounded-2xl bg-gray-50 p-10">
                     <div>
-                      <div className="flex gap-3">
-                        <h3 className="text-base font-semibold leading-7 text-gray-900">
-                          Kalorijos esamam svoriui palaikyti
-                        </h3>
-                      </div>
-                      <dl className="mt-3 -mb-2 space-y-1 text-sm not-italic leading-6 text-gray-600">
+                      <dl className="-mb-2 space-y-1 text-sm not-italic leading-6 text-gray-600">
                         <div className="py-3 grid grid-cols-3 gap-4 content-center">
                           <dt className="flex col-span-2 gap-2">
-                            <ArrowPathRoundedSquareIcon
-                              className="h-6 w-6 text-gray-900"
-                              aria-hidden="true"
-                            />
                             <h3 className="text-sm leading-6 text-gray-700 sm:col-span-1">
-                              Esamam svoriui palaikyti:
+                              Kalorijos esamam svoriui palaikyti:
                             </h3>
                           </dt>
                           <dd className="col-span-1 text-base font-medium text-gray-900 text-right">
@@ -471,7 +477,7 @@ export default function BasalMetabolicRateCalc() {
                             aria-hidden="true"
                           />
                           <h3 className="text-sm leading-6 text-gray-700 sm:col-span-1">
-                            ~0.25 kg per savaitę:
+                            0.25 kg per savaitę:
                           </h3>
                         </dt>
                         <dd className="col-span-1 text-base font-medium text-gray-900 text-right">
@@ -485,7 +491,7 @@ export default function BasalMetabolicRateCalc() {
                             aria-hidden="true"
                           />
                           <h3 className="text-sm leading-6 text-gray-700 sm:col-span-1">
-                            ~0.5 kg per savaitę:
+                            0.5 kg per savaitę:
                           </h3>
                         </dt>
                         <dd className="col-span-1 text-base font-medium text-gray-900 text-right">
@@ -499,7 +505,7 @@ export default function BasalMetabolicRateCalc() {
                             aria-hidden="true"
                           />
                           <h3 className="text-sm leading-6 text-gray-700 sm:col-span-1">
-                            ~1 kg per savaitę:
+                            1 kg per savaitę:
                           </h3>
                         </dt>
                         <dd className="col-span-1 text-base font-medium text-gray-900 text-right">
@@ -522,7 +528,7 @@ export default function BasalMetabolicRateCalc() {
                             aria-hidden="true"
                           />
                           <h3 className="text-sm leading-6 text-gray-700 sm:col-span-1">
-                            ~0.5 kg per savaitę:
+                            0.5 kg per savaitę:
                           </h3>
                         </dt>
                         <dd className="col-span-1 text-base font-medium text-gray-900 text-right">

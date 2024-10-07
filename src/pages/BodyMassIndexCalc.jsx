@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 const categoryList = [
   {
@@ -94,6 +94,8 @@ export default function BodyMassIndexCalc() {
   const [showIdealWeight, setShowIdealWeight] = useState(false);
   const [gender, setGender] = useState("");
   const [idealWeight, setIdealWeight] = useState(null);
+
+  const resultsRef = useRef(null);
 
   const calculateBMI = (weight, height) => {
     const heightInMeters = height / 100;
@@ -193,6 +195,12 @@ export default function BodyMassIndexCalc() {
       categoryList.map((category) => ({ ...category, isCurrent: false }))
     );
   };
+
+  useEffect(() => {
+    if (showIcon && bmi) {
+      resultsRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [showIcon, bmi]);
 
   return (
     <>
@@ -350,7 +358,7 @@ export default function BodyMassIndexCalc() {
           </form>
           {bmi &&
             (showIcon ? (
-              <div className="flex w-full max-w-xl flex-col p-8 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl justify-center">
+              <div ref={resultsRef} style={{ scrollMarginTop: "80px" }} className="flex w-full max-w-xl flex-col p-8 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl justify-center">
                 <div className="flex justify-center place-content-center">
                   <svg
                     className="checkmark"
@@ -373,7 +381,7 @@ export default function BodyMassIndexCalc() {
                 </div>
               </div>
             ) : (
-              <div className="flex h-fit w-full max-w-xl flex-col bg-white p-8 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl justify-between">
+              <div ref={resultsRef} style={{ scrollMarginTop: "80px" }} className="flex h-fit w-full max-w-xl flex-col bg-white p-8 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl justify-between">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="col-span-1 flex items-center">
                     <p className="text-sm">Apskaičiuotas KMI:</p>
