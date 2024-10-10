@@ -1,5 +1,9 @@
 import { useState, useRef, useEffect } from "react";
 
+function classNames(...classes) {
+  return classes.filter(Boolean).join(" ");
+}
+
 const categoryList = [
   {
     id: 1,
@@ -138,8 +142,6 @@ export default function BodyMassIndexCalc() {
   const handleCalculateBMI = (e) => {
     e.preventDefault();
 
-    setShowIcon(true);
-
     setCategories(
       categoryList.map((category) => ({ ...category, isCurrent: false }))
     );
@@ -157,6 +159,8 @@ export default function BodyMassIndexCalc() {
       return;
     }
 
+    setShowIcon(true);
+
     const bmiValue = calculateBMI(weightInKg, heightInCm);
 
     setBmi(bmiValue);
@@ -170,7 +174,7 @@ export default function BodyMassIndexCalc() {
 
     setTimeout(() => {
       setShowIcon(false);
-      
+
       updateCategories(bmiValue);
     }, 1600);
   };
@@ -356,9 +360,16 @@ export default function BodyMassIndexCalc() {
               </button>
             </div>
           </form>
-          {bmi &&
-            (showIcon ? (
-              <div ref={resultsRef} style={{ scrollMarginTop: "80px" }} className="flex w-full max-w-xl flex-col p-8 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl justify-center">
+          <div
+            ref={resultsRef}
+            style={{ scrollMarginTop: "80px" }}
+            className={classNames(
+              bmi && !showIcon && "bg-white h-fit",
+              "flex w-full max-w-xl flex-col p-8 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl justify-center"
+            )}
+          >
+            {bmi ? (
+              showIcon ? (
                 <div className="flex justify-center place-content-center">
                   <svg
                     className="checkmark"
@@ -379,115 +390,120 @@ export default function BodyMassIndexCalc() {
                     />
                   </svg>
                 </div>
-              </div>
+              ) : (
+                <div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="col-span-1 flex items-center">
+                      <p className="text-sm">Apskaičiuotas KMI:</p>
+                    </div>
+                    <div className="col-span-1 flex text-gray-900">
+                      <p className="text-2xl font-bold">{bmi}</p>
+                    </div>
+
+                    <div className="col-span-1 flex">
+                      <p className="text-sm">Svorio kategorija:</p>
+                    </div>
+                    <div className="col-span-1 flex">
+                      <span className="font-semibold">
+                        {currentCategory.category}
+                      </span>
+                    </div>
+
+                    {idealWeight && (
+                      <>
+                        <div className="col-span-1 flex">
+                          <p className="text-sm">Idealus svoris:</p>
+                        </div>
+                        <div className="col-span-1 flex">
+                          <span className="font-semibold">
+                            {idealWeight} kg
+                          </span>
+                        </div>
+                      </>
+                    )}
+                  </div>
+
+                  <div
+                    style={{
+                      position: "relative",
+                      width: "100%",
+                      height: "16px",
+                      marginTop: "40px",
+                      marginBottom: "24px",
+                      background:
+                        "linear-gradient(to right, #87CEEB, #00FA9A, #FFD700, #FF6347)",
+                      borderRadius: "10px",
+                      boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.1)",
+                    }}
+                  >
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "-10px",
+                        left: `${calculatePinPosition(bmi)}%`,
+                        transform: "translateX(-50%)",
+                        width: "20px",
+                        height: "20px",
+                        borderRadius: "50%",
+                        backgroundColor: "#333",
+                        border: "4px solid white",
+                        transition: "left 0.3s ease-in-out",
+                      }}
+                    />
+
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "30px",
+                        left: "0%",
+                        fontSize: "12px",
+                        color: "#666",
+                      }}
+                    >
+                      Mažas
+                    </div>
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "30px",
+                        left: "33%",
+                        transform: "translateX(-50%)",
+                        fontSize: "12px",
+                        color: "#666",
+                      }}
+                    >
+                      Normalus
+                    </div>
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "30px",
+                        left: "67%",
+                        transform: "translateX(-50%)",
+                        fontSize: "12px",
+                        color: "#666",
+                      }}
+                    >
+                      Antsvoris
+                    </div>
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "30px",
+                        right: "0",
+                        fontSize: "12px",
+                        color: "#666",
+                      }}
+                    >
+                      Nutukimas
+                    </div>
+                  </div>
+                </div>
+              )
             ) : (
-              <div ref={resultsRef} style={{ scrollMarginTop: "80px" }} className="flex h-fit w-full max-w-xl flex-col bg-white p-8 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl justify-between">
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="col-span-1 flex items-center">
-                    <p className="text-sm">Apskaičiuotas KMI:</p>
-                  </div>
-                  <div className="col-span-1 flex text-gray-900">
-                    <p className="text-2xl font-bold">{bmi}</p>
-                  </div>
-
-                  <div className="col-span-1 flex">
-                    <p className="text-sm">Svorio kategorija:</p>
-                  </div>
-                  <div className="col-span-1 flex">
-                    <span className="font-semibold">
-                      {currentCategory.category}
-                    </span>
-                  </div>
-
-                  {idealWeight && (
-                    <>
-                      <div className="col-span-1 flex">
-                        <p className="text-sm">Idealus svoris:</p>
-                      </div>
-                      <div className="col-span-1 flex">
-                        <span className="font-semibold">{idealWeight} kg</span>
-                      </div>
-                    </>
-                  )}
-                </div>
-
-                <div
-                  style={{
-                    position: "relative",
-                    width: "100%",
-                    height: "16px",
-                    marginTop: "40px",
-                    marginBottom: "24px",
-                    background:
-                      "linear-gradient(to right, #87CEEB, #00FA9A, #FFD700, #FF6347)",
-                    borderRadius: "10px",
-                    boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.1)",
-                  }}
-                >
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: "-10px",
-                      left: `${calculatePinPosition(bmi)}%`,
-                      transform: "translateX(-50%)",
-                      width: "20px",
-                      height: "20px",
-                      borderRadius: "50%",
-                      backgroundColor: "#333",
-                      border: "4px solid white",
-                      transition: "left 0.3s ease-in-out",
-                    }}
-                  />
-
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: "30px",
-                      left: "0%",
-                      fontSize: "12px",
-                      color: "#666",
-                    }}
-                  >
-                    Mažas
-                  </div>
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: "30px",
-                      left: "33%",
-                      transform: "translateX(-50%)",
-                      fontSize: "12px",
-                      color: "#666",
-                    }}
-                  >
-                    Normalus
-                  </div>
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: "30px",
-                      left: "67%",
-                      transform: "translateX(-50%)",
-                      fontSize: "12px",
-                      color: "#666",
-                    }}
-                  >
-                    Antsvoris
-                  </div>
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: "30px",
-                      right: "0",
-                      fontSize: "12px",
-                      color: "#666",
-                    }}
-                  >
-                    Nutukimas
-                  </div>
-                </div>
-              </div>
-            ))}
+              <p className="text-sm text-gray-500 text-center">Įveskite duomenis ir spauskite &quot;Skaičiuoti&quot;, kad pamatytumėte rezultatus.</p>
+            )}
+          </div>
         </div>
 
         <div className="grid grid-cols-1 justify-items-center gap-x-8 gap-y-8 pt-10">
@@ -604,6 +620,16 @@ export default function BodyMassIndexCalc() {
               </div>
             </div>
           </div>
+        </div>
+
+        <div className="pt-10 px-8 sm:px-0">
+          <p className="text-sm text-gray-500">
+            Ši skaičiuoklė yra skirta tik informaciniams tikslams. Nors
+            stengiamės pateikti tikslią informaciją, mes neprisiimame
+            atsakomybės už jokius sveikatos sutrikimus ar žalą, kuri gali
+            atsirasti naudojantis šia skaičiuokle. Prieš keisdami savo įpročius,
+            pasitarkite su sveikatos priežiūros specialistu.
+          </p>
         </div>
       </div>
     </>

@@ -4,6 +4,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './App';
 import BodyMassIndexCalc from './pages/BodyMassIndexCalc';
 import BasalMetabolicRateCalc from './pages/BasalMetabolicRateCalc';
+import WaterIntakeCalculator from './pages/WaterIntakeCalculator';
+// import MacronutrientCalc from './pages/MacronutrientCalc';
 import Disclaimer from './pages/Disclaimer';
 import NotFound from './pages/NotFound';
 
@@ -14,6 +16,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path="/" element={<App />}>
           <Route index element={<BodyMassIndexCalc />} />
           <Route path="kaloriju-norma" element={<BasalMetabolicRateCalc />} />
+          <Route path="vandens-norma" element={<WaterIntakeCalculator />} />
+          {/* <Route path="Makroelementai" element={<MacronutrientCalc />} /> */}
           <Route path="atsakomybes-ribojimas" element={<Disclaimer />} />
           <Route path="*" element={<NotFound />} />
         </Route>

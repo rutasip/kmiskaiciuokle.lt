@@ -6,17 +6,21 @@ import {
   CalculatorIcon,
   XMarkIcon,
   //   ScaleIcon,
-    FireIcon,
+  FireIcon,
+  Battery100Icon,
+  // PuzzlePieceIcon,
 } from "@heroicons/react/24/outline";
 
 const navigation = [
   { name: "Koks mano KMI?", href: "/", icon: CalculatorIcon },
   { name: 'Kiek kalorijų man reikia?', href: '/kaloriju-norma', icon: FireIcon },
+  { name: 'Kiek vandens išgerti?', href: '/vandens-norma', icon: Battery100Icon },
+  // { name: 'Kiek kalorijų man reikia?', href: '/makroelementai', icon: PuzzlePieceIcon },
 ];
 
 const otherNavigation = [
-  // { name: "Kontaktai", href: "/projects" },
-  // { name: "Slapukų politika", href: "/projects" },
+  // { name: "Kontaktai", href: "/atsakomybes-ribojimas" },
+  // { name: "Privatumo ir slapukų politika", href: "/atsakomybes-ribojimas" },
   { name: "Atsakomybės ribojimas", href: "/atsakomybes-ribojimas" },
 ];
 
