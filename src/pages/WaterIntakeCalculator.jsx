@@ -19,11 +19,11 @@ const faqs = [
       "Kaip apskaičiuojamas rekomenduojamas kasdienis vandens suvartojimas šioje skaičiuoklėje?",
     answer: (
       <>
-        Skaičiuoklė naudoja <b>Mifflin-St Jeor lygtį</b> jūsų baziniam
-        metabolizmo greičiui (BMR) apskaičiuoti, atsižvelgiant į jūsų amžių,
-        lytį, ūgį ir svorį. BMR parodo, kiek kalorijų jūsų kūnas sudegina
+        Skaičiuoklė naudoja <b>Mifflin-St Jeor lygtį</b> Jūsų baziniam
+        metabolizmo greičiui (BMR) apskaičiuoti, atsižvelgiant į Jūsų amžių,
+        lytį, ūgį ir svorį. BMR parodo, kiek kalorijų Jūsų kūnas sudegina
         ramybės būsenoje. Tada BMR dauginamas iš <b>aktyvumo koeficiento</b>,
-        kuris nustatomas pagal jūsų fizinio aktyvumo lygį (valandos per dieną),
+        kuris nustatomas pagal Jūsų fizinio aktyvumo lygį (valandos per dieną),
         kad gautųsi <b>bendras dienos energijos poreikis (TDEE)</b>. Galiausiai,
         vadovaujantis rekomendacija, kad reikia suvartoti{" "}
         <b>1 ml vandens kiekvienai sudegintai kalorijai</b>, TDEE vertė
@@ -164,13 +164,13 @@ export default function WaterIntakeCalculator() {
           className="w-full max-w-xl bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl"
         >
           <div className="gap-x-6 border-b border-gray-900/10 p-8">
-            <h1 className="text-base font-semibold leading-7 text-gray-900">
+            <h1 className="text-2xl font-semibold leading-7 text-gray-900">
               Vandens suvartojimo skaičiuoklė
             </h1>
-            <p className="mt-1 text-sm leading-6 text-gray-600">
+            <h2 className="mt-4 text-sm leading-6 text-gray-600">
               Sužinokite, kiek vandens turėtumėte išgerti kasdien pagal savo
               amžių, lytį, ūgį, svorį, fizinį aktyvumą ir klimatą.
-            </p>
+            </h2>
           </div>
           <div className="p-8">
             {step === 1 && (

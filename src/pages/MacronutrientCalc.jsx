@@ -147,13 +147,13 @@ export default function MacronutrientCalc() {
           )}
         >
           <div className="gap-x-6 border-b border-gray-900/10 p-8">
-            <h1 className="text-base font-semibold leading-7 text-gray-900">
+            <h1 className="text-2xl font-semibold leading-7 text-gray-900">
               Makroelementų skaičiuoklė
             </h1>
-            <p className="mt-1 text-sm leading-6 text-gray-600">
+            <h2 className="mt-4 text-sm leading-6 text-gray-600">
               Sužinokite savo dienos kalorijų poreikį ir optimalią
               makroelementų (baltymų, riebalų, angliavandenių) proporciją.
-            </p>
+            </h2>
           </div>
           <div className="p-8">
             {step === 1 && (

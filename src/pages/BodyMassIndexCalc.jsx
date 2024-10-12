@@ -59,12 +59,12 @@ const faqs = [
   {
     question: "Kas yra idealus svoris?",
     answer:
-      "Idealus svoris yra apytikslė kūno svorio reikšmė, atsižvelgiant į jūsų ūgį ir lytį. Jis padeda įvertinti, ar jūsų svoris yra sveiko diapazono ribose.",
+      "Idealus svoris yra apytikslė kūno svorio reikšmė, atsižvelgiant į Jūsų ūgį ir lytį. Jis padeda įvertinti, ar Jūsų svoris yra sveiko diapazono ribose.",
   },
   {
     question: "Kaip apskaičiuojamas idealus svoris?",
     answer:
-      "Idealus svoris apskaičiuojamas naudojant standartines formules, kurios atsižvelgia į jūsų ūgį ir lytį. Tai suteikia bendrą supratimą apie galimą sveiką svorio diapazoną.",
+      "Idealus svoris apskaičiuojamas naudojant standartines formules, kurios atsižvelgia į Jūsų ūgį ir lytį. Tai suteikia bendrą supratimą apie galimą sveiką svorio diapazoną.",
   },
   {
     question: "Ar KMI apskaičiavimas tikslus visiems?",
@@ -214,11 +214,18 @@ export default function BodyMassIndexCalc() {
             onSubmit={handleCalculateBMI}
             className="w-full max-w-xl bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl"
           >
-            <div className="p-8">
-              <h1 className="text-base font-semibold leading-7 text-gray-900">
+            <div className="gap-x-6 border-b border-gray-900/10 p-8">
+              <h1 className="text-2xl font-semibold leading-7 text-gray-900">
                 Kūno masės indekso skaičiuoklė
               </h1>
-              <div className="mt-7 grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+              <h2 className="mt-2 text-sm leading-6 text-gray-600">
+                Naudodami šią skaičiuoklę galite apskaičiuoti kūno masės indeksą
+                (KMI) ir sužinoti, ar jūsų svoris yra sveikame diapazone. Taip pat
+                galite sužinoti idealų svorį pagal ūgį ir lytį.
+              </h2>
+            </div>
+            <div className="p-8">
+              <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="sm:col-span-3">
                   <label
                     htmlFor="height"
@@ -501,7 +508,10 @@ export default function BodyMassIndexCalc() {
                 </div>
               )
             ) : (
-              <p className="text-sm text-gray-500 text-center">Įveskite duomenis ir spauskite &quot;Skaičiuoti&quot;, kad pamatytumėte rezultatus.</p>
+              <p className="text-sm text-gray-500 text-center">
+                Įveskite duomenis ir spauskite &quot;Skaičiuoti&quot;, kad
+                pamatytumėte rezultatus.
+              </p>
             )}
           </div>
         </div>
@@ -515,14 +525,14 @@ export default function BodyMassIndexCalc() {
                     <p className="text-base leading-7 text-gray-600">
                       <b>Kūno masės indeksas (KMI)</b> yra paprastas ir plačiai
                       naudojamas įrankis, padedantis įsivertinti, ar Jūsų svoris
-                      yra normalus. KMI gali suteikti bendrą supratimą apie jūsų
+                      yra normalus. KMI gali suteikti bendrą supratimą apie Jūsų
                       kūno svorio kategoriją, tačiau tai tik vienas iš daugelio
                       būdų vertinti sveikatą.
                     </p>
                     <p className="mt-4 text-base leading-7 text-gray-600">
                       <b>Idealus svoris</b> yra apytikslė reikšmė, nustatoma
-                      pagal jūsų ūgį ir lytį. Tai gali padėti suprasti, koks
-                      svoris gali būti laikomas sveiku jums individualiai.
+                      pagal Jūsų ūgį ir lytį. Tai gali padėti suprasti, koks
+                      svoris gali būti laikomas sveiku Jums individualiai.
                     </p>
                     <div className="mt-4 text-base leading-7 text-gray-600">
                       Svarbu žinoti:

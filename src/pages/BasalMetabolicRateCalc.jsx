@@ -10,7 +10,7 @@ const faqs = [
   {
     question: "Kaip apskaičiuojamas dienos kalorijų poreikis?",
     answer:
-      "Dienos kalorijų poreikis apskaičiuojamas naudojant Mifflin-St Jeor formulę baziniam metabolizmo greičiui (BMR) nustatyti ir koreguojamas pagal jūsų fizinio aktyvumo lygį.",
+      "Dienos kalorijų poreikis apskaičiuojamas naudojant Mifflin-St Jeor formulę baziniam metabolizmo greičiui (BMR) nustatyti ir koreguojamas pagal Jūsų fizinio aktyvumo lygį.",
   },
   {
     question: "Ar skaičiuoklės rezultatai yra tikslūs?",
@@ -175,13 +175,13 @@ export default function BasalMetabolicRateCalc() {
             className="h-fit w-full max-w-xl bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl"
           >
             <div className="gap-x-6 border-b border-gray-900/10 p-8">
-              <h1 className="text-base font-semibold leading-7 text-gray-900">
-                Kasdienio kalorijų suvartojimo skaičiuoklė
+              <h1 className="text-2xl font-semibold leading-7 text-gray-900">
+                Kalorijų suvartojimo skaičiuoklė
               </h1>
-              <p className="mt-1 text-sm leading-6 text-gray-600">
-                Įveskite savo duomenis ir sužinokite, kiek kalorijų jums reikia
+              <h2 className="mt-4 text-sm leading-6 text-gray-600">
+                Įveskite savo duomenis ir sužinokite, kiek kalorijų Jums reikia
                 per dieną norint išlaikyti, numesti ar priaugti svorio.
-              </p>
+              </h2>
             </div>
             <div className="p-8">
               {step === 1 && (
@@ -412,13 +412,16 @@ export default function BasalMetabolicRateCalc() {
             </div>
           </form>
 
-          {calories &&
-            (showIcon ? (
-              <div
-                ref={resultsRef}
-                style={{ scrollMarginTop: "80px" }}
-                className="flex w-full max-w-xl flex-col p-8 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl justify-center"
-              >
+          <div
+            ref={resultsRef}
+            style={{ scrollMarginTop: "80px" }}
+            className={classNames(
+              calories && !showIcon && "bg-white h-fit",
+              "flex w-full max-w-xl flex-col p-8 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl justify-center"
+            )}
+          >
+            {calories ? (
+              showIcon ? (
                 <div className="flex justify-center place-content-center">
                   <svg
                     className="checkmark"
@@ -439,13 +442,7 @@ export default function BasalMetabolicRateCalc() {
                     />
                   </svg>
                 </div>
-              </div>
-            ) : (
-              <div
-                ref={resultsRef}
-                style={{ scrollMarginTop: "80px" }}
-                className="h-min w-full max-w-xl bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl"
-              >
+              ) : (
                 <div className="grid grid-cols-1 col-span-2 gap-8 p-8">
                   <div className="rounded-2xl bg-gray-50 p-10">
                     <div>
@@ -538,8 +535,15 @@ export default function BasalMetabolicRateCalc() {
                     </dl>
                   </div>
                 </div>
-              </div>
-            ))}
+              )
+            ) : (
+              <p className="text-sm text-gray-500 text-center">
+                {step === 1
+                  ? 'Įveskite duomenis ir spauskite "Toliau", kad tęstumėte.'
+                  : 'Įveskite duomenis ir spauskite "Skaičiuoti", kad pamatytumėte rezultatus.'}
+              </p>
+            )}
+          </div>
         </div>
 
         <div className="grid grid-cols-1 justify-items-center gap-x-8 gap-y-8 pt-10">
@@ -564,6 +568,15 @@ export default function BasalMetabolicRateCalc() {
               </div>
             </div>
           </div>
+        </div>
+        <div className="pt-10 px-8 sm:px-0">
+          <p className="text-sm text-gray-500">
+            Ši skaičiuoklė yra skirta tik informaciniams tikslams. Nors
+            stengiamės pateikti tikslią informaciją, mes neprisiimame
+            atsakomybės už jokius sveikatos sutrikimus ar žalą, kuri gali
+            atsirasti naudojantis šia skaičiuokle. Prieš keisdami savo įpročius,
+            pasitarkite su sveikatos priežiūros specialistu.
+          </p>
         </div>
       </div>
     </>
