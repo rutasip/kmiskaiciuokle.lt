@@ -55,24 +55,48 @@ export default function CalorieBurnCalculator() {
   const [caloriesBurned, setCaloriesBurned] = useState(null);
   const [showIcon, setShowIcon] = useState(false);
 
+  const [weightError, setWeightError] = useState("");
+  const [durationError, setDurationError] = useState("");
+
   const resultsRef = useRef(null);
 
   const handleCalculate = (e) => {
     e.preventDefault();
 
-    if (!weight || isNaN(weight) || weight <= 0) {
-      alert("Prašome įvesti teisingą svorį.");
-      return;
+    setWeightError("");
+    setDurationError("");
+
+    const weightInKg = parseFloat(weight);
+    const durationInHours = parseFloat(duration);
+
+    let isValid = true;
+
+    if (isNaN(weightInKg)) {
+      setWeightError("Prašome įvesti svorį.");
+      isValid = false;
     }
-    if (!duration || isNaN(duration) || duration <= 0) {
-      alert("Prašome įvesti teisingą trukmę.");
+
+    if (weightInKg <= 0) {
+      setWeightError("Prašome įvesti teisingą svorį.");
+      isValid = false;
+    }
+
+    if (isNaN(durationInHours)) {
+      setDurationError("Prašome įvesti trukmę.");
+      isValid = false;
+    }
+
+    if (durationInHours <= 0) {
+      setDurationError("Prašome įvesti teisingą trukmę.");
+      isValid = false;
+    }
+
+    if (!isValid) {
+      setShowIcon(false);
       return;
     }
 
     setShowIcon(true);
-
-    const weightInKg = parseFloat(weight);
-    const durationInHours = parseFloat(duration);
 
     const calories = selectedActivity.value * weightInKg * durationInHours;
     setCaloriesBurned(calories.toFixed(2));
@@ -93,6 +117,8 @@ export default function CalorieBurnCalculator() {
     setWeight("");
     setDuration("");
     setCaloriesBurned(null);
+    setWeightError("");
+    setDurationError("");
   };
 
   return (
@@ -103,7 +129,7 @@ export default function CalorieBurnCalculator() {
           className="w-full max-w-xl bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl"
         >
           <div className="gap-x-6 border-b border-gray-900/10 p-8">
-            <h1 className="text-2xl font-semibold leading-7 text-gray-900">
+            <h1 className="text-xl font-semibold leading-7 text-gray-900">
               Kalorijų sudeginimo skaičiuoklė
             </h1>
             <h2 className="mt-4 text-sm leading-6 text-gray-600">
@@ -228,6 +254,9 @@ export default function CalorieBurnCalculator() {
                   <span className="text-gray-500 sm:text-sm">kg</span>
                 </div>
               </div>
+              {weightError && (
+                <p className="mt-1 text-sm text-red-600">{weightError}</p>
+              )}
             </div>
 
             <div className="sm:col-span-3">
@@ -253,6 +282,9 @@ export default function CalorieBurnCalculator() {
                   <span className="text-gray-500 sm:text-sm">val.</span>
                 </div>
               </div>
+              {durationError && (
+                <p className="mt-1 text-sm text-red-600">{durationError}</p>
+              )}
             </div>
           </div>
 

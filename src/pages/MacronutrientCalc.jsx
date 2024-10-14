@@ -147,7 +147,7 @@ export default function MacronutrientCalc() {
           )}
         >
           <div className="gap-x-6 border-b border-gray-900/10 p-8">
-            <h1 className="text-2xl font-semibold leading-7 text-gray-900">
+            <h1 className="text-xl font-semibold leading-7 text-gray-900">
               Makroelementų skaičiuoklė
             </h1>
             <h2 className="mt-4 text-sm leading-6 text-gray-600">

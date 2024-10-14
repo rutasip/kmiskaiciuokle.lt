@@ -98,6 +98,9 @@ export default function BodyMassIndexCalc() {
   const [showIdealWeight, setShowIdealWeight] = useState(false);
   const [gender, setGender] = useState("");
   const [idealWeight, setIdealWeight] = useState(null);
+  const [weightError, setWeightError] = useState("");
+  const [heightError, setHeightError] = useState("");
+  const [genderError, setGenderError] = useState("");
 
   const resultsRef = useRef(null);
 
@@ -142,27 +145,48 @@ export default function BodyMassIndexCalc() {
   const handleCalculateBMI = (e) => {
     e.preventDefault();
 
-    setCategories(
-      categoryList.map((category) => ({ ...category, isCurrent: false }))
-    );
+    setWeightError("");
+    setHeightError("");
+    setGenderError("");
 
     const weightInKg = parseFloat(weight);
     const heightInCm = parseFloat(height);
 
-    if (
-      isNaN(weightInKg) ||
-      isNaN(heightInCm) ||
-      weightInKg <= 0 ||
-      heightInCm <= 0
-    ) {
-      alert("Prašome įvesti teisingus svorio ir ūgio duomenis.");
+    let isValid = true;
+
+    if (isNaN(weightInKg)) {
+      setWeightError("Prašome įvesti svorį.");
+      isValid = false;
+    }
+
+    if (weightInKg <= 0) {
+      setWeightError("Prašome įvesti teisingą svorį.");
+      isValid = false;
+    }
+
+    if (isNaN(heightInCm)) {
+      setHeightError("Prašome įvesti ūgį.");
+      isValid = false;
+    }
+
+    if (heightInCm <= 0) {
+      setHeightError("Prašome įvesti teisingą ūgį.");
+      isValid = false;
+    }
+
+    if (showIdealWeight && !gender) {
+      setGenderError("Prašome pasirinkti lytį.");
+      isValid = false;
+    }
+
+    if (!isValid) {
+      setShowIcon(false);
       return;
     }
 
     setShowIcon(true);
 
     const bmiValue = calculateBMI(weightInKg, heightInCm);
-
     setBmi(bmiValue);
 
     if (showIdealWeight && gender) {
@@ -172,9 +196,12 @@ export default function BodyMassIndexCalc() {
       setIdealWeight(null);
     }
 
+    setCategories(
+      categoryList.map((category) => ({ ...category, isCurrent: false }))
+    );
+
     setTimeout(() => {
       setShowIcon(false);
-
       updateCategories(bmiValue);
     }, 1600);
   };
@@ -194,6 +221,9 @@ export default function BodyMassIndexCalc() {
     setShowIdealWeight(false);
     setGender("");
     setIdealWeight(null);
+    setWeightError("");
+    setHeightError("");
+    setGenderError("");
 
     setCategories(
       categoryList.map((category) => ({ ...category, isCurrent: false }))
@@ -215,10 +245,10 @@ export default function BodyMassIndexCalc() {
             className="w-full max-w-xl bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl"
           >
             <div className="gap-x-6 border-b border-gray-900/10 p-8">
-              <h1 className="text-2xl font-semibold leading-7 text-gray-900">
+              <h1 className="text-xl font-semibold leading-7 text-gray-900">
                 Kūno masės indekso skaičiuoklė
               </h1>
-              <h2 className="mt-2 text-sm leading-6 text-gray-600">
+              <h2 className="mt-4 text-sm leading-6 text-gray-600">
                 Naudodami šią skaičiuoklę galite apskaičiuoti kūno masės indeksą
                 (KMI) ir sužinoti, ar jūsų svoris yra sveikame diapazone. Taip pat
                 galite sužinoti idealų svorį pagal ūgį ir lytį.
@@ -253,6 +283,9 @@ export default function BodyMassIndexCalc() {
                       </span>
                     </div>
                   </div>
+                  {heightError && (
+                    <p className="mt-1 text-sm text-red-600">{heightError}</p>
+                  )}
                 </div>
 
                 <div className="sm:col-span-3">
@@ -282,6 +315,9 @@ export default function BodyMassIndexCalc() {
                       </span>
                     </div>
                   </div>
+                  {weightError && (
+                    <p className="mt-1 text-sm text-red-600">{weightError}</p>
+                  )}
                 </div>
 
                 <div className="sm:col-span-3">
@@ -346,6 +382,11 @@ export default function BodyMassIndexCalc() {
                           </label>
                         </div>
                       </div>
+                      {genderError && (
+                        <p className="mt-1 text-sm text-red-600">
+                          {genderError}
+                        </p>
+                      )}
                     </fieldset>
                   </div>
                 )}

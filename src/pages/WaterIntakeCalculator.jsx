@@ -42,6 +42,9 @@ const faqs = [
 export default function WaterIntakeCalculator() {
   const [step, setStep] = useState(1);
   const [showIcon, setShowIcon] = useState(false);
+  const [ageError, setAgeError] = useState("");
+  const [weightError, setWeightError] = useState("");
+  const [heightError, setHeightError] = useState("");
 
   // User inputs
   const [age, setAge] = useState("");
@@ -61,26 +64,57 @@ export default function WaterIntakeCalculator() {
 
   const handleNext = (e) => {
     e.preventDefault();
-    // Validate Step 1 inputs
-    if (!age || isNaN(age) || age <= 0) {
-      alert("Prašome įvesti teisingą amžių.");
+
+    setWeightError("");
+    setHeightError("");
+    setAgeError("");
+
+    const weightInKg = parseFloat(weight);
+    const heightInCm = parseFloat(height);
+    const ageInYears = parseFloat(age);
+
+    let isValid = true;
+
+    if (isNaN(weightInKg)) {
+      setWeightError("Prašome įvesti svorį.");
+      isValid = false;
+    }
+
+    if (weightInKg <= 0) {
+      setWeightError("Prašome įvesti teisingą svorį.");
+      isValid = false;
+    }
+
+    if (isNaN(heightInCm)) {
+      setHeightError("Prašome įvesti ūgį.");
+      isValid = false;
+    }
+
+    if (heightInCm <= 0) {
+      setHeightError("Prašome įvesti teisingą ūgį.");
+      isValid = false;
+    }
+
+    if (isNaN(ageInYears)) {
+      setAgeError("Prašome įvesti amžių.");
+      isValid = false;
+    }
+
+    if (ageInYears <= 0) {
+      setAgeError("Prašome įvesti teisingą amžių.");
+      isValid = false;
+    }
+
+    if (!isValid) {
       return;
     }
-    if (!weight || isNaN(weight) || weight <= 0) {
-      alert("Prašome įvesti teisingą svorį.");
-      return;
-    }
-    if (!height || isNaN(height) || height <= 0) {
-      alert("Prašome įvesti teisingą ūgį.");
-      return;
-    }
+
     setStep(2);
   };
 
   const handleCalculate = (e) => {
     e.preventDefault();
 
-    // Validate Step 2 inputs
     if (isNaN(exerciseHours) || exerciseHours < 0) {
       alert("Prašome įvesti teisingą fizinio aktyvumo laiką.");
       return;
@@ -92,7 +126,6 @@ export default function WaterIntakeCalculator() {
     const heightInCm = parseFloat(height);
     const ageInYears = parseFloat(age);
 
-    // Calculate BMR using Mifflin-St Jeor Equation
     let calculatedBMR;
     if (gender === "male") {
       calculatedBMR = 10 * weightInKg + 6.25 * heightInCm - 5 * ageInYears + 5;
@@ -148,6 +181,9 @@ export default function WaterIntakeCalculator() {
     setBMR(null);
     setTDEE(null);
     setClimateAdjustment(null);
+    setWeightError("");
+    setHeightError("");
+    setAgeError("");
   };
 
   useEffect(() => {
@@ -164,7 +200,7 @@ export default function WaterIntakeCalculator() {
           className="w-full max-w-xl bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl"
         >
           <div className="gap-x-6 border-b border-gray-900/10 p-8">
-            <h1 className="text-2xl font-semibold leading-7 text-gray-900">
+            <h1 className="text-xl font-semibold leading-7 text-gray-900">
               Vandens suvartojimo skaičiuoklė
             </h1>
             <h2 className="mt-4 text-sm leading-6 text-gray-600">
@@ -193,6 +229,9 @@ export default function WaterIntakeCalculator() {
                       onChange={(e) => setAge(e.target.value)}
                     />
                   </div>
+                  {ageError && (
+                    <p className="mt-1 text-sm text-red-600">{ageError}</p>
+                  )}
                 </div>
 
                 <div className="sm:col-span-3">
@@ -261,6 +300,9 @@ export default function WaterIntakeCalculator() {
                       <span className="text-gray-500 sm:text-sm">cm</span>
                     </div>
                   </div>
+                  {heightError && (
+                    <p className="mt-1 text-sm text-red-600">{heightError}</p>
+                  )}
                 </div>
 
                 <div className="sm:col-span-3">
@@ -284,6 +326,9 @@ export default function WaterIntakeCalculator() {
                       <span className="text-gray-500 sm:text-sm">kg</span>
                     </div>
                   </div>
+                  {weightError && (
+                    <p className="mt-1 text-sm text-red-600">{weightError}</p>
+                  )}
                 </div>
               </div>
             )}

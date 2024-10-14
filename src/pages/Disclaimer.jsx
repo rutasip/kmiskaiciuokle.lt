@@ -1,7 +1,7 @@
 export default function Disclaimer() {
   return (
     <div className="max-w-3xl mx-auto p-8 bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl">
-      <h1 className="text-2xl font-semibold leading-7 text-gray-900 mb-6">
+      <h1 className="text-xl font-semibold leading-7 text-gray-900 mb-6">
         Atsakomybės ribojimas
       </h1>
       <div className="space-y-6 text-base leading-7 text-gray-700">

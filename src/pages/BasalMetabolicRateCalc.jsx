@@ -10,7 +10,7 @@ const faqs = [
   {
     question: "Kaip apskaičiuojamas dienos kalorijų poreikis?",
     answer:
-      "Dienos kalorijų poreikis apskaičiuojamas naudojant Mifflin-St Jeor formulę baziniam metabolizmo greičiui (BMR) nustatyti ir koreguojamas pagal Jūsų fizinio aktyvumo lygį.",
+      "Dienos kalorijų poreikis apskaičiuojamas naudojant Mifflin-St Jeor formulę baziniam metabolizmo greičiui (BMR) nustatyti ir koreguojamas pagal ūsų fizinio aktyvumo lygį.",
   },
   {
     question: "Ar skaičiuoklės rezultatai yra tikslūs?",
@@ -84,6 +84,9 @@ export default function BasalMetabolicRateCalc() {
   const [weightGainCalories, setWeightGainCalories] = useState(null);
   const [step, setStep] = useState(1);
   const [showIcon, setShowIcon] = useState(false);
+  const [ageError, setAgeError] = useState("");
+  const [weightError, setWeightError] = useState("");
+  const [heightError, setHeightError] = useState("");
 
   const resultsRef = useRef(null);
 
@@ -97,19 +100,48 @@ export default function BasalMetabolicRateCalc() {
 
   const handleNext = (e) => {
     e.preventDefault();
+
+    setWeightError("");
+    setHeightError("");
+    setAgeError("");
+
     const weightInKg = parseFloat(weight);
     const heightInCm = parseFloat(height);
     const ageInYears = parseFloat(age);
 
-    if (
-      isNaN(weightInKg) ||
-      isNaN(heightInCm) ||
-      isNaN(ageInYears) ||
-      weightInKg <= 0 ||
-      heightInCm <= 0 ||
-      ageInYears <= 0
-    ) {
-      alert("Įveskite teisingus duomenis.");
+    let isValid = true;
+
+    if (isNaN(weightInKg)) {
+      setWeightError("Prašome įvesti svorį.");
+      isValid = false;
+    }
+
+    if (weightInKg <= 0) {
+      setWeightError("Prašome įvesti teisingą svorį.");
+      isValid = false;
+    }
+
+    if (isNaN(heightInCm)) {
+      setHeightError("Prašome įvesti ūgį.");
+      isValid = false;
+    }
+
+    if (heightInCm <= 0) {
+      setHeightError("Prašome įvesti teisingą ūgį.");
+      isValid = false;
+    }
+
+    if (isNaN(ageInYears)) {
+      setAgeError("Prašome įvesti amžių.");
+      isValid = false;
+    }
+
+    if (ageInYears <= 0) {
+      setAgeError("Prašome įvesti teisingą amžių.");
+      isValid = false;
+    }
+
+    if (!isValid) {
       return;
     }
 
@@ -158,6 +190,9 @@ export default function BasalMetabolicRateCalc() {
     setWeightLossCalories(null);
     setWeightGainCalories(null);
     setStep(1);
+    setWeightError("");
+    setHeightError("");
+    setAgeError("");
   };
 
   useEffect(() => {
@@ -175,7 +210,7 @@ export default function BasalMetabolicRateCalc() {
             className="h-fit w-full max-w-xl bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl"
           >
             <div className="gap-x-6 border-b border-gray-900/10 p-8">
-              <h1 className="text-2xl font-semibold leading-7 text-gray-900">
+              <h1 className="text-xl font-semibold leading-7 text-gray-900">
                 Kalorijų suvartojimo skaičiuoklė
               </h1>
               <h2 className="mt-4 text-sm leading-6 text-gray-600">
@@ -204,6 +239,9 @@ export default function BasalMetabolicRateCalc() {
                         onChange={(e) => setAge(e.target.value)}
                       />
                     </div>
+                    {ageError && (
+                      <p className="mt-1 text-sm text-red-600">{ageError}</p>
+                    )}
                   </div>
 
                   <div className="sm:col-span-3">
@@ -233,6 +271,9 @@ export default function BasalMetabolicRateCalc() {
                         </span>
                       </div>
                     </div>
+                    {heightError && (
+                      <p className="mt-1 text-sm text-red-600">{heightError}</p>
+                    )}
                   </div>
 
                   <div className="sm:col-span-3">
@@ -262,6 +303,9 @@ export default function BasalMetabolicRateCalc() {
                         </span>
                       </div>
                     </div>
+                    {weightError && (
+                      <p className="mt-1 text-sm text-red-600">{weightError}</p>
+                    )}
                   </div>
 
                   <div className="sm:col-span-3">
