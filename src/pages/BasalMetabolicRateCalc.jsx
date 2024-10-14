@@ -448,7 +448,7 @@ export default function BasalMetabolicRateCalc() {
                 </button>
                 <button
                   type="submit"
-                  className="rounded-md bg-indigo-50 px-2.5 py-1.5 text-sm font-semibold text-navy-blue shadow-sm hover:bg-indigo-100"
+                  className="rounded-full bg-amber-400 px-3 py-1.5 text-sm font-semibold text-slate-800 shadow-sm hover:bg-amber-500"
                 >
                   {step === 1 ? "Toliau" : "Skaičiuoti"}
                 </button>

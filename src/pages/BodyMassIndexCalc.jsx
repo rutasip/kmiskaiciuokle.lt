@@ -250,8 +250,8 @@ export default function BodyMassIndexCalc() {
               </h1>
               <h2 className="mt-4 text-sm leading-6 text-gray-600">
                 Naudodami šią skaičiuoklę galite apskaičiuoti kūno masės indeksą
-                (KMI) ir sužinoti, ar jūsų svoris yra sveikame diapazone. Taip pat
-                galite sužinoti idealų svorį pagal ūgį ir lytį.
+                (KMI) ir sužinoti, ar jūsų svoris yra sveikame diapazone. Taip
+                pat galite sužinoti idealų svorį pagal ūgį ir lytį.
               </h2>
             </div>
             <div className="p-8">
@@ -402,7 +402,7 @@ export default function BodyMassIndexCalc() {
               </button>
               <button
                 type="submit"
-                className="rounded-md bg-indigo-50 px-2.5 py-1.5 text-sm font-semibold text-navy-blue shadow-sm hover:bg-indigo-100"
+                className="rounded-full bg-amber-400 px-3 py-1.5 text-sm font-semibold text-slate-800 shadow-sm hover:bg-amber-500"
               >
                 Skaičiuoti
               </button>

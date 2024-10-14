@@ -13,7 +13,9 @@ module.exports = {
       colors: {
         'navy-blue': '#0D47A1',
         'bright-yellow': '#FFEB3B',
-        'pale-yellow': '#FFF176'
+        'pale-yellow': '#FFF176',
+        'amber-400': '#FFC107',
+        'amber-500': '#FFB300'
       },
       keyframes: {
         'slide-in': {
