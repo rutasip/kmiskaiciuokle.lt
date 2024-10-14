@@ -15,11 +15,16 @@ import {
   ArrowPathIcon,
 } from "@heroicons/react/24/outline";
 
-const navigation = [
+const healthCalculatorsNavigation = [
   { name: "Koks mano KMI?", href: "/", icon: CalculatorIcon },
+  { name: 'Kiek kalorijų sudeginu?', href: '/sudeginamos-kalorijos', icon: BoltIcon },
+  // { name: 'Kiek miego?', href: '/miego-ciklai', icon: BoltIcon },
+  // { name: 'Kiek kalorijų man reikia?', href: '/makroelementai', icon: PuzzlePieceIcon },
+];
+
+const nutritionCalculatorsNavigation = [
   { name: 'Kiek kalorijų man reikia?', href: '/kaloriju-norma', icon: FireIcon },
   { name: 'Kiek vandens išgerti?', href: '/vandens-norma', icon: ArrowPathIcon },
-  { name: 'Kiek kalorijų sudeginu?', href: '/sudeginamos-kalorijos', icon: BoltIcon },
   // { name: 'Kiek miego?', href: '/miego-ciklai', icon: BoltIcon },
   // { name: 'Kiek kalorijų man reikia?', href: '/makroelementai', icon: PuzzlePieceIcon },
 ];
@@ -49,38 +54,71 @@ function NavItems() {
           />
         </a>
       </div> */}
-      <nav className="flex flex-1 flex-col mt-12">
-        <div className="text-xs font-semibold leading-6 text-white">Pasirinkite skaičiuoklę:</div>
-        <ul role="list" className="flex flex-1 flex-col gap-y-7">
-          <li>
-            <ul role="list" className="-mx-3 mt-2 space-y-1">
-              {navigation.map((item) => (
-                <li key={item.name}>
-                  <a
-                    href={item.href}
-                    className={classNames(
-                      item.href === currentPath
-                        ? "bg-gray-50 text-navy-blue"
-                        : "text-white hover:bg-gray-50 hover:text-navy-blue",
-                      "group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6"
-                    )}
-                  >
-                    <item.icon
+      <nav className="flex flex-1 flex-col">
+        <div>
+          <div className="mt-12 text-xs font-semibold leading-6 text-white">Sveikatos skaičiuoklės:</div>
+          <ul role="list" className="flex flex-1 flex-col gap-y-7">
+            <li>
+              <ul role="list" className="-mx-3 mt-2 space-y-1">
+                {healthCalculatorsNavigation.map((item) => (
+                  <li key={item.name}>
+                    <a
+                      href={item.href}
                       className={classNames(
                         item.href === currentPath
-                          ? "text-navy-blue"
-                          : "text-white group-hover:text-navy-blue",
-                        "h-6 w-6 shrink-0"
+                          ? "bg-gray-50 text-navy-blue"
+                          : "text-white hover:bg-gray-50 hover:text-navy-blue",
+                        "group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6"
                       )}
-                      aria-hidden="true"
-                    />
-                    {item.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </li>
-        </ul>
+                    >
+                      <item.icon
+                        className={classNames(
+                          item.href === currentPath
+                            ? "text-navy-blue"
+                            : "text-white group-hover:text-navy-blue",
+                          "h-6 w-6 shrink-0"
+                        )}
+                        aria-hidden="true"
+                      />
+                      {item.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          </ul>
+          <div className="mt-12 text-xs font-semibold leading-6 text-white">Mitybos skaičiuoklės:</div>
+          <ul role="list" className="flex flex-1 flex-col gap-y-7">
+            <li>
+              <ul role="list" className="-mx-3 mt-2 space-y-1">
+                {nutritionCalculatorsNavigation.map((item) => (
+                  <li key={item.name}>
+                    <a
+                      href={item.href}
+                      className={classNames(
+                        item.href === currentPath
+                          ? "bg-gray-50 text-navy-blue"
+                          : "text-white hover:bg-gray-50 hover:text-navy-blue",
+                        "group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6"
+                      )}
+                    >
+                      <item.icon
+                        className={classNames(
+                          item.href === currentPath
+                            ? "text-navy-blue"
+                            : "text-white group-hover:text-navy-blue",
+                          "h-6 w-6 shrink-0"
+                        )}
+                        aria-hidden="true"
+                      />
+                      {item.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          </ul>
+        </div>
       </nav>
       <nav className="mb-3">
         <ul role="list" className="flex flex-1 flex-col gap-y-7">
