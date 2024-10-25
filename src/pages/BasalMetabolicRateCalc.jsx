@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { RadioGroup } from "@headlessui/react";
-import { CheckCircleIcon } from "@heroicons/react/20/solid";
+import { CheckCircleIcon, ArrowLeftIcon } from "@heroicons/react/20/solid";
 import {
   ArrowDownCircleIcon,
   ArrowUpCircleIcon,
@@ -180,21 +180,6 @@ export default function BasalMetabolicRateCalc() {
     }, 1600);
   };
 
-  const handleReset = () => {
-    setAge("");
-    setHeight("");
-    setWeight("");
-    setGender("female");
-    setActivityLevel(activityLevels[1]);
-    setCalories(null);
-    setWeightLossCalories(null);
-    setWeightGainCalories(null);
-    setStep(1);
-    setWeightError("");
-    setHeightError("");
-    setAgeError("");
-  };
-
   useEffect(() => {
     if (showIcon && calories) {
       resultsRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -210,7 +195,7 @@ export default function BasalMetabolicRateCalc() {
             className="h-fit w-full max-w-xl bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl"
           >
             <div className="gap-x-6 border-b border-gray-900/10 p-8">
-              <h1 className="text-xl font-semibold leading-7 text-gray-900">
+              <h1 className="text-lg font-semibold leading-7 text-gray-900">
                 Kalorijų suvartojimo skaičiuoklė
               </h1>
               <h2 className="mt-4 text-sm leading-6 text-gray-600">
@@ -425,7 +410,7 @@ export default function BasalMetabolicRateCalc() {
             </div>
             <div
               className={classNames(
-                step === 2 ? "justify-between" : "justify-end",
+                step === 1 ? "justify-end" : "justify-between",
                 "flex items-center gap-x-6 border-t border-gray-900/10 px-8 py-4"
               )}
             >
@@ -433,26 +418,21 @@ export default function BasalMetabolicRateCalc() {
                 <button
                   type="button"
                   onClick={() => setStep(1)}
-                  className="text-sm font-semibold leading-6 text-gray-900"
+                  className="inline-flex items-center gap-x-2 text-sm font-semibold leading-6 text-gray-900"
                 >
+                  <ArrowLeftIcon
+                    className="-ml-0.5 h-5 w-5"
+                    aria-hidden="true"
+                  />
                   Atgal
                 </button>
               )}
-              <div className="flex gap-x-6">
-                <button
-                  type="button"
-                  onClick={handleReset}
-                  className="text-sm font-semibold leading-6 text-gray-900"
-                >
-                  Ištrinti
-                </button>
-                <button
-                  type="submit"
-                  className="rounded-full bg-amber-400 px-3 py-1.5 text-sm font-semibold text-slate-800 shadow-sm hover:bg-amber-500"
-                >
-                  {step === 1 ? "Toliau" : "Skaičiuoti"}
-                </button>
-              </div>
+              <button
+                type="submit"
+                className="w-1/2 rounded-md bg-amber-400 px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-400"
+              >
+                {step === 1 ? "Toliau" : "Skaičiuoti"}
+              </button>
             </div>
           </form>
 

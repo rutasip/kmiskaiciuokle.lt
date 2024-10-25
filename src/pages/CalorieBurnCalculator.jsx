@@ -112,15 +112,6 @@ export default function CalorieBurnCalculator() {
     }
   }, [showIcon, caloriesBurned]);
 
-  const handleReset = () => {
-    setSelectedActivity(activities[0].options[0]);
-    setWeight("");
-    setDuration("");
-    setCaloriesBurned(null);
-    setWeightError("");
-    setDurationError("");
-  };
-
   return (
     <div className="space-y-10 divide-y divide-gray-900/10">
       <div className="grid grid-cols-1 justify-items-center gap-x-8 gap-y-8 xl:grid-cols-2">
@@ -290,15 +281,8 @@ export default function CalorieBurnCalculator() {
 
           <div className="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-8 py-4">
             <button
-              type="button"
-              onClick={handleReset}
-              className="text-sm font-semibold leading-6 text-gray-900"
-            >
-              Ištrinti
-            </button>
-            <button
               type="submit"
-              className="rounded-full bg-amber-400 px-3 py-1.5 text-sm font-semibold text-slate-800 shadow-sm hover:bg-amber-500"
+              className="w-1/2 rounded-md bg-amber-400 px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-400"
             >
               Skaičiuoti
             </button>

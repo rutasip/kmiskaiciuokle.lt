@@ -213,23 +213,6 @@ export default function BodyMassIndexCalc() {
     return ((relativeBMI - minBMI) / (maxBMI - minBMI)) * 100;
   };
 
-  const handleReset = () => {
-    setWeight("");
-    setHeight("");
-    setBmi(null);
-    setCurrentCategory(null);
-    setShowIdealWeight(false);
-    setGender("");
-    setIdealWeight(null);
-    setWeightError("");
-    setHeightError("");
-    setGenderError("");
-
-    setCategories(
-      categoryList.map((category) => ({ ...category, isCurrent: false }))
-    );
-  };
-
   useEffect(() => {
     if (showIcon && bmi) {
       resultsRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -245,13 +228,11 @@ export default function BodyMassIndexCalc() {
             className="w-full max-w-xl bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl"
           >
             <div className="gap-x-6 border-b border-gray-900/10 p-8">
-              <h1 className="text-xl font-semibold leading-7 text-gray-900">
+              <h1 className="text-lg font-semibold leading-7 text-gray-900">
                 Kūno masės indekso skaičiuoklė
               </h1>
               <h2 className="mt-4 text-sm leading-6 text-gray-600">
-                Naudodami šią skaičiuoklę galite apskaičiuoti kūno masės indeksą
-                (KMI) ir sužinoti, ar jūsų svoris yra sveikame diapazone. Taip
-                pat galite sužinoti idealų svorį pagal ūgį ir lytį.
+                Apskaičiuokite save kūno masės indeksą (KMI) ir sužinokite, ar Jūsų svoris yra sveikame diapazone. Taip pat galite sužinoti idealų svorį pagal ūgį ir lytį.
               </h2>
             </div>
             <div className="p-8">
@@ -328,7 +309,7 @@ export default function BodyMassIndexCalc() {
                       type="checkbox"
                       checked={showIdealWeight}
                       onChange={(e) => setShowIdealWeight(e.target.checked)}
-                      className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                      className="h-4 w-4 rounded border-gray-300 text-gray-600 focus:ring-gray-600"
                     />
                     <label
                       htmlFor="showIdealWeight"
@@ -355,7 +336,7 @@ export default function BodyMassIndexCalc() {
                             value="female"
                             checked={gender === "female"}
                             onChange={(e) => setGender(e.target.value)}
-                            className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                            className="h-4 w-4 border-gray-300 text-gray-600 focus:ring-gray-600"
                           />
                           <label
                             htmlFor="female"
@@ -392,17 +373,10 @@ export default function BodyMassIndexCalc() {
                 )}
               </div>
             </div>
-            <div className="flex items-center justify-end gap-x-6 border-t border-gray-900/10 py-4 px-8">
-              <button
-                type="button"
-                onClick={handleReset}
-                className="text-sm font-semibold leading-6 text-gray-900"
-              >
-                Ištrinti
-              </button>
+          <div className="flex items-center justify-end gap-x-6 border-t border-gray-900/10 py-4 px-8">
               <button
                 type="submit"
-                className="rounded-full bg-amber-400 px-3 py-1.5 text-sm font-semibold text-slate-800 shadow-sm hover:bg-amber-500"
+                className="w-1/2 rounded-md bg-amber-400 px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-400"
               >
                 Skaičiuoti
               </button>
@@ -444,12 +418,12 @@ export default function BodyMassIndexCalc() {
                     <div className="col-span-1 flex items-center">
                       <p className="text-sm">Apskaičiuotas KMI:</p>
                     </div>
-                    <div className="col-span-1 flex text-gray-900">
+                    <div className="col-span-1 flex text-gray-700">
                       <p className="text-2xl font-bold">{bmi}</p>
                     </div>
 
                     <div className="col-span-1 flex">
-                      <p className="text-sm">Svorio kategorija:</p>
+                      <p className="text-sm text-gray-700">Svorio kategorija:</p>
                     </div>
                     <div className="col-span-1 flex">
                       <span className="font-semibold">
@@ -460,7 +434,7 @@ export default function BodyMassIndexCalc() {
                     {idealWeight && (
                       <>
                         <div className="col-span-1 flex">
-                          <p className="text-sm">Idealus svoris:</p>
+                          <p className="text-sm text-gray-700">Idealus svoris:</p>
                         </div>
                         <div className="col-span-1 flex">
                           <span className="font-semibold">

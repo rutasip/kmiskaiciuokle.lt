@@ -470,7 +470,7 @@ export default function MacronutrientCalc() {
             </button>
             <button
               type="submit"
-              className="rounded-md bg-indigo-50 px-2.5 py-1.5 text-sm font-semibold text-navy-blue shadow-sm hover:bg-indigo-100"
+              className="rounded-md bg-amber-400 px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-400"
             >
               {step === 1 ? "Toliau" : "Skaičiuoti"}
             </button>

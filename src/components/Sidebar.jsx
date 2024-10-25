@@ -19,12 +19,11 @@ const healthCalculatorsNavigation = [
   { name: "Koks mano KMI?", href: "/", icon: CalculatorIcon },
   { name: 'Kiek kalorijų sudeginu?', href: '/sudeginamos-kalorijos', icon: BoltIcon },
   // { name: 'Kiek miego?', href: '/miego-ciklai', icon: BoltIcon },
-  // { name: 'Kiek kalorijų man reikia?', href: '/makroelementai', icon: PuzzlePieceIcon },
 ];
 
 const nutritionCalculatorsNavigation = [
   { name: 'Kiek kalorijų man reikia?', href: '/kaloriju-norma', icon: FireIcon },
-  { name: 'Kiek vandens išgerti?', href: '/vandens-norma', icon: ArrowPathIcon },
+  { name: 'Kiek vandens man reikia?', href: '/vandens-norma', icon: ArrowPathIcon },
   // { name: 'Kiek miego?', href: '/miego-ciklai', icon: BoltIcon },
   // { name: 'Kiek kalorijų man reikia?', href: '/makroelementai', icon: PuzzlePieceIcon },
 ];

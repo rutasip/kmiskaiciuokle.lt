@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { RadioGroup } from "@headlessui/react";
-import { CheckCircleIcon } from "@heroicons/react/20/solid";
+import { CheckCircleIcon, ArrowLeftIcon} from "@heroicons/react/20/solid";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -167,23 +167,6 @@ export default function WaterIntakeCalculator() {
     setTimeout(() => {
       setShowIcon(false);
     }, 1600);
-  };
-
-  const handleReset = () => {
-    setStep(1);
-    setAge("");
-    setGender("female");
-    setHeight("");
-    setWeight("");
-    setExerciseHours(0);
-    setClimate(climates[0]);
-    setTotalIntake(null);
-    setBMR(null);
-    setTDEE(null);
-    setClimateAdjustment(null);
-    setWeightError("");
-    setHeightError("");
-    setAgeError("");
   };
 
   useEffect(() => {
@@ -420,7 +403,7 @@ export default function WaterIntakeCalculator() {
           </div>
           <div
             className={classNames(
-              step === 2 ? "justify-between" : "justify-end",
+              step === 1 ? "justify-end" : "justify-between",
               "flex items-center gap-x-6 border-t border-gray-900/10 px-8 py-4"
             )}
           >
@@ -428,26 +411,21 @@ export default function WaterIntakeCalculator() {
               <button
                 type="button"
                 onClick={() => setStep(1)}
-                className="text-sm font-semibold leading-6 text-gray-900"
+                className="inline-flex items-center gap-x-2 text-sm font-semibold leading-6 text-gray-900"
               >
+                <ArrowLeftIcon
+                    className="-ml-0.5 h-5 w-5"
+                    aria-hidden="true"
+                  />
                 Atgal
               </button>
             )}
-            <div className="flex gap-x-6">
-              <button
-                type="button"
-                onClick={handleReset}
-                className="text-sm font-semibold leading-6 text-gray-900"
-              >
-                Ištrinti
-              </button>
-              <button
-                type="submit"
-                className="rounded-full bg-amber-400 px-3 py-1.5 text-sm font-semibold text-slate-800 shadow-sm hover:bg-amber-500"
-              >
-                {step === 1 ? "Toliau" : "Skaičiuoti"}
-              </button>
-            </div>
+            <button
+              type="submit"
+              className="w-1/2 rounded-md bg-amber-400 px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-400"
+            >
+              {step === 1 ? "Toliau" : "Skaičiuoti"}
+            </button>
           </div>
         </form>
 

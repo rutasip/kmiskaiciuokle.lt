@@ -10,7 +10,7 @@ export default function App() {
   return (
     <div className="h-full antialiased">
       <Sidebar />
-      <main className='py-10 lg:pl-74'>
+      <main className='pt-0 md:pt-10 pb-10 lg:pl-74'>
         <div className="px-0 sm:px-6 lg:px-8 max-w-7xl">
           <Outlet />
         </div>
