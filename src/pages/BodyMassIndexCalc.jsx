@@ -225,14 +225,16 @@ export default function BodyMassIndexCalc() {
         <div className="grid grid-cols-1 justify-items-center gap-x-8 gap-y-8 xl:grid-cols-2">
           <form
             onSubmit={handleCalculateBMI}
-            className="w-full max-w-xl bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl"
+            className="w-full max-w-2xl h-fit bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl"
           >
             <div className="gap-x-6 border-b border-gray-900/10 p-8">
               <h1 className="text-lg font-semibold leading-7 text-gray-900">
                 Kūno masės indekso skaičiuoklė
               </h1>
               <h2 className="mt-4 text-sm leading-6 text-gray-600">
-                Apskaičiuokite save kūno masės indeksą (KMI) ir sužinokite, ar Jūsų svoris yra sveikame diapazone. Taip pat galite sužinoti idealų svorį pagal ūgį ir lytį.
+                Apskaičiuokite save kūno masės indeksą (KMI) ir sužinokite, ar
+                Jūsų svoris yra sveikame diapazone. Taip pat galite sužinoti
+                idealų svorį pagal ūgį ir lytį.
               </h2>
             </div>
             <div className="p-8">
@@ -315,7 +317,7 @@ export default function BodyMassIndexCalc() {
                       htmlFor="showIdealWeight"
                       className="ml-2 block text-sm text-gray-900"
                     >
-                      Noriu sužinoti savo idealų svorį
+                      Noriu sužinoti idealų svorį
                     </label>
                   </div>
                 </div>
@@ -372,14 +374,14 @@ export default function BodyMassIndexCalc() {
                   </div>
                 )}
               </div>
-            </div>
-          <div className="flex items-center justify-end gap-x-6 border-t border-gray-900/10 py-4 px-8">
-              <button
-                type="submit"
-                className="w-1/2 rounded-md bg-amber-400 px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-400"
-              >
-                Skaičiuoti
-              </button>
+              <div className="flex items-center justify-end gap-x-6 mt-10">
+                <button
+                  type="submit"
+                  className="w-1/2 rounded-md bg-amber-400 px-3 py-2 text-sm font-semibold text-slate-800 shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-400"
+                >
+                  Skaičiuoti
+                </button>
+              </div>
             </div>
           </form>
           <div
@@ -387,7 +389,7 @@ export default function BodyMassIndexCalc() {
             style={{ scrollMarginTop: "80px" }}
             className={classNames(
               bmi && !showIcon && "bg-white h-fit",
-              "flex w-full max-w-xl flex-col p-8 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl justify-center"
+              "flex w-full max-w-2xl flex-col p-8 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl justify-center"
             )}
           >
             {bmi ? (
@@ -414,110 +416,191 @@ export default function BodyMassIndexCalc() {
                 </div>
               ) : (
                 <div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="col-span-1 flex items-center">
-                      <p className="text-sm">Apskaičiuotas KMI:</p>
-                    </div>
-                    <div className="col-span-1 flex text-gray-700">
-                      <p className="text-2xl font-bold">{bmi}</p>
-                    </div>
-
-                    <div className="col-span-1 flex">
-                      <p className="text-sm text-gray-700">Svorio kategorija:</p>
-                    </div>
-                    <div className="col-span-1 flex">
-                      <span className="font-semibold">
-                        {currentCategory.category}
-                      </span>
-                    </div>
-
-                    {idealWeight && (
-                      <>
-                        <div className="col-span-1 flex">
-                          <p className="text-sm text-gray-700">Idealus svoris:</p>
-                        </div>
-                        <div className="col-span-1 flex">
-                          <span className="font-semibold">
+                  <div className="p-6 bg-gray-50 rounded-lg shadow">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm font-medium text-gray-700">KMI</p>
+                        <p className="text-2xl font-semibold text-gray-900">
+                          {bmi}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-sm font-medium text-gray-700">
+                          Svorio kategorija
+                        </p>
+                        <p className="font-semibold text-gray-900">
+                          {currentCategory.category}
+                        </p>
+                      </div>
+                      {idealWeight && (
+                        <div className="">
+                          <p className="text-sm font-medium text-gray-700">
+                            Idealus svoris
+                          </p>
+                          <p className="font-semibold text-gray-900">
                             {idealWeight} kg
-                          </span>
+                          </p>
                         </div>
-                      </>
-                    )}
+                      )}
+                    </div>
+
+                    <div
+                      style={{
+                        position: "relative",
+                        width: "100%",
+                        height: "14px",
+                        marginTop: "46px",
+                        marginBottom: "24px",
+                        background:
+                          "linear-gradient(to right, #87CEEB, #00FA9A, #FFD700, #FF6347)",
+                        borderRadius: "10px",
+                        boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.1)",
+                      }}
+                    >
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "-10px",
+                          left: `${calculatePinPosition(bmi)}%`,
+                          transform: "translateX(-50%)",
+                          width: "18px",
+                          height: "18px",
+                          borderRadius: "50%",
+                          backgroundColor: "#333",
+                          border: "3px solid white",
+                          transition: "left 0.3s ease-in-out",
+                        }}
+                      />
+
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "26px",
+                          left: "0%",
+                          fontSize: "12px",
+                          color: "#666",
+                        }}
+                      >
+                        Mažas svoris
+                      </div>
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "26px",
+                          left: "33%",
+                          transform: "translateX(-50%)",
+                          fontSize: "12px",
+                          color: "#666",
+                        }}
+                      >
+                        Normalus svoris
+                      </div>
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "26px",
+                          left: "67%",
+                          transform: "translateX(-50%)",
+                          fontSize: "12px",
+                          color: "#666",
+                        }}
+                      >
+                        Antsvoris
+                      </div>
+                      <div
+                        style={{
+                          position: "absolute",
+                          top: "26px",
+                          right: "0",
+                          fontSize: "12px",
+                          color: "#666",
+                        }}
+                      >
+                        Nutukimas
+                      </div>
+                    </div>
                   </div>
 
-                  <div
-                    style={{
-                      position: "relative",
-                      width: "100%",
-                      height: "16px",
-                      marginTop: "40px",
-                      marginBottom: "24px",
-                      background:
-                        "linear-gradient(to right, #87CEEB, #00FA9A, #FFD700, #FF6347)",
-                      borderRadius: "10px",
-                      boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.1)",
-                    }}
-                  >
-                    <div
-                      style={{
-                        position: "absolute",
-                        top: "-10px",
-                        left: `${calculatePinPosition(bmi)}%`,
-                        transform: "translateX(-50%)",
-                        width: "20px",
-                        height: "20px",
-                        borderRadius: "50%",
-                        backgroundColor: "#333",
-                        border: "4px solid white",
-                        transition: "left 0.3s ease-in-out",
-                      }}
-                    />
-
-                    <div
-                      style={{
-                        position: "absolute",
-                        top: "30px",
-                        left: "0%",
-                        fontSize: "12px",
-                        color: "#666",
-                      }}
-                    >
-                      Mažas
-                    </div>
-                    <div
-                      style={{
-                        position: "absolute",
-                        top: "30px",
-                        left: "33%",
-                        transform: "translateX(-50%)",
-                        fontSize: "12px",
-                        color: "#666",
-                      }}
-                    >
-                      Normalus
-                    </div>
-                    <div
-                      style={{
-                        position: "absolute",
-                        top: "30px",
-                        left: "67%",
-                        transform: "translateX(-50%)",
-                        fontSize: "12px",
-                        color: "#666",
-                      }}
-                    >
-                      Antsvoris
-                    </div>
-                    <div
-                      style={{
-                        position: "absolute",
-                        top: "30px",
-                        right: "0",
-                        fontSize: "12px",
-                        color: "#666",
-                      }}
-                    >
-                      Nutukimas
+                  <div className="mt-8">
+                    <p className="text-sm text-gray-700 mb-2">
+                      Rekomenduojamos skaičiuoklės:
+                    </p>
+                    <div className="space-y-2">
+                      <a
+                        href="/sudeginamos-kalorijos"
+                        className="block p-3 rounded-lg transition hover:bg-gray-100"
+                      >
+                        <div className="flex items-center">
+                          <div className="flex-shrink-0">
+                            <svg
+                              className="h-6 w-6 text-gray-500"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                          </div>
+                          <div className="ml-3 flex-1">
+                            <p className="text-sm font-medium text-gray-800">
+                              Kalorijų sudeginimo skaičiuoklė
+                            </p>
+                            <p className="text-xs text-gray-600">
+                              Sužinokite, kiek kalorijų sudeginate įvairių
+                              veiklų metu.
+                            </p>
+                          </div>
+                          <div className="ml-auto">
+                            <svg
+                              className="h-4 w-4 text-gray-500"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              viewBox="0 0 24 24"
+                            >
+                              <path d="M9 5l7 7-7 7" />
+                            </svg>
+                          </div>
+                        </div>
+                      </a>
+                      <a
+                        href="/kaloriju-poreikiai"
+                        className="block p-3 rounded-lg transition hover:bg-gray-100"
+                      >
+                        <div className="flex items-center">
+                          <div className="flex-shrink-0">
+                            <svg
+                              className="h-6 w-6 text-gray-500"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path d="M12 12c2.21 0 4-1.79 4-4S14.21 4 12 4 8 5.79 8 8s1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                            </svg>
+                          </div>
+                          <div className="ml-3 flex-1">
+                            <p className="text-sm font-medium text-gray-800">
+                              Dienos kalorijų poreikio skaičiuoklė
+                            </p>
+                            <p className="text-xs text-gray-600">
+                              Asmeninis kalorijų poreikis pagal aktyvumo lygį.
+                            </p>
+                          </div>
+                          <div className="ml-auto">
+                            <svg
+                              className="h-4 w-4 text-gray-500"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              viewBox="0 0 24 24"
+                            >
+                              <path d="M9 5l7 7-7 7" />
+                            </svg>
+                          </div>
+                        </div>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -532,7 +615,7 @@ export default function BodyMassIndexCalc() {
         </div>
 
         <div className="grid grid-cols-1 justify-items-center gap-x-8 gap-y-8 pt-10">
-          <div className="max-w-xl bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl xl:max-w-none">
+          <div className="max-w-2xl bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl xl:max-w-none">
             <div className="p-8">
               <div className="grid grid-cols-1 gap-x-12 space-y-8 xl:space-y-0 xl:grid-cols-2">
                 <div className="sm:flex sm:items-center">

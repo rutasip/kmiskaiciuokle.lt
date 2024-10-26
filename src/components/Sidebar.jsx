@@ -22,7 +22,7 @@ const healthCalculatorsNavigation = [
 ];
 
 const nutritionCalculatorsNavigation = [
-  { name: 'Kiek kalorijų man reikia?', href: '/kaloriju-norma', icon: FireIcon },
+  { name: 'Kiek kalorijų man reikia?', href: '/kaloriju-poreikiai', icon: FireIcon },
   { name: 'Kiek vandens man reikia?', href: '/vandens-norma', icon: ArrowPathIcon },
   // { name: 'Kiek miego?', href: '/miego-ciklai', icon: BoltIcon },
   // { name: 'Kiek kalorijų man reikia?', href: '/makroelementai', icon: PuzzlePieceIcon },

@@ -17,7 +17,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<BodyMassIndexCalc />} />
-          <Route path="kaloriju-norma" element={<BasalMetabolicRateCalc />} />
+          <Route path="kaloriju-poreikiai" element={<BasalMetabolicRateCalc />} />
           <Route path="vandens-norma" element={<WaterIntakeCalculator />} />
           <Route path="sudeginamos-kalorijos" element={<CalorieBurnCalculator />} />
           <Route path="miego-ciklai" element={<SleepCalculator />} />
