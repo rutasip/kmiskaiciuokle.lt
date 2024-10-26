@@ -192,7 +192,7 @@ export default function BasalMetabolicRateCalc() {
         <div className="grid grid-cols-1 justify-items-center gap-x-8 gap-y-8 xl:grid-cols-2">
           <form
             onSubmit={step === 1 ? handleNext : handleCalculateCalories}
-            className="h-fit w-full max-w-xl bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl"
+            className="w-full max-w-2xl h-fit bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl"
           >
             <div className="gap-x-6 border-b border-gray-900/10 p-8">
               <h1 className="text-lg font-semibold leading-7 text-gray-900">
@@ -407,32 +407,33 @@ export default function BasalMetabolicRateCalc() {
                   </RadioGroup>
                 </div>
               )}
-            </div>
-            <div
-              className={classNames(
-                step === 1 ? "justify-end" : "justify-between",
-                "flex items-center gap-x-6 border-t border-gray-900/10 px-8 py-4"
-              )}
-            >
-              {step === 2 && (
-                <button
-                  type="button"
-                  onClick={() => setStep(1)}
-                  className="inline-flex items-center gap-x-2 text-sm font-semibold leading-6 text-gray-900"
-                >
-                  <ArrowLeftIcon
-                    className="-ml-0.5 h-5 w-5"
-                    aria-hidden="true"
-                  />
-                  Atgal
-                </button>
-              )}
-              <button
-                type="submit"
-                className="w-1/2 rounded-md bg-amber-400 px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-400"
+              <div
+                className={classNames(
+                  step === 1 ? "justify-end" : "justify-between",
+                  "flex items-center gap-x-6 mt-10"
+                )}
               >
-                {step === 1 ? "Toliau" : "Skaičiuoti"}
-              </button>
+                {step === 2 && (
+                  <button
+                    type="button"
+                    onClick={() => setStep(1)}
+                    className="inline-flex items-center gap-x-2 text-sm font-semibold leading-6 text-slate-800"
+                  >
+                    <ArrowLeftIcon
+                      className="-ml-0.5 h-5 w-5"
+                      aria-hidden="true"
+                      color="text-slate-800"
+                    />
+                    Atgal
+                  </button>
+                )}
+                <button
+                  type="submit"
+                  className="w-1/2 rounded-md bg-amber-400 px-3 py-2 text-sm font-semibold text-slate-800 shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-400"
+                >
+                  {step === 1 ? "Toliau" : "Skaičiuoti"}
+                </button>
+              </div>
             </div>
           </form>
 
@@ -441,7 +442,7 @@ export default function BasalMetabolicRateCalc() {
             style={{ scrollMarginTop: "80px" }}
             className={classNames(
               calories && !showIcon && "bg-white h-fit",
-              "flex w-full max-w-xl flex-col p-8 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl justify-center"
+              "flex w-full max-w-2xl flex-col p-8 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl justify-center"
             )}
           >
             {calories ? (
