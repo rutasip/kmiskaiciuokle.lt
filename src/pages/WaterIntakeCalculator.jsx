@@ -176,13 +176,13 @@ export default function WaterIntakeCalculator() {
   }, [showIcon, totalIntake]);
 
   return (
-    <div className="space-y-10 divide-y divide-gray-900/10">
-      <div className="grid grid-cols-1 justify-items-center gap-x-8 gap-y-8 xl:grid-cols-2">
+    <div className="space-y-6 divide-y divide-gray-900/10">
+      <div className="grid grid-cols-1 justify-items-center gap-6 xl:grid-cols-2">
         <form
           onSubmit={step === 1 ? handleNext : handleCalculate}
-          className="w-full max-w-2xl h-fit bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-md"
+          className="w-full max-w-2xl h-fit bg-white shadow-sm ring-1 ring-gray-900/5 divide-y divide-gray-200 sm:rounded-md"
         >
-          <div className="gap-x-6 border-b border-gray-900/10 p-8">
+          <div className="p-6">
             <h1 className="text-lg font-semibold leading-7 text-gray-900">
               Vandens suvartojimo skaičiuoklė
             </h1>
@@ -191,7 +191,7 @@ export default function WaterIntakeCalculator() {
               amžių, lytį, ūgį, svorį, fizinį aktyvumą ir klimatą.
             </h2>
           </div>
-          <div className="p-8">
+          <div className="p-6">
             {step === 1 && (
               <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 {/* Age */}
@@ -435,7 +435,7 @@ export default function WaterIntakeCalculator() {
           style={{ scrollMarginTop: "80px" }}
           className={classNames(
             totalIntake && !showIcon && "bg-white h-fit",
-            "flex w-full max-w-xl flex-col p-8 shadow-sm ring-1 ring-gray-900/5 sm:rounded-md justify-center"
+            "flex w-full max-w-2xl flex-col p-6 shadow-sm ring-1 ring-gray-900/5 sm:rounded-md justify-center"
           )}
         >
           {totalIntake ? (
@@ -461,7 +461,7 @@ export default function WaterIntakeCalculator() {
                 </svg>
               </div>
             ) : (
-              <div className="p-8">
+              <div className="p-6">
                 <h2 className="text-base font-semibold leading-7 text-gray-900">
                   Rezultatai
                 </h2>
@@ -507,9 +507,9 @@ export default function WaterIntakeCalculator() {
         </div>
       </div>
 
-      <div className="pt-10">
+      <div className="pt-6">
         <div className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-md">
-          <div className="p-8">
+          <div className="p-6">
             <h2 className="text-base font-semibold leading-7 text-gray-900">
               D.U.K
             </h2>
@@ -531,7 +531,7 @@ export default function WaterIntakeCalculator() {
         </div>
       </div>
 
-      <div className="pt-10 px-8 sm:px-0">
+      <div className="pt-6">
         <p className="text-sm text-gray-500">
           Ši skaičiuoklė yra skirta tik informaciniams tikslams. Nors stengiamės
           pateikti tikslią informaciją, mes neprisiimame atsakomybės už jokius

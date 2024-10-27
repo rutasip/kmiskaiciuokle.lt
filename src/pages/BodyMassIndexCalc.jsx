@@ -221,13 +221,13 @@ export default function BodyMassIndexCalc() {
 
   return (
     <>
-      <div className="space-y-10 divide-y divide-gray-900/10">
-        <div className="grid grid-cols-1 justify-items-center gap-x-8 gap-y-8 xl:grid-cols-2">
+      <div className="space-y-6 divide-y divide-gray-900/10">
+        <div className="grid grid-cols-1 justify-items-center gap-6 xl:grid-cols-2">
           <form
             onSubmit={handleCalculateBMI}
-            className="w-full max-w-2xl h-fit bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-md"
+            className="w-full max-w-2xl h-fit bg-white shadow-sm ring-1 ring-gray-900/5 divide-y divide-gray-200 sm:rounded-md"
           >
-            <div className="gap-x-6 border-b border-gray-900/10 p-8">
+            <div className="p-6">
               <h1 className="text-lg font-semibold leading-7 text-gray-900">
                 Kūno masės indekso skaičiuoklė
               </h1>
@@ -237,7 +237,7 @@ export default function BodyMassIndexCalc() {
                 idealų svorį pagal ūgį ir lytį.
               </h2>
             </div>
-            <div className="p-8">
+            <div className="p-6">
               <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="sm:col-span-3">
                   <label
@@ -389,7 +389,7 @@ export default function BodyMassIndexCalc() {
             style={{ scrollMarginTop: "80px" }}
             className={classNames(
               bmi && !showIcon && "bg-white h-fit",
-              "flex w-full max-w-2xl flex-col p-8 shadow-sm ring-1 ring-gray-900/5 sm:rounded-md justify-center"
+              "flex w-full max-w-2xl flex-col p-6 shadow-sm ring-1 ring-gray-900/5 sm:rounded-md justify-center"
             )}
           >
             {bmi ? (
@@ -614,9 +614,9 @@ export default function BodyMassIndexCalc() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 justify-items-center gap-x-8 gap-y-8 pt-10">
+        <div className="grid grid-cols-1 justify-items-center gap-6 pt-6">
           <div className="max-w-2xl bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-md xl:max-w-none">
-            <div className="p-8">
+            <div className="p-6">
               <div className="grid grid-cols-1 gap-x-12 space-y-8 xl:space-y-0 xl:grid-cols-2">
                 <div className="sm:flex sm:items-center">
                   <div className="sm:flex-auto">
@@ -708,7 +708,7 @@ export default function BodyMassIndexCalc() {
             </div>
           </div>
           <div className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-md">
-            <div className="p-8">
+            <div className="p-6">
               <h2 className="text-base font-semibold leading-7 text-gray-900">
                 D.U.K
               </h2>
@@ -730,7 +730,7 @@ export default function BodyMassIndexCalc() {
           </div>
         </div>
 
-        <div className="pt-10 px-8 sm:px-0">
+        <div className="pt-6">
           <p className="text-sm text-gray-500">
             Ši skaičiuoklė yra skirta tik informaciniams tikslams. Nors
             stengiamės pateikti tikslią informaciją, mes neprisiimame

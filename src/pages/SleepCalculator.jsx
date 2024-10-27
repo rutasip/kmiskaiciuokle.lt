@@ -1,173 +1,286 @@
 import { useState } from "react";
-import { CheckCircleIcon } from "@heroicons/react/20/solid";
 
-const faqs = [
-  {
-    question: "Kas yra miego ciklas?",
-    answer:
-      "Miego ciklas yra maždaug 90 minučių trunkantis laikotarpis, kurį sudaro keli miego etapai, pradedant nuo lengvo miego ir pereinant prie gilaus miego bei REM (greito akių judesio) etapo. Geriausiai jausitės, jei prabusite pasibaigus pilnam miego ciklui.",
-  },
-  {
-    question: "Kiek miego ciklų man reikia?",
-    answer:
-      "Sveikam suaugusiam žmogui rekomenduojama miegoti apie 4-6 miego ciklus per naktį, kas sudaro 6-9 valandas. Optimalus miego kiekis gali skirtis priklausomai nuo amžiaus, gyvenimo būdo ir individualių poreikių.",
-  },
-];
+export default function SleepCycleCalculator() {
+  const [tab, setTab] = useState("bedtime"); // "bedtime" or "wakeup"
+  const [wakeUpTime, setWakeUpTime] = useState("");
+  const [bedTime, setBedTime] = useState("");
+  const [fallAsleepTime, setFallAsleepTime] = useState(15);
+  const [results, setResults] = useState([]);
+  const [error, setError] = useState("");
 
-export default function SleepCalculator() {
-  const [bedtime, setBedtime] = useState("");
-  const [optimalWakeTimes, setOptimalWakeTimes] = useState([]);
-  const [showIcon, setShowIcon] = useState(false);
+  const calculateBedtime = () => {
+    setError("");
+    setResults([]);
 
-  const handleCalculate = (e) => {
-    e.preventDefault();
-
-    if (!bedtime) {
-      alert("Prašome įvesti miego laiką.");
+    if (!wakeUpTime) {
+      setError("Prašome įvesti pabudimo laiką.");
       return;
     }
 
-    const [hours, minutes] = bedtime.split(":").map(Number);
-    if (isNaN(hours) || isNaN(minutes)) {
-      alert("Prašome įvesti teisingą laiką HH:MM formatu.");
+    const fallAsleepMinutes = parseInt(fallAsleepTime);
+    if (isNaN(fallAsleepMinutes) || fallAsleepMinutes < 0) {
+      setError("Prašome įvesti teisingą užmigimo laiką.");
       return;
     }
 
-    setShowIcon(true);
-    const bedtimeDate = new Date();
-    bedtimeDate.setHours(hours);
-    bedtimeDate.setMinutes(minutes);
-    
-    const calculatedTimes = [];
-    for (let i = 1; i <= 6; i++) {
-      const wakeTime = new Date(bedtimeDate.getTime() + i * 90 * 60000);
-      calculatedTimes.push(wakeTime);
+    const [hours, minutes] = wakeUpTime.split(":").map(Number);
+
+    if (
+      isNaN(hours) ||
+      isNaN(minutes) ||
+      hours < 0 ||
+      hours > 23 ||
+      minutes < 0 ||
+      minutes > 59
+    ) {
+      setError("Prašome įvesti teisingą pabudimo laiką (HH:MM).");
+      return;
     }
 
-    setOptimalWakeTimes(calculatedTimes);
-    setTimeout(() => {
-      setShowIcon(false);
-    }, 1600);
+    const baseDate = new Date();
+    baseDate.setHours(hours);
+    baseDate.setMinutes(minutes);
+    baseDate.setSeconds(0);
+
+    const sleepCycles = [6, 5, 4]; // Recommend 4-6 cycles
+    const cycleDuration = 90; // minutes
+
+    const calculatedTimes = sleepCycles.map((cycles) => {
+      const totalSleepTime = cycleDuration * cycles + fallAsleepMinutes;
+      const adjustedTime = new Date(baseDate);
+      adjustedTime.setMinutes(adjustedTime.getMinutes() - totalSleepTime);
+
+      // const adjustedHours = adjustedTime.getHours();
+      // const adjustedMinutes = adjustedTime.getMinutes();
+
+      const formattedTime = adjustedTime.toLocaleTimeString("lt-LT", {
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+
+      return { time: formattedTime, cycles };
+    });
+
+    setResults(calculatedTimes);
   };
 
-  const handleReset = () => {
-    setBedtime("");
-    setOptimalWakeTimes([]);
+  const calculateWakeUpTime = () => {
+    setError("");
+    setResults([]);
+
+    if (!bedTime) {
+      setError("Prašome įvesti miego laiką.");
+      return;
+    }
+
+    const fallAsleepMinutes = parseInt(fallAsleepTime);
+    if (isNaN(fallAsleepMinutes) || fallAsleepMinutes < 0) {
+      setError("Prašome įvesti teisingą užmigimo laiką.");
+      return;
+    }
+
+    const [hours, minutes] = bedTime.split(":").map(Number);
+
+    if (
+      isNaN(hours) ||
+      isNaN(minutes) ||
+      hours < 0 ||
+      hours > 23 ||
+      minutes < 0 ||
+      minutes > 59
+    ) {
+      setError("Prašome įvesti teisingą miego laiką (HH:MM).");
+      return;
+    }
+
+    const baseDate = new Date();
+    baseDate.setHours(hours);
+    baseDate.setMinutes(minutes);
+    baseDate.setSeconds(0);
+
+    const sleepCycles = [4, 5, 6]; // Recommend 4-6 cycles
+    const cycleDuration = 90; // minutes
+
+    const calculatedTimes = sleepCycles.map((cycles) => {
+      const totalSleepTime = cycleDuration * cycles + fallAsleepMinutes;
+      const adjustedTime = new Date(baseDate);
+      adjustedTime.setMinutes(adjustedTime.getMinutes() + totalSleepTime);
+
+      // const adjustedHours = adjustedTime.getHours();
+      // const adjustedMinutes = adjustedTime.getMinutes();
+
+      const formattedTime = adjustedTime.toLocaleTimeString("lt-LT", {
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+
+      return { time: formattedTime, cycles };
+    });
+
+    setResults(calculatedTimes);
+  };
+
+  const handleCalculate = () => {
+    if (tab === "bedtime") {
+      calculateBedtime();
+    } else {
+      calculateWakeUpTime();
+    }
   };
 
   return (
-    <div className="space-y-10 divide-y divide-gray-900/10">
-      <div className="grid grid-cols-1 justify-items-center gap-x-8 gap-y-8 xl:grid-cols-2">
-        <form
-          onSubmit={handleCalculate}
-          className="w-full max-w-xl bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl"
-        >
-          <div className="gap-x-6 border-b border-gray-900/10 p-8">
-            <h1 className="text-xl font-semibold leading-7 text-gray-900">
-              Miego Skaičiuoklė
-            </h1>
-            <h2 className="mt-4 text-sm leading-6 text-gray-600">
-              Sužinokite optimalų pabudimo laiką, kad pabustumėte po pilnų miego ciklų ir jaustumėtės geriausiai.
-            </h2>
-          </div>
-          <div className="p-8 space-y-6">
-            <div className="sm:col-span-3">
-              <label
-                htmlFor="bedtime"
-                className="block text-sm font-medium leading-6 text-gray-900"
+    <div className="space-y-6">
+      <div className="max-w-xl mx-auto bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-md">
+        <div className="p-6">
+          <h1 className="text-xl font-semibold leading-7 text-gray-900">
+            Miego ciklo skaičiuoklė
+          </h1>
+          <p className="mt-2 text-sm leading-6 text-gray-600">
+            Sužinokite, kada eiti miegoti arba pabusti, kad išvengtumėte miego
+            ciklo trikdžių.
+          </p>
+
+          {/* Tabs */}
+          <div className="mt-6">
+            <nav className="flex space-x-4" aria-label="Tabs">
+              <button
+                className={`px-3 py-2 font-medium text-sm rounded-md ${
+                  tab === "bedtime"
+                    ? "bg-indigo-100 text-indigo-700"
+                    : "text-gray-500 hover:text-gray-700"
+                }`}
+                onClick={() => {
+                  setTab("bedtime");
+                  setResults([]);
+                  setError("");
+                }}
               >
-                Miego laikas (HH:MM)
-              </label>
-              <div className="relative mt-2 rounded-md shadow-sm">
-                <input
-                  type="time"
-                  value={bedtime}
-                  name="bedtime"
-                  id="bedtime"
-                  className="block w-full rounded-md border-0 py-1.5 pl-7 pr-12 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  onChange={(e) => setBedtime(e.target.value)}
-                />
-              </div>
-            </div>
+                Kada eiti miegoti
+              </button>
+              <button
+                className={`px-3 py-2 font-medium text-sm rounded-md ${
+                  tab === "wakeup"
+                    ? "bg-indigo-100 text-indigo-700"
+                    : "text-gray-500 hover:text-gray-700"
+                }`}
+                onClick={() => {
+                  setTab("wakeup");
+                  setResults([]);
+                  setError("");
+                }}
+              >
+                Kada pabusti
+              </button>
+            </nav>
           </div>
 
-          <div className="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-8 py-4">
+          {/* Input Fields */}
+          <div className="mt-6 space-y-4">
+            {tab === "bedtime" ? (
+              <div>
+                <label
+                  htmlFor="wakeUpTime"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Kada norite pabusti? (HH:MM)
+                </label>
+                <input
+                  type="time"
+                  value={wakeUpTime}
+                  id="wakeUpTime"
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  onChange={(e) => setWakeUpTime(e.target.value)}
+                />
+              </div>
+            ) : (
+              <div>
+                <label
+                  htmlFor="bedTime"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                  Kada eisite miegoti? (HH:MM)
+                </label>
+                <input
+                  type="time"
+                  value={bedTime}
+                  id="bedTime"
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  onChange={(e) => setBedTime(e.target.value)}
+                />
+              </div>
+            )}
+
+            <div>
+              <label
+                htmlFor="fallAsleepTime"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                Kiek laiko trunkate užmigti? (minutėmis)
+              </label>
+              <input
+                type="number"
+                value={fallAsleepTime}
+                id="fallAsleepTime"
+                min="0"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                onChange={(e) => setFallAsleepTime(e.target.value)}
+              />
+            </div>
+
+            {error && <p className="text-sm text-red-600">{error}</p>}
+          </div>
+
+          {/* Calculate Button */}
+          <div className="mt-6">
             <button
-              type="button"
-              onClick={handleReset}
-              className="text-sm font-semibold leading-6 text-gray-900"
-            >
-              Ištrinti
-            </button>
-            <button
-              type="submit"
-              className="rounded-md bg-indigo-50 px-2.5 py-1.5 text-sm font-semibold text-navy-blue shadow-sm hover:bg-indigo-100"
+              onClick={handleCalculate}
+              className="w-full flex justify-center rounded-md border border-transparent bg-amber-400 px-4 py-2 text-sm font-medium text-slate-800 shadow-sm hover:bg-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2"
             >
               Skaičiuoti
             </button>
           </div>
-        </form>
-
-        <div className="w-full max-w-xl bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl">
-          {optimalWakeTimes.length > 0 ? (
-            showIcon ? (
-              <div className="flex justify-center place-content-center p-8">
-                <CheckCircleIcon className="h-12 w-12 text-green-500" aria-hidden="true" />
-              </div>
-            ) : (
-              <div className="p-8">
-                <h2 className="text-base font-semibold leading-7 text-gray-900">
-                  Optimalūs pabudimo laikai
-                </h2>
-                <div className="mt-6 grid grid-cols-1 gap-6">
-                  {optimalWakeTimes.map((time, index) => (
-                    <div key={index} className="rounded-lg bg-gray-50 p-6">
-                      <h3 className="text-sm font-medium text-gray-900">
-                        {index + 1} miego ciklas
-                      </h3>
-                      <p className="mt-2 text-2xl font-bold text-indigo-600">
-                        {time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )
-          ) : (
-            <div className="flex h-full items-center justify-center p-8">
-              <p className="text-sm text-gray-500 text-center">
-                Įveskite miego laiką ir spauskite &quot;Skaičiuoti&quot;, kad pamatytumėte optimalius pabudimo laikus.
-              </p>
-            </div>
-          )}
         </div>
       </div>
 
-      <div className="pt-10">
-        <div className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl">
-          <div className="p-8">
-            <h2 className="text-base font-semibold leading-7 text-gray-900">D.U.K</h2>
-            <div className="mt-8 space-y-10">
-              <dl className="space-y-16 md:grid md:grid-cols-2 md:gap-x-20 md:gap-y-16 md:space-y-0 2xl:gap-x-20">
-                {faqs.map((faq) => (
-                  <div key={faq.question}>
-                    <dt className="text-base font-semibold leading-7 text-gray-900">
-                      {faq.question}
-                    </dt>
-                    <dd className="mt-2 text-base leading-7 text-gray-600">
-                      {faq.answer}
-                    </dd>
+      {/* Results */}
+      {results.length > 0 && (
+        <div className="max-w-xl mx-auto bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-md">
+          <div className="p-6">
+            <h2 className="text-base font-semibold leading-7 text-gray-900">
+              Rekomenduojami laikai
+            </h2>
+            <p className="mt-2 text-sm text-gray-600">
+              Siekiant geriausios miego kokybės, rekomenduojama miegoti 4–6 miego
+              ciklus per naktį.
+            </p>
+            <ul className="mt-4 space-y-4">
+              {results.map((result, index) => (
+                <li
+                  key={index}
+                  className="flex items-center justify-between bg-gray-50 p-4 rounded-md"
+                >
+                  <div>
+                    <p className="text-lg font-medium text-gray-900">
+                      {tab === "bedtime" ? "Eikite miegoti:" : "Pabuskite:"}{" "}
+                      <span className="text-indigo-600">{result.time}</span>
+                    </p>
+                    <p className="text-sm text-gray-600">
+                      {result.cycles} miego ciklai
+                    </p>
                   </div>
-                ))}
-              </dl>
-            </div>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
-      </div>
+      )}
 
-      <div className="pt-10 px-8 sm:px-0">
+      {/* Disclaimer */}
+      <div className="pt-6 px-4 sm:px-0">
         <p className="text-sm text-gray-500">
-          Ši skaičiuoklė yra skirta tik informaciniams tikslams. Nors stengiamės pateikti tikslią informaciją, mes neprisiimame atsakomybės už jokius sveikatos sutrikimus ar žalą, kuri gali atsirasti naudojantis šia skaičiuokle. Prieš keisdami savo miego įpročius, pasitarkite su sveikatos priežiūros specialistu.
+          Ši skaičiuoklė yra skirta tik informaciniams tikslams. Individualūs miego
+          poreikiai gali skirtis. Norėdami gauti asmeninių patarimų, pasitarkite su
+          sveikatos priežiūros specialistu.
         </p>
       </div>
     </div>

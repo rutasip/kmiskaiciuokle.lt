@@ -113,13 +113,13 @@ export default function CalorieBurnCalculator() {
   }, [showIcon, caloriesBurned]);
 
   return (
-    <div className="space-y-10 divide-y divide-gray-900/10">
-      <div className="grid grid-cols-1 justify-items-center gap-x-8 gap-y-8 xl:grid-cols-2">
+    <div className="space-y-6 divide-y divide-gray-900/10">
+      <div className="grid grid-cols-1 justify-items-center gap-6 xl:grid-cols-2">
         <form
           onSubmit={handleCalculate}
-          className="w-full max-w-2xl bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-md"
+          className="w-full max-w-2xl bg-white shadow-sm ring-1 ring-gray-900/5 divide-y divide-gray-200 sm:rounded-md"
         >
-          <div className="gap-x-6 border-b border-gray-900/10 p-8">
+          <div className="p-6">
             <h1 className="text-lg font-semibold leading-7 text-gray-900">
               Kalorijų sudeginimo skaičiuoklė
             </h1>
@@ -128,8 +128,8 @@ export default function CalorieBurnCalculator() {
               pratimus, atsižvelgiant į Jūsų svorį ir treniruotės trukmę.
             </h2>
           </div>
-          <div className="p-8">
-            <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+          <div className="p-6">
+            <div className="grid max-w-2xl grid-cols-1 gap-6 sm:grid-cols-6">
               <div className="sm:col-span-6">
                 <label
                   htmlFor="activity"
@@ -299,7 +299,7 @@ export default function CalorieBurnCalculator() {
           style={{ scrollMarginTop: "80px" }}
           className={classNames(
             caloriesBurned && !showIcon && "bg-white h-fit",
-            "flex w-full max-w-2xl flex-col p-8 shadow-sm ring-1 ring-gray-900/5 sm:rounded-md justify-center"
+            "flex w-full max-w-2xl flex-col p-6 shadow-sm ring-1 ring-gray-900/5 sm:rounded-md justify-center"
           )}
         >
           {caloriesBurned ? (
@@ -350,7 +350,7 @@ export default function CalorieBurnCalculator() {
         </div>
       </div>
 
-      <div className="pt-10">
+      <div className="pt-6">
         <p className="text-sm text-gray-500">
           Ši skaičiuoklė yra skirta tik informaciniams tikslams. Nors stengiamės
           pateikti tikslią informaciją, mes neprisiimame atsakomybės už jokius
