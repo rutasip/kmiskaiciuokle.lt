@@ -117,7 +117,7 @@ export default function CalorieBurnCalculator() {
       <div className="grid grid-cols-1 justify-items-center gap-x-8 gap-y-8 xl:grid-cols-2">
         <form
           onSubmit={handleCalculate}
-          className="w-full max-w-2xl bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl"
+          className="w-full max-w-2xl bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-md"
         >
           <div className="gap-x-6 border-b border-gray-900/10 p-8">
             <h1 className="text-lg font-semibold leading-7 text-gray-900">
@@ -299,7 +299,7 @@ export default function CalorieBurnCalculator() {
           style={{ scrollMarginTop: "80px" }}
           className={classNames(
             caloriesBurned && !showIcon && "bg-white h-fit",
-            "flex w-full max-w-2xl flex-col p-8 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl justify-center"
+            "flex w-full max-w-2xl flex-col p-8 shadow-sm ring-1 ring-gray-900/5 sm:rounded-md justify-center"
           )}
         >
           {caloriesBurned ? (
@@ -330,7 +330,7 @@ export default function CalorieBurnCalculator() {
                   Rezultatai
                 </h2>
                 <div className="mt-6 grid grid-cols-1 gap-6">
-                  <div className="rounded-lg bg-gray-50 p-6">
+                  <div className="rounded-md bg-gray-50 p-6">
                     <h3 className="text-sm font-medium text-gray-900">
                       Sudegintos kalorijos
                     </h3>

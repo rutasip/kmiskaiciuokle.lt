@@ -44,15 +44,6 @@ function NavItems() {
 
   return (
     <div className="flex grow flex-col overflow-y-auto bg-navy-blue px-6">
-      {/* <div className="flex mt-6 shrink-0 items-center">
-        <a href="/">
-          <img
-            src={Logo}
-            alt="Svetainės logotipas"
-            className="w-11 rounded-lg"
-          />
-        </a>
-      </div> */}
       <nav className="flex flex-1 flex-col">
         <div>
           <div className="mt-12 text-xs font-semibold leading-6 text-white">Sveikatos skaičiuoklės:</div>

@@ -142,7 +142,7 @@ export default function MacronutrientCalc() {
         <form
           onSubmit={step === 1 ? handleNext : handleCalculate}
           className={classNames(
-            "w-full bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl",
+            "w-full bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-md",
             caloricNeeds ? "xl:col-span-3" : "xl:col-span-4"
           )}
         >
@@ -292,7 +292,7 @@ export default function MacronutrientCalc() {
                             classNames(
                               checked ? "border-transparent" : "border-gray-300",
                               active ? "ring-2 ring-indigo-500" : "",
-                              "relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none"
+                              "relative flex cursor-pointer rounded-md border bg-white p-4 shadow-sm focus:outline-none"
                             )
                           }
                         >
@@ -320,7 +320,7 @@ export default function MacronutrientCalc() {
                                   checked
                                     ? "border-indigo-500"
                                     : "border-transparent",
-                                  "pointer-events-none absolute -inset-px rounded-lg"
+                                  "pointer-events-none absolute -inset-px rounded-md"
                                 )}
                                 aria-hidden="true"
                               />
@@ -347,7 +347,7 @@ export default function MacronutrientCalc() {
                             classNames(
                               checked ? "border-transparent" : "border-gray-300",
                               active ? "ring-2 ring-indigo-500" : "",
-                              "relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none"
+                              "relative flex cursor-pointer rounded-md border bg-white p-4 shadow-sm focus:outline-none"
                             )
                           }
                         >
@@ -375,7 +375,7 @@ export default function MacronutrientCalc() {
                                   checked
                                     ? "border-indigo-500"
                                     : "border-transparent",
-                                  "pointer-events-none absolute -inset-px rounded-lg"
+                                  "pointer-events-none absolute -inset-px rounded-md"
                                 )}
                                 aria-hidden="true"
                               />
@@ -408,7 +408,7 @@ export default function MacronutrientCalc() {
                                   ? "border-transparent"
                                   : "border-gray-300",
                                 active ? "ring-2 ring-indigo-500" : "",
-                                "relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none"
+                                "relative flex cursor-pointer rounded-md border bg-white p-4 shadow-sm focus:outline-none"
                               )
                             }
                           >
@@ -436,7 +436,7 @@ export default function MacronutrientCalc() {
                                     checked
                                       ? "border-indigo-500"
                                       : "border-transparent",
-                                    "pointer-events-none absolute -inset-px rounded-lg"
+                                    "pointer-events-none absolute -inset-px rounded-md"
                                   )}
                                   aria-hidden="true"
                                 />
@@ -481,7 +481,7 @@ export default function MacronutrientCalc() {
         {caloricNeeds && (
           <div
             ref={resultsRef}
-            className="h-min w-full bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl xl:col-span-3"
+            className="h-min w-full bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-md xl:col-span-3"
             style={{ scrollMarginTop: "80px" }}
           >
             <div className="p-8">
@@ -489,7 +489,7 @@ export default function MacronutrientCalc() {
                 Rezultatai
               </h2>
               <div className="mt-6 grid grid-cols-1 gap-6">
-                <div className="rounded-lg bg-gray-50 p-6">
+                <div className="rounded-md bg-gray-50 p-6">
                   <h3 className="text-sm font-medium text-gray-900">
                     Dienos kalorijų poreikis
                   </h3>
@@ -497,7 +497,7 @@ export default function MacronutrientCalc() {
                     {caloricNeeds} kcal
                   </p>
                 </div>
-                <div className="rounded-lg bg-gray-50 p-6">
+                <div className="rounded-md bg-gray-50 p-6">
                   <h3 className="text-sm font-medium text-gray-900">
                     Makroelementų pasiskirstymas
                   </h3>
@@ -528,7 +528,7 @@ export default function MacronutrientCalc() {
                     </div>
                   </div>
                 </div>
-                <div className="rounded-lg bg-gray-50 p-6">
+                <div className="rounded-md bg-gray-50 p-6">
                   <h3 className="text-sm font-medium text-gray-900">
                     Papildoma informacija
                   </h3>

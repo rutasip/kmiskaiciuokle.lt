@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect } from "react";
 import { RadioGroup } from "@headlessui/react";
 import { CheckCircleIcon, ArrowLeftIcon } from "@heroicons/react/20/solid";
-import {
-  ArrowDownCircleIcon,
-  ArrowUpCircleIcon,
-} from "@heroicons/react/24/outline";
+// import {
+//   ArrowDownCircleIcon,
+//   ArrowUpCircleIcon,
+// } from "@heroicons/react/24/outline";
 
 const faqs = [
   {
@@ -164,7 +164,9 @@ export default function BasalMetabolicRateCalc() {
     const caloriesForWeightLoss05kg = maintenanceCalories - (0.5 * 7700) / 7;
     const caloriesForWeightLoss1kg = maintenanceCalories - (1 * 7700) / 7;
 
-    const caloriesForWeightGain = maintenanceCalories + 500;
+    const caloriesForWeightGain025kg = maintenanceCalories + (0.25 * 7700) / 7;
+    const caloriesForWeightGain05kg = maintenanceCalories + (0.5 * 7700) / 7;
+    const caloriesForWeightGain1kg = maintenanceCalories + (1 * 7700) / 7;
 
     setCalories(maintenanceCalories.toFixed(0));
 
@@ -176,7 +178,12 @@ export default function BasalMetabolicRateCalc() {
         "0.5kg": caloriesForWeightLoss05kg.toFixed(0),
         "1kg": caloriesForWeightLoss1kg.toFixed(0),
       });
-      setWeightGainCalories(caloriesForWeightGain.toFixed(0));
+
+      setWeightGainCalories({
+        "0.25kg": caloriesForWeightGain025kg.toFixed(0),
+        "0.5kg": caloriesForWeightGain05kg.toFixed(0),
+        "1kg": caloriesForWeightGain1kg.toFixed(0),
+      });
     }, 1600);
   };
 
@@ -192,7 +199,7 @@ export default function BasalMetabolicRateCalc() {
         <div className="grid grid-cols-1 justify-items-center gap-x-8 gap-y-8 xl:grid-cols-2">
           <form
             onSubmit={step === 1 ? handleNext : handleCalculateCalories}
-            className="w-full max-w-2xl h-fit bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl"
+            className="w-full max-w-2xl h-fit bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-md"
           >
             <div className="gap-x-6 border-b border-gray-900/10 p-8">
               <h1 className="text-lg font-semibold leading-7 text-gray-900">
@@ -361,7 +368,7 @@ export default function BasalMetabolicRateCalc() {
                                 ? "border-transparent"
                                 : "border-gray-300",
                               active ? "ring-2 ring-indigo-500" : "",
-                              "relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none"
+                              "relative flex cursor-pointer rounded-md border bg-white p-4 shadow-sm focus:outline-none"
                             )
                           }
                         >
@@ -395,7 +402,7 @@ export default function BasalMetabolicRateCalc() {
                                   checked
                                     ? "border-indigo-500"
                                     : "border-transparent",
-                                  "pointer-events-none absolute -inset-px rounded-lg"
+                                  "pointer-events-none absolute -inset-px rounded-md"
                                 )}
                                 aria-hidden="true"
                               />
@@ -442,7 +449,7 @@ export default function BasalMetabolicRateCalc() {
             style={{ scrollMarginTop: "80px" }}
             className={classNames(
               calories && !showIcon && "bg-white h-fit",
-              "flex w-full max-w-2xl flex-col p-8 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl justify-center"
+              "flex w-full max-w-2xl flex-col p-8 shadow-sm ring-1 ring-gray-900/5 sm:rounded-md justify-center"
             )}
           >
             {calories ? (
@@ -468,96 +475,72 @@ export default function BasalMetabolicRateCalc() {
                   </svg>
                 </div>
               ) : (
-                <div className="grid grid-cols-1 col-span-2 gap-8 p-8">
-                  <div className="rounded-2xl bg-gray-50 p-10">
-                    <div>
-                      <dl className="-mb-2 space-y-1 text-sm not-italic leading-6 text-gray-600">
-                        <div className="py-3 grid grid-cols-3 gap-4 content-center">
-                          <dt className="flex col-span-2 gap-2">
-                            <h3 className="text-sm leading-6 text-gray-700 sm:col-span-1">
-                              Kalorijos esamam svoriui palaikyti:
-                            </h3>
-                          </dt>
-                          <dd className="col-span-1 text-base font-medium text-gray-900 text-right">
-                            {calories} kcal
-                          </dd>
-                        </div>
-                      </dl>
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                  <div className="rounded-md bg-white p-6 shadow">
+                    <h3 className="text-lg font-semibold text-gray-800">
+                      Svorio palaikymui
+                    </h3>
+                    <p className="mt-2 text-2xl font-bold text-navy-blue">
+                      {calories} kcal
+                    </p>
+                  </div>
+
+                  <div className="rounded-md bg-blue-50 p-6 shadow">
+                    <h3 className="text-lg font-semibold text-gray-800">
+                      Svorio priaugimui
+                    </h3>
+                    <div className="mt-4 space-y-2">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-gray-700">
+                          Siekiant priaugti{" "}
+                          <span className="font-semibold">0.25 kg</span> per
+                          savaitę
+                        </span>
+                        <span className="text-xl font-medium text-blue-600">
+                          {weightGainCalories["0.25kg"]} kcal
+                        </span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-gray-700">
+                          Siekiant priaugti{" "}
+                          <span className="font-semibold">0.5 kg</span> per
+                          savaitę
+                        </span>
+                        <span className="text-xl font-medium text-blue-600">
+                          {weightGainCalories["0.5kg"]} kcal
+                        </span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-gray-700">
+                          Siekiant priaugti{" "}
+                          <span className="font-semibold">1 kg</span> per
+                          savaitę
+                        </span>
+                        <span className="text-xl font-medium text-blue-600">
+                          {weightGainCalories["1kg"]} kcal
+                        </span>
+                      </div>
                     </div>
                   </div>
-                  <div className="rounded-2xl bg-blue-50 p-10">
-                    <div className="flex gap-3">
-                      <h3 className="text-base font-semibold leading-7 text-gray-900">
-                        Kalorijos svorio metimui
-                      </h3>
+
+                  <div className="col-span-2 rounded-md bg-white p-6 shadow">
+                    <h3 className="text-lg font-semibold text-gray-800">
+                      Svorio metimui
+                    </h3>
+                    <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
+                      {Object.entries(weightLossCalories).map(
+                        ([key, value]) => (
+                          <div key={key} className="flex flex-col items-center">
+                            <span className="text-sm text-gray-700">
+                              Numesti {key.replace("kg", "")} kg/sav
+                            </span>
+                            <span className="text-xl font-medium text-green-600">
+                              {value} kcal
+                            </span>
+                          </div>
+                        )
+                      )}
                     </div>
-                    <dl className="mt-3 -mb-2 space-y-1 text-sm not-italic leading-6 text-gray-600">
-                      <div className="py-3 grid grid-cols-3 gap-4 content-center">
-                        <dt className="flex col-span-2 gap-2">
-                          <ArrowDownCircleIcon
-                            className="h-6 w-6 text-gray-900"
-                            aria-hidden="true"
-                          />
-                          <h3 className="text-sm leading-6 text-gray-700 sm:col-span-1">
-                            0.25 kg per savaitę:
-                          </h3>
-                        </dt>
-                        <dd className="col-span-1 text-base font-medium text-gray-900 text-right">
-                          {weightLossCalories["0.25kg"]} kcal
-                        </dd>
-                      </div>
-                      <div className="py-3 grid grid-cols-3 gap-4 content-center">
-                        <dt className="flex col-span-2 gap-2">
-                          <ArrowDownCircleIcon
-                            className="h-6 w-6 text-gray-900"
-                            aria-hidden="true"
-                          />
-                          <h3 className="text-sm leading-6 text-gray-700 sm:col-span-1">
-                            0.5 kg per savaitę:
-                          </h3>
-                        </dt>
-                        <dd className="col-span-1 text-base font-medium text-gray-900 text-right">
-                          {weightLossCalories["0.5kg"]} kcal
-                        </dd>
-                      </div>
-                      <div className="py-3 grid grid-cols-3 gap-4 content-center">
-                        <dt className="flex col-span-2 gap-2">
-                          <ArrowDownCircleIcon
-                            className="h-6 w-6 text-gray-900"
-                            aria-hidden="true"
-                          />
-                          <h3 className="text-sm leading-6 text-gray-700 sm:col-span-1">
-                            1 kg per savaitę:
-                          </h3>
-                        </dt>
-                        <dd className="col-span-1 text-base font-medium text-gray-900 text-right">
-                          {weightLossCalories["1kg"]} kcal
-                        </dd>
-                      </div>
-                    </dl>
-                  </div>
-                  <div className="rounded-2xl bg-orange-50 p-10">
-                    <div className="flex gap-3">
-                      <h3 className="text-base font-semibold leading-7 text-gray-900">
-                        Kalorijos svorio priaugimui
-                      </h3>
-                    </div>
-                    <dl className="mt-3 -mb-2 space-y-1 text-sm not-italic leading-6 text-gray-600">
-                      <div className="py-3 grid grid-cols-3 gap-4 content-center">
-                        <dt className="flex col-span-2 gap-2">
-                          <ArrowUpCircleIcon
-                            className="h-6 w-6 text-gray-900"
-                            aria-hidden="true"
-                          />
-                          <h3 className="text-sm leading-6 text-gray-700 sm:col-span-1">
-                            0.5 kg per savaitę:
-                          </h3>
-                        </dt>
-                        <dd className="col-span-1 text-base font-medium text-gray-900 text-right">
-                          {weightGainCalories} kcal
-                        </dd>
-                      </div>
-                    </dl>
                   </div>
                 </div>
               )
@@ -572,7 +555,7 @@ export default function BasalMetabolicRateCalc() {
         </div>
 
         <div className="grid grid-cols-1 justify-items-center gap-x-8 gap-y-8 pt-10">
-          <div className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl">
+          <div className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-md">
             <div className="p-8">
               <h2 className="text-base font-semibold leading-7 text-gray-900">
                 D. U. K.

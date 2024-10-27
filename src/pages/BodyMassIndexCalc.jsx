@@ -225,7 +225,7 @@ export default function BodyMassIndexCalc() {
         <div className="grid grid-cols-1 justify-items-center gap-x-8 gap-y-8 xl:grid-cols-2">
           <form
             onSubmit={handleCalculateBMI}
-            className="w-full max-w-2xl h-fit bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl"
+            className="w-full max-w-2xl h-fit bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-md"
           >
             <div className="gap-x-6 border-b border-gray-900/10 p-8">
               <h1 className="text-lg font-semibold leading-7 text-gray-900">
@@ -389,7 +389,7 @@ export default function BodyMassIndexCalc() {
             style={{ scrollMarginTop: "80px" }}
             className={classNames(
               bmi && !showIcon && "bg-white h-fit",
-              "flex w-full max-w-2xl flex-col p-8 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl justify-center"
+              "flex w-full max-w-2xl flex-col p-8 shadow-sm ring-1 ring-gray-900/5 sm:rounded-md justify-center"
             )}
           >
             {bmi ? (
@@ -416,7 +416,7 @@ export default function BodyMassIndexCalc() {
                 </div>
               ) : (
                 <div>
-                  <div className="p-6 bg-gray-50 rounded-lg shadow">
+                  <div className="p-6 bg-gray-50 rounded-md shadow">
                     <div className="flex items-center justify-between">
                       <div>
                         <p className="text-sm font-medium text-gray-700">KMI</p>
@@ -528,7 +528,7 @@ export default function BodyMassIndexCalc() {
                     <div className="space-y-2">
                       <a
                         href="/sudeginamos-kalorijos"
-                        className="block p-3 rounded-lg transition hover:bg-gray-100"
+                        className="block p-3 rounded-md transition hover:bg-gray-100"
                       >
                         <div className="flex items-center">
                           <div className="flex-shrink-0">
@@ -566,7 +566,7 @@ export default function BodyMassIndexCalc() {
                       </a>
                       <a
                         href="/kaloriju-poreikiai"
-                        className="block p-3 rounded-lg transition hover:bg-gray-100"
+                        className="block p-3 rounded-md transition hover:bg-gray-100"
                       >
                         <div className="flex items-center">
                           <div className="flex-shrink-0">
@@ -615,7 +615,7 @@ export default function BodyMassIndexCalc() {
         </div>
 
         <div className="grid grid-cols-1 justify-items-center gap-x-8 gap-y-8 pt-10">
-          <div className="max-w-2xl bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl xl:max-w-none">
+          <div className="max-w-2xl bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-md xl:max-w-none">
             <div className="p-8">
               <div className="grid grid-cols-1 gap-x-12 space-y-8 xl:space-y-0 xl:grid-cols-2">
                 <div className="sm:flex sm:items-center">
@@ -667,7 +667,7 @@ export default function BodyMassIndexCalc() {
                     </p>
                   </div>
                 </div>
-                <div className="h-min ring-1 ring-gray-300 sm:mx-0 rounded-lg">
+                <div className="h-min ring-1 ring-gray-300 sm:mx-0 rounded-md">
                   <table className="min-w-full divide-y divide-gray-300">
                     <thead>
                       <tr>
@@ -707,7 +707,7 @@ export default function BodyMassIndexCalc() {
               </div>
             </div>
           </div>
-          <div className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl">
+          <div className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-md">
             <div className="p-8">
               <h2 className="text-base font-semibold leading-7 text-gray-900">
                 D.U.K

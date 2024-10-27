@@ -1,12 +1,12 @@
 export default function Disclaimer() {
   return (
-    <div className="max-w-3xl mx-auto p-8 bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl">
+    <div className="max-w-3xl mx-auto p-8 bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-md">
       <h1 className="text-xl font-semibold leading-7 text-gray-900 mb-6">
         Atsakomybės ribojimas
       </h1>
       <div className="space-y-6 text-base leading-7 text-gray-700">
         <p>
-          Ši svetainė ir joje esantys skaičiuokliai yra skirti tik informaciniams
+          Ši svetainė ir joje esančios skaičiuoklės yra skirti tik informaciniams
           tikslams ir neturėtų būti laikomi medicininiais patarimais. Pateikiami
           rezultatai yra apytikslės vertės, pagrįstos standartinėmis formulėmis,
           ir neatsižvelgia į individualias sveikatos sąlygas ar aplinkybes.

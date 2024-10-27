@@ -180,7 +180,7 @@ export default function WaterIntakeCalculator() {
       <div className="grid grid-cols-1 justify-items-center gap-x-8 gap-y-8 xl:grid-cols-2">
         <form
           onSubmit={step === 1 ? handleNext : handleCalculate}
-          className="w-full max-w-2xl h-fit bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl"
+          className="w-full max-w-2xl h-fit bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-md"
         >
           <div className="gap-x-6 border-b border-gray-900/10 p-8">
             <h1 className="text-lg font-semibold leading-7 text-gray-900">
@@ -359,7 +359,7 @@ export default function WaterIntakeCalculator() {
                                 ? "border-transparent"
                                 : "border-gray-300",
                               active ? "ring-2 ring-indigo-500" : "",
-                              "relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none"
+                              "relative flex cursor-pointer rounded-md border bg-white p-4 shadow-sm focus:outline-none"
                             )
                           }
                         >
@@ -387,7 +387,7 @@ export default function WaterIntakeCalculator() {
                                   checked
                                     ? "border-indigo-500"
                                     : "border-transparent",
-                                  "pointer-events-none absolute -inset-px rounded-lg"
+                                  "pointer-events-none absolute -inset-px rounded-md"
                                 )}
                                 aria-hidden="true"
                               />
@@ -435,7 +435,7 @@ export default function WaterIntakeCalculator() {
           style={{ scrollMarginTop: "80px" }}
           className={classNames(
             totalIntake && !showIcon && "bg-white h-fit",
-            "flex w-full max-w-xl flex-col p-8 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl justify-center"
+            "flex w-full max-w-xl flex-col p-8 shadow-sm ring-1 ring-gray-900/5 sm:rounded-md justify-center"
           )}
         >
           {totalIntake ? (
@@ -466,7 +466,7 @@ export default function WaterIntakeCalculator() {
                   Rezultatai
                 </h2>
                 <div className="mt-6 grid grid-cols-1 gap-6">
-                  <div className="rounded-lg bg-gray-50 p-6">
+                  <div className="rounded-md bg-gray-50 p-6">
                     <h3 className="text-sm font-medium text-gray-900">
                       Rekomenduojamas vandens suvartojimas
                     </h3>
@@ -474,7 +474,7 @@ export default function WaterIntakeCalculator() {
                       {(totalIntake / 1000).toFixed(2)} litrų per dieną
                     </p>
                   </div>
-                  <div className="rounded-lg bg-gray-50 p-6">
+                  <div className="rounded-md bg-gray-50 p-6">
                     <h3 className="text-sm font-medium text-gray-900">
                       Papildoma informacija
                     </h3>
@@ -508,7 +508,7 @@ export default function WaterIntakeCalculator() {
       </div>
 
       <div className="pt-10">
-        <div className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl">
+        <div className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-md">
           <div className="p-8">
             <h2 className="text-base font-semibold leading-7 text-gray-900">
               D.U.K
