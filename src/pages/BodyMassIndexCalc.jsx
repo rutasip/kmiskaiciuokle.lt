@@ -673,13 +673,13 @@ export default function BodyMassIndexCalc() {
                       <tr>
                         <th
                           scope="col"
-                          className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
+                          className="px-4 py-3.5 text-left text-sm font-semibold text-gray-900"
                         >
                           Kūno masės indeksas
                         </th>
                         <th
                           scope="col"
-                          className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell"
+                          className="px-4 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell"
                         >
                           Kūno svoris
                         </th>
@@ -688,7 +688,7 @@ export default function BodyMassIndexCalc() {
                     <tbody>
                       {categories.map((category) => (
                         <tr key={category.id}>
-                          <td className="border-t border-gray-200 px-3 py-3.5 text-sm text-gray-600 lg:table-cell">
+                          <td className="border-t border-gray-200 px-4 py-3 text-sm text-gray-600 lg:table-cell">
                             {category.index}
                             {category.isCurrent ? (
                               <span className="ml-3 items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
@@ -696,7 +696,7 @@ export default function BodyMassIndexCalc() {
                               </span>
                             ) : null}
                           </td>
-                          <td className="border-t border-gray-200 px-3 py-3.5 text-sm text-gray-600 lg:table-cell">
+                          <td className="border-t border-gray-200 px-4 py-3 text-sm text-gray-600 lg:table-cell">
                             {category.category}
                           </td>
                         </tr>
