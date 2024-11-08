@@ -1,32 +1,25 @@
 import { Fragment, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { Disclosure } from "@headlessui/react";
 import { Dialog, Transition } from "@headlessui/react";
 import {
   Bars3Icon,
-  // CalculatorIcon,
   XMarkIcon,
-  HeartIcon,
-  ScaleIcon,
-  // ArrowPathIcon,
 } from "@heroicons/react/24/outline";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { ChevronRightIcon } from "@heroicons/react/20/solid";
 
 const navigation = [
   {
-    name: "Sveikatos skaičiuoklės",
-    icon: HeartIcon,
+    name: "Sveikata",
     children: [
-      { name: "Koks mano KMI?", href: "/" },
-      { name: "Kiek kalorijų sudeginu?", href: "/sudeginamos-kalorijos" },
+      { name: "KMI skaičiuoklė", href: "/" },
+      { name: "Kalorijų sudeginimo skaičiuoklė", href: "/sudeginamos-kalorijos" },
     ],
   },
   {
-    name: "Mitybos skaičiuoklės",
-    icon: ScaleIcon,
+    name: "Mityba",
     children: [
-      { name: "Kiek kalorijų man reikia?", href: "/kaloriju-poreikiai" },
-      { name: "Kiek vandens man reikia?", href: "/vandens-norma" },
+      { name: "Kalorijų poreikio skaičiuoklė", href: "/kaloriju-poreikiai" },
+      { name: "Vandens poreikio skaičiuoklė", href: "/vandens-norma" },
     ],
   },
 ];
@@ -44,67 +37,59 @@ function NavItems() {
   const currentPath = location.pathname;
 
   return (
-    <div className="flex flex-col h-full bg-navy-blue pt-10">
-      <nav className="flex-1 flex flex-col justify-between px-3 py-4 overflow-y-auto">
-        <div className="flex flex-col gap-7">
-          {navigation.map((item) => (
-            <div key={item.name}>
-              <Disclosure as="div" defaultOpen>
-                {({ open }) => (
-                  <>
-                    <Disclosure.Button className="w-full flex items-center justify-between px-2 py-2 text-left text-sm font-medium text-white rounded-md">
-                      <div className="flex items-center">
-                        <item.icon
-                          className="mr-3 flex-shrink-0 h-5 w-5 text-white group-hover:text-navy-blue"
-                          aria-hidden="true"
-                        />
-                        {item.name}
-                      </div>
-                      <ChevronDownIcon
-                        className={classNames(
-                          open ? "transform rotate-180" : "",
-                          "h-5 w-5 text-white group-hover:text-navy-blue"
-                        )}
-                      />
-                    </Disclosure.Button>
-                    <Disclosure.Panel className="space-y-1">
-                      {item.children.map((subItem) => (
+    <div className="flex grow flex-col gap-y-5 overflow-y-auto shadow-md p-6 bg-neutral-50">
+      <nav className="flex flex-1 flex-col">
+        <ul role="list" className="flex flex-1 flex-col gap-y-7">
+          <li>
+            <ul role="list" className="-mx-2 space-y-4">
+              {navigation.map((item) => (
+                <li key={item.name}>
+                  <div className="flex items-center w-full text-left rounded-md gap-x-3 text-medium font-semibold text-neutral-700">
+                    <ChevronRightIcon
+                      className="h-5 w-5 shrink-0 rotate-90 text-gray-500"
+                      aria-hidden="true"
+                    />
+                    {item.name}
+                  </div>
+                  <ul>
+                    {item.children.map((subItem) => (
+                      <li key={subItem.name}>
                         <a
-                          key={subItem.name}
                           href={subItem.href}
                           className={classNames(
                             subItem.href === currentPath
-                              ? "bg-white text-navy-blue"
-                              : "text-white hover:bg-white hover:text-navy-blue",
-                            "group flex items-center pl-2 pr-2 py-2 text-sm font-medium rounded-md"
+                              ? "bg-white"
+                              : "hover:bg-white",
+                            "block rounded-md py-1 pr-2 pl-8 text-medium"
                           )}
                         >
                           {subItem.name}
                         </a>
-                      ))}
-                    </Disclosure.Panel>
-                  </>
-                )}
-              </Disclosure>
-            </div>
-          ))}
-        </div>
-
-        {otherNavigation.map((item) => (
-          <div key={item.name}>
-            <a
-              href={item.href}
-              className={classNames(
-                item.href === currentPath
-                  ? "bg-white text-navy-blue"
-                  : "text-white hover:bg-white hover:text-navy-blue",
-                "group flex items-center px-2 py-2 text-sm font-medium rounded-md"
-              )}
-            >
-              {item.name}
-            </a>
-          </div>
-        ))}
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </ul>
+          </li>
+          <li className="mt-auto">
+            <ul role="list" className="space-y-1">
+              {otherNavigation.map((item) => (
+                <li key={item.name}>
+                  <a
+                    href={item.href}
+                    className={classNames(
+                      item.href === currentPath ? "bg-white" : "hover:bg-white",
+                      "block rounded-md py-0.5 px-3 text-medium"
+                    )}
+                  >
+                    <span aria-hidden="true">{item.name}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </li>
+        </ul>
       </nav>
     </div>
   );

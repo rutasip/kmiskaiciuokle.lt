@@ -205,7 +205,7 @@ export default function BasalMetabolicRateCalc() {
               <h1 className="text-lg font-semibold leading-7 text-gray-900">
                 Kalorijų suvartojimo skaičiuoklė
               </h1>
-              <h2 className="mt-4 text-sm leading-6 text-gray-600">
+              <h2 className="mt-2 text-sm leading-6 text-gray-600">
                 Įveskite savo duomenis ir sužinokite, kiek kalorijų Jums reikia
                 per dieną norint išlaikyti, numesti ar priaugti svorio.
               </h2>
@@ -232,7 +232,7 @@ export default function BasalMetabolicRateCalc() {
                       />
                     </div>
                     {ageError && (
-                      <p className="mt-1 text-sm text-red-600">{ageError}</p>
+                      <p className="mt-2 text-sm text-pink-600">{ageError}</p>
                     )}
                   </div>
 
@@ -264,7 +264,7 @@ export default function BasalMetabolicRateCalc() {
                       </div>
                     </div>
                     {heightError && (
-                      <p className="mt-1 text-sm text-red-600">{heightError}</p>
+                      <p className="mt-2 text-sm text-pink-600">{heightError}</p>
                     )}
                   </div>
 
@@ -296,7 +296,7 @@ export default function BasalMetabolicRateCalc() {
                       </div>
                     </div>
                     {weightError && (
-                      <p className="mt-1 text-sm text-red-600">{weightError}</p>
+                      <p className="mt-2 text-sm text-pink-600">{weightError}</p>
                     )}
                   </div>
 
@@ -436,7 +436,7 @@ export default function BasalMetabolicRateCalc() {
                 )}
                 <button
                   type="submit"
-                  className="w-1/2 rounded-md bg-amber-400 px-3 py-2 text-sm font-semibold text-slate-800 shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-400"
+                  className="w-1/3 rounded-md bg-amber-400 px-3 py-2 text-sm font-semibold text-slate-800 shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-400"
                 >
                   {step === 1 ? "Toliau" : "Skaičiuoti"}
                 </button>

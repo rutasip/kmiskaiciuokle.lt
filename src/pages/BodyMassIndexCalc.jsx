@@ -8,50 +8,89 @@ const categoryList = [
   {
     id: 1,
     index: "< 18.5",
-    category: "Mažas",
+    category: "Nepakankamas svoris",
+    risks: "Padidėjusi rizika",
     isCurrent: false,
     min: 0,
     max: 18.5,
   },
   {
     id: 2,
-    index: "18.5 - 24.9",
-    category: "Normalus",
+    index: "18.5 – 24.9",
+    category: "Normalus svoris",
+    risks: "Mažiausia rizika",
     isCurrent: false,
     min: 18.5,
     max: 24.9,
   },
   {
     id: 3,
-    index: "25 - 29.9",
+    index: "25 – 29.9",
     category: "Antsvoris",
+    risks: "Padidėjusi rizika",
     isCurrent: false,
     min: 25,
     max: 29.9,
   },
   {
     id: 4,
-    index: "30 - 34.9",
-    category: "Pirmo lygio nutukimas",
+    index: "30 – 34.9",
+    category: "I laipsnio nutukimas",
+    risks: "Didelė rizika",
     isCurrent: false,
     min: 30,
     max: 34.9,
   },
   {
     id: 5,
-    index: "35 - 39.9",
-    category: "Antro lygio nutukimas",
+    index: "35 – 39.9",
+    category: "II laipsnio nutukimas",
+    risks: "Labai didelė rizika",
     isCurrent: false,
     min: 35,
     max: 39.9,
   },
   {
     id: 6,
-    index: "> 40.0",
-    category: "Trečio lygio nutukimas",
+    index: "≥ 40",
+    category: "III laipsnio nutukimas",
+    risks: "Itin didelė rizika",
     isCurrent: false,
     min: 40,
     max: Infinity,
+  },
+];
+
+const normalIndexRanges = [
+  {
+    id: 1,
+    age: "19–24 metai",
+    women: 19.5,
+    men: 21.4,
+  },
+  {
+    id: 2,
+    age: "25–34 metai",
+    women: 23.2,
+    men: 21.6,
+  },
+  {
+    id: 3,
+    age: "35–44 metai",
+    women: 23.4,
+    men: 22.9,
+  },
+  {
+    id: 4,
+    age: "45–54 metai",
+    women: 25.2,
+    men: 25.8,
+  },
+  {
+    id: 5,
+    age: "Daugiau nei 55",
+    women: 27.3,
+    men: 26.6,
   },
 ];
 
@@ -59,32 +98,27 @@ const faqs = [
   {
     question: "Kas yra idealus svoris?",
     answer:
-      "Idealus svoris yra apytikslė kūno svorio reikšmė, atsižvelgiant į Jūsų ūgį ir lytį. Jis padeda įvertinti, ar Jūsų svoris yra sveiko diapazono ribose.",
+      "Idealus svoris – tai apytikslė kūno svorio reikšmė, atsižvelgiant į jūsų ūgį, amžių ir lytį. Jis padeda įvertinti, koks svoris gali būti laikomas sveiku jums individualiai.",
   },
   {
-    question: "Kaip apskaičiuojamas idealus svoris?",
+    question: "Ar KMI tinka visiems žmonėms?",
     answer:
-      "Idealus svoris apskaičiuojamas naudojant standartines formules, kurios atsižvelgia į Jūsų ūgį ir lytį. Tai suteikia bendrą supratimą apie galimą sveiką svorio diapazoną.",
+      "Ne visada. KMI gali būti netikslus sportininkams, nėščioms moterims, vaikams, paaugliams ir vyresnio amžiaus žmonėms.",
   },
   {
-    question: "Ar KMI apskaičiavimas tikslus visiems?",
+    question: "Ar turėčiau remtis tik KMI vertindamas savo sveikatą?",
     answer:
-      "Ne visada. KMI gali būti netikslus tam tikroms žmonių grupėms, pvz., sportininkams, nėščioms ir žindančioms moterims, vaikams bei vyresnio amžiaus žmonėms. Tai tik apytikslis rodiklis.",
+      "Ne. KMI yra tik vienas iš įrankių. Svarbu atsižvelgti į kitus veiksnius, tokius kaip kūno riebalų procentas, juosmens apimtis, mityba, fizinis aktyvumas ir bendras gyvenimo būdas.",
   },
   {
-    question: "Ar pakanka remtis tik KMI vertinant sveikatą?",
+    question: "Ką daryti, jei mano KMI yra per didelis arba per mažas?",
     answer:
-      "Ne. KMI yra tik vienas iš būdų įvertinti kūno svorį. Sveikatai įtakos turi ir kiti veiksniai, tokie kaip kraujospūdis, cholesterolio lygis, genetika ir gyvenimo būdas.",
+      "Pasitarkite su sveikatos priežiūros specialistu. Jie gali padėti nustatyti priežastis ir pasiūlyti tinkamą veiksmų planą.",
   },
   {
-    question: "Ar galiu pasikliauti skaičiuoklės rezultatais?",
+    question: "Ar galiu pasikliauti KMI skaičiuoklės rezultatais?",
     answer:
-      "Skaičiuoklės rezultatai yra informacinio pobūdžio ir neturėtų būti laikomi medicininiais patarimais. Jei turite abejonių, kreipkitės į sveikatos priežiūros specialistą.",
-  },
-  {
-    question: "Atsakomybės apribojimas",
-    answer:
-      "Ši skaičiuoklė yra skirta tik informaciniams tikslams ir nėra medicininis patarimas. Mes neprisiimame atsakomybės už jokius sveikatos sutrikimus ar žalą, kuri gali atsirasti naudojantis šia skaičiuokle.",
+      "KMI skaičiuoklės rezultatai yra orientaciniai. Jei turite klausimų ar rūpesčių dėl savo sveikatos, kreipkitės į profesionalą.",
   },
 ];
 
@@ -94,7 +128,6 @@ export default function BodyMassIndexCalc() {
   const [bmi, setBmi] = useState(null);
   const [categories, setCategories] = useState(categoryList);
   const [currentCategory, setCurrentCategory] = useState(null);
-  const [showIcon, setShowIcon] = useState(false);
   const [showIdealWeight, setShowIdealWeight] = useState(false);
   const [gender, setGender] = useState("");
   const [idealWeight, setIdealWeight] = useState(null);
@@ -107,21 +140,21 @@ export default function BodyMassIndexCalc() {
   const calculateBMI = (weight, height) => {
     const heightInMeters = height / 100;
     const bmi = weight / (heightInMeters * heightInMeters);
-    return parseFloat(bmi.toFixed(1));
+    return parseFloat(bmi.toFixed(2));
   };
 
   const calculateIdealWeight = (height, gender) => {
     const heightInCm = parseFloat(height);
-    const heightInInches = heightInCm / 2.54;
-    let weight = 0;
+    const heightInMeters = heightInCm / 100;
+    let idealWeight = 0;
 
     if (gender === "male") {
-      weight = 50 + 2.3 * (heightInInches - 60);
+      idealWeight = 22.5 * heightInMeters * heightInMeters;
     } else if (gender === "female") {
-      weight = 45.5 + 2.3 * (heightInInches - 60);
+      idealWeight = 21 * heightInMeters * heightInMeters;
     }
 
-    return weight.toFixed(1);
+    return idealWeight.toFixed(1);
   };
 
   const updateCategories = (bmi) => {
@@ -180,11 +213,8 @@ export default function BodyMassIndexCalc() {
     }
 
     if (!isValid) {
-      setShowIcon(false);
       return;
     }
-
-    setShowIcon(true);
 
     const bmiValue = calculateBMI(weightInKg, heightInCm);
     setBmi(bmiValue);
@@ -200,10 +230,7 @@ export default function BodyMassIndexCalc() {
       categoryList.map((category) => ({ ...category, isCurrent: false }))
     );
 
-    setTimeout(() => {
-      setShowIcon(false);
-      updateCategories(bmiValue);
-    }, 1600);
+    updateCategories(bmiValue);
   };
 
   const calculatePinPosition = (bmi) => {
@@ -214,36 +241,26 @@ export default function BodyMassIndexCalc() {
   };
 
   useEffect(() => {
-    if (showIcon && bmi) {
+    if (bmi) {
       resultsRef.current?.scrollIntoView({ behavior: "smooth" });
     }
-  }, [showIcon, bmi]);
+  }, [bmi]);
 
   return (
     <>
-      <div className="space-y-6 divide-y divide-gray-900/10">
-        <div className="grid grid-cols-1 justify-items-center gap-6 xl:grid-cols-2">
+      <div className="">
+        <div className="grid grid-cols-1 justify-items-center">
+          <h1 className="text-4xl text-gray-700 mr-auto mb-10">
+            Kūno masės indekso skaičiuoklė
+          </h1>
           <form
             onSubmit={handleCalculateBMI}
-            className="w-full max-w-2xl h-fit bg-white shadow-sm ring-1 ring-gray-900/5 divide-y divide-gray-200 sm:rounded-md"
+            className="w-full h-fit shadow-sm bg-blue-100 sm:rounded-md drop-shadow-md"
           >
-            <div className="p-6">
-              <h1 className="text-lg font-semibold leading-7 text-gray-900">
-                Kūno masės indekso skaičiuoklė
-              </h1>
-              <h2 className="mt-4 text-sm leading-6 text-gray-600">
-                Apskaičiuokite save kūno masės indeksą (KMI) ir sužinokite, ar
-                Jūsų svoris yra sveikame diapazone. Taip pat galite sužinoti
-                idealų svorį pagal ūgį ir lytį.
-              </h2>
-            </div>
             <div className="p-6">
               <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                 <div className="sm:col-span-3">
-                  <label
-                    htmlFor="height"
-                    className="block text-sm font-medium leading-6 text-gray-900"
-                  >
+                  <label htmlFor="height" className="block font-medium">
                     Ūgis
                   </label>
                   <div className="relative mt-2 rounded-md shadow-sm">
@@ -252,7 +269,7 @@ export default function BodyMassIndexCalc() {
                       value={height}
                       name="height"
                       id="height"
-                      className="block w-full rounded-md border-0 py-1.5 pl-7 pr-12 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      className="block w-full rounded-md border-0 py-1.5 pl-7 pr-12 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-amber-500 sm:text-sm sm:leading-6"
                       placeholder="170"
                       aria-describedby="height-value"
                       onChange={(e) => setHeight(e.target.value)}
@@ -267,15 +284,12 @@ export default function BodyMassIndexCalc() {
                     </div>
                   </div>
                   {heightError && (
-                    <p className="mt-1 text-sm text-red-600">{heightError}</p>
+                    <p className="mt-2 text-sm text-pink-600">{heightError}</p>
                   )}
                 </div>
 
                 <div className="sm:col-span-3">
-                  <label
-                    htmlFor="weight"
-                    className="block text-sm font-medium leading-6 text-gray-900"
-                  >
+                  <label htmlFor="weight" className="block font-medium">
                     Svoris
                   </label>
                   <div className="relative mt-2 rounded-md shadow-sm">
@@ -284,8 +298,8 @@ export default function BodyMassIndexCalc() {
                       value={weight}
                       name="weight"
                       id="weight"
-                      className="block w-full rounded-md border-0 py-1.5 pl-7 pr-12 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                      placeholder="67"
+                      className="block w-full rounded-md border-0 py-1.5 pl-7 pr-12 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-amber-500 sm:text-sm sm:leading-6"
+                      placeholder="70"
                       aria-describedby="weight-value"
                       onChange={(e) => setWeight(e.target.value)}
                     />
@@ -299,7 +313,7 @@ export default function BodyMassIndexCalc() {
                     </div>
                   </div>
                   {weightError && (
-                    <p className="mt-1 text-sm text-red-600">{weightError}</p>
+                    <p className="mt-2 text-sm text-pink-600">{weightError}</p>
                   )}
                 </div>
 
@@ -311,12 +325,9 @@ export default function BodyMassIndexCalc() {
                       type="checkbox"
                       checked={showIdealWeight}
                       onChange={(e) => setShowIdealWeight(e.target.checked)}
-                      className="h-4 w-4 rounded border-gray-300 text-gray-600 focus:ring-gray-600"
+                      className="h-4 w-4 rounded border-gray-300 text-amber-500 focus:ring-amber-500"
                     />
-                    <label
-                      htmlFor="showIdealWeight"
-                      className="ml-2 block text-sm text-gray-900"
-                    >
+                    <label htmlFor="showIdealWeight" className="ml-2 block">
                       Noriu sužinoti idealų svorį
                     </label>
                   </div>
@@ -324,9 +335,7 @@ export default function BodyMassIndexCalc() {
 
                 {showIdealWeight && (
                   <div className="sm:col-span-3">
-                    <label className="block text-sm font-medium leading-6 text-gray-900">
-                      Lytis
-                    </label>
+                    <label className="block font-medium">Lytis</label>
                     <fieldset className="mt-2 sm:mt-3">
                       <legend className="sr-only">Lyties pasirinkimas</legend>
                       <div className="space-y-4 sm:flex sm:items-center sm:space-x-10 sm:space-y-0">
@@ -338,11 +347,11 @@ export default function BodyMassIndexCalc() {
                             value="female"
                             checked={gender === "female"}
                             onChange={(e) => setGender(e.target.value)}
-                            className="h-4 w-4 border-gray-300 text-gray-600 focus:ring-gray-600"
+                            className="h-4 w-4 border-gray-300 text-amber-500 focus:ring-amber-500"
                           />
                           <label
                             htmlFor="female"
-                            className="ml-3 block text-sm font-medium text-gray-700"
+                            className="ml-3 block font-medium"
                           >
                             Moteris
                           </label>
@@ -355,11 +364,11 @@ export default function BodyMassIndexCalc() {
                             value="male"
                             checked={gender === "male"}
                             onChange={(e) => setGender(e.target.value)}
-                            className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                            className="h-4 w-4 border-gray-300 text-amber-500 focus:ring-amber-500"
                           />
                           <label
                             htmlFor="male"
-                            className="ml-3 block text-sm font-medium text-gray-700"
+                            className="ml-3 block font-medium"
                           >
                             Vyras
                           </label>
@@ -374,370 +383,531 @@ export default function BodyMassIndexCalc() {
                   </div>
                 )}
               </div>
-              <div className="flex items-center justify-end gap-x-6 mt-10">
+              <div className="flex items-center justify-end gap-x-6 mt-8">
                 <button
                   type="submit"
-                  className="w-1/2 rounded-md bg-amber-400 px-3 py-2 text-sm font-semibold text-slate-800 shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-400"
+                  className="w-1/3 rounded-md bg-blue-600 px-2 py-1 font-semibold text-white shadow-sm hover:bg-amber-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500"
                 >
                   Skaičiuoti
                 </button>
               </div>
             </div>
           </form>
-          <div
-            ref={resultsRef}
-            style={{ scrollMarginTop: "80px" }}
-            className={classNames(
-              bmi && !showIcon && "bg-white h-fit",
-              "flex w-full max-w-2xl flex-col p-6 shadow-sm ring-1 ring-gray-900/5 sm:rounded-md justify-center"
-            )}
-          >
-            {bmi ? (
-              showIcon ? (
-                <div className="flex justify-center place-content-center">
-                  <svg
-                    className="checkmark"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 52 52"
-                  >
-                    <circle
-                      className="checkmark__circle"
-                      cx="26"
-                      cy="26"
-                      r="25"
-                      fill="none"
-                    />
-                    <path
-                      className="checkmark__check"
-                      fill="none"
-                      d="M14.1 27.2l7.1 7.2 16.7-16.8"
-                    />
-                  </svg>
-                </div>
-              ) : (
-                <div>
-                  <div className="p-6 bg-gray-50 rounded-md shadow">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="text-sm font-medium text-gray-700">KMI</p>
-                        <p className="text-2xl font-semibold text-gray-900">
-                          {bmi}
-                        </p>
-                      </div>
-                      <div>
+
+          {bmi && (
+            <div
+              ref={resultsRef}
+              style={{ scrollMarginTop: "80px" }}
+              className={classNames(
+                bmi && "bg-white h-fit",
+                "flex w-full flex-col p-6 shadow-sm ring-2 ring-gray-900/5 sm:rounded-md justify-center"
+              )}
+            >
+              <div>
+                <div className="pb-8 border-b border-neutral-200">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-medium text-gray-700">KMI</p>
+                      <p className="text-2xl font-semibold text-gray-900">
+                        {bmi}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-gray-700">
+                        Svorio kategorija
+                      </p>
+                      <p className="font-semibold text-gray-900">
+                        {currentCategory.category}
+                      </p>
+                    </div>
+                    {idealWeight && (
+                      <div className="">
                         <p className="text-sm font-medium text-gray-700">
-                          Svorio kategorija
+                          Idealus svoris
                         </p>
                         <p className="font-semibold text-gray-900">
-                          {currentCategory.category}
+                          {idealWeight} kg
                         </p>
                       </div>
-                      {idealWeight && (
-                        <div className="">
-                          <p className="text-sm font-medium text-gray-700">
-                            Idealus svoris
-                          </p>
-                          <p className="font-semibold text-gray-900">
-                            {idealWeight} kg
-                          </p>
-                        </div>
-                      )}
-                    </div>
+                    )}
+                  </div>
+
+                  <div
+                    style={{
+                      position: "relative",
+                      width: "100%",
+                      height: "14px",
+                      marginTop: "46px",
+                      marginBottom: "24px",
+                      background:
+                        "linear-gradient(to right, #87CEEB, #00FA9A, #FFD700, #FF6347)",
+                      borderRadius: "10px",
+                      boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.1)",
+                    }}
+                  >
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "-10px",
+                        left: `${calculatePinPosition(bmi)}%`,
+                        transform: "translateX(-50%)",
+                        width: "18px",
+                        height: "18px",
+                        borderRadius: "50%",
+                        backgroundColor: "#333",
+                        border: "3px solid white",
+                        transition: "left 0.3s ease-in-out",
+                      }}
+                    />
 
                     <div
                       style={{
-                        position: "relative",
-                        width: "100%",
-                        height: "14px",
-                        marginTop: "46px",
-                        marginBottom: "24px",
-                        background:
-                          "linear-gradient(to right, #87CEEB, #00FA9A, #FFD700, #FF6347)",
-                        borderRadius: "10px",
-                        boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.1)",
+                        position: "absolute",
+                        top: "26px",
+                        left: "0%",
+                        fontSize: "12px",
+                        color: "#666",
                       }}
                     >
-                      <div
-                        style={{
-                          position: "absolute",
-                          top: "-10px",
-                          left: `${calculatePinPosition(bmi)}%`,
-                          transform: "translateX(-50%)",
-                          width: "18px",
-                          height: "18px",
-                          borderRadius: "50%",
-                          backgroundColor: "#333",
-                          border: "3px solid white",
-                          transition: "left 0.3s ease-in-out",
-                        }}
-                      />
-
-                      <div
-                        style={{
-                          position: "absolute",
-                          top: "26px",
-                          left: "0%",
-                          fontSize: "12px",
-                          color: "#666",
-                        }}
-                      >
-                        Mažas svoris
-                      </div>
-                      <div
-                        style={{
-                          position: "absolute",
-                          top: "26px",
-                          left: "33%",
-                          transform: "translateX(-50%)",
-                          fontSize: "12px",
-                          color: "#666",
-                        }}
-                      >
-                        Normalus svoris
-                      </div>
-                      <div
-                        style={{
-                          position: "absolute",
-                          top: "26px",
-                          left: "67%",
-                          transform: "translateX(-50%)",
-                          fontSize: "12px",
-                          color: "#666",
-                        }}
-                      >
-                        Antsvoris
-                      </div>
-                      <div
-                        style={{
-                          position: "absolute",
-                          top: "26px",
-                          right: "0",
-                          fontSize: "12px",
-                          color: "#666",
-                        }}
-                      >
-                        Nutukimas
-                      </div>
+                      Mažas svoris
                     </div>
-                  </div>
-
-                  <div className="mt-8">
-                    <p className="text-sm text-gray-700 mb-2">
-                      Rekomenduojamos skaičiuoklės:
-                    </p>
-                    <div className="space-y-2">
-                      <a
-                        href="/sudeginamos-kalorijos"
-                        className="block p-3 rounded-md transition hover:bg-gray-100"
-                      >
-                        <div className="flex items-center">
-                          <div className="flex-shrink-0">
-                            <svg
-                              className="h-6 w-6 text-gray-500"
-                              xmlns="http://www.w3.org/2000/svg"
-                              fill="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path d="M13 10V3L4 14h7v7l9-11h-7z" />
-                            </svg>
-                          </div>
-                          <div className="ml-3 flex-1">
-                            <p className="text-sm font-medium text-gray-800">
-                              Kalorijų sudeginimo skaičiuoklė
-                            </p>
-                            <p className="text-xs text-gray-600">
-                              Sužinokite, kiek kalorijų sudeginate įvairių
-                              veiklų metu.
-                            </p>
-                          </div>
-                          <div className="ml-auto">
-                            <svg
-                              className="h-4 w-4 text-gray-500"
-                              xmlns="http://www.w3.org/2000/svg"
-                              fill="none"
-                              stroke="currentColor"
-                              strokeWidth="2"
-                              viewBox="0 0 24 24"
-                            >
-                              <path d="M9 5l7 7-7 7" />
-                            </svg>
-                          </div>
-                        </div>
-                      </a>
-                      <a
-                        href="/kaloriju-poreikiai"
-                        className="block p-3 rounded-md transition hover:bg-gray-100"
-                      >
-                        <div className="flex items-center">
-                          <div className="flex-shrink-0">
-                            <svg
-                              className="h-6 w-6 text-gray-500"
-                              xmlns="http://www.w3.org/2000/svg"
-                              fill="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path d="M12 12c2.21 0 4-1.79 4-4S14.21 4 12 4 8 5.79 8 8s1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-                            </svg>
-                          </div>
-                          <div className="ml-3 flex-1">
-                            <p className="text-sm font-medium text-gray-800">
-                              Dienos kalorijų poreikio skaičiuoklė
-                            </p>
-                            <p className="text-xs text-gray-600">
-                              Asmeninis kalorijų poreikis pagal aktyvumo lygį.
-                            </p>
-                          </div>
-                          <div className="ml-auto">
-                            <svg
-                              className="h-4 w-4 text-gray-500"
-                              xmlns="http://www.w3.org/2000/svg"
-                              fill="none"
-                              stroke="currentColor"
-                              strokeWidth="2"
-                              viewBox="0 0 24 24"
-                            >
-                              <path d="M9 5l7 7-7 7" />
-                            </svg>
-                          </div>
-                        </div>
-                      </a>
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "26px",
+                        left: "33%",
+                        transform: "translateX(-50%)",
+                        fontSize: "12px",
+                        color: "#666",
+                      }}
+                    >
+                      Normalus svoris
+                    </div>
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "26px",
+                        left: "67%",
+                        transform: "translateX(-50%)",
+                        fontSize: "12px",
+                        color: "#666",
+                      }}
+                    >
+                      Antsvoris
+                    </div>
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "26px",
+                        right: "0",
+                        fontSize: "12px",
+                        color: "#666",
+                      }}
+                    >
+                      Nutukimas
                     </div>
                   </div>
                 </div>
-              )
-            ) : (
-              <p className="text-sm text-gray-500 text-center">
-                Įveskite duomenis ir spauskite &quot;Skaičiuoti&quot;, kad
-                pamatytumėte rezultatus.
-              </p>
-            )}
-          </div>
-        </div>
 
-        <div className="grid grid-cols-1 justify-items-center gap-6 pt-6">
-          <div className="max-w-2xl bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-md xl:max-w-none">
-            <div className="p-6">
-              <div className="grid grid-cols-1 gap-x-12 space-y-8 xl:space-y-0 xl:grid-cols-2">
-                <div className="sm:flex sm:items-center">
-                  <div className="sm:flex-auto">
-                    <p className="text-base leading-7 text-gray-600">
-                      <b>Kūno masės indeksas (KMI)</b> yra paprastas ir plačiai
-                      naudojamas įrankis, padedantis įsivertinti, ar Jūsų svoris
-                      yra normalus. KMI gali suteikti bendrą supratimą apie Jūsų
-                      kūno svorio kategoriją, tačiau tai tik vienas iš daugelio
-                      būdų vertinti sveikatą.
-                    </p>
-                    <p className="mt-4 text-base leading-7 text-gray-600">
-                      <b>Idealus svoris</b> yra apytikslė reikšmė, nustatoma
-                      pagal Jūsų ūgį ir lytį. Tai gali padėti suprasti, koks
-                      svoris gali būti laikomas sveiku Jums individualiai.
-                    </p>
-                    <div className="mt-4 text-base leading-7 text-gray-600">
-                      Svarbu žinoti:
-                      <ul className="list-inside list-disc">
-                        <li>
-                          KMI ir idealaus svorio skaičiuoklės yra skirtos
-                          suaugusiems nuo 20 metų. Rezultatai gali būti
-                          netikslūs nėštumo, žindymo laikotarpiu arba kitų
-                          sveikatos būklių atveju.
-                        </li>
-                        <li>
-                          Šios skaičiuoklės nesuteikia visos informacijos apie
-                          sveikatą ar kūno sudėtį. Jos neatsižvelgia į raumenų
-                          masę, kūno riebalų pasiskirstymą ar kitus svarbius
-                          faktorius.
-                        </li>
-                        <li>
-                          Rezultatai yra informacinio pobūdžio ir neturėtų būti
-                          naudojami ligų diagnozei ar gydymui. Jei turite
-                          sveikatos problemų arba kyla abejonių dėl savo
-                          sveikatos, kreipkitės į sveikatos priežiūros
-                          specialistą.
-                        </li>
-                      </ul>
-                    </div>
-                    <p className="mt-4 text-base leading-7 text-gray-600">
-                      <b>
-                        Pateikta informacija yra tik švietimo tikslais ir
-                        nepakeičia profesionalių medicininių patarimų.
-                      </b>{" "}
-                      Jei turite klausimų apie savo sveikatos būklę arba reikia
-                      individualios konsultacijos, kreipkitės į kvalifikuotą
-                      sveikatos priežiūros specialistą.
-                    </p>
+                <div className="mt-6">
+                  <p className="text-sm text-gray-700 mb-3 selection:bg-fuchsia-300 selection:text-fuchsia-900">
+                    Rekomenduojamos skaičiuoklės:
+                  </p>
+                  <div className="space-y-2">
+                    <a
+                      href="/sudeginamos-kalorijos"
+                      className="block p-3 rounded-md transition bg-gray-50 hover:bg-gray-100"
+                    >
+                      <div className="flex items-center">
+                        <div className="flex-shrink-0">
+                          <svg
+                            className="h-6 w-6 text-gray-500 hover:text-gray-700"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+                          </svg>
+                        </div>
+                        <div className="ml-3 flex-1">
+                          <p className="text-sm font-medium text-gray-800 hover:text-gray-900">
+                            Kalorijų sudeginimo skaičiuoklė
+                          </p>
+                          <p className="text-xs text-gray-600 hover:text-gray-800">
+                            Sužinokite, kiek kalorijų sudeginate įvairių veiklų
+                            metu.
+                          </p>
+                        </div>
+                        <div className="ml-auto">
+                          <svg
+                            className="h-4 w-4 text-gray-500 hover:text-gray-700"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            viewBox="0 0 24 24"
+                          >
+                            <path d="M9 5l7 7-7 7" />
+                          </svg>
+                        </div>
+                      </div>
+                    </a>
+                    <a
+                      href="/kaloriju-poreikiai"
+                      className="block p-3 rounded-md transition bg-gray-50 hover:bg-gray-100"
+                    >
+                      <div className="flex items-center">
+                        <div className="flex-shrink-0">
+                          <svg
+                            className="h-6 w-6 text-gray-500 hover:text-gray-700"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path d="M12 12c2.21 0 4-1.79 4-4S14.21 4 12 4 8 5.79 8 8s1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                          </svg>
+                        </div>
+                        <div className="ml-3 flex-1">
+                          <p className="text-sm font-medium text-gray-800 hover:text-gray-900">
+                            Dienos kalorijų poreikio skaičiuoklė
+                          </p>
+                          <p className="text-xs text-gray-600 hover:text-gray-800">
+                            Asmeninis kalorijų poreikis pagal aktyvumo lygį.
+                          </p>
+                        </div>
+                        <div className="ml-auto">
+                          <svg
+                            className="h-4 w-4 text-gray-500 hover:text-gray-700"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            viewBox="0 0 24 24"
+                          >
+                            <path d="M9 5l7 7-7 7" />
+                          </svg>
+                        </div>
+                      </div>
+                    </a>
                   </div>
-                </div>
-                <div className="h-min ring-1 ring-gray-300 sm:mx-0 rounded-md">
-                  <table className="min-w-full divide-y divide-gray-300">
-                    <thead>
-                      <tr>
-                        <th
-                          scope="col"
-                          className="px-4 py-3.5 text-left text-sm font-semibold text-gray-900"
-                        >
-                          Kūno masės indeksas
-                        </th>
-                        <th
-                          scope="col"
-                          className="px-4 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell"
-                        >
-                          Kūno svoris
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {categories.map((category) => (
-                        <tr key={category.id}>
-                          <td className="border-t border-gray-200 px-4 py-3 text-sm text-gray-600 lg:table-cell">
-                            {category.index}
-                            {category.isCurrent ? (
-                              <span className="ml-3 items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
-                                Jūsų KMI
-                              </span>
-                            ) : null}
-                          </td>
-                          <td className="border-t border-gray-200 px-4 py-3 text-sm text-gray-600 lg:table-cell">
-                            {category.category}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-md">
-            <div className="p-6">
-              <h2 className="text-base font-semibold leading-7 text-gray-900">
-                D.U.K
-              </h2>
-              <div className="mt-8 space-y-10">
-                <dl className="space-y-16 md:grid md:grid-cols-2 md:gap-x-6 md:gap-y-16 md:space-y-0 2xl:grid-cols-3 2xl:gap-x-10">
-                  {faqs.map((faq) => (
-                    <div key={faq.question}>
-                      <dt className="text-base font-semibold leading-7 text-gray-900">
+          )}
+        </div>
+
+        <div className="grid grid-cols-1 justify-items-center gap-6 mt-10">
+          <div className="grid grid-cols-1 gap-6">
+            <div>
+              <section>
+                <h2 className="text-xl font-semibold text-gray-900 mt-12 mb-3">
+                  Kas yra KMI?
+                </h2>
+                <p className="mt-4">
+                  Kūno masės indeksas (KMI) – tai skaičius, gaunamas padalinus
+                  kūno svorį kilogramais iš ūgio metrais kvadratu:
+                </p>
+                <p className="mt-2 font-semibold">
+                  KMI = svoris (kg) / [ūgis (m)]²
+                </p>
+                <p className="mt-2">
+                  Jis padeda įvertinti, ar žmogaus svoris yra normalus, ar yra
+                  antsvoris, nutukimas arba svorio trūkumas. KMI plačiai
+                  naudojamas sveikatos priežiūros specialistų, mitybos
+                  konsultantų ir sporto trenerių.
+                </p>
+              </section>
+              <section>
+                <h2 className="text-xl font-semibold text-gray-900 mt-12 mb-3">
+                  KMI istorija
+                </h2>
+                <p>
+                  KMI 1832 m. sukūrė belgų matematikas Lambertas Adolphe&apos;as
+                  Jacques&apos;as Quetelet. Jo tikslas buvo lengvai ir greitai
+                  įvertinti tam tikros populiacijos antsvorio ir nutukimo lygį,
+                  kad padėtų vyriausybėms paskirstyti sveikatos ir finansinius
+                  išteklius. Nors Quetelet teigė, kad KMI nėra tinkamas
+                  vertinant individualius asmenis, šiandien jis plačiai
+                  naudojamas kaip vienas iš pagrindinių įrankių vertinant tiek
+                  populiacijų, tiek individualių asmenų kūno svorį ir sveikatos
+                  būklę, nepaisant jo ribotumų.
+                </p>
+              </section>
+              <section>
+                <h2 className="text-xl font-semibold text-gray-900 mt-12 mb-3">
+                  Nutukimas Lietuvoje: ką sako statistika?
+                </h2>
+                <p>
+                  Jei Jūsų svoris viršija rekomenduojamą, priklausote 57%
+                  Lietuvos gyventojų, turinčių antsvorį ar nutukimą. Apie 38%
+                  suaugusiųjų Lietuvoje turi antsvorį (KMI 25–30), o 19% kenčia
+                  nuo nutukimo (KMI &gt; 30). Per pastaruosius metus vidutinis
+                  suaugusiųjų KMI Lietuvoje augo, ypač tarp vyresnių amžiaus
+                  grupių. Pasaulio sveikatos organizacija pabrėžia, kad
+                  antsvoris ir nutukimas didina įvairių lėtinių ligų riziką,
+                  įskaitant širdies ir kraujagyslių ligas bei diabetą. Daugiau
+                  informacijos rasite{" "}
+                  <a
+                    href="#"
+                    className="font-medium text-blue-600 underline dark:text-blue-500 hover:no-underline"
+                  >
+                    čia
+                  </a>
+                  .
+                </p>
+              </section>
+              <section>
+                <h2 className="text-xl font-semibold text-gray-900 mt-12 mb-3">
+                  Kaip apskaičiuoti KMI?
+                </h2>
+                <p>KMI apskaičiuojamas pagal šią formulę:</p>
+                <p className="mt-2 font-semibold">
+                  KMI = svoris (kg) / [ūgis (m)]²
+                </p>
+                <p className="mt-2 font-semibold">Pavyzdys:</p>
+                <ul className="list-disc list-inside">
+                  <li>Svoris: 70 kg</li>
+                  <li>Ūgis: 1,75 m</li>
+                </ul>
+                <p className="mt-2 font-semibold">KMI = 70 / (1,75)² = 22,86</p>
+              </section>
+              <section>
+                <table className="min-w-full divide-y divide-gray-300">
+                  <thead>
+                    <tr>
+                      <th className="px-4 py-3.5 text-left font-semibold text-gray-900">
+                        KMI reikšmė
+                      </th>
+                      <th className="px-4 py-3.5 text-left font-semibold text-gray-900 lg:table-cell">
+                        Būklė
+                      </th>
+                      <th className="px-4 py-3.5 text-left font-semibold text-gray-900 lg:table-cell">
+                        Ligų rizika
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {categories.map((category) => (
+                      <tr key={category.id}>
+                        <td className="border-t border-gray-200 px-4 py-3 lg:table-cell">
+                          {category.index}
+                          {category.isCurrent ? (
+                            <span className="ml-3 items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
+                              Jūsų KMI
+                            </span>
+                          ) : null}
+                        </td>
+                        <td className="border-t border-gray-200 px-4 py-3 lg:table-cell">
+                          {category.category}
+                        </td>
+                        <td className="border-t border-gray-200 px-4 py-3 lg:table-cell">
+                          {category.risks}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </section>
+              <section>
+                <h2 className="text-xl font-semibold text-gray-900 mt-12 mb-3">
+                  KMI pagal amžių ir lytį
+                </h2>
+                <p>
+                  Amžius ir lytis taip pat gali turėti įtakos KMI
+                  interpretacijai.
+                </p>
+                <table className="min-w-full divide-y divide-gray-300">
+                  <thead>
+                    <tr>
+                      <th className="px-4 py-3.5 text-left font-semibold text-gray-900">
+                        Amžius
+                      </th>
+                      <th className="px-4 py-3.5 text-left font-semibold text-gray-900">
+                        Moterų KMI norma
+                      </th>
+                      <th className="px-4 py-3.5 text-left font-semibold text-gray-9000">
+                        Vyrų KMI norma
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {normalIndexRanges.map((range) => (
+                      <tr key={range.id}>
+                        <td className="border-t border-gray-200 px-4 py-3 ">
+                          {range.age}
+                        </td>
+                        <td className="border-t border-gray-200 px-4 py-3 ">
+                          {range.women}
+                        </td>
+                        <td className="border-t border-gray-200 px-4 py-3 ">
+                          {range.men}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </section>
+              <section>
+                <h2 className="text-xl font-semibold text-gray-900 mt-12 mb-3">
+                  KMI ribotumai
+                </h2>
+                <p>
+                  Nors KMI yra naudingas rodiklis, jis turi tam tikrų
+                  apribojimų:
+                </p>
+                <ul className="mt-4 list-disc list-inside">
+                  <li>
+                    <span className="font-semibold">Neatsižvelgia į kūno sudėtį:</span> KMI neskiria
+                    raumenų masės nuo riebalų masės. Todėl sportininkai ar
+                    raumeningi asmenys gali turėti aukštą KMI, nors jų kūno
+                    riebalų procentas yra mažas.
+                  </li>
+                  <li>
+                    <span className="font-semibold">Amžius ir lytis:</span> Vaikams, paaugliams ir
+                    vyresnio amžiaus žmonėms KMI gali būti netikslus. Taip pat
+                    reikia atsižvelgti į lytį, nes moterų ir vyrų kūno sudėtis
+                    skiriasi.
+                  </li>
+                  <li>
+                    <span className="font-semibold">Nėštumas:</span> Nėščiosios neturėtų naudoti KMI
+                    kaip sveikatos rodiklio, nes svorio padidėjimas yra
+                    natūralus ir būtinas kūdikio vystymuisi.
+                  </li>
+                  <li>
+                    <span className="font-medium">Rasės ir etninės grupės skirtumai:</span> KMI
+                    ribos, apibrėžiančios antsvorį ar nutukimą, ne visada
+                    tiksliai atspindi sveikatos riziką skirtingoms rasinėms ar
+                    etninėms grupėms. Pavyzdžiui, Azijos populiacijose sveikatos
+                    problemos, susijusios su nutukimu, gali atsirasti esant
+                    mažesniam KMI, palyginti su kitomis grupėmis.
+                  </li>
+                  <li>
+                    <span className="font-medium">Sveikatos būklė:</span> KMI neatsižvelgia į kitus
+                    svarbius sveikatos veiksnius, tokius kaip kraujospūdis,
+                    cholesterolio lygis, cukraus kiekis kraujyje ir kiti
+                    rodikliai, kurie padeda įvertinti širdies ir kraujagyslių
+                    ligų, diabeto ar kitų ligų riziką.
+                  </li>
+                </ul>
+              </section>
+              <section>
+                <h2 className="text-xl font-semibold text-gray-900 mt-12 mb-3">
+                  Sveikatos rizikos susijusios su per dideliu ar per mažu KMI
+                </h2>
+                <div>
+                  <p className="font-semibold">
+                    Per mažas KMI (&lt; 18.5):
+                  </p>
+                  <ul className="list-disc list-inside">
+                    <li>Mitybos nepakankamumas</li>
+                    <li>Anemija (mažakraujystė)</li>
+                    <li>Kaulų retėjimas (osteoporozė)</li>
+                    <li>Susilpnėjusi imuninė sistema</li>
+                    <li>Širdies problemos</li>
+                  </ul>
+                  <p className="mt-4 font-semibold">
+                    Per didelis KMI (&gt; 25,0):
+                  </p>
+                  <ul className="list-disc list-inside">
+                    <li>Širdies ir kraujagyslių ligos</li>
+                    <li>Aukštas kraujospūdis</li>
+                    <li>2 tipo cukrinis diabetas</li>
+                    <li>Kvėpavimo sutrikimai (miego apnėja)</li>
+                    <li>Tam tikros vėžio rūšys</li>
+                    <li>Kepenų ligos</li>
+                    <li>Sąnarių problemos (osteoartritas)</li>
+                  </ul>
+                </div>
+              </section>
+              <section>
+                <h2 className="text-xl font-semibold text-gray-900 mt-12 mb-3">
+                  Kaip palaikyti sveiką KMI?
+                </h2>
+                <ol className="list-decimal list-inside">
+                  <li className="font-semibold">
+                    Sveika ir subalansuota mityba:
+                  </li>
+                  <ul className="list-disc list-inside">
+                    <li>
+                      Vartokite įvairius maisto produktus: daržoves, vaisius,
+                      pilno grūdo produktus, liesus baltymus.
+                    </li>
+                    <li>
+                      Ribokite sočiųjų riebalų, cukraus ir druskos vartojimą.
+                    </li>
+                  </ul>
+                  <li className="font-semibold">
+                    Reguliarus fizinis aktyvumas:
+                  </li>
+                  <ul className="list-disc list-inside">
+                    <li>
+                      Bent 150 minučių vidutinio intensyvumo fizinės veiklos per
+                      savaitę.
+                    </li>
+                    <li>
+                      Įtraukite jėgos treniruotes bent 2 kartus per savaitę.
+                    </li>
+                  </ul>
+                  <li className="font-semibold">
+                    Žalingų įpročių vengimas:
+                  </li>
+                  <ul className="list-disc list-inside">
+                    <li>Nerūkykite.</li>
+                    <li>Ribokite alkoholio vartojimą.</li>
+                  </ul>
+                  <li className="font-semibold">
+                    Reguliarus poilsis ir streso valdymas:
+                  </li>
+                  <ul className="list-disc list-inside">
+                    <li>Užtikrinkite pakankamą miego kiekį.</li>
+                    <li>Praktikuokite streso valdymo technikas.</li>
+                  </ul>
+                </ol>
+              </section>
+              <section>
+                <h2 className="text-xl font-semibold text-gray-900 mt-12 mb-3">
+                  Dažniausiai užduodami klausimai (D.U.K.)
+                </h2>
+                <div className="space-y-6">
+                  {faqs.map((faq, index) => (
+                    <div key={index}>
+                      <h3 className="text-lg font-semibold text-gray-800">
                         {faq.question}
-                      </dt>
-                      <dd className="mt-2 text-base leading-7 text-gray-600">
-                        {faq.answer}
-                      </dd>
+                      </h3>
+                      <p className="mt-2">{faq.answer}</p>
                     </div>
                   ))}
-                </dl>
-              </div>
+                </div>
+              </section>
+              <section>
+                <h2 className="text-xl font-semibold text-gray-900 mt-12 mb-3">
+                  Naudingi patarimai
+                </h2>
+                <ul className="list-disc list-inside">
+                  <li>
+                    <span className="font-semibold">Stebėkite savo svorį reguliariai</span>, bet
+                    neperdėkite – svarbu bendras sveikatos vaizdas.
+                  </li>
+                  <li>
+                    <span className="font-semibold">
+                      Pasirinkite fizinę veiklą, kuri Jums patinka
+                    </span>
+                    , kad lengviau jos laikytumėtės ilgalaikėje perspektyvoje.
+                  </li>
+                  <li>
+                    <span className="font-semibold">Įtraukite į mitybą daržovių ir vaisių</span>, nes
+                    jie yra turtingi maistinėmis medžiagomis.
+                  </li>
+                  <li>
+                    <span className="font-semibold">Gerai išsimiegokite</span>, nes miego trūkumas
+                    gali paveikti svorio reguliavimą.
+                  </li>
+                </ul>
+              </section>
+              Pastaba: Visada svarbu rūpintis savo sveikata atsakingai ir
+              konsultuotis su specialistais dėl individualių rekomendacijų.
             </div>
           </div>
-        </div>
-
-        <div className="pt-6">
-          <p className="text-sm text-gray-500">
-            Ši skaičiuoklė yra skirta tik informaciniams tikslams. Nors
-            stengiamės pateikti tikslią informaciją, mes neprisiimame
-            atsakomybės už jokius sveikatos sutrikimus ar žalą, kuri gali
-            atsirasti naudojantis šia skaičiuokle. Prieš keisdami savo įpročius,
-            pasitarkite su sveikatos priežiūros specialistu.
-          </p>
         </div>
       </div>
     </>

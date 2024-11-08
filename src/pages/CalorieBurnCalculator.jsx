@@ -123,7 +123,7 @@ export default function CalorieBurnCalculator() {
             <h1 className="text-lg font-semibold leading-7 text-gray-900">
               Kalorijų sudeginimo skaičiuoklė
             </h1>
-            <h2 className="mt-4 text-sm leading-6 text-gray-600">
+            <h2 className="mt-2 text-sm leading-6 text-gray-600">
               Sužinokite, kiek kalorijų sudeginate atlikdami įvairius fizinius
               pratimus, atsižvelgiant į Jūsų svorį ir treniruotės trukmę.
             </h2>
@@ -250,7 +250,7 @@ export default function CalorieBurnCalculator() {
                   </div>
                 </div>
                 {weightError && (
-                  <p className="mt-1 text-sm text-red-600">{weightError}</p>
+                  <p className="mt-2 text-sm text-pink-600">{weightError}</p>
                 )}
               </div>
 
@@ -278,7 +278,7 @@ export default function CalorieBurnCalculator() {
                   </div>
                 </div>
                 {durationError && (
-                  <p className="mt-1 text-sm text-red-600">{durationError}</p>
+                  <p className="mt-2 text-sm text-pink-600">{durationError}</p>
                 )}
               </div>
             </div>
@@ -286,7 +286,7 @@ export default function CalorieBurnCalculator() {
             <div className="flex items-center justify-end gap-x-6 mt-10">
               <button
                 type="submit"
-                className="w-1/2 rounded-md bg-amber-400 px-3 py-2 text-sm font-semibold text-slate-800 shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-400"
+                className="w-1/3 rounded-md bg-amber-400 px-3 py-2 text-sm font-semibold text-slate-800 shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-400"
               >
                 Skaičiuoti
               </button>
