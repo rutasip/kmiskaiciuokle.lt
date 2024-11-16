@@ -255,7 +255,7 @@ export default function BodyMassIndexCalc() {
           </h1>
           <form
             onSubmit={handleCalculateBMI}
-            className="w-full h-fit shadow-sm bg-blue-100 sm:rounded-md drop-shadow-md"
+            className="w-full h-fit bg-white sm:rounded-md ring-1 ring-slate-200"
           >
             <div className="p-6">
               <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -386,7 +386,7 @@ export default function BodyMassIndexCalc() {
               <div className="flex items-center justify-end gap-x-6 mt-8">
                 <button
                   type="submit"
-                  className="w-1/3 rounded-md bg-blue-600 px-2 py-1 font-semibold text-white shadow-sm hover:bg-amber-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500"
+                  className="rounded-md text-base py-2 px-8 bg-accent font-semibold text-on-accent shadow-sm hover:bg-amber-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500"
                 >
                   Skaičiuoti
                 </button>
@@ -598,21 +598,19 @@ export default function BodyMassIndexCalc() {
 
         <div className="grid grid-cols-1 justify-items-center gap-6 mt-10">
           <div className="grid grid-cols-1 gap-6">
-            <div>
+            <div className="bg-white sm:rounded-md ring-1 ring-slate-200 p-6">
               <section>
-                <h2 className="text-xl font-semibold text-gray-900 mt-12 mb-3">
+                <h2 className="text-xl font-semibold text-gray-900 mb-3">
                   Kas yra KMI?
                 </h2>
                 <p className="mt-4">
                   Kūno masės indeksas (KMI) – tai skaičius, gaunamas padalinus
                   kūno svorį kilogramais iš ūgio metrais kvadratu:
                 </p>
-                <p className="mt-2 font-semibold">
-                  KMI = svoris (kg) / [ūgis (m)]²
-                </p>
+                <p className="mt-2 italic">KMI = svoris (kg) / [ūgis (m)]²</p>
                 <p className="mt-2">
-                  Jis padeda įvertinti, ar žmogaus svoris yra normalus, ar yra
-                  antsvoris, nutukimas arba svorio trūkumas. KMI plačiai
+                  Jis padeda nustatyti, ar žmogaus svoris yra per mažas,
+                  normalus, per didelis (antsvoris ar nutukimas). KMI plačiai
                   naudojamas sveikatos priežiūros specialistų, mitybos
                   konsultantų ir sporto trenerių.
                 </p>
@@ -661,27 +659,34 @@ export default function BodyMassIndexCalc() {
                   Kaip apskaičiuoti KMI?
                 </h2>
                 <p>KMI apskaičiuojamas pagal šią formulę:</p>
-                <p className="mt-2 font-semibold">
-                  KMI = svoris (kg) / [ūgis (m)]²
-                </p>
-                <p className="mt-2 font-semibold">Pavyzdys:</p>
+                <p className="mt-2 italic">KMI = svoris (kg) / [ūgis (m)]²</p>
+                <p className="mt-2 font-medium">Pavyzdys:</p>
                 <ul className="list-disc list-inside">
                   <li>Svoris: 70 kg</li>
                   <li>Ūgis: 1,75 m</li>
                 </ul>
-                <p className="mt-2 font-semibold">KMI = 70 / (1,75)² = 22,86</p>
+                <p className="mt-2 italic">KMI = 70 / (1,75)² = 22,86</p>
               </section>
               <section>
                 <table className="min-w-full divide-y divide-gray-300">
                   <thead>
                     <tr>
-                      <th className="px-4 py-3.5 text-left font-semibold text-gray-900">
+                      <th
+                        scope="col"
+                        className="px-4 py-3.5 text-left font-semibold text-gray-900"
+                      >
                         KMI reikšmė
                       </th>
-                      <th className="px-4 py-3.5 text-left font-semibold text-gray-900 lg:table-cell">
+                      <th
+                        scope="col"
+                        className="px-4 py-3.5 text-left font-semibold text-gray-900"
+                      >
                         Būklė
                       </th>
-                      <th className="px-4 py-3.5 text-left font-semibold text-gray-900 lg:table-cell">
+                      <th
+                        scope="col"
+                        className="px-4 py-3.5 text-left font-semibold text-gray-900"
+                      >
                         Ligų rizika
                       </th>
                     </tr>
@@ -689,18 +694,18 @@ export default function BodyMassIndexCalc() {
                   <tbody>
                     {categories.map((category) => (
                       <tr key={category.id}>
-                        <td className="border-t border-gray-200 px-4 py-3 lg:table-cell">
+                        <td className="border-t border-gray-200 px-4 py-3">
                           {category.index}
-                          {category.isCurrent ? (
-                            <span className="ml-3 items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
+                          {category.isCurrent && (
+                            <span className="ml-3 inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700">
                               Jūsų KMI
                             </span>
-                          ) : null}
+                          )}
                         </td>
-                        <td className="border-t border-gray-200 px-4 py-3 lg:table-cell">
+                        <td className="border-t border-gray-200 px-4 py-3">
                           {category.category}
                         </td>
-                        <td className="border-t border-gray-200 px-4 py-3 lg:table-cell">
+                        <td className="border-t border-gray-200 px-4 py-3">
                           {category.risks}
                         </td>
                       </tr>
@@ -757,36 +762,40 @@ export default function BodyMassIndexCalc() {
                 </p>
                 <ul className="mt-4 list-disc list-inside">
                   <li>
-                    <span className="font-semibold">Neatsižvelgia į kūno sudėtį:</span> KMI neskiria
-                    raumenų masės nuo riebalų masės. Todėl sportininkai ar
-                    raumeningi asmenys gali turėti aukštą KMI, nors jų kūno
-                    riebalų procentas yra mažas.
+                    <span className="font-medium">
+                      Neatsižvelgia į kūno sudėtį:
+                    </span>{" "}
+                    KMI neskiria raumenų masės nuo riebalų masės. Todėl
+                    sportininkai ar raumeningi asmenys gali turėti aukštą KMI,
+                    nors jų kūno riebalų procentas yra mažas.
                   </li>
                   <li>
-                    <span className="font-semibold">Amžius ir lytis:</span> Vaikams, paaugliams ir
-                    vyresnio amžiaus žmonėms KMI gali būti netikslus. Taip pat
-                    reikia atsižvelgti į lytį, nes moterų ir vyrų kūno sudėtis
-                    skiriasi.
+                    <span className="font-medium">Amžius ir lytis:</span>{" "}
+                    Vaikams, paaugliams ir vyresnio amžiaus žmonėms KMI gali
+                    būti netikslus. Taip pat reikia atsižvelgti į lytį, nes
+                    moterų ir vyrų kūno sudėtis skiriasi.
                   </li>
                   <li>
-                    <span className="font-semibold">Nėštumas:</span> Nėščiosios neturėtų naudoti KMI
-                    kaip sveikatos rodiklio, nes svorio padidėjimas yra
-                    natūralus ir būtinas kūdikio vystymuisi.
+                    <span className="font-medium">Nėštumas:</span> Nėščiosios
+                    neturėtų naudoti KMI kaip sveikatos rodiklio, nes svorio
+                    padidėjimas yra natūralus ir būtinas kūdikio vystymuisi.
                   </li>
                   <li>
-                    <span className="font-medium">Rasės ir etninės grupės skirtumai:</span> KMI
-                    ribos, apibrėžiančios antsvorį ar nutukimą, ne visada
+                    <span className="font-medium">
+                      Rasės ir etninės grupės skirtumai:
+                    </span>{" "}
+                    KMI ribos, apibrėžiančios antsvorį ar nutukimą, ne visada
                     tiksliai atspindi sveikatos riziką skirtingoms rasinėms ar
                     etninėms grupėms. Pavyzdžiui, Azijos populiacijose sveikatos
                     problemos, susijusios su nutukimu, gali atsirasti esant
                     mažesniam KMI, palyginti su kitomis grupėmis.
                   </li>
                   <li>
-                    <span className="font-medium">Sveikatos būklė:</span> KMI neatsižvelgia į kitus
-                    svarbius sveikatos veiksnius, tokius kaip kraujospūdis,
-                    cholesterolio lygis, cukraus kiekis kraujyje ir kiti
-                    rodikliai, kurie padeda įvertinti širdies ir kraujagyslių
-                    ligų, diabeto ar kitų ligų riziką.
+                    <span className="font-medium">Sveikatos būklė:</span> KMI
+                    neatsižvelgia į kitus svarbius sveikatos veiksnius, tokius
+                    kaip kraujospūdis, cholesterolio lygis, cukraus kiekis
+                    kraujyje ir kiti rodikliai, kurie padeda įvertinti širdies
+                    ir kraujagyslių ligų, diabeto ar kitų ligų riziką.
                   </li>
                 </ul>
               </section>
@@ -795,9 +804,7 @@ export default function BodyMassIndexCalc() {
                   Sveikatos rizikos susijusios su per dideliu ar per mažu KMI
                 </h2>
                 <div>
-                  <p className="font-semibold">
-                    Per mažas KMI (&lt; 18.5):
-                  </p>
+                  <p className="font-medium">Per mažas KMI (&lt; 18.5):</p>
                   <ul className="list-disc list-inside">
                     <li>Mitybos nepakankamumas</li>
                     <li>Anemija (mažakraujystė)</li>
@@ -805,7 +812,7 @@ export default function BodyMassIndexCalc() {
                     <li>Susilpnėjusi imuninė sistema</li>
                     <li>Širdies problemos</li>
                   </ul>
-                  <p className="mt-4 font-semibold">
+                  <p className="mt-4 font-medium">
                     Per didelis KMI (&gt; 25,0):
                   </p>
                   <ul className="list-disc list-inside">
@@ -824,7 +831,7 @@ export default function BodyMassIndexCalc() {
                   Kaip palaikyti sveiką KMI?
                 </h2>
                 <ol className="list-decimal list-inside">
-                  <li className="font-semibold">
+                  <li className="font-medium">
                     Sveika ir subalansuota mityba:
                   </li>
                   <ul className="list-disc list-inside">
@@ -836,9 +843,7 @@ export default function BodyMassIndexCalc() {
                       Ribokite sočiųjų riebalų, cukraus ir druskos vartojimą.
                     </li>
                   </ul>
-                  <li className="font-semibold">
-                    Reguliarus fizinis aktyvumas:
-                  </li>
+                  <li className="font-medium">Reguliarus fizinis aktyvumas:</li>
                   <ul className="list-disc list-inside">
                     <li>
                       Bent 150 minučių vidutinio intensyvumo fizinės veiklos per
@@ -848,14 +853,12 @@ export default function BodyMassIndexCalc() {
                       Įtraukite jėgos treniruotes bent 2 kartus per savaitę.
                     </li>
                   </ul>
-                  <li className="font-semibold">
-                    Žalingų įpročių vengimas:
-                  </li>
+                  <li className="font-medium">Žalingų įpročių vengimas:</li>
                   <ul className="list-disc list-inside">
                     <li>Nerūkykite.</li>
                     <li>Ribokite alkoholio vartojimą.</li>
                   </ul>
-                  <li className="font-semibold">
+                  <li className="font-medium">
                     Reguliarus poilsis ir streso valdymas:
                   </li>
                   <ul className="list-disc list-inside">
@@ -885,8 +888,10 @@ export default function BodyMassIndexCalc() {
                 </h2>
                 <ul className="list-disc list-inside">
                   <li>
-                    <span className="font-semibold">Stebėkite savo svorį reguliariai</span>, bet
-                    neperdėkite – svarbu bendras sveikatos vaizdas.
+                    <span className="font-semibold">
+                      Stebėkite savo svorį reguliariai
+                    </span>
+                    , bet neperdėkite – svarbu bendras sveikatos vaizdas.
                   </li>
                   <li>
                     <span className="font-semibold">
@@ -895,12 +900,14 @@ export default function BodyMassIndexCalc() {
                     , kad lengviau jos laikytumėtės ilgalaikėje perspektyvoje.
                   </li>
                   <li>
-                    <span className="font-semibold">Įtraukite į mitybą daržovių ir vaisių</span>, nes
-                    jie yra turtingi maistinėmis medžiagomis.
+                    <span className="font-semibold">
+                      Įtraukite į mitybą daržovių ir vaisių
+                    </span>
+                    , nes jie yra turtingi maistinėmis medžiagomis.
                   </li>
                   <li>
-                    <span className="font-semibold">Gerai išsimiegokite</span>, nes miego trūkumas
-                    gali paveikti svorio reguliavimą.
+                    <span className="font-semibold">Gerai išsimiegokite</span>,
+                    nes miego trūkumas gali paveikti svorio reguliavimą.
                   </li>
                 </ul>
               </section>

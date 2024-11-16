@@ -11,27 +11,34 @@ module.exports = {
         '74': '22rem',
       },
       colors: {
-        'navy-blue': '#0D47A1',
+        'theme-indigo': '#3F51B5',
+        'theme-denim': '#1560BD',
+        'theme-air-force': '#5D8AA8',
+        'navy-blue': '#5D8AA8',
         'bright-yellow': '#FFEB3B',
         'pale-yellow': '#FFF176',
         'amber-400': '#FFC107',
         'amber-500': '#FFB300',
-        'main': '#F5F5F5',
-        'secondary': '#FAFAFA',
-        'accent': '#4169E1',
+        'primary': '#5D8AA8',
+        'light-neutral': '#F7F9FC',
+        'secondary': '#A3C1DA',
+        // 'accent': '#E74C3C',
+        // 'accent': '#D1495B',
+        'accent': '#C62828',
+        'on-accent': '#ffffff',
       },
       maxWidth: {
         '8xl': '88rem',
       }
     },
-    fontSize: {
-      'medium': ['16px'],
-      'xl': ['21px'],
-      '4xl': ['33px', {
-        lineHeight: '50px',
-        fontWeight: '700',
-      }],
-    }
+    // fontSize: {
+    //   'medium': ['16px'],
+    //   'xl': ['21px'],
+    //   '4xl': ['33px', {
+    //     lineHeight: '50px',
+    //     fontWeight: '700',
+    //   }],
+    // }
   },
   plugins: [
     require('@tailwindcss/typography'),
