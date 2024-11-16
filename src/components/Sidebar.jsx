@@ -44,7 +44,7 @@ function NavItems() {
   const currentPath = location.pathname;
 
   return (
-    <div className="flex flex-col h-full bg-navy-blue pt-10">
+    <div className="flex flex-col h-full bg-navy-blue pt-6">
       <nav className="flex-1 flex flex-col justify-between px-3 py-4 overflow-y-auto">
         <div className="flex flex-col gap-7">
           {navigation.map((item) => (
@@ -52,7 +52,7 @@ function NavItems() {
               <Disclosure as="div" defaultOpen>
                 {({ open }) => (
                   <>
-                    <Disclosure.Button className="w-full flex items-center justify-between px-2.5 py-2 mb-1 text-left text-base font-semibold text-white rounded-md">
+                    <Disclosure.Button className="w-full flex items-center justify-between px-2.5 py-2 mb-1 text-left text-[15px] leading-normal font-semibold text-white rounded-md">
                       <div className="flex items-center">
                         <item.icon
                           className="mr-3 flex-shrink-0 h-5 w-5 text-white group-hover:text-navy-blue"
@@ -76,7 +76,7 @@ function NavItems() {
                             subItem.href === currentPath
                               ? "bg-white text-navy-blue"
                               : "text-white hover:bg-white hover:text-navy-blue",
-                            "group flex items-center p-2.5 text-base font-semibold rounded-md"
+                            "group flex items-center p-2.5 text-[15px] leading-normal font-semibold rounded-md"
                           )}
                         >
                           {subItem.name}
@@ -98,7 +98,7 @@ function NavItems() {
                 item.href === currentPath
                   ? "bg-white text-navy-blue"
                   : "text-white hover:bg-white hover:text-navy-blue",
-                "group flex items-center px-2 py-2 text-base font-semibold rounded-md"
+                "group flex items-center px-2 py-2 text-[15px] leading-normal font-semibold rounded-md"
               )}
             >
               {item.name}

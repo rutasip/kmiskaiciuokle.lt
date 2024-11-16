@@ -31,14 +31,6 @@ module.exports = {
         '8xl': '88rem',
       }
     },
-    // fontSize: {
-    //   'medium': ['16px'],
-    //   'xl': ['21px'],
-    //   '4xl': ['33px', {
-    //     lineHeight: '50px',
-    //     fontWeight: '700',
-    //   }],
-    // }
   },
   plugins: [
     require('@tailwindcss/typography'),

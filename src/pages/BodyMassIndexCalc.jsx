@@ -98,7 +98,7 @@ const faqs = [
   {
     question: "Kas yra idealus svoris?",
     answer:
-      "Idealus svoris – tai apytikslė kūno svorio reikšmė, atsižvelgiant į jūsų ūgį, amžių ir lytį. Jis padeda įvertinti, koks svoris gali būti laikomas sveiku jums individualiai.",
+      "Idealus svoris – tai apytikslė kūno svorio reikšmė, atsižvelgiant į Jūsų ūgį, amžių ir lytį. Jis padeda įvertinti, koks svoris gali būti laikomas sveiku Jums individualiai.",
   },
   {
     question: "Ar KMI tinka visiems žmonėms?",
@@ -250,7 +250,7 @@ export default function BodyMassIndexCalc() {
     <>
       <div className="">
         <div className="grid grid-cols-1 justify-items-center">
-          <h1 className="text-4xl text-gray-700 mr-auto mb-10">
+          <h1 className="text-[33px] font-[300] text-gray-700 mr-auto mb-10">
             Kūno masės indekso skaičiuoklė
           </h1>
           <form
@@ -258,9 +258,9 @@ export default function BodyMassIndexCalc() {
             className="w-full h-fit bg-white sm:rounded-md ring-1 ring-slate-200"
           >
             <div className="p-6">
-              <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+              <div className="grid max-w-2xl grid-cols-1 gap-x-10 gap-y-6 sm:grid-cols-6">
                 <div className="sm:col-span-3">
-                  <label htmlFor="height" className="block font-medium">
+                  <label htmlFor="height" className="block text-base">
                     Ūgis
                   </label>
                   <div className="relative mt-2 rounded-md shadow-sm">
@@ -289,7 +289,7 @@ export default function BodyMassIndexCalc() {
                 </div>
 
                 <div className="sm:col-span-3">
-                  <label htmlFor="weight" className="block font-medium">
+                  <label htmlFor="weight" className="block text-base">
                     Svoris
                   </label>
                   <div className="relative mt-2 rounded-md shadow-sm">
@@ -327,7 +327,10 @@ export default function BodyMassIndexCalc() {
                       onChange={(e) => setShowIdealWeight(e.target.checked)}
                       className="h-4 w-4 rounded border-gray-300 text-amber-500 focus:ring-amber-500"
                     />
-                    <label htmlFor="showIdealWeight" className="ml-2 block">
+                    <label
+                      htmlFor="showIdealWeight"
+                      className="ml-2 block text-base"
+                    >
                       Noriu sužinoti idealų svorį
                     </label>
                   </div>
@@ -335,7 +338,7 @@ export default function BodyMassIndexCalc() {
 
                 {showIdealWeight && (
                   <div className="sm:col-span-3">
-                    <label className="block font-medium">Lytis</label>
+                    <label className="block text-base">Lytis</label>
                     <fieldset className="mt-2 sm:mt-3">
                       <legend className="sr-only">Lyties pasirinkimas</legend>
                       <div className="space-y-4 sm:flex sm:items-center sm:space-x-10 sm:space-y-0">
@@ -386,7 +389,7 @@ export default function BodyMassIndexCalc() {
               <div className="flex items-center justify-end gap-x-6 mt-8">
                 <button
                   type="submit"
-                  className="rounded-md text-base py-2 px-8 bg-accent font-semibold text-on-accent shadow-sm hover:bg-amber-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500"
+                  className="rounded-md text-[15px] leading-normal py-2 px-8 bg-accent font-semibold text-on-accent shadow-sm hover:bg-amber-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500"
                 >
                   Skaičiuoti
                 </button>
@@ -604,44 +607,53 @@ export default function BodyMassIndexCalc() {
                   Kas yra KMI?
                 </h2>
                 <p className="mt-4">
-                  Kūno masės indeksas (KMI) – tai skaičius, gaunamas padalinus
-                  kūno svorį kilogramais iš ūgio metrais kvadratu:
+                  Kūno masės indeksas (<b>KMI</b>) – tai skaičius, gaunamas
+                  padalinus kūno svorį kilogramais iš ūgio metrais kvadratu:
                 </p>
-                <p className="mt-2 italic">KMI = svoris (kg) / [ūgis (m)]²</p>
+                <p className="mt-2 font-medium italic">
+                  KMI = svoris (kg) / [ūgis (m)]²
+                </p>
                 <p className="mt-2">
-                  Jis padeda nustatyti, ar žmogaus svoris yra per mažas,
-                  normalus, per didelis (antsvoris ar nutukimas). KMI plačiai
-                  naudojamas sveikatos priežiūros specialistų, mitybos
-                  konsultantų ir sporto trenerių.
+                  Jis padeda nustatyti, ar žmogaus svoris yra
+                  <b> per mažas</b>,<b> normalus</b>, ar
+                  <b> per didelis</b> (<b>antsvoris</b> ar
+                  <b> nutukimas</b>). KMI plačiai naudojamas sveikatos
+                  priežiūros specialistų, mitybos konsultantų ir sporto
+                  trenerių.
                 </p>
               </section>
               <section>
                 <h2 className="text-xl font-semibold text-gray-900 mt-12 mb-3">
                   KMI istorija
                 </h2>
-                <p>
-                  KMI 1832 m. sukūrė belgų matematikas Lambertas Adolphe&apos;as
-                  Jacques&apos;as Quetelet. Jo tikslas buvo lengvai ir greitai
-                  įvertinti tam tikros populiacijos antsvorio ir nutukimo lygį,
-                  kad padėtų vyriausybėms paskirstyti sveikatos ir finansinius
-                  išteklius. Nors Quetelet teigė, kad KMI nėra tinkamas
-                  vertinant individualius asmenis, šiandien jis plačiai
-                  naudojamas kaip vienas iš pagrindinių įrankių vertinant tiek
-                  populiacijų, tiek individualių asmenų kūno svorį ir sveikatos
-                  būklę, nepaisant jo ribotumų.
+                <p className="mt-4">
+                  KMI buvo sukurtas <b>1832 m.</b> belgų matematiko
+                  <b> Lamberto Adolphe&apos;o Jacques&apos;o Quetelet</b>. Jo
+                  tikslas buvo lengvai ir greitai įvertinti tam tikros
+                  populiacijos antsvorio ir nutukimo lygį, kad padėtų
+                  vyriausybėms paskirstyti sveikatos ir finansinius išteklius.{" "}
+                  <span className="italic">
+                    Nors Quetelet teigė, kad KMI nėra tinkamas vertinant
+                    individualius asmenis
+                  </span>
+                  , šiandien jis plačiai naudojamas kaip vienas iš pagrindinių
+                  įrankių vertinant tiek populiacijų, tiek individualių asmenų
+                  kūno svorį ir sveikatos būklę, nepaisant jo ribotumų.
                 </p>
               </section>
               <section>
                 <h2 className="text-xl font-semibold text-gray-900 mt-12 mb-3">
                   Nutukimas Lietuvoje: ką sako statistika?
                 </h2>
-                <p>
-                  Jei Jūsų svoris viršija rekomenduojamą, priklausote 57%
-                  Lietuvos gyventojų, turinčių antsvorį ar nutukimą. Apie 38%
-                  suaugusiųjų Lietuvoje turi antsvorį (KMI 25–30), o 19% kenčia
-                  nuo nutukimo (KMI &gt; 30). Per pastaruosius metus vidutinis
-                  suaugusiųjų KMI Lietuvoje augo, ypač tarp vyresnių amžiaus
-                  grupių. Pasaulio sveikatos organizacija pabrėžia, kad
+                <p className="mt-4">
+                  Jei Jūsų svoris viršija rekomenduojamą, priklausote
+                  <b> 57% </b>Lietuvos gyventojų, turinčių antsvorį ar nutukimą.
+                  Apie
+                  <b> 38% </b>suaugusiųjų Lietuvoje turi antsvorį (KMI 25–30), o
+                  <b> 19% </b>kenčia nuo nutukimo (KMI &gt; 30). Per
+                  pastaruosius metus vidutinis suaugusiųjų KMI Lietuvoje augo,
+                  ypač tarp vyresnių amžiaus grupių.
+                  <b> Pasaulio sveikatos organizacija pabrėžia</b>, kad
                   antsvoris ir nutukimas didina įvairių lėtinių ligų riziką,
                   įskaitant širdies ir kraujagyslių ligas bei diabetą. Daugiau
                   informacijos rasite{" "}
@@ -658,164 +670,191 @@ export default function BodyMassIndexCalc() {
                 <h2 className="text-xl font-semibold text-gray-900 mt-12 mb-3">
                   Kaip apskaičiuoti KMI?
                 </h2>
-                <p>KMI apskaičiuojamas pagal šią formulę:</p>
-                <p className="mt-2 italic">KMI = svoris (kg) / [ūgis (m)]²</p>
-                <p className="mt-2 font-medium">Pavyzdys:</p>
-                <ul className="list-disc list-inside">
-                  <li>Svoris: 70 kg</li>
-                  <li>Ūgis: 1,75 m</li>
+                <p className="mt-4">
+                  KMI apskaičiuojamas pagal <b>šią formulę:</b>
+                </p>
+                <p className="mt-2 italic">
+                  <b>KMI = svoris (kg) / [ūgis (m)]²</b>
+                </p>
+                <p className="mt-4 font-medium">Pavyzdys:</p>
+                <ul className="list-disc list-inside mt-2">
+                  <li>
+                    <b>Svoris:</b> 70 kg
+                  </li>
+                  <li>
+                    <b>Ūgis:</b> 1,75 m
+                  </li>
                 </ul>
-                <p className="mt-2 italic">KMI = 70 / (1,75)² = 22,86</p>
-              </section>
-              <section>
-                <table className="min-w-full divide-y divide-gray-300">
-                  <thead>
-                    <tr>
-                      <th
-                        scope="col"
-                        className="px-4 py-3.5 text-left font-semibold text-gray-900"
-                      >
-                        KMI reikšmė
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-4 py-3.5 text-left font-semibold text-gray-900"
-                      >
-                        Būklė
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-4 py-3.5 text-left font-semibold text-gray-900"
-                      >
-                        Ligų rizika
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {categories.map((category) => (
-                      <tr key={category.id}>
-                        <td className="border-t border-gray-200 px-4 py-3">
-                          {category.index}
-                          {category.isCurrent && (
-                            <span className="ml-3 inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700">
-                              Jūsų KMI
-                            </span>
-                          )}
-                        </td>
-                        <td className="border-t border-gray-200 px-4 py-3">
-                          {category.category}
-                        </td>
-                        <td className="border-t border-gray-200 px-4 py-3">
-                          {category.risks}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+                <p className="mt-2 italic">
+                  <b>KMI = 70 / (1,75)² = 22,86</b>
+                </p>
+                <div className="mt-8">
+                  <p className="mb-4">
+                    Žemiau pateiktoje lentelėje galite matyti KMI reikšmių
+                    intervalus, jų atitikmenis sveikatos būklei ir galimai ligų
+                    rizikai.
+                  </p>
+                  <div className="overflow-x-auto">
+                    <table className="min-w-full divide-y divide-gray-300">
+                      <thead>
+                        <tr>
+                          <th
+                            scope="col"
+                            className="px-4 py-3.5 text-left font-medium text-gray-900"
+                          >
+                            KMI reikšmė
+                          </th>
+                          <th
+                            scope="col"
+                            className="px-4 py-3.5 text-left font-medium text-gray-900"
+                          >
+                            Būklė
+                          </th>
+                          <th
+                            scope="col"
+                            className="px-4 py-3.5 text-left font-medium text-gray-900"
+                          >
+                            Ligų rizika
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {categories.map((category) => (
+                          <tr key={category.id}>
+                            <td className="border-t border-gray-200 px-4 py-3">
+                              {category.index}
+                              {category.isCurrent && (
+                                <span className="ml-3 inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700">
+                                  Jūsų KMI
+                                </span>
+                              )}
+                            </td>
+                            <td className="border-t border-gray-200 px-4 py-3">
+                              {category.category}
+                            </td>
+                            <td className="border-t border-gray-200 px-4 py-3">
+                              {category.risks}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
               </section>
               <section>
                 <h2 className="text-xl font-semibold text-gray-900 mt-12 mb-3">
                   KMI pagal amžių ir lytį
                 </h2>
-                <p>
-                  Amžius ir lytis taip pat gali turėti įtakos KMI
-                  interpretacijai.
+                <p className="mt-4">
+                  <b>Amžius</b> ir
+                  <b> lytis</b> taip pat gali turėti įtakos KMI interpretacijai.
                 </p>
-                <table className="min-w-full divide-y divide-gray-300">
-                  <thead>
-                    <tr>
-                      <th className="px-4 py-3.5 text-left font-semibold text-gray-900">
-                        Amžius
-                      </th>
-                      <th className="px-4 py-3.5 text-left font-semibold text-gray-900">
-                        Moterų KMI norma
-                      </th>
-                      <th className="px-4 py-3.5 text-left font-semibold text-gray-9000">
-                        Vyrų KMI norma
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {normalIndexRanges.map((range) => (
-                      <tr key={range.id}>
-                        <td className="border-t border-gray-200 px-4 py-3 ">
-                          {range.age}
-                        </td>
-                        <td className="border-t border-gray-200 px-4 py-3 ">
-                          {range.women}
-                        </td>
-                        <td className="border-t border-gray-200 px-4 py-3 ">
-                          {range.men}
-                        </td>
+                <p className="mb-4">
+                  Žemiau pateiktoje lentelėje galite matyti KMI normų skirtumus
+                  pagal amžiaus grupes ir lytį.
+                </p>
+                <div className="overflow-x-auto">
+                  <table className="min-w-full divide-y divide-gray-300">
+                    <thead>
+                      <tr>
+                        <th className="px-4 py-3.5 text-left font-medium text-gray-900">
+                          Amžius
+                        </th>
+                        <th className="px-4 py-3.5 text-left font-medium text-gray-900">
+                          Moterų KMI
+                        </th>
+                        <th className="px-4 py-3.5 text-left font-medium text-gray-900">
+                          Vyrų KMI
+                        </th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      {normalIndexRanges.map((range) => (
+                        <tr key={range.id}>
+                          <td className="border-t border-gray-200 px-4 py-3">
+                            {range.age}
+                          </td>
+                          <td className="border-t border-gray-200 px-4 py-3">
+                            {range.women}
+                          </td>
+                          <td className="border-t border-gray-200 px-4 py-3">
+                            {range.men}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </section>
               <section>
                 <h2 className="text-xl font-semibold text-gray-900 mt-12 mb-3">
                   KMI ribotumai
                 </h2>
-                <p>
+                <p className="mt-4">
                   Nors KMI yra naudingas rodiklis, jis turi tam tikrų
                   apribojimų:
                 </p>
-                <ul className="mt-4 list-disc list-inside">
+                <ul className="mt-4 list-disc list-inside space-y-4">
                   <li>
-                    <span className="font-medium">
-                      Neatsižvelgia į kūno sudėtį:
-                    </span>{" "}
-                    KMI neskiria raumenų masės nuo riebalų masės. Todėl
-                    sportininkai ar raumeningi asmenys gali turėti aukštą KMI,
-                    nors jų kūno riebalų procentas yra mažas.
+                    <b>Neatsižvelgia į kūno sudėtį:</b> KMI neskiria raumenų
+                    masės nuo riebalų masės. Todėl sportininkai ar raumeningi
+                    asmenys gali turėti aukštą KMI, nors jų kūno riebalų
+                    procentas yra mažas.
                   </li>
                   <li>
-                    <span className="font-medium">Amžius ir lytis:</span>{" "}
-                    Vaikams, paaugliams ir vyresnio amžiaus žmonėms KMI gali
-                    būti netikslus. Taip pat reikia atsižvelgti į lytį, nes
-                    moterų ir vyrų kūno sudėtis skiriasi.
+                    <b>Amžius ir lytis:</b> Vaikams, paaugliams ir vyresnio
+                    amžiaus žmonėms KMI gali būti netikslus. Taip pat reikia
+                    atsižvelgti į lytį, nes moterų ir vyrų kūno sudėtis
+                    skiriasi.
                   </li>
                   <li>
-                    <span className="font-medium">Nėštumas:</span> Nėščiosios
-                    neturėtų naudoti KMI kaip sveikatos rodiklio, nes svorio
-                    padidėjimas yra natūralus ir būtinas kūdikio vystymuisi.
+                    <b>Nėštumas:</b> Nėščiosios neturėtų naudoti KMI kaip
+                    sveikatos rodiklio, nes svorio padidėjimas yra natūralus ir
+                    būtinas kūdikio vystymuisi.
                   </li>
                   <li>
-                    <span className="font-medium">
-                      Rasės ir etninės grupės skirtumai:
-                    </span>{" "}
-                    KMI ribos, apibrėžiančios antsvorį ar nutukimą, ne visada
-                    tiksliai atspindi sveikatos riziką skirtingoms rasinėms ar
-                    etninėms grupėms. Pavyzdžiui, Azijos populiacijose sveikatos
+                    <b>Rasės ir etninės grupės skirtumai:</b> KMI ribos,
+                    apibrėžiančios antsvorį ar nutukimą, ne visada tiksliai
+                    atspindi sveikatos riziką skirtingoms rasinėms ar etninėms
+                    grupėms. Pavyzdžiui, Azijos populiacijose sveikatos
                     problemos, susijusios su nutukimu, gali atsirasti esant
                     mažesniam KMI, palyginti su kitomis grupėmis.
                   </li>
                   <li>
-                    <span className="font-medium">Sveikatos būklė:</span> KMI
-                    neatsižvelgia į kitus svarbius sveikatos veiksnius, tokius
-                    kaip kraujospūdis, cholesterolio lygis, cukraus kiekis
-                    kraujyje ir kiti rodikliai, kurie padeda įvertinti širdies
-                    ir kraujagyslių ligų, diabeto ar kitų ligų riziką.
+                    <b>Sveikatos būklė:</b> KMI neatsižvelgia į kitus svarbius
+                    sveikatos veiksnius, tokius kaip kraujospūdis, cholesterolio
+                    lygis, cukraus kiekis kraujyje ir kiti rodikliai, kurie
+                    padeda įvertinti širdies ir kraujagyslių ligų, diabeto ar
+                    kitų ligų riziką.
                   </li>
                 </ul>
               </section>
               <section>
                 <h2 className="text-xl font-semibold text-gray-900 mt-12 mb-3">
-                  Sveikatos rizikos susijusios su per dideliu ar per mažu KMI
+                  Sveikatos rizikos esant per mažam ar per dideliam KMI
                 </h2>
-                <div>
-                  <p className="font-medium">Per mažas KMI (&lt; 18.5):</p>
-                  <ul className="list-disc list-inside">
+                <p className="mt-4">
+                  Tiek per mažas, tiek per didelis kūno masės indeksas (KMI)
+                  gali sukelti įvairių sveikatos problemų. Žemiau pateikiamos
+                  galimos rizikos, susijusios su KMI, kuris yra už sveikos
+                  normos ribų.
+                </p>
+                <div className="mt-4">
+                  <p className="font-medium">
+                    Per mažas KMI (<span className="italic">&lt; 18.5</span>):
+                  </p>
+                  <ul className="list-disc list-inside mt-2 space-y-2">
                     <li>Mitybos nepakankamumas</li>
                     <li>Anemija (mažakraujystė)</li>
                     <li>Kaulų retėjimas (osteoporozė)</li>
                     <li>Susilpnėjusi imuninė sistema</li>
                     <li>Širdies problemos</li>
                   </ul>
-                  <p className="mt-4 font-medium">
-                    Per didelis KMI (&gt; 25,0):
+                  <p className="mt-6 font-medium">
+                    Per didelis KMI (<span className="italic">&gt; 25,0</span>):
                   </p>
-                  <ul className="list-disc list-inside">
+                  <ul className="list-disc list-inside mt-2 space-y-2">
                     <li>Širdies ir kraujagyslių ligos</li>
                     <li>Aukštas kraujospūdis</li>
                     <li>2 tipo cukrinis diabetas</li>
@@ -830,51 +869,64 @@ export default function BodyMassIndexCalc() {
                 <h2 className="text-xl font-semibold text-gray-900 mt-12 mb-3">
                   Kaip palaikyti sveiką KMI?
                 </h2>
-                <ol className="list-decimal list-inside">
-                  <li className="font-medium">
-                    Sveika ir subalansuota mityba:
+                <p className="mt-4">
+                  Palaikyti sveiką kūno masės indeksą (KMI) yra svarbu bendrai
+                  sveikatai ir gerovei. Žemiau pateikiami patarimai padės Jums
+                  pasiekti ir išlaikyti optimalų KMI.
+                </p>
+                <ol className="list-decimal list-inside mt-4 space-y-6">
+                  <li>
+                    <b>Sveika ir subalansuota mityba:</b>
+                    <ul className="list-disc list-inside mt-2 space-y-2">
+                      <li>
+                        Vartokite įvairius maisto produktus: daržoves, vaisius,
+                        pilno grūdo produktus, liesus baltymus.
+                      </li>
+                      <li>
+                        Ribokite sočiųjų riebalų, cukraus ir druskos vartojimą.
+                      </li>
+                    </ul>
                   </li>
-                  <ul className="list-disc list-inside">
-                    <li>
-                      Vartokite įvairius maisto produktus: daržoves, vaisius,
-                      pilno grūdo produktus, liesus baltymus.
-                    </li>
-                    <li>
-                      Ribokite sočiųjų riebalų, cukraus ir druskos vartojimą.
-                    </li>
-                  </ul>
-                  <li className="font-medium">Reguliarus fizinis aktyvumas:</li>
-                  <ul className="list-disc list-inside">
-                    <li>
-                      Bent 150 minučių vidutinio intensyvumo fizinės veiklos per
-                      savaitę.
-                    </li>
-                    <li>
-                      Įtraukite jėgos treniruotes bent 2 kartus per savaitę.
-                    </li>
-                  </ul>
-                  <li className="font-medium">Žalingų įpročių vengimas:</li>
-                  <ul className="list-disc list-inside">
-                    <li>Nerūkykite.</li>
-                    <li>Ribokite alkoholio vartojimą.</li>
-                  </ul>
-                  <li className="font-medium">
-                    Reguliarus poilsis ir streso valdymas:
+                  <li>
+                    <b>Reguliarus fizinis aktyvumas:</b>
+                    <ul className="list-disc list-inside mt-2 space-y-2">
+                      <li>
+                        Bent 150 minučių vidutinio intensyvumo fizinės veiklos
+                        per savaitę.
+                      </li>
+                      <li>
+                        Įtraukite jėgos treniruotes bent 2 kartus per savaitę.
+                      </li>
+                    </ul>
                   </li>
-                  <ul className="list-disc list-inside">
-                    <li>Užtikrinkite pakankamą miego kiekį.</li>
-                    <li>Praktikuokite streso valdymo technikas.</li>
-                  </ul>
+                  <li>
+                    <b>Žalingų įpročių vengimas:</b>
+                    <ul className="list-disc list-inside mt-2 space-y-2">
+                      <li>Nerūkykite.</li>
+                      <li>Ribokite alkoholio vartojimą.</li>
+                    </ul>
+                  </li>
+                  <li>
+                    <b>Reguliarus poilsis ir streso valdymas:</b>
+                    <ul className="list-disc list-inside mt-2 space-y-2">
+                      <li>Užtikrinkite pakankamą miego kiekį.</li>
+                      <li>Praktikuokite streso valdymo technikas.</li>
+                    </ul>
+                  </li>
                 </ol>
               </section>
               <section>
                 <h2 className="text-xl font-semibold text-gray-900 mt-12 mb-3">
                   Dažniausiai užduodami klausimai (D.U.K.)
                 </h2>
-                <div className="space-y-6">
+                <p className="mt-4">
+                  Žemiau rasite atsakymus į dažniausiai užduodamus klausimus
+                  apie KMI.
+                </p>
+                <div className="space-y-6 mt-6">
                   {faqs.map((faq, index) => (
                     <div key={index}>
-                      <h3 className="text-lg font-semibold text-gray-800">
+                      <h3 className="text-lg font-medium text-gray-800">
                         {faq.question}
                       </h3>
                       <p className="mt-2">{faq.answer}</p>
@@ -886,28 +938,26 @@ export default function BodyMassIndexCalc() {
                 <h2 className="text-xl font-semibold text-gray-900 mt-12 mb-3">
                   Naudingi patarimai
                 </h2>
-                <ul className="list-disc list-inside">
+                <p className="mt-4">
+                  Šie patarimai padės jums palaikyti sveiką gyvenimo būdą ir
+                  geriau pasirūpinti savo sveikata.
+                </p>
+                <ul className="list-disc list-inside mt-4 space-y-4">
                   <li>
-                    <span className="font-semibold">
-                      Stebėkite savo svorį reguliariai
-                    </span>
-                    , bet neperdėkite – svarbu bendras sveikatos vaizdas.
+                    <b>Stebėkite savo svorį reguliariai</b>, bet neperdėkite –
+                    svarbu bendras sveikatos vaizdas.
                   </li>
                   <li>
-                    <span className="font-semibold">
-                      Pasirinkite fizinę veiklą, kuri Jums patinka
-                    </span>
-                    , kad lengviau jos laikytumėtės ilgalaikėje perspektyvoje.
+                    <b>Pasirinkite fizinę veiklą, kuri jums patinka</b>, kad
+                    lengviau jos laikytumėtės ilgalaikėje perspektyvoje.
                   </li>
                   <li>
-                    <span className="font-semibold">
-                      Įtraukite į mitybą daržovių ir vaisių
-                    </span>
-                    , nes jie yra turtingi maistinėmis medžiagomis.
+                    <b>Įtraukite į mitybą daržovių ir vaisių</b>, nes jie yra
+                    turtingi maistinėmis medžiagomis.
                   </li>
                   <li>
-                    <span className="font-semibold">Gerai išsimiegokite</span>,
-                    nes miego trūkumas gali paveikti svorio reguliavimą.
+                    <b>Gerai išsimiegokite</b>, nes miego trūkumas gali paveikti
+                    svorio reguliavimą.
                   </li>
                 </ul>
               </section>
