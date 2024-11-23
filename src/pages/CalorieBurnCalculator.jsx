@@ -1,4 +1,4 @@
-import { Fragment, useState, useRef, useEffect } from "react";
+import { Fragment, useState, useRef } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 
@@ -53,8 +53,6 @@ export default function CalorieBurnCalculator() {
   const [weight, setWeight] = useState("");
   const [duration, setDuration] = useState("");
   const [caloriesBurned, setCaloriesBurned] = useState(null);
-  const [showIcon, setShowIcon] = useState(false);
-
   const [weightError, setWeightError] = useState("");
   const [durationError, setDurationError] = useState("");
 
@@ -71,293 +69,350 @@ export default function CalorieBurnCalculator() {
 
     let isValid = true;
 
-    if (isNaN(weightInKg)) {
-      setWeightError("Prašome įvesti svorį.");
-      isValid = false;
-    }
-
-    if (weightInKg <= 0) {
+    if (isNaN(weightInKg) || weightInKg <= 0) {
       setWeightError("Prašome įvesti teisingą svorį.");
       isValid = false;
     }
 
-    if (isNaN(durationInHours)) {
-      setDurationError("Prašome įvesti trukmę.");
-      isValid = false;
-    }
-
-    if (durationInHours <= 0) {
+    if (isNaN(durationInHours) || durationInHours <= 0) {
       setDurationError("Prašome įvesti teisingą trukmę.");
       isValid = false;
     }
 
     if (!isValid) {
-      setShowIcon(false);
       return;
     }
-
-    setShowIcon(true);
 
     const calories = selectedActivity.value * weightInKg * durationInHours;
     setCaloriesBurned(calories.toFixed(2));
 
-    setTimeout(() => {
-      setShowIcon(false);
-    }, 1600);
+    resultsRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  useEffect(() => {
-    if (showIcon && caloriesBurned) {
-      resultsRef.current?.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [showIcon, caloriesBurned]);
-
   return (
-    <div className="space-y-6 divide-y divide-gray-900/10">
-      <div className="grid grid-cols-1 justify-items-center gap-6 xl:grid-cols-2">
-        <form
-          onSubmit={handleCalculate}
-          className="w-full max-w-2xl bg-white shadow-sm ring-1 ring-gray-900/5 divide-y divide-gray-200 sm:rounded-md"
-        >
-          <div className="p-6">
-            <h1 className="text-lg font-semibold leading-7 text-gray-900">
-              Kalorijų sudeginimo skaičiuoklė
-            </h1>
-            <h2 className="mt-2 text-sm leading-6 text-gray-600">
-              Sužinokite, kiek kalorijų sudeginate atlikdami įvairius fizinius
-              pratimus, atsižvelgiant į Jūsų svorį ir treniruotės trukmę.
-            </h2>
+    <div className="container mx-auto p-6">
+      <h1 className="text-3xl font-light text-gray-800 mb-8">
+        Kalorijų sudeginimo skaičiuoklė
+      </h1>
+      <form
+        onSubmit={handleCalculate}
+        className="grid gap-8 bg-white rounded-lg ring-1 ring-slate-200 p-6"
+      >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <label
+              htmlFor="weight"
+              className="block text-base font-medium text-gray-700"
+            >
+              Svoris
+            </label>
+            <div className="mt-1 relative rounded-md shadow-sm">
+              <input
+                type="number"
+                name="weight"
+                id="weight"
+                value={weight}
+                onChange={(e) => setWeight(e.target.value)}
+                className="block w-full rounded-md border-gray-300 focus:ring-secondary focus:border-secondary sm:text-sm"
+                placeholder="70"
+              />
+              <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                <span className="text-gray-500 sm:text-sm">kg</span>
+              </div>
+            </div>
+            {weightError && (
+              <p className="mt-2 text-sm text-red-600">{weightError}</p>
+            )}
           </div>
-          <div className="p-6">
-            <div className="grid max-w-2xl grid-cols-1 gap-6 sm:grid-cols-6">
-              <div className="sm:col-span-6">
-                <label
-                  htmlFor="activity"
-                  className="block text-sm font-medium leading-6 text-gray-900"
-                >
-                  Pasirinkite veiklą
-                </label>
-                <Listbox
-                  value={selectedActivity}
-                  onChange={setSelectedActivity}
-                >
-                  {({ open }) => (
-                    <>
-                      <div className="relative mt-2">
-                        <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-1.5 pl-3 pr-10 text-left text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                          <span className="block truncate">
-                            {selectedActivity.name}
-                          </span>
-                          <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                            <ChevronUpDownIcon
-                              className="h-5 w-5 text-gray-400"
-                              aria-hidden="true"
-                            />
-                          </span>
-                        </Listbox.Button>
+          <div>
+            <label
+              htmlFor="duration"
+              className="block text-base font-medium text-gray-700"
+            >
+              Trukmė (valandomis)
+            </label>
+            <div className="mt-1 relative rounded-md shadow-sm">
+              <input
+                type="number"
+                step="0.1"
+                min="0"
+                name="duration"
+                id="duration"
+                value={duration}
+                onChange={(e) => setDuration(e.target.value)}
+                className="block w-full rounded-md border-gray-300 focus:ring-secondary focus:border-secondary sm:text-sm"
+                placeholder="1.5"
+              />
+              <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                <span className="text-gray-500 sm:text-sm">val.</span>
+              </div>
+            </div>
+            {durationError && (
+              <p className="mt-2 text-sm text-red-600">{durationError}</p>
+            )}
+          </div>
+        </div>
 
-                        <Transition
-                          show={open}
-                          as={Fragment}
-                          leave="transition ease-in duration-100"
-                          leaveFrom="opacity-100"
-                          leaveTo="opacity-0"
-                        >
-                          <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                            {activities.map((group) => (
-                              <Fragment key={group.category}>
-                                <Listbox.Option
-                                  disabled
-                                  value=""
-                                  className="cursor-default select-none py-2 pl-3 pr-9 text-gray-900 bg-gray-100 font-semibold"
-                                >
-                                  {group.category}
-                                </Listbox.Option>
-                                {group.options.map((activity) => (
-                                  <Listbox.Option
-                                    key={activity.id}
-                                    value={activity}
-                                    className={({ active }) =>
-                                      classNames(
-                                        active
-                                          ? "bg-indigo-600 text-white"
-                                          : "text-gray-900",
-                                        "relative cursor-default select-none py-2 pl-3 pr-9"
-                                      )
-                                    }
-                                  >
-                                    {({ selected, active }) => (
-                                      <>
-                                        <span
-                                          className={classNames(
-                                            selected
-                                              ? "font-semibold"
-                                              : "font-normal",
-                                            "block truncate"
-                                          )}
-                                        >
-                                          {activity.name}
-                                        </span>
-
-                                        {selected ? (
-                                          <span
-                                            className={classNames(
-                                              active
-                                                ? "text-white"
-                                                : "text-indigo-600",
-                                              "absolute inset-y-0 right-0 flex items-center pr-4"
-                                            )}
-                                          >
-                                            <CheckIcon
-                                              className="h-5 w-5"
-                                              aria-hidden="true"
-                                            />
-                                          </span>
-                                        ) : null}
-                                      </>
-                                    )}
-                                  </Listbox.Option>
-                                ))}
-                              </Fragment>
+        <div className="mt-6">
+          <label
+            htmlFor="activity"
+            className="block text-base font-medium text-gray-700"
+          >
+            Pasirinkite veiklą
+          </label>
+          <div className="mt-2">
+            <Listbox value={selectedActivity} onChange={setSelectedActivity}>
+              {({ open }) => (
+                <>
+                  <div className="relative">
+                    <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-2 pl-3 pr-10 text-left border border-gray-300 shadow-sm focus:outline-none focus:ring-1 focus:ring-secondary focus:border-secondary sm:text-sm">
+                      <span className="block truncate">
+                        {selectedActivity.name}
+                      </span>
+                      <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                        <ChevronUpDownIcon
+                          className="h-5 w-5 text-gray-400"
+                          aria-hidden="true"
+                        />
+                      </span>
+                    </Listbox.Button>
+                    <Transition
+                      show={open}
+                      as={Fragment}
+                      leave="transition ease-in duration-100"
+                      leaveFrom="opacity-100"
+                      leaveTo="opacity-0"
+                    >
+                      <Listbox.Options
+                        static
+                        className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+                      >
+                        {activities.map((group) => (
+                          <Fragment key={group.category}>
+                            <Listbox.Option
+                              disabled
+                              value=""
+                              className="cursor-default select-none py-2 pl-3 pr-9 text-gray-900 bg-gray-100 font-semibold"
+                            >
+                              {group.category}
+                            </Listbox.Option>
+                            {group.options.map((activity) => (
+                              <Listbox.Option
+                                key={activity.id}
+                                value={activity}
+                                className={({ active }) =>
+                                  classNames(
+                                    active
+                                      ? "bg-secondary text-white"
+                                      : "text-gray-900",
+                                    "relative cursor-default select-none py-2 pl-3 pr-9"
+                                  )
+                                }
+                              >
+                                {({ selected, active }) => (
+                                  <>
+                                    <span
+                                      className={classNames(
+                                        selected
+                                          ? "font-semibold"
+                                          : "font-normal",
+                                        "block truncate"
+                                      )}
+                                    >
+                                      {activity.name}
+                                    </span>
+                                    {selected ? (
+                                      <span
+                                        className={classNames(
+                                          active
+                                            ? "text-white"
+                                            : "text-secondary",
+                                          "absolute inset-y-0 right-0 flex items-center pr-4"
+                                        )}
+                                      >
+                                        <CheckIcon
+                                          className="h-5 w-5"
+                                          aria-hidden="true"
+                                        />
+                                      </span>
+                                    ) : null}
+                                  </>
+                                )}
+                              </Listbox.Option>
                             ))}
-                          </Listbox.Options>
-                        </Transition>
-                      </div>
-                    </>
-                  )}
-                </Listbox>
-              </div>
-
-              <div className="sm:col-span-3">
-                <label
-                  htmlFor="weight"
-                  className="block text-sm font-medium leading-6 text-gray-900"
-                >
-                  Svoris
-                </label>
-                <div className="relative mt-2 rounded-md shadow-sm">
-                  <input
-                    type="number"
-                    value={weight}
-                    name="weight"
-                    id="weight"
-                    className="block w-full rounded-md border-0 py-1.5 pl-7 pr-12 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    placeholder="70"
-                    onChange={(e) => setWeight(e.target.value)}
-                  />
-                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                    <span className="text-gray-500 sm:text-sm">kg</span>
+                          </Fragment>
+                        ))}
+                      </Listbox.Options>
+                    </Transition>
                   </div>
-                </div>
-                {weightError && (
-                  <p className="mt-2 text-sm text-pink-600">{weightError}</p>
-                )}
-              </div>
-
-              <div className="sm:col-span-3">
-                <label
-                  htmlFor="duration"
-                  className="block text-sm font-medium leading-6 text-gray-900"
-                >
-                  Trukmė (valandomis)
-                </label>
-                <div className="relative mt-2 rounded-md shadow-sm">
-                  <input
-                    type="number"
-                    step="0.1"
-                    min="0"
-                    value={duration}
-                    name="duration"
-                    id="duration"
-                    className="block w-full rounded-md border-0 py-1.5 pl-7 pr-12 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    placeholder="1.5"
-                    onChange={(e) => setDuration(e.target.value)}
-                  />
-                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                    <span className="text-gray-500 sm:text-sm">val.</span>
-                  </div>
-                </div>
-                {durationError && (
-                  <p className="mt-2 text-sm text-pink-600">{durationError}</p>
-                )}
-              </div>
-            </div>
-
-            <div className="flex items-center justify-end gap-x-6 mt-10">
-              <button
-                type="submit"
-                className="w-1/3 rounded-md bg-amber-400 px-3 py-2 text-sm font-semibold text-slate-800 shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-400"
-              >
-                Skaičiuoti
-              </button>
-            </div>
+                </>
+              )}
+            </Listbox>
           </div>
-        </form>
+        </div>
 
+        <div className="flex justify-end mt-8">
+          <button
+            type="submit"
+            className="inline-flex items-center px-6 py-2 border border-transparent text-base font-medium rounded-md text-white bg-accent hover:bg-accent-darker focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-darker"
+          >
+            Skaičiuoti
+          </button>
+        </div>
+      </form>
+
+      {caloriesBurned && (
         <div
           ref={resultsRef}
           style={{ scrollMarginTop: "80px" }}
-          className={classNames(
-            caloriesBurned && !showIcon && "bg-white h-fit",
-            "flex w-full max-w-2xl flex-col p-6 shadow-sm ring-1 ring-gray-900/5 sm:rounded-md justify-center"
-          )}
+          className="bg-white ring-1 ring-slate-200 rounded-lg p-6 mt-10"
         >
-          {caloriesBurned ? (
-            showIcon ? (
-              <div className="flex justify-center place-content-center">
-                <svg
-                  className="checkmark"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 52 52"
-                >
-                  <circle
-                    className="checkmark__circle"
-                    cx="26"
-                    cy="26"
-                    r="25"
-                    fill="none"
-                  />
-                  <path
-                    className="checkmark__check"
-                    fill="none"
-                    d="M14.1 27.2l7.1 7.2 16.7-16.8"
-                  />
-                </svg>
+          <div className="pb-6">
+            <div className="flex flex-wrap items-center justify-between">
+              <div className="w-full sm:w-auto mb-4 sm:mb-0">
+                <p className="text-sm font-medium text-gray-700">
+                  Sudegintos kalorijos
+                </p>
+                <p className="text-3xl font-semibold text-gray-900">
+                  {caloriesBurned} kcal
+                </p>
               </div>
-            ) : (
-              <>
-                <h2 className="text-base font-semibold leading-7 text-gray-900">
-                  Rezultatai
-                </h2>
-                <div className="mt-6 grid grid-cols-1 gap-6">
-                  <div className="rounded-md bg-gray-50 p-6">
-                    <h3 className="text-sm font-medium text-gray-900">
-                      Sudegintos kalorijos
-                    </h3>
-                    <p className="mt-2 text-3xl font-bold text-indigo-600">
-                      {caloriesBurned} kcal
+              <div className="w-full sm:w-auto">
+                <p className="text-sm font-medium text-gray-700">Veikla</p>
+                <p className="text-xl font-semibold text-gray-900">
+                  {selectedActivity.name}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-6">
+            <p className="mb-3">Rekomenduojamos skaičiuoklės:</p>
+            <div className="grid gap-4">
+              <a
+                href="/kuno-mases-indeksas"
+                className="block p-4 rounded-md transition bg-gray-50 hover:bg-gray-100"
+              >
+                <div className="flex items-center">
+                  <div className="flex-shrink-0">
+                    <svg
+                      className="h-7 w-7 text-secondary"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                  <div className="ml-3 flex-1">
+                    <b>Kūno masės indekso skaičiuoklė</b>
+                    <p className="text-base text-gray-600">
+                      Sužinokite savo kūno masės indeksą.
                     </p>
                   </div>
+                  <div className="ml-auto">
+                    <svg
+                      className="h-5 w-5 text-gray-500"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
                 </div>
-              </>
-            )
-          ) : (
-            <p className="text-sm text-gray-500 text-center">
-              Įveskite duomenis ir spauskite &quot;Skaičiuoti&quot;, kad
-              pamatytumėte rezultatus.
-            </p>
-          )}
+              </a>
+              <a
+                href="/kaloriju-poreikiai"
+                className="block p-4 rounded-md transition bg-gray-50 hover:bg-gray-100"
+              >
+                <div className="flex items-center">
+                  <div className="flex-shrink-0">
+                    <svg
+                      className="h-7 w-7 text-secondary"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M12 12c2.21 0 4-1.79 4-4S14.21 4 12 4 8 5.79 8 8s1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                    </svg>
+                  </div>
+                  <div className="ml-3 flex-1">
+                    <b>Dienos kalorijų poreikio skaičiuoklė</b>
+                    <p className="text-base text-gray-600">
+                      Asmeninis kalorijų poreikis pagal aktyvumo lygį.
+                    </p>
+                  </div>
+                  <div className="ml-auto">
+                    <svg
+                      className="h-5 w-5 text-gray-500"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
         </div>
-      </div>
+      )}
 
-      <div className="pt-6">
-        <p className="text-sm text-gray-500">
-          Ši skaičiuoklė yra skirta tik informaciniams tikslams. Nors stengiamės
-          pateikti tikslią informaciją, mes neprisiimame atsakomybės už jokius
-          sveikatos sutrikimus ar žalą, kuri gali atsirasti naudojantis šia
-          skaičiuokle. Prieš keisdami savo įpročius, pasitarkite su sveikatos
-          priežiūros specialistu.
-        </p>
+      <div className="mt-16">
+        <div className="bg-white ring-1 ring-slate-200 rounded-lg p-6">
+          <section>
+            <h2 className="text-xl font-semibold text-gray-900 mb-3">
+              Kaip veikia ši skaičiuoklė?
+            </h2>
+            <p className="mb-4">
+              Kalorijų sudeginimo skaičiuoklė padeda apskaičiuoti, kiek kalorijų
+              sudeginate atlikdami tam tikrą veiklą, atsižvelgiant į jūsų svorį
+              ir veiklos trukmę.
+            </p>
+            <p>
+              Apskaičiavimas atliekamas naudojant MET (Metabolic Equivalent of
+              Task) reikšmes, kurios nurodo energijos sąnaudas skirtingoms
+              veikloms.
+            </p>
+          </section>
+          <section>
+            <h2 className="text-xl font-semibold text-gray-900 mt-12 mb-3">
+              Kas yra MET?
+            </h2>
+            <p className="mb-4">
+              MET (Metabolic Equivalent of Task) yra vienetas, naudojamas
+              energijos sąnaudoms matuoti. 1 MET atitinka energijos kiekį, kurį
+              sunaudoja žmogus ramybės būsenoje.
+            </p>
+            <p>
+              Pavyzdžiui, veikla su 2 MET reiškia, kad energijos sąnaudos yra
+              dvigubai didesnės nei ramybės būsenoje.
+            </p>
+          </section>
+          <section>
+            <h2 className="text-xl font-semibold text-gray-900 mt-12 mb-3">
+              Kaip apskaičiuojamos sudegintos kalorijos?
+            </h2>
+            <p className="mb-4">
+              Sudegintų kalorijų skaičiavimas atliekamas pagal formulę:
+            </p>
+            <p className="mb-4 italic">
+              <b>
+                Sudegintos kalorijos = MET × svoris (kg) × trukmė (valandomis)
+              </b>
+            </p>
+            <p>
+              Tai leidžia įvertinti energijos sąnaudas konkrečiai veiklai pagal
+              jūsų kūno svorį ir veiklos trukmę.
+            </p>
+          </section>
+        </div>
       </div>
     </div>
   );

@@ -19,11 +19,11 @@ const faqs = [
       "Kaip apskaičiuojamas rekomenduojamas kasdienis vandens suvartojimas šioje skaičiuoklėje?",
     answer: (
       <>
-        Skaičiuoklė naudoja <b>Mifflin-St Jeor lygtį</b> Jūsų baziniam
-        metabolizmo greičiui (BMR) apskaičiuoti, atsižvelgiant į Jūsų amžių,
-        lytį, ūgį ir svorį. BMR parodo, kiek kalorijų Jūsų kūnas sudegina
+        Skaičiuoklė naudoja <b>Mifflin-St Jeor lygtį</b> jūsų baziniam
+        metabolizmo greičiui (BMR) apskaičiuoti, atsižvelgiant į jūsų amžių,
+        lytį, ūgį ir svorį. BMR parodo, kiek kalorijų jūsų kūnas sudegina
         ramybės būsenoje. Tada BMR dauginamas iš <b>aktyvumo koeficiento</b>,
-        kuris nustatomas pagal Jūsų fizinio aktyvumo lygį (valandos per dieną),
+        kuris nustatomas pagal jūsų fizinio aktyvumo lygį (valandos per dieną),
         kad gautųsi <b>bendras dienos energijos poreikis (TDEE)</b>. Galiausiai,
         vadovaujantis rekomendacija, kad reikia suvartoti{" "}
         <b>1 ml vandens kiekvienai sudegintai kalorijai</b>, TDEE vertė
@@ -41,7 +41,6 @@ const faqs = [
 
 export default function WaterIntakeCalculator() {
   const [step, setStep] = useState(1);
-  const [showIcon, setShowIcon] = useState(false);
   const [ageError, setAgeError] = useState("");
   const [weightError, setWeightError] = useState("");
   const [heightError, setHeightError] = useState("");
@@ -75,32 +74,17 @@ export default function WaterIntakeCalculator() {
 
     let isValid = true;
 
-    if (isNaN(weightInKg)) {
-      setWeightError("Prašome įvesti svorį.");
-      isValid = false;
-    }
-
-    if (weightInKg <= 0) {
+    if (isNaN(weightInKg) || weightInKg <= 0) {
       setWeightError("Prašome įvesti teisingą svorį.");
       isValid = false;
     }
 
-    if (isNaN(heightInCm)) {
-      setHeightError("Prašome įvesti ūgį.");
-      isValid = false;
-    }
-
-    if (heightInCm <= 0) {
+    if (isNaN(heightInCm) || heightInCm <= 0) {
       setHeightError("Prašome įvesti teisingą ūgį.");
       isValid = false;
     }
 
-    if (isNaN(ageInYears)) {
-      setAgeError("Prašome įvesti amžių.");
-      isValid = false;
-    }
-
-    if (ageInYears <= 0) {
+    if (isNaN(ageInYears) || ageInYears <= 0) {
       setAgeError("Prašome įvesti teisingą amžių.");
       isValid = false;
     }
@@ -119,8 +103,6 @@ export default function WaterIntakeCalculator() {
       alert("Prašome įvesti teisingą fizinio aktyvumo laiką.");
       return;
     }
-
-    setShowIcon(true);
 
     const weightInKg = parseFloat(weight);
     const heightInCm = parseFloat(height);
@@ -164,381 +146,374 @@ export default function WaterIntakeCalculator() {
     setClimateAdjustment(calculatedClimateAdjustment);
     setTotalIntake(calculatedTotalIntake.toFixed(0));
 
-    setTimeout(() => {
-      setShowIcon(false);
-    }, 1600);
+    resultsRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  useEffect(() => {
-    if (showIcon && totalIntake) {
-      resultsRef.current?.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [showIcon, totalIntake]);
-
   return (
-    <div className="space-y-6 divide-y divide-gray-900/10">
-      <div className="grid grid-cols-1 justify-items-center gap-6 xl:grid-cols-2">
-        <form
-          onSubmit={step === 1 ? handleNext : handleCalculate}
-          className="w-full max-w-2xl h-fit bg-white shadow-sm ring-1 ring-gray-900/5 divide-y divide-gray-200 sm:rounded-md"
-        >
-          <div className="p-6">
-            <h1 className="text-lg font-semibold leading-7 text-gray-900">
-              Vandens suvartojimo skaičiuoklė
-            </h1>
-            <h2 className="mt-2 text-sm leading-6 text-gray-600">
-              Sužinokite, kiek vandens turėtumėte išgerti kasdien pagal savo
-              amžių, lytį, ūgį, svorį, fizinį aktyvumą ir klimatą.
-            </h2>
-          </div>
-          <div className="p-6">
-            {step === 1 && (
-              <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                {/* Age */}
-                <div className="sm:col-span-3">
-                  <label
-                    htmlFor="age"
-                    className="block text-sm font-medium leading-6 text-gray-900"
-                  >
-                    Amžius
-                  </label>
-                  <div className="relative mt-2 rounded-md shadow-sm">
-                    <input
-                      type="number"
-                      value={age}
-                      id="age"
-                      className="block w-full rounded-md border-0 py-1.5 pl-7 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                      placeholder="25"
-                      onChange={(e) => setAge(e.target.value)}
-                    />
-                  </div>
-                  {ageError && (
-                    <p className="mt-2 text-sm text-pink-600">{ageError}</p>
-                  )}
-                </div>
-
-                <div className="sm:col-span-3">
-                  <label className="block text-sm font-medium leading-6 text-gray-900">
-                    Lytis
-                  </label>
-                  <fieldset className="mt-2 sm:mt-3">
-                    <legend className="sr-only">Lyties pasirinkimas</legend>
-                    <div className="space-y-4 sm:flex sm:items-center sm:space-x-10 sm:space-y-0">
-                      <div className="flex items-center">
-                        <input
-                          id="female"
-                          name="gender"
-                          type="radio"
-                          value="female"
-                          checked={gender === "female"}
-                          onChange={(e) => setGender(e.target.value)}
-                          className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                        />
-                        <label
-                          htmlFor="female"
-                          className="ml-3 block text-sm font-medium text-gray-700"
-                        >
-                          Moteris
-                        </label>
-                      </div>
-                      <div className="flex items-center">
-                        <input
-                          id="male"
-                          name="gender"
-                          type="radio"
-                          value="male"
-                          checked={gender === "male"}
-                          onChange={(e) => setGender(e.target.value)}
-                          className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                        />
-                        <label
-                          htmlFor="male"
-                          className="ml-3 block text-sm font-medium text-gray-700"
-                        >
-                          Vyras
-                        </label>
-                      </div>
-                    </div>
-                  </fieldset>
-                </div>
-
-                <div className="sm:col-span-3">
-                  <label
-                    htmlFor="height"
-                    className="block text-sm font-medium leading-6 text-gray-900"
-                  >
-                    Ūgis
-                  </label>
-                  <div className="relative mt-2 rounded-md shadow-sm">
-                    <input
-                      type="number"
-                      value={height}
-                      name="height"
-                      id="height"
-                      className="block w-full rounded-md border-0 py-1.5 pl-7 pr-12 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                      placeholder="170"
-                      onChange={(e) => setHeight(e.target.value)}
-                    />
-                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                      <span className="text-gray-500 sm:text-sm">cm</span>
-                    </div>
-                  </div>
-                  {heightError && (
-                    <p className="mt-2 text-sm text-pink-600">{heightError}</p>
-                  )}
-                </div>
-
-                <div className="sm:col-span-3">
-                  <label
-                    htmlFor="weight"
-                    className="block text-sm font-medium leading-6 text-gray-900"
-                  >
-                    Svoris
-                  </label>
-                  <div className="relative mt-2 rounded-md shadow-sm">
-                    <input
-                      type="number"
-                      value={weight}
-                      name="weight"
-                      id="weight"
-                      className="block w-full rounded-md border-0 py-1.5 pl-7 pr-12 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                      placeholder="70"
-                      onChange={(e) => setWeight(e.target.value)}
-                    />
-                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                      <span className="text-gray-500 sm:text-sm">kg</span>
-                    </div>
-                  </div>
-                  {weightError && (
-                    <p className="mt-2 text-sm text-pink-600">{weightError}</p>
-                  )}
-                </div>
-              </div>
-            )}
-
-            {step === 2 && (
-              <div className="space-y-6">
-                <div className="sm:col-span-3">
-                  <label
-                    htmlFor="exerciseHours"
-                    className="block text-sm font-medium leading-6 text-gray-900"
-                  >
-                    Fizinis aktyvumas (valandos per dieną)
-                  </label>
-                  <div className="relative mt-2 rounded-md shadow-sm">
-                    <input
-                      type="number"
-                      step="0.1"
-                      min="0"
-                      value={exerciseHours}
-                      name="exerciseHours"
-                      id="exerciseHours"
-                      className="block w-full rounded-md border-0 py-1.5 pl-7 pr-16 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                      placeholder="1"
-                      onChange={(e) => setExerciseHours(e.target.value)}
-                    />
-                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                      <span className="text-gray-500 sm:text-sm">val.</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div>
-                  <RadioGroup value={climate} onChange={setClimate}>
-                    <RadioGroup.Label className="block text-sm font-medium leading-6 text-gray-900">
-                      Klimatas
-                    </RadioGroup.Label>
-                    <div className="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
-                      {climates.map((clim) => (
-                        <RadioGroup.Option
-                          key={clim.id}
-                          value={clim}
-                          className={({ checked, active }) =>
-                            classNames(
-                              checked
-                                ? "border-transparent"
-                                : "border-gray-300",
-                              active ? "ring-2 ring-indigo-500" : "",
-                              "relative flex cursor-pointer rounded-md border bg-white p-4 shadow-sm focus:outline-none"
-                            )
-                          }
-                        >
-                          {({ checked, active }) => (
-                            <>
-                              <span className="flex flex-1">
-                                <span className="flex flex-col">
-                                  <RadioGroup.Label
-                                    as="span"
-                                    className="block text-sm font-medium text-gray-900"
-                                  >
-                                    {clim.name}
-                                  </RadioGroup.Label>
-                                </span>
-                              </span>
-                              {checked ? (
-                                <CheckCircleIcon
-                                  className="h-5 w-5 text-indigo-600"
-                                  aria-hidden="true"
-                                />
-                              ) : null}
-                              <span
-                                className={classNames(
-                                  active ? "border" : "border-2",
-                                  checked
-                                    ? "border-indigo-500"
-                                    : "border-transparent",
-                                  "pointer-events-none absolute -inset-px rounded-md"
-                                )}
-                                aria-hidden="true"
-                              />
-                            </>
-                          )}
-                        </RadioGroup.Option>
-                      ))}
-                    </div>
-                  </RadioGroup>
-                </div>
-              </div>
-            )}
-            <div
-              className={classNames(
-                step === 1 ? "justify-end" : "justify-between",
-                "flex items-center gap-x-6 mt-10"
-              )}
-            >
-              {step === 2 && (
-                <button
-                  type="button"
-                  onClick={() => setStep(1)}
-                  className="inline-flex items-center gap-x-2 text-sm font-semibold leading-6 text-slate-800"
-                >
-                  <ArrowLeftIcon
-                    className="-ml-0.5 h-5 w-5"
-                    aria-hidden="true"
-                    color="text-slate-800"
-                  />
-                  Atgal
-                </button>
-              )}
-              <button
-                type="submit"
-                className="w-1/3 rounded-md bg-amber-400 px-3 py-2 text-sm font-semibold text-slate-800 shadow-sm hover:bg-amber-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-400"
+    <div className="container mx-auto p-6">
+      <h1 className="text-3xl font-light text-gray-800 mb-8">
+        Vandens suvartojimo skaičiuoklė
+      </h1>
+      <form
+        onSubmit={step === 1 ? handleNext : handleCalculate}
+        className="grid gap-8 bg-white rounded-lg ring-1 ring-slate-200 p-6"
+      >
+        {step === 1 && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Age */}
+            <div>
+              <label
+                htmlFor="age"
+                className="block text-base font-medium text-gray-700"
               >
-                {step === 1 ? "Toliau" : "Skaičiuoti"}
-              </button>
+                Amžius
+              </label>
+              <div className="mt-1 relative rounded-md shadow-sm">
+                <input
+                  type="number"
+                  name="age"
+                  id="age"
+                  value={age}
+                  onChange={(e) => setAge(e.target.value)}
+                  className="block w-full rounded-md border-gray-300 focus:ring-secondary focus:border-secondary sm:text-sm"
+                  placeholder="25"
+                />
+              </div>
+              {ageError && (
+                <p className="mt-2 text-sm text-red-600">{ageError}</p>
+              )}
+            </div>
+            {/* Gender */}
+            <div>
+              <label className="block text-base font-medium text-gray-700">
+                Lytis
+              </label>
+              <fieldset className="mt-2">
+                <legend className="sr-only">Lyties pasirinkimas</legend>
+                <div className="flex items-center space-x-6">
+                  <div className="flex items-center">
+                    <input
+                      id="female"
+                      name="gender"
+                      type="radio"
+                      value="female"
+                      checked={gender === "female"}
+                      onChange={(e) => setGender(e.target.value)}
+                      className="h-4 w-4 text-secondary focus:ring-secondary border-gray-300"
+                    />
+                    <label
+                      htmlFor="female"
+                      className="ml-2 block text-base text-gray-700"
+                    >
+                      Moteris
+                    </label>
+                  </div>
+                  <div className="flex items-center">
+                    <input
+                      id="male"
+                      name="gender"
+                      type="radio"
+                      value="male"
+                      checked={gender === "male"}
+                      onChange={(e) => setGender(e.target.value)}
+                      className="h-4 w-4 text-secondary focus:ring-secondary border-gray-300"
+                    />
+                    <label
+                      htmlFor="male"
+                      className="ml-2 block text-base text-gray-700"
+                    >
+                      Vyras
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            {/* Height */}
+            <div>
+              <label
+                htmlFor="height"
+                className="block text-base font-medium text-gray-700"
+              >
+                Ūgis
+              </label>
+              <div className="mt-1 relative rounded-md shadow-sm">
+                <input
+                  type="number"
+                  name="height"
+                  id="height"
+                  value={height}
+                  onChange={(e) => setHeight(e.target.value)}
+                  className="block w-full rounded-md border-gray-300 focus:ring-secondary focus:border-secondary sm:text-sm"
+                  placeholder="170"
+                />
+                <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                  <span className="text-gray-500 sm:text-sm">cm</span>
+                </div>
+              </div>
+              {heightError && (
+                <p className="mt-2 text-sm text-red-600">{heightError}</p>
+              )}
+            </div>
+            {/* Weight */}
+            <div>
+              <label
+                htmlFor="weight"
+                className="block text-base font-medium text-gray-700"
+              >
+                Svoris
+              </label>
+              <div className="mt-1 relative rounded-md shadow-sm">
+                <input
+                  type="number"
+                  name="weight"
+                  id="weight"
+                  value={weight}
+                  onChange={(e) => setWeight(e.target.value)}
+                  className="block w-full rounded-md border-gray-300 focus:ring-secondary focus:border-secondary sm:text-sm"
+                  placeholder="70"
+                />
+                <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                  <span className="text-gray-500 sm:text-sm">kg</span>
+                </div>
+              </div>
+              {weightError && (
+                <p className="mt-2 text-sm text-red-600">{weightError}</p>
+              )}
             </div>
           </div>
-        </form>
+        )}
 
+        {step === 2 && (
+          <div className="space-y-6">
+            {/* Exercise Hours */}
+            <div>
+              <label
+                htmlFor="exerciseHours"
+                className="block text-base font-medium text-gray-700"
+              >
+                Fizinis aktyvumas (valandos per dieną)
+              </label>
+              <div className="mt-1 relative rounded-md shadow-sm">
+                <input
+                  type="number"
+                  step="0.1"
+                  min="0"
+                  name="exerciseHours"
+                  id="exerciseHours"
+                  value={exerciseHours}
+                  onChange={(e) => setExerciseHours(e.target.value)}
+                  className="block w-full rounded-md border-gray-300 focus:ring-secondary focus:border-secondary sm:text-sm"
+                  placeholder="1"
+                />
+                <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                  <span className="text-gray-500 sm:text-sm">val.</span>
+                </div>
+              </div>
+            </div>
+            {/* Climate */}
+            <div>
+              <label className="block text-base font-medium text-gray-700">
+                Klimatas
+              </label>
+              <RadioGroup
+                value={climate}
+                onChange={setClimate}
+                className="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4"
+              >
+                {climates.map((clim) => (
+                  <RadioGroup.Option
+                    key={clim.id}
+                    value={clim}
+                    className={({ checked }) =>
+                      classNames(
+                        checked
+                          ? "border-transparent bg-secondary text-white"
+                          : "border-gray-300 bg-white text-gray-900",
+                        "relative flex cursor-pointer rounded-md border p-4 shadow-sm focus:outline-none"
+                      )
+                    }
+                  >
+                    {({ checked }) => (
+                      <>
+                        <div className="flex flex-1">
+                          <div className="flex flex-col">
+                            <RadioGroup.Label
+                              as="span"
+                              className="block text-sm font-medium"
+                            >
+                              {clim.name}
+                            </RadioGroup.Label>
+                          </div>
+                        </div>
+                        {checked && (
+                          <CheckCircleIcon
+                            className="h-5 w-5 text-white"
+                            aria-hidden="true"
+                          />
+                        )}
+                      </>
+                    )}
+                  </RadioGroup.Option>
+                ))}
+              </RadioGroup>
+            </div>
+          </div>
+        )}
+
+        <div className="flex justify-between items-center mt-8">
+          {step === 2 && (
+            <button
+              type="button"
+              onClick={() => setStep(1)}
+              className="inline-flex items-center gap-x-2 text-sm font-semibold text-gray-700"
+            >
+              <ArrowLeftIcon className="h-5 w-5" aria-hidden="true" />
+              Atgal
+            </button>
+          )}
+          <button
+            type="submit"
+            className="inline-flex items-center px-6 py-2 border border-transparent text-base font-medium rounded-md text-white bg-accent hover:bg-accent-darker focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-darker"
+          >
+            {step === 1 ? "Toliau" : "Skaičiuoti"}
+          </button>
+        </div>
+      </form>
+
+      {totalIntake && (
         <div
           ref={resultsRef}
           style={{ scrollMarginTop: "80px" }}
-          className={classNames(
-            totalIntake && !showIcon && "bg-white h-fit",
-            "flex w-full max-w-2xl flex-col p-6 shadow-sm ring-1 ring-gray-900/5 sm:rounded-md justify-center"
-          )}
+          className="bg-white ring-1 ring-slate-200 rounded-lg p-6 mt-10"
         >
-          {totalIntake ? (
-            showIcon ? (
-              <div className="flex justify-center place-content-center">
-                <svg
-                  className="checkmark"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 52 52"
-                >
-                  <circle
-                    className="checkmark__circle"
-                    cx="26"
-                    cy="26"
-                    r="25"
-                    fill="none"
-                  />
-                  <path
-                    className="checkmark__check"
-                    fill="none"
-                    d="M14.1 27.2l7.1 7.2 16.7-16.8"
-                  />
-                </svg>
+          <div className="pb-6">
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">
+              Rezultatai
+            </h2>
+            <div className="grid grid-cols-1 gap-6">
+              <div className="rounded-md bg-gray-50 p-6">
+                <h3 className="text-lg font-medium text-gray-900">
+                  Rekomenduojamas vandens suvartojimas
+                </h3>
+                <p className="mt-2 text-3xl font-bold text-gray-900">
+                  {(totalIntake / 1000).toFixed(2)} litrų per dieną
+                </p>
               </div>
-            ) : (
-              <div className="p-6">
-                <h2 className="text-base font-semibold leading-7 text-gray-900">
-                  Rezultatai
-                </h2>
-                <div className="mt-6 grid grid-cols-1 gap-6">
-                  <div className="rounded-md bg-gray-50 p-6">
-                    <h3 className="text-sm font-medium text-gray-900">
-                      Rekomenduojamas vandens suvartojimas
-                    </h3>
-                    <p className="mt-2 text-3xl font-bold text-indigo-600">
-                      {(totalIntake / 1000).toFixed(2)} litrų per dieną
+              <div className="rounded-md bg-gray-50 p-6">
+                <h3 className="text-lg font-medium text-gray-900">
+                  Papildoma informacija
+                </h3>
+                <div className="mt-4 space-y-2">
+                  <p className="text-sm text-gray-700">
+                    Bazinis metabolizmo greitis (BMR): <b>{bmr} kcal</b>
+                  </p>
+                  <p className="text-sm text-gray-700">
+                    Bendras dienos energijos poreikis (TDEE): <b>{tdee} kcal</b>
+                  </p>
+                  {climateAdjustment > 0 && (
+                    <p className="text-sm text-gray-700">
+                      Papildomai už klimatą:{" "}
+                      <b>{(climateAdjustment / 1000).toFixed(2)} l</b>
                     </p>
-                  </div>
-                  <div className="rounded-md bg-gray-50 p-6">
-                    <h3 className="text-sm font-medium text-gray-900">
-                      Papildoma informacija
-                    </h3>
-                    <div className="mt-4 space-y-2">
-                      <p className="text-sm text-gray-700">
-                        Bazinis metabolizmo greitis (BMR): <b>{bmr} kcal</b>
-                      </p>
-                      <p className="text-sm text-gray-700">
-                        Bendras dienos energijos poreikis (TDEE):{" "}
-                        <b>{tdee} kcal</b>
-                      </p>
-                      {climateAdjustment > 0 && (
-                        <p className="text-sm text-gray-700">
-                          Papildomai už klimatą:{" "}
-                          <b>{(climateAdjustment / 1000).toFixed(2)} l</b>
-                        </p>
-                      )}
-                    </div>
-                  </div>
+                  )}
                 </div>
               </div>
-            )
-          ) : (
-            <p className="text-sm text-gray-500 text-center">
-              {step === 1
-                ? 'Įveskite duomenis ir spauskite "Toliau", kad tęstumėte.'
-                : 'Įveskite duomenis ir spauskite "Skaičiuoti", kad pamatytumėte rezultatus.'}
-            </p>
-          )}
-        </div>
-      </div>
+            </div>
+          </div>
 
-      <div className="pt-6">
-        <div className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-md">
-          <div className="p-6">
-            <h2 className="text-base font-semibold leading-7 text-gray-900">
-              D.U.K
-            </h2>
-            <div className="mt-8 space-y-10">
-              <dl className="space-y-16 md:grid md:grid-cols-2 md:gap-x-20 md:gap-y-16 md:space-y-0 2xl:gap-x-20">
-                {faqs.map((faq) => (
-                  <div key={faq.question}>
-                    <dt className="text-base font-semibold leading-7 text-gray-900">
-                      {faq.question}
-                    </dt>
-                    <dd className="mt-2 text-base leading-7 text-gray-600">
-                      {faq.answer}
-                    </dd>
+          <div className="mt-6">
+            <p className="mb-3">Rekomenduojamos skaičiuoklės:</p>
+            <div className="grid gap-4">
+              <a
+                href="/kuno-mases-indeksas"
+                className="block p-4 rounded-md transition bg-gray-50 hover:bg-gray-100"
+              >
+                <div className="flex items-center">
+                  <div className="flex-shrink-0">
+                    <svg
+                      className="h-7 w-7 text-secondary"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
                   </div>
-                ))}
-              </dl>
+                  <div className="ml-3 flex-1">
+                    <b>Kūno masės indekso skaičiuoklė</b>
+                    <p className="text-base text-gray-600">
+                      Sužinokite savo kūno masės indeksą.
+                    </p>
+                  </div>
+                  <div className="ml-auto">
+                    <svg
+                      className="h-5 w-5 text-gray-500"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </div>
+              </a>
+              <a
+                href="/kaloriju-poreikiai"
+                className="block p-4 rounded-md transition bg-gray-50 hover:bg-gray-100"
+              >
+                <div className="flex items-center">
+                  <div className="flex-shrink-0">
+                    <svg
+                      className="h-7 w-7 text-secondary"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M12 12c2.21 0 4-1.79 4-4S14.21 4 12 4 8 5.79 8 8s1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                    </svg>
+                  </div>
+                  <div className="ml-3 flex-1">
+                    <b>Kalorijų suvartojimo skaičiuoklė</b>
+                    <p className="text-base text-gray-600">
+                      Sužinokite, kiek kalorijų turėtumėte suvartoti per dieną.
+                    </p>
+                  </div>
+                  <div className="ml-auto">
+                    <svg
+                      className="h-5 w-5 text-gray-500"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </div>
+              </a>
             </div>
           </div>
         </div>
-      </div>
+      )}
 
-      <div className="pt-6">
-        <p className="text-sm text-gray-500">
-          Ši skaičiuoklė yra skirta tik informaciniams tikslams. Nors stengiamės
-          pateikti tikslią informaciją, mes neprisiimame atsakomybės už jokius
-          sveikatos sutrikimus ar žalą, kuri gali atsirasti naudojantis šia
-          skaičiuokle. Prieš keisdami savo įpročius, pasitarkite su sveikatos
-          priežiūros specialistu.
-        </p>
+      {/* FAQ Section */}
+      <div className="mt-16">
+        <div className="bg-white ring-1 ring-slate-200 rounded-lg p-6">
+          <h2 className="text-xl font-semibold text-gray-900 mb-4">D. U. K.</h2>
+          <div className="space-y-6">
+            {faqs.map((faq, index) => (
+              <div key={index}>
+                <h3 className="text-lg font-medium text-gray-800 mb-2">
+                  {faq.question}
+                </h3>
+                <p className="text-base text-gray-700">{faq.answer}</p>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -1,9 +1,5 @@
 import { useState, useRef, useEffect } from "react";
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
-
 const categoryList = [
   {
     id: 1,
@@ -253,9 +249,9 @@ export default function BodyMassIndexCalc() {
       </h1>
       <form
         onSubmit={handleCalculateBMI}
-        className="bg-white rounded-lg ring-1 ring-slate-200 p-6"
+        className="grid gap-8 bg-white rounded-lg ring-1 ring-slate-200 p-6"
       >
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
             <label
               htmlFor="height"
@@ -270,7 +266,7 @@ export default function BodyMassIndexCalc() {
                 id="height"
                 value={height}
                 onChange={(e) => setHeight(e.target.value)}
-                className="block w-full rounded-md border-gray-300 focus:ring-amber-500 focus:border-amber-500 sm:text-sm"
+                className="block w-full rounded-md border-gray-300 focus:ring-secondary focus:border-secondary sm:text-sm"
                 placeholder="170"
               />
               <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
@@ -295,7 +291,7 @@ export default function BodyMassIndexCalc() {
                 id="weight"
                 value={weight}
                 onChange={(e) => setWeight(e.target.value)}
-                className="block w-full rounded-md border-gray-300 focus:ring-amber-500 focus:border-amber-500 sm:text-sm"
+                className="block w-full rounded-md border-gray-300 focus:ring-secondary focus:border-secondary sm:text-sm"
                 placeholder="70"
               />
               <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
@@ -308,78 +304,75 @@ export default function BodyMassIndexCalc() {
           </div>
         </div>
 
-        <div className="mt-6">
-          <div className="flex items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="flex items-center h-fit">
             <input
               id="showIdealWeight"
               name="showIdealWeight"
               type="checkbox"
               checked={showIdealWeight}
               onChange={(e) => setShowIdealWeight(e.target.checked)}
-              className="h-4 w-4 text-amber-600 focus:ring-amber-500 border-gray-300 rounded"
+              className="h-4 w-4 text-secondary focus:ring-secondary border-gray-300 rounded"
             />
-            <label
-              htmlFor="showIdealWeight"
-              className="ml-2 block text-base text-gray-700"
-            >
+            <label htmlFor="showIdealWeight" className="ml-2 block text-base">
               Noriu sužinoti idealų svorį
             </label>
           </div>
-        </div>
 
-        {showIdealWeight && (
-          <div className="mt-6">
-            <label className="block text-base font-medium text-gray-700">
-              Lytis
-            </label>
-            <fieldset className="mt-2">
-              <legend className="sr-only">Lyties pasirinkimas</legend>
-              <div className="flex items-center space-x-6">
-                <div className="flex items-center">
-                  <input
-                    id="female"
-                    name="gender"
-                    type="radio"
-                    value="female"
-                    checked={gender === "female"}
-                    onChange={(e) => setGender(e.target.value)}
-                    className="h-4 w-4 text-amber-600 focus:ring-amber-500 border-gray-300"
-                  />
-                  <label
-                    htmlFor="female"
-                    className="ml-2 block text-base text-gray-700"
-                  >
-                    Moteris
-                  </label>
+          {showIdealWeight && (
+            <div>
+              <label className="block text-base font-medium text-gray-700">
+                Lytis
+              </label>
+              <fieldset className="mt-2">
+                <legend className="sr-only">Lyties pasirinkimas</legend>
+                <div className="flex items-center space-x-6">
+                  <div className="flex items-center">
+                    <input
+                      id="female"
+                      name="gender"
+                      type="radio"
+                      value="female"
+                      checked={gender === "female"}
+                      onChange={(e) => setGender(e.target.value)}
+                      className="h-4 w-4 text-secondary focus:ring-secondary border-gray-300"
+                    />
+                    <label
+                      htmlFor="female"
+                      className="ml-2 block text-base text-gray-700"
+                    >
+                      Moteris
+                    </label>
+                  </div>
+                  <div className="flex items-center">
+                    <input
+                      id="male"
+                      name="gender"
+                      type="radio"
+                      value="male"
+                      checked={gender === "male"}
+                      onChange={(e) => setGender(e.target.value)}
+                      className="h-4 w-4 text-secondary focus:ring-secondary border-gray-300"
+                    />
+                    <label
+                      htmlFor="male"
+                      className="ml-2 block text-base text-gray-700"
+                    >
+                      Vyras
+                    </label>
+                  </div>
                 </div>
-                <div className="flex items-center">
-                  <input
-                    id="male"
-                    name="gender"
-                    type="radio"
-                    value="male"
-                    checked={gender === "male"}
-                    onChange={(e) => setGender(e.target.value)}
-                    className="h-4 w-4 text-amber-600 focus:ring-amber-500 border-gray-300"
-                  />
-                  <label
-                    htmlFor="male"
-                    className="ml-2 block text-base text-gray-700"
-                  >
-                    Vyras
-                  </label>
-                </div>
-              </div>
-              {genderError && (
-                <p className="mt-2 text-sm text-red-600">{genderError}</p>
-              )}
-            </fieldset>
-          </div>
-        )}
-        <div className="mt-8 flex justify-end">
+                {genderError && (
+                  <p className="mt-2 text-sm text-red-600">{genderError}</p>
+                )}
+              </fieldset>
+            </div>
+          )}
+        </div>
+        <div className="flex justify-end">
           <button
             type="submit"
-            className="inline-flex items-center px-6 py-2 border border-transparent text-base font-medium rounded-md text-white bg-accent hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500"
+            className="inline-flex items-center px-6 py-2 border border-transparent text-base font-medium rounded-md text-white bg-accent hover:bg-accent-darker focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-darker"
           >
             Skaičiuoti
           </button>
@@ -392,7 +385,7 @@ export default function BodyMassIndexCalc() {
           style={{ scrollMarginTop: "80px" }}
           className="bg-white ring-1 ring-slate-200 rounded-lg p-6 mt-10"
         >
-          <div className="pb-6 border-b border-gray-200">
+          <div className="pb-6">
             <div className="flex flex-wrap items-center justify-between">
               <div className="w-full sm:w-auto mb-4 sm:mb-0">
                 <p className="text-sm font-medium text-gray-700">Jūsų KMI</p>
@@ -417,76 +410,154 @@ export default function BodyMassIndexCalc() {
                 </div>
               )}
             </div>
+          </div>
+          <div
+            style={{
+              position: "relative",
+              width: "100%",
+              height: "14px",
+              marginTop: "36px",
+              marginBottom: "80px",
+              background:
+                "linear-gradient(to right, #87CEEB, #00FA9A, #FFD700, #FF6347)",
+              borderRadius: "10px",
+              boxShadow: "inset 0 0 10px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            <div
+              style={{
+                position: "absolute",
+                top: "-10px",
+                left: `${calculatePinPosition(bmi)}%`,
+                transform: "translateX(-50%)",
+                width: "18px",
+                height: "18px",
+                borderRadius: "50%",
+                backgroundColor: "#333",
+                border: "3px solid white",
+                transition: "left 0.3s ease-in-out",
+              }}
+            />
 
-            <div className="relative w-full h-4 bg-gray-200 rounded-full mt-8">
-              <div
-                className="absolute h-4 bg-amber-500 rounded-full"
-                style={{ width: `${calculatePinPosition(bmi)}%` }}
-              ></div>
-              <div className="absolute top-6 left-0 text-xs text-gray-600">
-                Mažas svoris
-              </div>
-              <div className="absolute top-6 left-1/3 text-xs text-gray-600 transform -translate-x-1/2">
-                Normalus svoris
-              </div>
-              <div className="absolute top-6 left-2/3 text-xs text-gray-600 transform -translate-x-1/2">
-                Antsvoris
-              </div>
-              <div className="absolute top-6 right-0 text-xs text-gray-600">
-                Nutukimas
-              </div>
+            <div
+              style={{
+                position: "absolute",
+                top: "22px",
+                left: "0%",
+                fontSize: "14px",
+                color: "#666",
+              }}
+            >
+              Nepakankamas
+            </div>
+            <div
+              style={{
+                position: "absolute",
+                top: "22px",
+                left: "33%",
+                transform: "translateX(-50%)",
+                fontSize: "14px",
+                color: "#666",
+              }}
+            >
+              Normalus
+            </div>
+            <div
+              style={{
+                position: "absolute",
+                top: "22px",
+                left: "67%",
+                transform: "translateX(-50%)",
+                fontSize: "14px",
+                color: "#666",
+              }}
+            >
+              Antsvoris
+            </div>
+            <div
+              style={{
+                position: "absolute",
+                top: "22px",
+                right: "0",
+                fontSize: "14px",
+                color: "#666",
+              }}
+            >
+              Nutukimas
             </div>
           </div>
 
           <div className="mt-6">
-            <p className="text-sm text-gray-700 mb-3">
-              Rekomenduojamos skaičiuoklės:
-            </p>
-            <div className="grid gap-4 sm:grid-cols-2">
+            <p className="mb-3">Rekomenduojamos skaičiuoklės:</p>
+            <div className="grid gap-4">
               <a
                 href="/sudeginamos-kalorijos"
-                className="flex items-center p-4 bg-gray-50 hover:bg-gray-100 rounded-lg shadow-sm transition"
+                className="block p-4 rounded-md transition bg-gray-50 hover:bg-gray-100"
               >
-                <div className="flex-shrink-0">
-                  <svg
-                    className="h-8 w-8 text-amber-500"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                </div>
-                <div className="ml-4">
-                  <p className="text-base font-medium text-gray-800">
-                    Kalorijų sudeginimo skaičiuoklė
-                  </p>
-                  <p className="text-sm text-gray-600">
-                    Sužinokite, kiek kalorijų sudeginate įvairių veiklų metu.
-                  </p>
+                <div className="flex items-center">
+                  <div className="flex-shrink-0">
+                    <svg
+                      className="h-7 w-7 text-secondary"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                  <div className="ml-3 flex-1">
+                    <b>Kalorijų sudeginimo skaičiuoklė</b>
+                    <p className="text-base text-light">
+                      Sužinokite, kiek kalorijų sudeginate įvairių veiklų metu.
+                    </p>
+                  </div>
+                  <div className="ml-auto">
+                    <svg
+                      className="h-5 w-5 text-gray-500"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
                 </div>
               </a>
               <a
                 href="/kaloriju-poreikiai"
-                className="flex items-center p-4 bg-gray-50 hover:bg-gray-100 rounded-lg shadow-sm transition"
+                className="block p-4 rounded-md transition bg-gray-50 hover:bg-gray-100"
               >
-                <div className="flex-shrink-0">
-                  <svg
-                    className="h-8 w-8 text-amber-500"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 12c2.21 0 4-1.79 4-4S14.21 4 12 4 8 5.79 8 8s1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-                  </svg>
-                </div>
-                <div className="ml-4">
-                  <p className="text-base font-medium text-gray-800">
-                    Dienos kalorijų poreikio skaičiuoklė
-                  </p>
-                  <p className="text-sm text-gray-600">
-                    Asmeninis kalorijų poreikis pagal aktyvumo lygį.
-                  </p>
+                <div className="flex items-center">
+                  <div className="flex-shrink-0">
+                    <svg
+                      className="h-7 w-7 text-secondary"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M12 12c2.21 0 4-1.79 4-4S14.21 4 12 4 8 5.79 8 8s1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                    </svg>
+                  </div>
+                  <div className="ml-3 flex-1">
+                    <b>Dienos kalorijų poreikio skaičiuoklė</b>
+                    <p className="text-base text-light">
+                      Asmeninis kalorijų poreikis pagal aktyvumo lygį.
+                    </p>
+                  </div>
+                  <div className="ml-auto">
+                    <svg
+                      className="h-5 w-5 text-gray-500"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
                 </div>
               </a>
             </div>
@@ -569,7 +640,7 @@ export default function BodyMassIndexCalc() {
               <b>KMI = svoris (kg) / [ūgis (m)]²</b>
             </p>
             <p className="mb-2 font-medium">Pavyzdys:</p>
-            <ul className="list-disc list-inside mb-2">
+            <ul className="list-disc list-inside mb-2 pl-5">
               <li>
                 <b>Svoris:</b> 70 kg
               </li>
@@ -683,7 +754,7 @@ export default function BodyMassIndexCalc() {
             <p className="mb-2">
               Nors KMI yra naudingas rodiklis, jis turi tam tikrų apribojimų:
             </p>
-            <ul className="list-disc list-inside space-y-4">
+            <ul className="list-disc list-inside space-y-4 pl-5">
               <li>
                 <b>Neatsižvelgia į kūno sudėtį:</b> KMI neskiria raumenų masės
                 nuo riebalų masės. Todėl sportininkai ar raumeningi asmenys gali
@@ -728,7 +799,7 @@ export default function BodyMassIndexCalc() {
             <b className="mb-2">
               Per mažas KMI (<span className="italic">&lt; 18.5</span>):
             </b>
-            <ul className="list-disc list-inside mb-4 space-y-2">
+            <ul className="list-disc list-inside mb-4 space-y-2 pl-5">
               <li>Mitybos nepakankamumas</li>
               <li>Anemija (mažakraujystė)</li>
               <li>Kaulų retėjimas (osteoporozė)</li>
@@ -738,7 +809,7 @@ export default function BodyMassIndexCalc() {
             <b className="mb-2">
               Per didelis KMI (<span className="italic">&gt; 25,0</span>):
             </b>
-            <ul className="list-disc list-inside mt-2 space-y-2">
+            <ul className="list-disc list-inside mt-2 space-y-2 pl-5">
               <li>Širdies ir kraujagyslių ligos</li>
               <li>Aukštas kraujospūdis</li>
               <li>2 tipo cukrinis diabetas</li>
@@ -757,10 +828,10 @@ export default function BodyMassIndexCalc() {
               sveikatai ir gerovei. Žemiau pateikiami patarimai padės Jums
               pasiekti ir išlaikyti optimalų KMI.
             </p>
-            <ol className="list-decimal list-inside space-y-6">
+            <ol className="list-decimal list-inside space-y-6 pl-5">
               <li>
                 <b>Sveika ir subalansuota mityba:</b>
-                <ul className="list-disc list-inside mb-2 space-y-2">
+                <ul className="list-disc list-inside pl-5 mb-2 space-y-2">
                   <li>
                     Vartokite įvairius maisto produktus: daržoves, vaisius,
                     pilno grūdo produktus, liesus baltymus.
@@ -772,7 +843,7 @@ export default function BodyMassIndexCalc() {
               </li>
               <li>
                 <b>Reguliarus fizinis aktyvumas:</b>
-                <ul className="list-disc list-inside mb-2 space-y-1">
+                <ul className="list-disc list-inside pl-5 mb-2 space-y-2">
                   <li>
                     Bent 150 minučių vidutinio intensyvumo fizinės veiklos per
                     savaitę.
@@ -784,20 +855,21 @@ export default function BodyMassIndexCalc() {
               </li>
               <li>
                 <b>Žalingų įpročių vengimas:</b>
-                <ul className="list-disc list-inside mb-2 space-y-1">
+                <ul className="list-disc list-inside pl-5 mb-2 space-y-2">
                   <li>Nerūkykite.</li>
                   <li>Ribokite alkoholio vartojimą.</li>
                 </ul>
               </li>
               <li>
                 <b>Reguliarus poilsis ir streso valdymas:</b>
-                <ul className="list-disc list-inside mb-2 space-y-1">
+                <ul className="list-disc list-inside pl-5 mb-2 space-y-2">
                   <li>Užtikrinkite pakankamą miego kiekį.</li>
                   <li>Praktikuokite streso valdymo technikas.</li>
                 </ul>
               </li>
             </ol>
           </section>
+
           <section>
             <h2 className="text-xl font-semibold text-gray-900 mt-12 mb-3">
               Dažniausiai užduodami klausimai (D.U.K.)
@@ -825,7 +897,7 @@ export default function BodyMassIndexCalc() {
               Šie patarimai padės jums palaikyti sveiką gyvenimo būdą ir geriau
               pasirūpinti savo sveikata.
             </p>
-            <ul className="list-disc list-inside space-y-4">
+            <ul className="list-disc list-inside space-y-4 pl-5">
               <li>
                 <b>Stebėkite savo svorį reguliariai</b>, bet neperdėkite –
                 svarbu bendras sveikatos vaizdas.

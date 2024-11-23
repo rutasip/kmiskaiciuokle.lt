@@ -21,10 +21,12 @@ module.exports = {
         'amber-500': '#FFB300',
         'primary': '#5D8AA8',
         'light-neutral': '#F7F9FC',
+        'dark-neutral': '#2E3D49',
         'secondary': '#A3C1DA',
         // 'accent': '#E74C3C',
         // 'accent': '#D1495B',
         'accent': '#C62828',
+        'accent-darker': '#bc2626',
         'on-accent': '#ffffff',
       },
       maxWidth: {

@@ -26,7 +26,7 @@ const navigation = [
     icon: ScaleIcon,
     children: [
       { name: "Kiek kalorijų man reikia?", href: "/kaloriju-poreikiai" },
-      { name: "Kiek vandens man reikia?", href: "/vandens-norma" },
+      { name: "Kiek vandens išgerti?", href: "/vandens-norma" },
     ],
   },
 ];
