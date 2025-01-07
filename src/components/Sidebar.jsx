@@ -1,184 +1,211 @@
-import { Fragment, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { Disclosure } from "@headlessui/react";
-import { Dialog, Transition } from "@headlessui/react";
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import {
   Bars3Icon,
-  // CalculatorIcon,
   XMarkIcon,
-  HeartIcon,
-  ScaleIcon,
-  // ArrowPathIcon,
+  ChevronDownIcon,
 } from "@heroicons/react/24/outline";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
 
-const navigation = [
-  {
-    name: "Sveikatos skaičiuoklės",
-    icon: HeartIcon,
-    children: [
-      { name: "Koks mano KMI?", href: "/" },
-      { name: "Kiek kalorijų sudeginu?", href: "/sudeginamos-kalorijos" },
-    ],
-  },
-  {
-    name: "Mitybos skaičiuoklės",
-    icon: ScaleIcon,
-    children: [
-      { name: "Kiek kalorijų man reikia?", href: "/kaloriju-poreikiai" },
-      { name: "Kiek vandens išgerti?", href: "/vandens-norma" },
-    ],
-  },
+const healthNav = [
+  { name: "Koks mano KMI?", href: "/" },
+  { name: "Kiek kalorijų sudeginu?", href: "/sudeginamos-kalorijos" },
 ];
-
-const otherNavigation = [
-  { name: "Atsakomybės ribojimas", href: "/atsakomybes-ribojimas" },
+const nutritionNav = [
+  { name: "Kiek kalorijų man reikia?", href: "/kaloriju-poreikiai" },
+  { name: "Kiek vandens išgerti?", href: "/vandens-norma" },
 ];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-function NavItems() {
+export function Sidebar() {
   const location = useLocation();
-  const currentPath = location.pathname;
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState(null);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    function onScroll() {
+      setScrolled(window.scrollY > 50);
+    }
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <div className="flex flex-col h-full bg-navy-blue pt-6">
-      <nav className="flex-1 flex flex-col justify-between px-3 py-4 overflow-y-auto">
-        <div className="flex flex-col gap-7">
-          {navigation.map((item) => (
-            <div key={item.name}>
-              <Disclosure as="div" defaultOpen>
-                {({ open }) => (
-                  <>
-                    <Disclosure.Button className="w-full flex items-center justify-between px-2.5 py-2 mb-1 text-left text-[15px] leading-normal font-semibold text-white rounded-md">
-                      <div className="flex items-center">
-                        <item.icon
-                          className="mr-3 flex-shrink-0 h-5 w-5 text-white group-hover:text-navy-blue"
-                          aria-hidden="true"
-                        />
-                        {item.name}
-                      </div>
-                      <ChevronDownIcon
-                        className={classNames(
-                          open ? "transform rotate-180" : "",
-                          "h-5 w-5 text-white group-hover:text-navy-blue"
-                        )}
-                      />
-                    </Disclosure.Button>
-                    <Disclosure.Panel className="space-y-1">
-                      {item.children.map((subItem) => (
-                        <a
-                          key={subItem.name}
-                          href={subItem.href}
+    <nav
+      className={classNames(
+        "fixed w-full z-50 transition-colors duration-300",
+        scrolled
+          ? "bg-white border-b border-gray-200"
+          : "bg-transparent"
+      )}
+    >
+      <div className="mx-auto max-w-7xl px-4">
+        <div className="flex h-16 items-center justify-between">
+          <Link to="/" className="flex items-center gap-2">
+            <div className="w-9 h-9 bg-emerald-600 rounded-full flex items-center justify-center">
+              <span className="text-white font-extrabold text-sm">KMI</span>
+            </div>
+          </Link>
+
+          <div className="hidden lg:flex lg:items-center lg:gap-6">
+            <div
+              className="relative group"
+              onMouseEnter={() => setOpenMenu("health")}
+              onMouseLeave={() => setOpenMenu(null)}
+            >
+              <div
+                className={classNames(
+                  "px-4 py-2 rounded-full text-sm font-medium cursor-pointer flex items-center gap-1",
+                  scrolled
+                    ? "text-gray-700 hover:text-emerald-600 bg-gray-100 hover:bg-gray-200"
+                    : "text-white bg-white/10 hover:bg-white/20"
+                )}
+              >
+                Sveikatos skaičiuoklės
+                <ChevronDownIcon
+                  className={classNames(
+                    "w-4 h-4 transition-transform",
+                    openMenu === "health" ? "rotate-180" : ""
+                  )}
+                />
+              </div>
+              {openMenu === "health" && (
+                <div
+                  className="absolute right-0 top-full w-56 bg-white border border-gray-200 rounded-xl transform origin-top-right transition-all duration-200 ease-out scale-95 opacity-0 group-hover:scale-100 group-hover:opacity-100 z-50"
+                >
+                  <ul className="py-2">
+                    {healthNav.map((item) => (
+                      <li key={item.name}>
+                        <Link
+                          to={item.href}
                           className={classNames(
-                            subItem.href === currentPath
-                              ? "bg-white text-navy-blue"
-                              : "text-white hover:bg-white hover:text-navy-blue",
-                            "group flex items-center p-2.5 text-[15px] leading-normal font-semibold rounded-md"
+                            location.pathname === item.href
+                              ? "bg-emerald-50 text-emerald-700 font-semibold"
+                              : "hover:bg-gray-50 hover:text-emerald-600 text-gray-700",
+                            "block px-4 py-2 text-sm rounded-md mx-2"
                           )}
                         >
-                          {subItem.name}
-                        </a>
-                      ))}
-                    </Disclosure.Panel>
-                  </>
-                )}
-              </Disclosure>
+                          {item.name}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
-          ))}
-        </div>
 
-        {otherNavigation.map((item) => (
-          <div key={item.name}>
-            <a
-              href={item.href}
+            <div
+              className="relative group"
+              onMouseEnter={() => setOpenMenu("nutrition")}
+              onMouseLeave={() => setOpenMenu(null)}
+            >
+              <div
+                className={classNames(
+                  "px-4 py-2 rounded-full text-sm font-medium cursor-pointer flex items-center gap-1",
+                  scrolled
+                    ? "text-gray-700 hover:text-emerald-600 bg-gray-100 hover:bg-gray-200"
+                    : "text-white bg-white/10 hover:bg-white/20"
+                )}
+              >
+                Mitybos skaičiuoklės
+                <ChevronDownIcon
+                  className={classNames(
+                    "w-4 h-4 transition-transform",
+                    openMenu === "nutrition" ? "rotate-180" : ""
+                  )}
+                />
+              </div>
+              {openMenu === "nutrition" && (
+                <div
+                  className="absolute right-0 top-full w-56 bg-white border border-gray-200 rounded-xl transform origin-top-right transition-all duration-200 ease-out scale-95 opacity-0 group-hover:scale-100 group-hover:opacity-100 z-50"
+                >
+                  <ul className="py-2">
+                    {nutritionNav.map((item) => (
+                      <li key={item.name}>
+                        <Link
+                          to={item.href}
+                          className={classNames(
+                            location.pathname === item.href
+                              ? "bg-emerald-50 text-emerald-700 font-semibold"
+                              : "hover:bg-gray-50 hover:text-emerald-600 text-gray-700",
+                            "block px-4 py-2 text-sm rounded-md mx-2"
+                          )}
+                        >
+                          {item.name}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className="flex lg:hidden">
+            <button
               className={classNames(
-                item.href === currentPath
-                  ? "bg-white text-navy-blue"
-                  : "text-white hover:bg-white hover:text-navy-blue",
-                "group flex items-center px-2 py-2 text-[15px] leading-normal font-semibold rounded-md"
+                "inline-flex items-center justify-center rounded-md p-2",
+                scrolled
+                  ? "text-gray-700 hover:bg-gray-100"
+                  : "text-white hover:bg-emerald-100/20"
+              )}
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              <span className="sr-only">Open main menu</span>
+              {mobileMenuOpen ? (
+                <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+              ) : (
+                <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+              )}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {mobileMenuOpen && (
+        <div className="lg:hidden z-50 bg-white border-t border-gray-200 px-4 pt-3 pb-4 space-y-3">
+          <div className="text-sm font-semibold uppercase tracking-wide">
+            Sveikatos skaičiuoklės
+          </div>
+          {healthNav.map((item) => (
+            <Link
+              key={item.name}
+              to={item.href}
+              onClick={() => setMobileMenuOpen(false)}
+              className={classNames(
+                location.pathname === item.href
+                  ? "bg-emerald-50 text-emerald-700 font-semibold"
+                  : "text-gray-700 hover:bg-gray-50",
+                "block px-3 py-2 rounded-md text-sm"
               )}
             >
               {item.name}
-            </a>
+            </Link>
+          ))}
+
+          <div className="text-sm font-semibold uppercase tracking-wide mt-3">
+            Mitybos skaičiuoklės
           </div>
-        ))}
-      </nav>
-    </div>
-  );
-}
-
-export function Sidebar() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-
-  return (
-    <>
-      {/* Mobile sidebar */}
-      <Transition.Root show={sidebarOpen} as={Fragment}>
-        <Dialog
-          as="div"
-          className="relative z-40 lg:hidden"
-          onClose={setSidebarOpen}
-        >
-          <Transition.Child
-            as={Fragment}
-            enter="transition-opacity ease-linear duration-200"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="transition-opacity ease-linear duration-200"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <div className="fixed inset-0 bg-black bg-opacity-25" />
-          </Transition.Child>
-
-          <div className="fixed inset-0 flex">
-            <Transition.Child
-              as={Fragment}
-              enter="transition ease-in-out duration-200 transform"
-              enterFrom="-translate-x-full"
-              enterTo="translate-x-0"
-              leave="transition ease-in-out duration-200 transform"
-              leaveFrom="translate-x-0"
-              leaveTo="-translate-x-full"
+          {nutritionNav.map((item) => (
+            <Link
+              key={item.name}
+              to={item.href}
+              onClick={() => setMobileMenuOpen(false)}
+              className={classNames(
+                location.pathname === item.href
+                  ? "bg-emerald-50 text-emerald-700 font-semibold"
+                  : "text-gray-700 hover:bg-gray-50",
+                "block px-3 py-2 rounded-md text-sm"
+              )}
             >
-              <Dialog.Panel className="relative flex w-full max-w-xs flex-1 flex-col bg-navy-blue pb-4">
-                <div className="flex items-center h-16 px-4">
-                  <button
-                    type="button"
-                    className="text-white"
-                    onClick={() => setSidebarOpen(false)}
-                  >
-                    <span className="sr-only">Uždaryti meniu</span>
-                    <XMarkIcon className="h-6 w-6" aria-hidden="true" />
-                  </button>
-                </div>
-                <NavItems />
-              </Dialog.Panel>
-            </Transition.Child>
-            <div className="w-14 flex-shrink-0" aria-hidden="true" />
-          </div>
-        </Dialog>
-      </Transition.Root>
-
-      {/* Desktop sidebar */}
-      <div className="hidden lg:fixed lg:inset-y-0 lg:flex lg:w-74 lg:flex-col">
-        <NavItems />
-      </div>
-
-      {/* Mobile top bar */}
-      <div className="sticky top-0 z-10 flex items-center bg-white shadow px-4 py-2 lg:hidden">
-        <button
-          type="button"
-          className="text-gray-500"
-          onClick={() => setSidebarOpen(true)}
-        >
-          <span className="sr-only">Atidaryti meniu</span>
-          <Bars3Icon className="h-6 w-6" aria-hidden="true" />
-        </button>
-      </div>
-    </>
+              {item.name}
+            </Link>
+          ))}
+        </div>
+      )}
+    </nav>
   );
 }
