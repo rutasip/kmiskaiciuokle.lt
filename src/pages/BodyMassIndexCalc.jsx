@@ -399,7 +399,7 @@ export default function BodyMassIndexCalc() {
           scrolled ? "translate-y-0" : "translate-y-[200px]"
         )}
       >
-        <div className="max-w-4xl mx-auto px-4 -mt-16 pb-10">
+        <div className="max-w-3xl mx-auto px-4 -mt-16 pb-10">
           <div className="bg-white shadow-sm border border-gray-200 rounded-xl p-6 relative z-10">
             {bmi && (
               <div className="mb-8">
@@ -486,11 +486,7 @@ export default function BodyMassIndexCalc() {
                     />
                   </div>
                 </div>
-              </div>
-            )}
-
-            {/* "Rekomenduojamos skaičiuoklės" => inside the same results section, after the chart */}
-            <div className="bg-neutral-100 p-6 rounded-md shadow-sm mb-8">
+                <div className="bg-neutral-100 p-6 rounded-md shadow-sm mb-8">
               <h3 className="text-lg font-semibold text-gray-700 mb-4">
                 Rekomenduojamos skaičiuoklės
               </h3>
@@ -499,10 +495,10 @@ export default function BodyMassIndexCalc() {
                   href="/sudeginamos-kalorijos"
                   className="relative block bg-white p-5 rounded-md group hover:bg-gray-50 transition"
                 >
-                  <h4 className="text-lg font-bold text-neutral-600 group-hover:text-gray-900 pr-8">
+                  <h4 className="text-md font-bold leading-normal text-neutral-600 group-hover:text-gray-900 pr-8">
                     Kalorijų sudeginimo skaičiuoklė
                   </h4>
-                  <p className="text-xs text-gray-600 mt-1">
+                  <p className="text-xs text-gray-600 mt-1 pr-8">
                     Sužinokite, kiek kalorijų sudeginate įvairių veiklų metu.
                   </p>
                   <div
@@ -526,10 +522,10 @@ export default function BodyMassIndexCalc() {
                   href="/kaloriju-poreikiai"
                   className="relative block bg-white p-5 rounded-md group hover:bg-gray-50 transition"
                 >
-                  <h4 className="text-lg font-bold text-neutral-600 group-hover:text-gray-900 pr-8">
+                  <h4 className="text-md font-bold leading-normal text-neutral-600 group-hover:text-gray-900 pr-8">
                     Dienos kalorijų poreikio skaičiuoklė
                   </h4>
-                  <p className="text-xs text-gray-600 mt-1">
+                  <p className="text-xs text-gray-600 mt-1 pr-8">
                     Asmeninis kalorijų poreikis pagal aktyvumo lygį.
                   </p>
                   <div
@@ -550,6 +546,8 @@ export default function BodyMassIndexCalc() {
                 </a>
               </div>
             </div>
+              </div>
+            )}
 
             {/* The rest of the informational content (still in the same container). */}
             <section className="space-y-4">
@@ -711,7 +709,7 @@ export default function BodyMassIndexCalc() {
                 Kaip palaikyti sveiką KMI?
               </h2>
               <ol className="list-decimal list-inside pl-4 space-y-1 text-gray-700">
-                <li>Subalansuota mityba (daug vaisių, daržovių)</li>
+                <li>Subalansuota mityba (daug daržovių, vaisių)</li>
                 <li>Reguliarus fizinis aktyvumas</li>
                 <li>Venkite žalingų įpročių (rūkymas, alkoholis)</li>
                 <li>Pakankamas miegas ir streso valdymas</li>

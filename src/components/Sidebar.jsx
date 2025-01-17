@@ -42,7 +42,7 @@ export function Sidebar() {
           : "bg-transparent"
       )}
     >
-      <div className="mx-auto max-w-7xl px-4">
+      <div className="mx-auto max-w-6xl px-4">
         <div className="flex h-16 items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
             <div className="w-9 h-9 bg-emerald-600 rounded-full flex items-center justify-center">
