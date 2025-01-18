@@ -149,10 +149,10 @@ export default function BodyMassIndexCalc() {
 
   useEffect(() => {
     if (calcTimestamp !== 0) {
-      resultsRef.current?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+      const offset = 300;
+      const elementTop =
+        resultsRef.current.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({ top: elementTop - offset, behavior: "smooth" });
     }
   }, [calcTimestamp]);
 
@@ -270,7 +270,6 @@ export default function BodyMassIndexCalc() {
               </p>
             </div>
 
-            {/* Calculator on the right - occupies 1 column on large screens */}
             <div className="order-1 lg:order-2 lg:col-span-2 flex justify-end">
               <div className="bg-white rounded-md p-6 md:p-8 text-gray-900 max-w-md w-full shadow-lg">
                 <h2 className="text-xl font-bold mb-4">Apskaičiuokite KMI</h2>
