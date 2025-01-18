@@ -254,9 +254,9 @@ export default function BodyMassIndexCalc() {
         style={{ backgroundImage: `url(${backgroundImageUrl})` }}
       >
         <div className="absolute inset-0 bg-black/70" />
-        <div className="relative z-10 container mx-auto px-4 py-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="text-white space-y-6 order-2 lg:order-1">
+        <div className="relative z-10 mx-auto max-w-6xl w-full px-4 py-20">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
+            <div className="text-white space-y-6 order-2 lg:order-1 lg:col-span-3">
               <h1 className="text-4xl md:text-5xl font-extrabold leading-tight drop-shadow-xl">
                 Kūno masės indeksas (KMI)
               </h1>
@@ -270,8 +270,9 @@ export default function BodyMassIndexCalc() {
               </p>
             </div>
 
-            <div className="order-1 lg:order-2">
-              <div className="bg-white rounded-md p-6 md:p-8 text-gray-900 max-w-md mx-auto lg:mx-0 shadow-lg">
+            {/* Calculator on the right - occupies 1 column on large screens */}
+            <div className="order-1 lg:order-2 lg:col-span-2 flex justify-end">
+              <div className="bg-white rounded-md p-6 md:p-8 text-gray-900 max-w-md w-full shadow-lg">
                 <h2 className="text-xl font-bold mb-4">Apskaičiuokite KMI</h2>
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div>
@@ -487,69 +488,69 @@ export default function BodyMassIndexCalc() {
                   </div>
                 </div>
                 <div className="bg-neutral-100 p-6 rounded-md shadow-sm mb-8">
-              <h3 className="text-lg font-semibold text-gray-700 mb-4">
-                Rekomenduojamos skaičiuoklės
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <a
-                  href="/sudeginamos-kalorijos"
-                  className="relative block bg-white p-5 rounded-md group hover:bg-gray-50 transition"
-                >
-                  <h4 className="text-md font-bold leading-normal text-neutral-600 group-hover:text-gray-900 pr-8">
-                    Kalorijų sudeginimo skaičiuoklė
-                  </h4>
-                  <p className="text-xs text-gray-600 mt-1 pr-8">
-                    Sužinokite, kiek kalorijų sudeginate įvairių veiklų metu.
-                  </p>
-                  <div
-                    className="absolute right-4 top-1/2 -translate-y-1/2"
-                    style={{ animation: "horizontalBounce 1.5s infinite" }}
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-5 h-5 text-gray-500 group-hover:text-emerald-700"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
+                  <h3 className="text-lg font-semibold text-gray-700 mb-4">
+                    Rekomenduojamos skaičiuoklės
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <a
+                      href="/sudeginamos-kalorijos"
+                      className="relative block bg-white p-5 rounded-md group hover:bg-gray-50 transition"
                     >
-                      <path d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
-                </a>
+                      <h4 className="text-md font-bold leading-normal text-neutral-600 group-hover:text-gray-900 pr-8">
+                        Kalorijų sudeginimo skaičiuoklė
+                      </h4>
+                      <p className="text-xs text-gray-600 mt-1 pr-8">
+                        Sužinokite, kiek kalorijų sudeginate įvairių veiklų
+                        metu.
+                      </p>
+                      <div
+                        className="absolute right-4 top-1/2 -translate-y-1/2"
+                        style={{ animation: "horizontalBounce 1.5s infinite" }}
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="w-5 h-5 text-gray-500 group-hover:text-emerald-700"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth={2}
+                        >
+                          <path d="M9 5l7 7-7 7" />
+                        </svg>
+                      </div>
+                    </a>
 
-                <a
-                  href="/kaloriju-poreikiai"
-                  className="relative block bg-white p-5 rounded-md group hover:bg-gray-50 transition"
-                >
-                  <h4 className="text-md font-bold leading-normal text-neutral-600 group-hover:text-gray-900 pr-8">
-                    Dienos kalorijų poreikio skaičiuoklė
-                  </h4>
-                  <p className="text-xs text-gray-600 mt-1 pr-8">
-                    Asmeninis kalorijų poreikis pagal aktyvumo lygį.
-                  </p>
-                  <div
-                    className="absolute right-4 top-1/2 -translate-y-1/2"
-                    style={{ animation: "horizontalBounce 1.5s infinite" }}
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-5 h-5 text-gray-500 group-hover:text-emerald-700"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
+                    <a
+                      href="/kaloriju-poreikiai"
+                      className="relative block bg-white p-5 rounded-md group hover:bg-gray-50 transition"
                     >
-                      <path d="M9 5l7 7-7 7" />
-                    </svg>
+                      <h4 className="text-md font-bold leading-normal text-neutral-600 group-hover:text-gray-900 pr-8">
+                        Dienos kalorijų poreikio skaičiuoklė
+                      </h4>
+                      <p className="text-xs text-gray-600 mt-1 pr-8">
+                        Asmeninis kalorijų poreikis pagal aktyvumo lygį.
+                      </p>
+                      <div
+                        className="absolute right-4 top-1/2 -translate-y-1/2"
+                        style={{ animation: "horizontalBounce 1.5s infinite" }}
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="w-5 h-5 text-gray-500 group-hover:text-emerald-700"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth={2}
+                        >
+                          <path d="M9 5l7 7-7 7" />
+                        </svg>
+                      </div>
+                    </a>
                   </div>
-                </a>
-              </div>
-            </div>
+                </div>
               </div>
             )}
 
-            {/* The rest of the informational content (still in the same container). */}
             <section className="space-y-4">
               <h2 className="text-xl font-bold text-gray-900">Kas yra KMI?</h2>
               <p>

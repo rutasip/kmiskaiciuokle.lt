@@ -37,9 +37,7 @@ export function Sidebar() {
     <nav
       className={classNames(
         "fixed w-full z-50 transition-colors duration-300",
-        scrolled
-          ? "bg-white border-b border-gray-200"
-          : "bg-transparent"
+        scrolled ? "bg-white border-b border-gray-200" : "bg-transparent"
       )}
     >
       <div className="mx-auto max-w-6xl px-4">
@@ -148,9 +146,7 @@ export function Sidebar() {
             <button
               className={classNames(
                 "inline-flex items-center justify-center rounded-md p-2",
-                scrolled
-                  ? "text-gray-700 hover:bg-gray-100"
-                  : "text-white hover:bg-emerald-100/20"
+                scrolled ? "text-gray-700 hover:bg-gray-100" : "text-white hover:bg-emerald-100/20"
               )}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
