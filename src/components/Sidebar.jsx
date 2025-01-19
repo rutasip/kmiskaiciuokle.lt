@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useState, useRef } from "react"
+import { Link } from "react-router-dom";
 import {
   Bars3Icon,
   XMarkIcon,
@@ -20,123 +20,76 @@ function classNames(...classes) {
 }
 
 export function Sidebar() {
-  const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState(null);
-  const [scrolled, setScrolled] = useState(false);
+  const closeTimerRef = useRef(null)
 
-  useEffect(() => {
-    function onScroll() {
-      setScrolled(window.scrollY > 50);
-    }
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const handleMouseEnter = (menu) => {
+    clearTimeout(closeTimerRef.current)
+    setOpenMenu(menu)
+  }
+
+  const handleMouseLeave = () => {
+    closeTimerRef.current = setTimeout(() => {
+      setOpenMenu(null)
+    }, 600)
+  }
 
   return (
-    <nav
-      className={classNames(
-        "fixed w-full z-50 transition-colors duration-300",
-        scrolled ? "bg-white border-b border-gray-200" : "bg-transparent"
-      )}
-    >
-      <div className="mx-auto max-w-6xl px-4">
-        <div className="flex h-16 items-center justify-between">
-          <Link to="/" className="flex items-center gap-2">
+    <nav className="fixed w-full z-50 bg-white border-b border-gray-200">
+      <div className="max-w-6xl mx-auto px-4">
+        <div className="flex h-14 items-center justify-between">
+          <a href="/" className="flex items-center gap-2">
             <div className="w-9 h-9 bg-emerald-600 rounded-full flex items-center justify-center">
               <span className="text-white font-extrabold text-sm">KMI</span>
             </div>
-          </Link>
+          </a>
 
           <div className="hidden lg:flex lg:items-center lg:gap-6">
             <div
-              className="relative group"
-              onMouseEnter={() => setOpenMenu("health")}
-              onMouseLeave={() => setOpenMenu(null)}
+              className="relative"
+              onMouseEnter={() => handleMouseEnter("health")}
+              onMouseLeave={handleMouseLeave}
             >
-              <div
-                className={classNames(
-                  "px-4 py-2 rounded-full text-sm font-medium cursor-pointer flex items-center gap-1",
-                  scrolled
-                    ? "text-gray-700 hover:text-emerald-600 bg-gray-100 hover:bg-gray-200"
-                    : "text-white bg-white/10 hover:bg-white/20"
-                )}
-              >
+              <div className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-gray-700 hover:text-emerald-600 cursor-pointer">
                 Sveikatos skaičiuoklės
-                <ChevronDownIcon
-                  className={classNames(
-                    "w-4 h-4 transition-transform",
-                    openMenu === "health" ? "rotate-180" : ""
-                  )}
-                />
+                <ChevronDownIcon className="w-4 h-4" />
               </div>
               {openMenu === "health" && (
-                <div
-                  className="absolute right-0 top-full w-56 bg-white border border-gray-200 rounded-xl transform origin-top-right transition-all duration-200 ease-out scale-95 opacity-0 group-hover:scale-100 group-hover:opacity-100 z-50"
-                >
-                  <ul className="py-2">
-                    {healthNav.map((item) => (
-                      <li key={item.name}>
-                        <Link
-                          to={item.href}
-                          className={classNames(
-                            location.pathname === item.href
-                              ? "bg-emerald-50 text-emerald-700 font-semibold"
-                              : "hover:bg-gray-50 hover:text-emerald-600 text-gray-700",
-                            "block px-4 py-2 text-sm rounded-md mx-2"
-                          )}
-                        >
-                          {item.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
+                <div className="absolute left-0 mt-2 bg-white shadow-lg border border-gray-200 rounded-lg py-2 z-50">
+                  {healthNav.map((item) => (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-600"
+                    >
+                      {item.name}
+                    </a>
+                  ))}
                 </div>
               )}
             </div>
 
             <div
-              className="relative group"
-              onMouseEnter={() => setOpenMenu("nutrition")}
-              onMouseLeave={() => setOpenMenu(null)}
+              className="relative"
+              onMouseEnter={() => handleMouseEnter("nutrition")}
+              onMouseLeave={handleMouseLeave}
             >
-              <div
-                className={classNames(
-                  "px-4 py-2 rounded-full text-sm font-medium cursor-pointer flex items-center gap-1",
-                  scrolled
-                    ? "text-gray-700 hover:text-emerald-600 bg-gray-100 hover:bg-gray-200"
-                    : "text-white bg-white/10 hover:bg-white/20"
-                )}
-              >
+              <div className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-gray-700 hover:text-emerald-600 cursor-pointer">
                 Mitybos skaičiuoklės
-                <ChevronDownIcon
-                  className={classNames(
-                    "w-4 h-4 transition-transform",
-                    openMenu === "nutrition" ? "rotate-180" : ""
-                  )}
-                />
+                <ChevronDownIcon className="w-4 h-4" />
               </div>
               {openMenu === "nutrition" && (
-                <div
-                  className="absolute right-0 top-full w-56 bg-white border border-gray-200 rounded-xl transform origin-top-right transition-all duration-200 ease-out scale-95 opacity-0 group-hover:scale-100 group-hover:opacity-100 z-50"
-                >
-                  <ul className="py-2">
-                    {nutritionNav.map((item) => (
-                      <li key={item.name}>
-                        <Link
-                          to={item.href}
-                          className={classNames(
-                            location.pathname === item.href
-                              ? "bg-emerald-50 text-emerald-700 font-semibold"
-                              : "hover:bg-gray-50 hover:text-emerald-600 text-gray-700",
-                            "block px-4 py-2 text-sm rounded-md mx-2"
-                          )}
-                        >
-                          {item.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
+                <div className="absolute left-0 mt-2 bg-white shadow-lg border border-gray-200 rounded-lg py-2 z-50">
+                  {nutritionNav.map((item) => (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-emerald-50 hover:text-emerald-600"
+                    >
+                      {item.name}
+                    </a>
+                  ))}
                 </div>
               )}
             </div>
@@ -145,8 +98,7 @@ export function Sidebar() {
           <div className="flex lg:hidden">
             <button
               className={classNames(
-                "inline-flex items-center justify-center rounded-md p-2",
-                scrolled ? "text-gray-700 hover:bg-gray-100" : "text-white hover:bg-emerald-100/20"
+                "inline-flex items-center justify-center rounded-md p-2 text-gray-700 hover:bg-gray-100"
               )}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
