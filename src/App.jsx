@@ -6,13 +6,13 @@ import "./styles/heart.css";
 
 export default function App() {
   return (
-    <div className="flex flex-col min-h-screen text-gray-900 relative overflow-x-hidden">
+    <div className="flex flex-col min-h-screen bg-slate-50 text-gray-900 relative overflow-x-hidden">
       <Sidebar />
       <main className="flex-1">
         <Outlet />
       </main>
       <footer className="bg-gradient-to-r from-emerald-800 to-emerald-900 text-gray-50 mt-16 pt-12 pb-8 px-6">
-        <div className="max-w-6xl mx-auto space-y-8 px-4">
+        <div className="max-w-5xl mx-auto space-y-8 px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="space-y-2">
               <h3 className="text-xl font-semibold tracking-wide">
@@ -43,15 +43,15 @@ export default function App() {
               Atsakomybės ribojimas
             </a>
             <a href="#" className="hover:text-white transition">
-              Privatumo politika (placeholder)
+              Privatumo politika
             </a>
             <a href="#" className="hover:text-white transition">
-              Kontaktai (placeholder)
+              Kontaktai
             </a>
           </div>
           <div className="border-t border-emerald-700 pt-4">
             <p className="text-sm text-emerald-100">
-              Sukurta <span className="font-semibold text-white">blokugrandine</span> (placeholder nuorodai).
+              Sukurta <a href="https://rekvizitai.vz.lt/imone/bloku_grandine/" target="_blank" className="font-semibold text-white hover:underline">Blokų grandinė, MB</a>.
             </p>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { ChevronDownIcon, FireIcon, ChartBarIcon } from "@heroicons/react/24/outline";
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { ArrowUpIcon } from "@heroicons/react/24/solid";
 
 const backgroundImageUrl =
@@ -143,7 +143,7 @@ export default function BodyMassIndexCalc() {
 
   const [scrolled, setScrolled] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
-  
+
   const resultsRef = useRef(null);
   const [calcTimestamp, setCalcTimestamp] = useState(0);
 
@@ -228,8 +228,8 @@ export default function BodyMassIndexCalc() {
   };
 
   const calcPinPos = (val) => {
-    const min = 15.5;
-    const max = 33.5;
+    const min = 15.8;
+    const max = 33.2;
     const clamped = Math.min(Math.max(val || 0, min), max);
     return ((clamped - min) / (max - min)) * 100;
   };
@@ -250,8 +250,11 @@ export default function BodyMassIndexCalc() {
       </style>
 
       <section
-        className="relative min-h-screen flex items-center justify-center bg-fixed bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${backgroundImageUrl})`, backgroundSize: "cover" }}
+        className="relative min-h-screen flex items-center justify-center bg-fixed bg-center bg-no-repeat shadow-xl"
+        style={{
+          backgroundImage: `url(${backgroundImageUrl})`,
+          backgroundSize: "cover",
+        }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/90" />
         <div className="relative z-10 mx-auto max-w-4xl w-full px-6 py-16 sm:py-20 md:py-24">
@@ -269,7 +272,7 @@ export default function BodyMassIndexCalc() {
                 kreipkitės į profesionalus.
               </p>
             </div>
-            <div className="order-1 md:order-2 md:col-span-1 flex justify-end">
+            <div className="order-1 md:order-2 md:col-span-1 flex justify-center md:justify-end">
               <div className="bg-white rounded-xl p-6 sm:p-8 text-gray-900 shadow-2xl max-w-md w-full">
                 <h2 className="text-xl font-bold mb-4 text-emerald-700">
                   Apskaičiuokite KMI
@@ -383,7 +386,7 @@ export default function BodyMassIndexCalc() {
             </div>
           </div>
         </div>
-        
+
         {!scrolled && (
           <div className="absolute bottom-8 inset-x-0 flex justify-center animate-bounce">
             <div className="bg-white/30 p-2 rounded-full">
@@ -401,16 +404,16 @@ export default function BodyMassIndexCalc() {
         )}
       >
         <div className="max-w-3xl mx-auto px-4 -mt-12 sm:-mt-16 pb-10">
-          <div className="bg-white rounded-xl p-8 relative z-10">
+          <div className="bg-white rounded-xl p-8 relative z-10 shadow">
             {bmi && (
-              <div className="mb-8">
+              <div className="mb-8 border-b pb-14">
                 <div className="mb-8 space-y-4 text-center">
                   <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900">
                     Rezultatai
                   </h2>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
-                  <div className="bg-white rounded-lg border border-gray-200 p-5 flex flex-col items-center">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-16">
+                  <div className="bg-white rounded-lg shadow p-5 flex flex-col items-center">
                     <h3 className="text-sm font-semibold text-gray-500 mb-1">
                       KMI
                     </h3>
@@ -418,7 +421,7 @@ export default function BodyMassIndexCalc() {
                       {bmi}
                     </span>
                   </div>
-                  <div className="bg-white rounded-lg border border-gray-200 p-5 flex flex-col items-center">
+                  <div className="bg-white rounded-lg shadow p-5 flex flex-col items-center">
                     <h3 className="text-sm font-semibold text-gray-500 mb-1">
                       Kategorija
                     </h3>
@@ -426,7 +429,7 @@ export default function BodyMassIndexCalc() {
                       {currentCategory?.category}
                     </span>
                   </div>
-                  <div className="bg-white rounded-lg border border-gray-200 p-5 flex flex-col items-center">
+                  <div className="bg-white rounded-lg shadow p-5 flex flex-col items-center">
                     <h3 className="text-sm font-semibold text-gray-500 mb-1">
                       Idealus svoris
                     </h3>
@@ -442,7 +445,7 @@ export default function BodyMassIndexCalc() {
                   </div>
                 </div>
 
-                <div className="mb-8">
+                <div className="mb-14">
                   <div
                     className="relative w-full h-4 rounded-full"
                     style={{
@@ -454,7 +457,7 @@ export default function BodyMassIndexCalc() {
                       className="absolute -top-7 left-0 text-xs font-semibold px-2 py-1 rounded-full bg-sky-100 text-sky-800"
                       style={{ transform: "translateX(0)" }}
                     >
-                      Nepakankamas
+                      Mažas
                     </span>
                     <span
                       className="absolute -top-7 left-1/3 text-xs font-semibold px-2 py-1 rounded-full bg-green-100 text-green-800"
@@ -476,7 +479,7 @@ export default function BodyMassIndexCalc() {
                     </span>
 
                     <div
-                      className="absolute top-1/2 w-6 h-6 rounded-full bg-gray-800 border-2 border-white"
+                      className="absolute top-1/2 w-5 h-5 rounded-full bg-gray-800 border-2 border-white"
                       style={{
                         left: `${calcPinPos(bmi)}%`,
                         transform: "translate(-50%, -50%)",
@@ -484,71 +487,66 @@ export default function BodyMassIndexCalc() {
                     />
                   </div>
                 </div>
-                <div className="bg-gray-50 p-6 rounded-md shadow-sm mb-8">
-                  <h3 className="text-lg font-semibold text-gray-700 mb-4">
-                    Rekomenduojamos skaičiuoklės
-                  </h3>
-                  <div className="flex flex-col gap-4">
-                    <a
-                      href="/sudeginamos-kalorijos"
-                      className="relative flex items-center bg-white p-5 rounded-md hover:bg-gray-100 transition shadow-sm"
+
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <a
+                    href="/sudeginamos-kalorijos"
+                    className="relative flex items-center bg-white p-5 rounded-md sm:w-1/2 hover:bg-gray-100 transition shadow"
+                  >
+                    <div className="mr-8">
+                      <h5 className="text-base font-semibold leading-normal text-neutral-600 hover:text-gray-900">
+                        Kalorijų sudeginimo skaičiuoklė
+                      </h5>
+                      <p className="text-xs text-gray-600 mt-1">
+                        Sužinokite, kiek kalorijų sudeginate įvairių veiklų
+                        metu.
+                      </p>
+                    </div>
+                    <div
+                      className="absolute right-4"
+                      style={{ animation: "horizontalBounce 1.5s infinite" }}
                     >
-                      <FireIcon className="h-6 w-6 text-emerald-600 mr-3" />
-                      <div>
-                        <h4 className="text-md font-bold leading-normal text-neutral-600 hover:text-gray-900">
-                          Kalorijų sudeginimo skaičiuoklė
-                        </h4>
-                        <p className="text-xs text-gray-600 mt-1">
-                          Sužinokite, kiek kalorijų sudeginate įvairių veiklų
-                          metu.
-                        </p>
-                      </div>
-                      <div
-                        className="absolute right-4 top-1/2 -translate-y-1/2"
-                        style={{ animation: "horizontalBounce 1.5s infinite" }}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="w-5 h-5 text-gray-500 hover:text-emerald-700"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
                       >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="w-5 h-5 text-gray-500 hover:text-emerald-700"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          strokeWidth={2}
-                        >
-                          <path d="M9 5l7 7-7 7" />
-                        </svg>
-                      </div>
-                    </a>
-                    <a
-                      href="/kaloriju-poreikiai"
-                      className="relative flex items-center bg-white p-5 rounded-md hover:bg-gray-100 transition shadow-sm"
+                        <path d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                  </a>
+                  <a
+                    href="/kaloriju-poreikiai"
+                    className="relative flex items-center bg-white p-5 rounded-md sm:w-1/2 hover:bg-gray-100 transition shadow"
+                  >
+                    <div className="mr-8">
+                      <h5 className="text-base font-semibold leading-normal text-neutral-600 hover:text-gray-900">
+                        Dienos kalorijų poreikio skaičiuoklė
+                      </h5>
+                      <p className="text-xs text-gray-600 mt-1">
+                        Sužinokite, kiek kalorijų reikia suvartoti per dieną
+                        pagal Jūsų aktyvumo lygį.
+                      </p>
+                    </div>
+                    <div
+                      className="absolute right-4"
+                      style={{ animation: "horizontalBounce 1.5s infinite" }}
                     >
-                      <ChartBarIcon className="h-6 w-6 text-emerald-600 mr-3" />
-                      <div>
-                        <h4 className="text-md font-bold leading-normal text-neutral-600 hover:text-gray-900">
-                          Dienos kalorijų poreikio skaičiuoklė
-                        </h4>
-                        <p className="text-xs text-gray-600 mt-1">
-                          Asmeninis kalorijų poreikis pagal aktyvumo lygį.
-                        </p>
-                      </div>
-                      <div
-                        className="absolute right-4 top-1/2 -translate-y-1/2"
-                        style={{ animation: "horizontalBounce 1.5s infinite" }}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="w-5 h-5 text-gray-500 hover:text-emerald-700"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
                       >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="w-5 h-5 text-gray-500 hover:text-emerald-700"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          strokeWidth={2}
-                        >
-                          <path d="M9 5l7 7-7 7" />
-                        </svg>
-                      </div>
-                    </a>
-                  </div>
+                        <path d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                  </a>
                 </div>
               </div>
             )}
@@ -557,14 +555,16 @@ export default function BodyMassIndexCalc() {
               <h2 className="text-xl font-bold text-gray-900">Kas yra KMI?</h2>
               <p>
                 Kūno masės indeksas (<b>KMI</b>) – tai skaičius, gautas kūno
-                svorį kilogramais padalijus iš ūgio metrais kvadratu. Padeda
-                nustatyti, ar kūno svoris yra per mažas, normalus, ar per
-                didelis (antsvoris ar nutukimas).
+                svorį kilogramais padalijus iš ūgio metrais kvadratu. Šis
+                indeksas padeda nustatyti, ar kūno svoris yra per mažas,
+                normalus, ar per didelis.
               </p>
             </section>
 
             <section className="space-y-4 mt-8">
-              <h2 className="text-xl font-bold text-gray-900">KMI istorija</h2>
+              <h2 className="text-xl font-bold text-gray-900">
+                Trumpa KMI istorija
+              </h2>
               <p>
                 KMI sukūrė <b>1832 m.</b> belgų matematikas{" "}
                 <b>Lamberto A. J. Quetelet</b>, siekdamas įvertinti populiacijos
@@ -574,56 +574,70 @@ export default function BodyMassIndexCalc() {
 
             <section className="space-y-4 mt-8">
               <h2 className="text-xl font-bold text-gray-900">
-                Nutukimas Lietuvoje
+                Nutukimo Lietuvoje statistika
               </h2>
               <p>
-                Apie <b>57%</b> Lietuvos suaugusiųjų turi antsvorį ar nutukimą.
-                Maždaug <b>38%</b> turi antsvorį (KMI 25–30), o <b>19%</b> –
-                nutukimą (KMI &gt; 30).
+                Apie <b>38%</b> saugusiųjų Lietuvoje turi antsvorį (KMI 25–30),
+                o <b>19%</b> – nutukimą (KMI &gt; 30).
               </p>
             </section>
-            
+
             <section className="space-y-4 mt-8">
               <h2 className="text-xl font-bold text-gray-900">
                 Kaip apskaičiuoti KMI?
               </h2>
               <p>
-                Formulė: <b>KMI = svoris (kg) / [ūgis (m)]².</b> Pvz., sveriant
-                70 kg ir esant 1,75 m ūgio:
+                Formulė: <b>KMI = svoris (kg) / [ūgis (m)]².</b>
               </p>
+              <p>Pvz., sveriant 70 kg ir esant 1,75 m ūgio:</p>
               <p className="italic">
-                <b>KMI = 70 / (1,75)² ≈ 22,86</b>
+                <b>KMI = 70 / (1,75)² ≈ 22,86.</b>
               </p>
               <p>
                 Toliau pateikiami bendrieji KMI intervalai ir galimos sveikatos
                 būklės:
               </p>
-              <div className="overflow-x-auto mt-4">
-                <table className="min-w-full divide-y divide-gray-200 text-sm">
-                  <thead>
-                    <tr className="bg-emerald-50 text-emerald-900">
-                      <th className="py-3 px-4 text-left font-semibold">KMI</th>
-                      <th className="py-3 px-4 text-left font-semibold">
+              <div className="overflow-hidden shadow sm:rounded-lg">
+                <table className="min-w-full divide-y divide-gray-300">
+                  <thead className="bg-emerald-50 text-emerald-900">
+                    <tr>
+                      <th
+                        scope="col"
+                        className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
+                      >
+                        KMI
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                      >
                         Būklė
                       </th>
-                      <th className="py-3 px-4 text-left font-semibold">
+                      <th
+                        scope="col"
+                        className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                      >
                         Rizika
                       </th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-gray-200">
-                    {categories.map((cat) => (
-                      <tr key={cat.id}>
-                        <td className="py-3 px-4">
-                          {cat.index}
-                          {cat.isCurrent && (
+                  <tbody className="divide-y divide-gray-200 bg-white">
+                    {categories.map((category) => (
+                      <tr key={category.id}>
+                        <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                          {category.index}
+                          {category.isCurrent && (
                             <span className="ml-2 inline-flex items-center rounded bg-emerald-50 px-2 py-0.5 text-xs text-emerald-700">
                               Jūsų KMI
                             </span>
                           )}
                         </td>
-                        <td className="py-3 px-4">{cat.category}</td>
-                        <td className="py-3 px-4">{cat.risks}</td>
+                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                          {category.category}
+                        </td>
+                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                          {category.risks}
+                        </td>
                       </tr>
                     ))}
                   </tbody>
@@ -639,27 +653,42 @@ export default function BodyMassIndexCalc() {
                 Įvairiame amžiuje ir priklausomai nuo lyties KMI gali būti
                 interpretuojamas skirtingai.
               </p>
-              <div className="overflow-x-auto mt-4">
-                <table className="min-w-full divide-y divide-gray-200 text-sm">
-                  <thead>
-                    <tr className="bg-emerald-50 text-emerald-900">
-                      <th className="py-3 px-4 text-left font-semibold">
+              <div className="overflow-hidden shadow sm:rounded-lg">
+                <table className="min-w-full divide-y divide-gray-300">
+                  <thead className="bg-emerald-50 text-emerald-900">
+                    <tr>
+                      <th
+                        scope="col"
+                        className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
+                      >
                         Amžius
                       </th>
-                      <th className="py-3 px-4 text-left font-semibold">
+                      <th
+                        scope="col"
+                        className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                      >
                         Moterų KMI
                       </th>
-                      <th className="py-3 px-4 text-left font-semibold">
+                      <th
+                        scope="col"
+                        className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                      >
                         Vyrų KMI
                       </th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-gray-200">
+                  <tbody className="divide-y divide-gray-200 bg-white">
                     {normalIndexRanges.map((range) => (
                       <tr key={range.id}>
-                        <td className="py-3 px-4">{range.age}</td>
-                        <td className="py-3 px-4">{range.women}</td>
-                        <td className="py-3 px-4">{range.men}</td>
+                        <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                          {range.age}
+                        </td>
+                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                          {range.women}
+                        </td>
+                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                          {range.men}
+                        </td>
                       </tr>
                     ))}
                   </tbody>
@@ -671,12 +700,13 @@ export default function BodyMassIndexCalc() {
               <h2 className="text-xl font-bold text-gray-900">KMI ribotumai</h2>
               <p>
                 KMI neatsižvelgia į skirtingus kūno sudėties aspektus ir kitus
-                sveikatos rodiklius:
+                sveikatos rodiklius, todėl ne visada gali būti taikomas. Keletas
+                iš ribotumų:
               </p>
               <ul className="list-disc list-inside pl-4 space-y-1 text-gray-700">
-                <li>Negali atskirti raumenų ir riebalų masės</li>
-                <li>Netinka nėščioms, vaikams, sportininkams</li>
-                <li>Skiriasi pagal amžių, etninę kilmę, rasę</li>
+                <li>Negali atskirti raumenų masės nuo riebalų masės.</li>
+                <li>Netinka nėščioms, vaikams, sportininkams.</li>
+                <li>Skiriasi pagal amžių, etninę kilmę, rasę.</li>
               </ul>
             </section>
 
@@ -737,7 +767,7 @@ export default function BodyMassIndexCalc() {
           </div>
         </div>
       </section>
-      
+
       {showBackToTop && (
         <button
           onClick={scrollToTop}

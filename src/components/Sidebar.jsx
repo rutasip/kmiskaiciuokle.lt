@@ -36,8 +36,8 @@ export function Sidebar() {
   }
 
   return (
-    <nav className="fixed w-full z-50 bg-white border-b border-gray-200">
-      <div className="max-w-6xl mx-auto px-4">
+    <nav className="fixed w-full z-50 bg-white shadow">
+      <div className="max-w-8xl mx-auto px-4">
         <div className="flex h-14 items-center justify-between">
           <a href="/" className="flex items-center gap-2">
             <div className="w-9 h-9 bg-emerald-600 rounded-full flex items-center justify-center">
