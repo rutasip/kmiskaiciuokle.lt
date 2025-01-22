@@ -1,13 +1,20 @@
+import React, { FC, ReactNode } from "react";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 
 const backgroundImageUrl =
   "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?fit=crop&w=1920&q=80";
 
-export default function HeroSection({
+interface HeroSectionProps {
+  scrolled: boolean;
+  heroContentLeft?: ReactNode;
+  heroContentRight?: ReactNode;
+}
+
+const HeroSection: FC<HeroSectionProps> = ({
   scrolled,
   heroContentLeft,
   heroContentRight,
-}) {
+}) => {
   return (
     <section
       className="relative min-h-screen flex items-center justify-center bg-fixed bg-center bg-no-repeat shadow-xl"
@@ -38,4 +45,6 @@ export default function HeroSection({
       )}
     </section>
   );
-}
+};
+
+export default HeroSection;

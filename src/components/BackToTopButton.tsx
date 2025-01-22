@@ -1,6 +1,12 @@
+import React, { FC, ReactNode } from "react";
 import { ArrowUpIcon } from "@heroicons/react/24/solid";
 
-export default function BackToTopButton({ show, onClick }) {
+interface BackToTopButtonProps {
+  show: boolean;
+  onClick: () => void;
+}
+
+export default function BackToTopButton({ show, onClick }: BackToTopButtonProps) {
   if (!show) return null;
 
   return (

@@ -238,16 +238,16 @@ export default function BodyMassIndexCalc() {
         scrolled={scrolled}
         heroContentLeft={
           <>
-            <h1 className="text-4xl font-extrabold tracking-tight drop-shadow-lg">
+            <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight drop-shadow-lg">
               Kūno masės indeksas (KMI)
             </h1>
             <p className="text-base sm:text-lg leading-relaxed max-w-lg drop-shadow-md">
               Greitas būdas įvertinti, ar jūsų svoris yra normalus, per mažas ar
               per didelis. Jei norite, galite sužinoti ir idealų svorį.
             </p>
-            <p className="text-sm sm:text-base text-emerald-100 drop-shadow-md">
+            {/* <p className="text-sm sm:text-base text-emerald-100 drop-shadow-md">
               Rezultatai – orientaciniai...
-            </p>
+            </p> */}
           </>
         }
         heroContentRight={
@@ -452,7 +452,7 @@ export default function BodyMassIndexCalc() {
                 className="relative flex items-center bg-white p-5 rounded-md sm:w-1/2 hover:bg-gray-100 transition shadow"
               >
                 <div className="mr-8">
-                  <h5 className="text-base font-semibold leading-normal text-neutral-600 hover:text-gray-900">
+                  <h5 className="text-base font-semibold leading-normal text-neutral-700 hover:text-gray-900">
                     Kalorijų sudeginimo skaičiuoklė
                   </h5>
                   <p className="text-xs text-gray-600 mt-1">
@@ -475,12 +475,12 @@ export default function BodyMassIndexCalc() {
                   </svg>
                 </div>
               </a>
-              <a
+              {/* <a
                 href="/kaloriju-poreikiai"
                 className="relative flex items-center bg-white p-5 rounded-md sm:w-1/2 hover:bg-gray-100 transition shadow"
               >
                 <div className="mr-8">
-                  <h5 className="text-base font-semibold leading-normal text-neutral-600 hover:text-gray-900">
+                  <h5 className="text-base font-semibold leading-normal text-neutral-700 hover:text-gray-900">
                     Dienos kalorijų poreikio skaičiuoklė
                   </h5>
                   <p className="text-xs text-gray-600 mt-1">
@@ -503,7 +503,7 @@ export default function BodyMassIndexCalc() {
                     <path d="M9 5l7 7-7 7" />
                   </svg>
                 </div>
-              </a>
+              </a> */}
             </div>
           </div>
         )}

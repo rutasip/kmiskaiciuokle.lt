@@ -125,7 +125,7 @@ export default function CalorieBurnCalculator() {
         scrolled={scrolled}
         heroContentLeft={
           <>
-            <h1 className="text-4xl font-extrabold tracking-tight drop-shadow-lg">
+            <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight drop-shadow-lg">
               Kalorijų sudeginimo skaičiuoklė
             </h1>
             <p className="text-base sm:text-lg leading-relaxed max-w-lg drop-shadow-md">
@@ -133,9 +133,9 @@ export default function CalorieBurnCalculator() {
               skaičiuoklė remiasi MET metodu, kad tiksliai įvertintų Jūsų
               energijos sąnaudas pagal Jūsų svorį ir veiklos trukmę.
             </p>
-            <p className="text-sm sm:text-base text-emerald-100 drop-shadow-md">
+            {/* <p className="text-sm sm:text-base text-emerald-100 drop-shadow-md">
               Rezultatai yra orientaciniai...
-            </p>
+            </p> */}
           </>
         }
         heroContentRight={
@@ -335,7 +335,7 @@ export default function CalorieBurnCalculator() {
                 className="relative flex items-center bg-white p-5 rounded-md sm:w-1/2 hover:bg-gray-50 transition shadow"
               >
                 <div className="mr-8">
-                  <h5 className="text-base font-semibold leading-normal text-neutral-600 hover:text-gray-900">
+                  <h5 className="text-base font-semibold leading-normal text-neutral-700 hover:text-gray-900">
                     Kūno masės indekso skaičiuoklė
                   </h5>
                   <p className="text-xs text-gray-600 mt-1">
@@ -358,12 +358,12 @@ export default function CalorieBurnCalculator() {
                   </svg>
                 </div>
               </a>
-              <a
+              {/* <a
                 href="/kaloriju-poreikiai"
                 className="relative flex items-center bg-white p-5 rounded-md sm:w-1/2 hover:bg-gray-50 transition shadow"
               >
                 <div className="mr-8">
-                  <h5 className="text-base font-semibold leading-normal text-neutral-600 hover:text-gray-900">
+                  <h5 className="text-base font-semibold leading-normal text-neutral-700 hover:text-gray-900">
                     Dienos kalorijų poreikio skaičiuoklė
                   </h5>
                   <p className="text-xs text-gray-600 mt-1">
@@ -385,7 +385,7 @@ export default function CalorieBurnCalculator() {
                     <path d="M9 5l7 7-7 7" />
                   </svg>
                 </div>
-              </a>
+              </a> */}
             </div>
           </div>
         )}
