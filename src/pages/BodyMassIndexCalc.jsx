@@ -252,7 +252,7 @@ export default function BodyMassIndexCalc() {
         }
         heroContentRight={
           <div className="bg-white rounded-xl p-6 sm:p-8 text-gray-900 shadow-2xl max-w-md w-full">
-            <h2 className="text-xl font-bold mb-4 text-emerald-700">
+            <h2 className="text-xl font-bold mb-6 text-emerald-700">
               Apskaičiuokite KMI
             </h2>
             <form onSubmit={handleSubmit} className="space-y-5">
@@ -349,14 +349,12 @@ export default function BodyMassIndexCalc() {
                   )}
                 </div>
               )}
-              <div className="pt-2">
-                <button
-                  type="submit"
-                  className="inline-flex items-center px-5 py-2 rounded-md bg-emerald-600 text-sm font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
-                >
-                  Skaičiuoti
-                </button>
-              </div>
+              <button
+                type="submit"
+                className="inline-flex items-center px-5 py-2 rounded-md bg-emerald-600 text-sm font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
+              >
+                Skaičiuoti
+              </button>
             </form>
           </div>
         }
@@ -555,7 +553,7 @@ export default function BodyMassIndexCalc() {
           </p>
           <div className="overflow-hidden shadow sm:rounded-lg">
             <table className="min-w-full divide-y divide-gray-300">
-              <thead className="bg-emerald-50 text-emerald-900">
+              <thead className="bg-slate-50 text-slate-900">
                 <tr>
                   <th
                     scope="col"
@@ -611,7 +609,7 @@ export default function BodyMassIndexCalc() {
           </p>
           <div className="overflow-hidden shadow sm:rounded-lg">
             <table className="min-w-full divide-y divide-gray-300">
-              <thead className="bg-emerald-50 text-emerald-900">
+              <thead className="bg-slate-50 text-slate-900">
                 <tr>
                   <th
                     scope="col"

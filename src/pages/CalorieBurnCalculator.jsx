@@ -140,7 +140,7 @@ export default function CalorieBurnCalculator() {
         }
         heroContentRight={
           <div className="bg-white rounded-xl p-6 sm:p-8 text-gray-900 shadow-2xl max-w-md w-full">
-            <h2 className="text-xl font-bold mb-4 text-emerald-700">
+            <h2 className="text-xl font-bold mb-6 text-emerald-700">
               Apskaičiuokite sudeginamas kalorijas
             </h2>
             <form onSubmit={handleCalculate} className="space-y-5">
@@ -288,15 +288,12 @@ export default function CalorieBurnCalculator() {
                 </Listbox>
               </div>
 
-              {/* Submit */}
-              <div className="pt-2">
-                <button
-                  type="submit"
-                  className="inline-flex items-center px-5 py-2 rounded-md bg-emerald-600 text-sm font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
-                >
-                  Skaičiuoti
-                </button>
-              </div>
+              <button
+                type="submit"
+                className="inline-flex items-center px-5 py-2 rounded-md bg-emerald-600 text-sm font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
+              >
+                Skaičiuoti
+              </button>
             </form>
           </div>
         }
