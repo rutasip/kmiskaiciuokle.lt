@@ -25,7 +25,7 @@ const HeroSection: FC<HeroSectionProps> = ({
     >
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/90" />
 
-      <div className="relative z-10 mx-auto max-w-5xl w-full px-6 py-16 sm:py-20 md:py-24">
+      <div className="relative z-10 mx-auto max-w-4xl w-full px-6 py-16 sm:py-20 md:py-24">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div className="order-2 md:order-1 md:col-span-1 text-white space-y-5 sm:space-y-6">
             {heroContentLeft}
