@@ -57,9 +57,9 @@ export function Sidebar() {
   };
 
   const handleMouseLeave = () => {
-    // closeTimerRef.current = setTimeout(() => {
-    //   setOpenMenu(null)
-    // }, 600)
+    closeTimerRef.current = setTimeout(() => {
+      setOpenMenu(null)
+    }, 600)
   };
 
   const renderCaret = (menuName) =>

@@ -73,7 +73,7 @@ export default function CalorieBurnCalculator() {
   // Smooth scroll to results when we set calcTimestamp
   useEffect(() => {
     if (calcTimestamp !== 0 && resultsRef.current) {
-      const offset = 300;
+      const offset = 360;
       const elementTop =
         resultsRef.current.getBoundingClientRect().top + window.scrollY;
       window.scrollTo({ top: elementTop - offset, behavior: "smooth" });
@@ -299,63 +299,64 @@ export default function CalorieBurnCalculator() {
         }
       />
 
-      <PageContentSection ref={resultsRef} scrolled={scrolled}>
+      <div className="flex flex-col gap-8 sm:gap-14">
         {caloriesBurned && (
-          <div className="mb-8 border-b pb-14">
-            <div className="mb-8 space-y-4 text-center">
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900">
-                Rezultatai
-              </h2>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
-              <div className="bg-white rounded-lg shadow p-5 flex flex-col items-center">
-                <h3 className="text-sm font-semibold text-gray-500 mb-1">
-                  Sudegintos kalorijos
-                </h3>
-                <span className="text-2xl sm:text-3xl font-bold text-gray-900">
-                  {caloriesBurned} kcal
-                </span>
+          <PageContentSection ref={resultsRef} scrolled={scrolled}>
+            <div>
+              <div className="mb-8 space-y-4 text-center">
+                <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900">
+                  Rezultatai
+                </h2>
               </div>
-              <div className="bg-white rounded-lg shadow p-5 flex flex-col items-center">
-                <h3 className="text-sm font-semibold text-gray-500 mb-1">
-                  Veikla
-                </h3>
-                <span className="text-lg sm:text-xl font-semibold text-gray-900">
-                  {selectedActivity.name}
-                </span>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+                <div className="bg-white rounded-lg shadow p-5 flex flex-col items-center">
+                  <h3 className="text-sm font-semibold text-gray-500 mb-1">
+                    Sudegintos kalorijos
+                  </h3>
+                  <span className="text-2xl sm:text-3xl font-bold text-gray-900">
+                    {caloriesBurned} kcal
+                  </span>
+                </div>
+                <div className="bg-white rounded-lg shadow p-5 flex flex-col items-center">
+                  <h3 className="text-sm font-semibold text-gray-500 mb-1">
+                    Veikla
+                  </h3>
+                  <span className="text-lg sm:text-xl font-semibold text-gray-900">
+                    {selectedActivity.name}
+                  </span>
+                </div>
               </div>
-            </div>
 
-            <div className="flex flex-col sm:flex-row gap-4">
-              <a
-                href="/"
-                className="relative flex items-center bg-white p-5 rounded-md sm:w-1/2 hover:bg-gray-50 transition shadow"
-              >
-                <div className="mr-8">
-                  <h5 className="text-base font-semibold leading-normal text-neutral-700 hover:text-gray-900">
-                    Kūno masės indekso skaičiuoklė
-                  </h5>
-                  <p className="text-xs text-gray-600 mt-1">
-                    Sužinokite savo KMI (kūno masės indeksą).
-                  </p>
-                </div>
-                <div
-                  className="absolute right-4"
-                  style={{ animation: "horizontalBounce 1.5s infinite" }}
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a
+                  href="/"
+                  className="relative flex items-center bg-white p-5 rounded-md sm:w-1/2 hover:bg-gray-50 transition shadow"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-5 h-5 text-gray-500 hover:text-emerald-700"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
+                  <div className="mr-8">
+                    <h5 className="text-base font-semibold leading-normal text-neutral-700 hover:text-gray-900">
+                      Kūno masės indekso skaičiuoklė
+                    </h5>
+                    <p className="text-xs text-gray-600 mt-1">
+                      Sužinokite savo KMI (kūno masės indeksą).
+                    </p>
+                  </div>
+                  <div
+                    className="absolute right-4"
+                    style={{ animation: "horizontalBounce 1.5s infinite" }}
                   >
-                    <path d="M9 5l7 7-7 7" />
-                  </svg>
-                </div>
-              </a>
-              {/* <a
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="w-5 h-5 text-gray-500 hover:text-emerald-700"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                    >
+                      <path d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </a>
+                {/* <a
                 href="/kaloriju-poreikiai"
                 className="relative flex items-center bg-white p-5 rounded-md sm:w-1/2 hover:bg-gray-50 transition shadow"
               >
@@ -383,51 +384,54 @@ export default function CalorieBurnCalculator() {
                   </svg>
                 </div>
               </a> */}
+              </div>
             </div>
-          </div>
+          </PageContentSection>
         )}
 
-        <section className="space-y-4">
-          <h2 className="text-xl font-bold text-gray-900">
-            Kaip veikia ši skaičiuoklė?
-          </h2>
-          <p>
-            Ši skaičiuoklė padeda apskaičiuoti, kiek kalorijų sudeginate
-            atlikdami konkrečią veiklą, atsižvelgiant į kūno svorį ir veiklos
-            trukmę.
-          </p>
-          <p>
-            Skaičiavimai atliekami pagal MET (Metabolic Equivalent of Task)
-            reikšmes.
-          </p>
-        </section>
+        <PageContentSection ref={resultsRef} scrolled={scrolled}>
+          <section className="space-y-4">
+            <h2 className="text-xl font-bold text-gray-900">
+              Kaip veikia ši skaičiuoklė?
+            </h2>
+            <p>
+              Ši skaičiuoklė padeda apskaičiuoti, kiek kalorijų sudeginate
+              atlikdami konkrečią veiklą, atsižvelgiant į kūno svorį ir veiklos
+              trukmę.
+            </p>
+            <p>
+              Skaičiavimai atliekami pagal MET (Metabolic Equivalent of Task)
+              reikšmes.
+            </p>
+          </section>
 
-        <section className="space-y-4 mt-8">
-          <h2 className="text-xl font-bold text-gray-900">Kas yra MET?</h2>
-          <p>
-            MET (Metabolic Equivalent of Task) – tai vienetas, nurodantis
-            energijos sunaudojimą. 1 MET atitinka energijos kiekį, reikalingą
-            žmogaus organizmui ramybės būsenoje.
-          </p>
-          <p>
-            Pavyzdžiui, veikla su 2 MET yra dvigubai intensyvesnė už bazinį
-            ramybės metabolizmą.
-          </p>
-        </section>
+          <section className="space-y-4 mt-8">
+            <h2 className="text-xl font-bold text-gray-900">Kas yra MET?</h2>
+            <p>
+              MET (Metabolic Equivalent of Task) – tai vienetas, nurodantis
+              energijos sunaudojimą. 1 MET atitinka energijos kiekį, reikalingą
+              žmogaus organizmui ramybės būsenoje.
+            </p>
+            <p>
+              Pavyzdžiui, veikla su 2 MET yra dvigubai intensyvesnė už bazinį
+              ramybės metabolizmą.
+            </p>
+          </section>
 
-        <section className="space-y-4 mt-8">
-          <h2 className="text-xl font-bold text-gray-900">Formulė</h2>
-          <p className="italic">
-            <b>
-              Sudegintos kalorijos = MET × svoris (kg) × trukmė (valandomis)
-            </b>
-          </p>
-          <p>
-            Pvz., jei veiklos MET = 6, sveriate 70 kg ir veikla trunka 1
-            valandą, sudeginate: 6 × 70 × 1 = 420 kcal.
-          </p>
-        </section>
-      </PageContentSection>
+          <section className="space-y-4 mt-8">
+            <h2 className="text-xl font-bold text-gray-900">Formulė</h2>
+            <p className="italic">
+              <b>
+                Sudegintos kalorijos = MET × svoris (kg) × trukmė (valandomis)
+              </b>
+            </p>
+            <p>
+              Pvz., jei veiklos MET = 6, sveriate 70 kg ir veikla trunka 1
+              valandą, sudeginate: 6 × 70 × 1 = 420 kcal.
+            </p>
+          </section>
+        </PageContentSection>
+      </div>
 
       <BackToTopButton show={showBackToTop} onClick={scrollToTop} />
     </>
