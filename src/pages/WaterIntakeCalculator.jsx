@@ -4,6 +4,7 @@ import PageContentSection from "../components/PageContentSection";
 import BackToTopButton from "../components/BackToTopButton";
 import RecommendedCalculatorsSection from "../components/RecommendedCalculatorsSection";
 import InputField from "../components/InputField";
+import RadioGroupInput from "../components/RadioGroupInput";
 import useScrollEffects from "../hooks/useScrollEffects";
 
 import { RadioGroup } from "@headlessui/react";
@@ -44,6 +45,11 @@ const faqs = [
     answer:
       "Vanduo yra gyvybiškai svarbus mūsų organizmui. Jis padeda reguliuoti kūno temperatūrą, perneša maistines medžiagas ir deguonį į ląsteles, pašalina atliekas, palaiko sąnarių tepimą ir gerina virškinimą. Pakankamas vandens suvartojimas gali pagerinti energijos lygį, koncentraciją ir bendrą sveikatą. Dehidratacija gali sukelti nuovargį, galvos skausmą, sumažėjusią koncentraciją ir kitus sveikatos sutrikimus.",
   },
+];
+
+const genderOptions = [
+  { value: "female", label: "Moteris" },
+  { value: "male", label: "Vyras" },
 ];
 
 export default function WaterIntakeCalculator() {
@@ -187,44 +193,13 @@ export default function WaterIntakeCalculator() {
                   type="number"
                 />
 
-                <div>
-                  <label
-                    htmlFor="gender"
-                    className="block text-sm font-medium leading-6 text-gray-900"
-                  >
-                    Pasirinkite lytį
-                  </label>
-                  <div className="flex space-x-6">
-                    <div>
-                      <input
-                        id="female"
-                        name="gender"
-                        type="radio"
-                        value="female"
-                        checked={gender === "female"}
-                        onChange={(e) => setGender(e.target.value)}
-                        className="h-4 w-4 text-emerald-600 border-gray-300 focus:ring-emerald-600"
-                      />
-                      <label htmlFor="female" className="ml-2 text-sm">
-                        Moteris
-                      </label>
-                    </div>
-                    <div>
-                      <input
-                        id="male"
-                        name="gender"
-                        type="radio"
-                        value="male"
-                        checked={gender === "male"}
-                        onChange={(e) => setGender(e.target.value)}
-                        className="h-4 w-4 text-emerald-600 border-gray-300 focus:ring-emerald-600"
-                      />
-                      <label htmlFor="male" className="ml-2 text-sm">
-                        Vyras
-                      </label>
-                    </div>
-                  </div>
-                </div>
+                <RadioGroupInput
+                  label="Pasirinkite lytį"
+                  name="gender"
+                  options={genderOptions}
+                  selectedValue={gender}
+                  onChange={(val) => setGender(val)}
+                />
               </>
             )}
 

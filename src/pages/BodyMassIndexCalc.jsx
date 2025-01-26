@@ -3,6 +3,7 @@ import HeroSection from "../components/HeroSection";
 import PageContentSection from "../components/PageContentSection";
 import BackToTopButton from "../components/BackToTopButton";
 import InputField from "../components/InputField";
+import RadioGroupInput from "../components/RadioGroupInput";
 
 import useScrollEffects from "../hooks/useScrollEffects";
 
@@ -122,6 +123,11 @@ const faqs = [
     answer:
       "KMI skaičiuoklės rezultatai yra orientaciniai. Jei turite klausimų ar rūpesčių dėl savo sveikatos, kreipkitės į profesionalą.",
   },
+];
+
+const genderOptions = [
+  { value: "female", label: "Moteris" },
+  { value: "male", label: "Vyras" },
 ];
 
 export default function BodyMassIndexCalc() {
@@ -275,47 +281,14 @@ export default function BodyMassIndexCalc() {
               </label>
             </div>
             {showIdealWeight && (
-              <div>
-                <label
-                  htmlFor="gender"
-                  className="block text-sm font-medium leading-6 text-gray-900"
-                >
-                  Pasirinkite lytį
-                </label>
-                <div className="flex space-x-6">
-                  <div>
-                    <input
-                      type="radio"
-                      id="female"
-                      name="gender"
-                      value="female"
-                      checked={gender === "female"}
-                      onChange={(e) => setGender(e.target.value)}
-                      className="h-4 w-4 text-emerald-600 border-gray-300 focus:ring-emerald-600"
-                    />
-                    <label htmlFor="female" className="ml-2 text-sm">
-                      Moteris
-                    </label>
-                  </div>
-                  <div>
-                    <input
-                      type="radio"
-                      id="male"
-                      name="gender"
-                      value="male"
-                      checked={gender === "male"}
-                      onChange={(e) => setGender(e.target.value)}
-                      className="h-4 w-4 text-emerald-600 border-gray-300 focus:ring-emerald-600"
-                    />
-                    <label htmlFor="male" className="ml-2 text-sm">
-                      Vyras
-                    </label>
-                  </div>
-                </div>
-                {genderError && (
-                  <p className="text-sm text-red-600 mt-1">{genderError}</p>
-                )}
-              </div>
+              <RadioGroupInput
+                label="Pasirinkite lytį"
+                name="gender"
+                options={genderOptions}
+                selectedValue={gender}
+                onChange={(val) => setGender(val)}
+                error={genderError}
+              />
             )}
             <button
               type="submit"
