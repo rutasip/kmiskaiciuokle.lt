@@ -3,6 +3,7 @@ import HeroSection from "../components/HeroSection";
 import PageContentSection from "../components/PageContentSection";
 import BackToTopButton from "../components/BackToTopButton";
 import RecommendedCalculatorsSection from "../components/RecommendedCalculatorsSection";
+import InputField from "../components/InputField";
 import useScrollEffects from "../hooks/useScrollEffects";
 
 import { RadioGroup } from "@headlessui/react";
@@ -62,9 +63,6 @@ export default function WaterIntakeCalculator() {
   const [weightError, setWeightError] = useState("");
   const [heightError, setHeightError] = useState("");
 
-  const [bmr, setBMR] = useState(null);
-  const [tdee, setTDEE] = useState(null);
-  const [climateAdjustment, setClimateAdjustment] = useState(null);
   const [totalIntake, setTotalIntake] = useState(null);
 
   const handleNext = (e) => {
@@ -132,9 +130,6 @@ export default function WaterIntakeCalculator() {
     const calculatedClimateAdjustment = climate.adjustment;
     calculatedTotalIntake += calculatedClimateAdjustment;
 
-    setBMR(calculatedBMR.toFixed(0));
-    setTDEE(calculatedTDEE.toFixed(0));
-    setClimateAdjustment(calculatedClimateAdjustment);
     setTotalIntake(calculatedTotalIntake.toFixed(0));
 
     setCalcTimestamp(Date.now());
@@ -142,7 +137,6 @@ export default function WaterIntakeCalculator() {
 
   return (
     <>
-      {/* Optional: horizontalBounce keyframe so arrow chevrons bounce */}
       <style>
         {`
           @keyframes horizontalBounce {
@@ -164,78 +158,49 @@ export default function WaterIntakeCalculator() {
         calculatorForm={
           <form
             onSubmit={step === 1 ? handleNext : handleCalculate}
-            className="space-y-5"
+            className="space-y-6"
           >
             {step === 1 && (
               <>
-                <div>
-                  <label
-                    htmlFor="age"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Amžius
-                  </label>
-                  <input
-                    type="number"
-                    id="age"
-                    placeholder="pvz. 25"
-                    value={age}
-                    onChange={(e) => setAge(e.target.value)}
-                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:ring-emerald-600 focus:border-emerald-600"
-                  />
-                  {ageError && (
-                    <p className="mt-1 text-sm text-red-600">{ageError}</p>
-                  )}
-                </div>
+                <InputField
+                  label="Ūgis (cm)"
+                  id="height"
+                  value={height}
+                  onChange={(newVal) => setHeight(newVal)}
+                  placeholder="pvz. 170"
+                  error={heightError}
+                  type="number"
+                />
 
-                <div>
-                  <label
-                    htmlFor="height"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Ūgis (cm)
-                  </label>
-                  <input
-                    type="number"
-                    id="height"
-                    placeholder="pvz. 170"
-                    value={height}
-                    onChange={(e) => setHeight(e.target.value)}
-                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:ring-emerald-600 focus:border-emerald-600"
-                  />
-                  {heightError && (
-                    <p className="mt-1 text-sm text-red-600">{heightError}</p>
-                  )}
-                </div>
+                <InputField
+                  label="Svoris (kg)"
+                  id="weight"
+                  value={weight}
+                  onChange={(newVal) => setWeight(newVal)}
+                  placeholder="pvz. 70"
+                  error={weightError}
+                  type="number"
+                />
 
-                <div>
-                  <label
-                    htmlFor="weight"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Svoris (kg)
-                  </label>
-                  <input
-                    type="number"
-                    id="weight"
-                    placeholder="pvz. 70"
-                    value={weight}
-                    onChange={(e) => setWeight(e.target.value)}
-                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:ring-emerald-600 focus:border-emerald-600"
-                  />
-                  {weightError && (
-                    <p className="mt-1 text-sm text-red-600">{weightError}</p>
-                  )}
-                </div>
+                <InputField
+                  label="Amžius"
+                  id="age"
+                  value={age}
+                  onChange={(newVal) => setAge(newVal)}
+                  placeholder="pvz. 25"
+                  error={ageError}
+                  type="number"
+                />
+
                 <div>
                   <label
                     htmlFor="gender"
-                    className="block text-sm font-medium text-gray-700"
+                    className="block text-sm font-medium leading-6 text-gray-900"
                   >
-                    Lytis
+                    Pasirinkite lytį
                   </label>
-                  <div className="flex items-center space-x-6 mt-2">
-                    <div className="flex items-center">
+                  <div className="flex space-x-6">
+                    <div>
                       <input
                         id="female"
                         name="gender"
@@ -245,14 +210,11 @@ export default function WaterIntakeCalculator() {
                         onChange={(e) => setGender(e.target.value)}
                         className="h-4 w-4 text-emerald-600 border-gray-300 focus:ring-emerald-600"
                       />
-                      <label
-                        htmlFor="female"
-                        className="ml-2 text-sm text-gray-700"
-                      >
+                      <label htmlFor="female" className="ml-2 text-sm">
                         Moteris
                       </label>
                     </div>
-                    <div className="flex items-center">
+                    <div>
                       <input
                         id="male"
                         name="gender"
@@ -262,10 +224,7 @@ export default function WaterIntakeCalculator() {
                         onChange={(e) => setGender(e.target.value)}
                         className="h-4 w-4 text-emerald-600 border-gray-300 focus:ring-emerald-600"
                       />
-                      <label
-                        htmlFor="male"
-                        className="ml-2 text-sm text-gray-700"
-                      >
+                      <label htmlFor="male" className="ml-2 text-sm">
                         Vyras
                       </label>
                     </div>
@@ -276,24 +235,13 @@ export default function WaterIntakeCalculator() {
 
             {step === 2 && (
               <>
-                <div>
-                  <label
-                    htmlFor="exerciseHours"
-                    className="block text-sm font-medium text-gray-700"
-                  >
-                    Fizinis aktyvumas (valandos per dieną)
-                  </label>
-                  <input
-                    type="number"
-                    step="0.1"
-                    min="0"
-                    id="exerciseHours"
-                    placeholder="pvz. 1"
-                    value={exerciseHours}
-                    onChange={(e) => setExerciseHours(e.target.value)}
-                    className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:ring-emerald-600 focus:border-emerald-600"
-                  />
-                </div>
+                <InputField
+                  label="Fizinis aktyvumas (valandos per dieną)"
+                  id="exerciseHours"
+                  value={exerciseHours}
+                  onChange={(newVal) => setExerciseHours(newVal)}
+                  type="number"
+                />
 
                 <div>
                   <label
@@ -387,59 +335,18 @@ export default function WaterIntakeCalculator() {
                 <p className="mt-2 text-4xl sm:text-5xl font-extrabold text-emerald-900">
                   {(Number(totalIntake) / 1000).toFixed(2)} l / dieną
                 </p>
-                <p className="mt-1 text-sm text-emerald-700">
-                  Į šį kiekį įskaičiuotas papildomas kiekis šiltesniam klimatui.
-                </p>
               </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                <div className="bg-white rounded-lg shadow p-5 flex flex-col items-center">
-                  <h3 className="text-sm font-semibold text-gray-500 mb-1">
-                    BMR
-                  </h3>
-                  <span className="text-xl sm:text-2xl font-bold text-gray-900">
-                    {bmr} kcal
-                  </span>
-                </div>
-                <div className="bg-white rounded-lg shadow p-5 flex flex-col items-center">
-                  <h3 className="text-sm font-semibold text-gray-500 mb-1">
-                    TDEE
-                  </h3>
-                  <span className="text-xl sm:text-2xl font-bold text-gray-900">
-                    {tdee} kcal
-                  </span>
-                </div>
-                <div className="bg-white rounded-lg shadow p-5 flex flex-col items-center">
-                  <h3 className="text-sm font-semibold text-gray-500 mb-1">
-                    Klimato priedas
-                  </h3>
-                  {climateAdjustment > 0 ? (
-                    <span className="text-xl sm:text-2xl font-bold text-gray-900">
-                      +{(climateAdjustment / 1000).toFixed(2)} l
-                    </span>
-                  ) : (
-                    <span className="text-sm text-gray-400">Netaikomas</span>
-                  )}
-                </div>
-              </div>
-
-              <RecommendedCalculatorsSection />
+              <RecommendedCalculatorsSection
+                showBodyMassIndexCalculator
+                showCalorieBurnCalculator
+                showWaterIntakeCalculator={false}
+              />
             </div>
           </PageContentSection>
         )}
 
         <PageContentSection ref={resultsRef} scrolled={scrolled}>
-          <section className="space-y-4">
-            <h2 className="text-xl font-bold text-gray-900">
-              Dažniausiai užduodami klausimai
-            </h2>
-            <p className="text-sm sm:text-base text-gray-700">
-              Žemiau pateikiame keletą atsakymų į bendrus klausimus apie vandens
-              suvartojimą ir šios skaičiuoklės veikimą.
-            </p>
-          </section>
-
-          <section className="space-y-6 mt-6">
+          <section className="space-y-6">
             {faqs.map((faq, index) => (
               <div key={index}>
                 <h3 className="text-lg font-semibold text-gray-800">

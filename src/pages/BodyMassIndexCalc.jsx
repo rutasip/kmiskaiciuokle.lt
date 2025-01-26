@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import HeroSection from "../components/HeroSection";
 import PageContentSection from "../components/PageContentSection";
 import BackToTopButton from "../components/BackToTopButton";
+import InputField from "../components/InputField";
 
 import useScrollEffects from "../hooks/useScrollEffects";
 
@@ -240,45 +241,25 @@ export default function BodyMassIndexCalc() {
         per didelis. Jei norite, galite sužinoti ir idealų svorį."
         calculatorTitle="Apskaičiuokite KMI"
         calculatorForm={
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <div>
-              <label
-                htmlFor="height"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Ūgis (cm)
-              </label>
-              <input
-                type="number"
-                id="height"
-                placeholder="pvz. 170"
-                value={height}
-                onChange={(e) => setHeight(e.target.value)}
-                className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:ring-emerald-600 focus:border-emerald-600"
-              />
-              {heightError && (
-                <p className="text-sm text-red-600 mt-1">{heightError}</p>
-              )}
-            </div>
-            <div>
-              <label
-                htmlFor="weight"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Svoris (kg)
-              </label>
-              <input
-                type="number"
-                id="weight"
-                placeholder="pvz. 70"
-                value={weight}
-                onChange={(e) => setWeight(e.target.value)}
-                className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:ring-emerald-600 focus:border-emerald-600"
-              />
-              {weightError && (
-                <p className="text-sm text-red-600 mt-1">{weightError}</p>
-              )}
-            </div>
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <InputField
+              label="Ūgis (cm)"
+              id="height"
+              value={height}
+              onChange={(newVal) => setHeight(newVal)}
+              placeholder="pvz. 170"
+              error={heightError}
+              type="number"
+            />
+            <InputField
+              label="Svoris (kg)"
+              id="weight"
+              value={weight}
+              onChange={(newVal) => setWeight(newVal)}
+              placeholder="pvz. 70"
+              error={weightError}
+              type="number"
+            />
             <div className="flex items-center">
               <input
                 type="checkbox"
@@ -289,18 +270,21 @@ export default function BodyMassIndexCalc() {
               />
               <label
                 htmlFor="showIdealWeight"
-                className="ml-2 text-sm text-gray-700"
+                className="ml-3 block text-sm leading-6 text-gray-900"
               >
                 Noriu sužinoti idealų svorį
               </label>
             </div>
             {showIdealWeight && (
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label
+                  htmlFor="gender"
+                  className="block text-sm font-medium leading-6 text-gray-900"
+                >
                   Pasirinkite lytį
                 </label>
                 <div className="flex space-x-6">
-                  <div className="flex items-center">
+                  <div>
                     <input
                       type="radio"
                       id="female"
@@ -314,7 +298,7 @@ export default function BodyMassIndexCalc() {
                       Moteris
                     </label>
                   </div>
-                  <div className="flex items-center">
+                  <div>
                     <input
                       type="radio"
                       id="male"

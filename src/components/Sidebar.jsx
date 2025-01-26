@@ -7,7 +7,7 @@ import {
   ChevronUpIcon,
   ScaleIcon,
   FireIcon,
-  DocumentTextIcon,
+  // DocumentTextIcon,
   BeakerIcon,
 } from "@heroicons/react/24/outline";
 
@@ -27,12 +27,12 @@ const healthNav = [
 ];
 
 const nutritionNav = [
-  {
-    name: "Dienos kalorijų poreikis",
-    href: "/kaloriju-poreikiai",
-    icon: DocumentTextIcon,
-    description: "Sužinokite optimalų dienos kalorijų kiekį svorio mažinimui, palaikymui ar didinimui.",
-  },
+  // {
+  //   name: "Dienos kalorijų poreikis",
+  //   href: "/kaloriju-poreikiai",
+  //   icon: DocumentTextIcon,
+  //   description: "Sužinokite optimalų dienos kalorijų kiekį svorio mažinimui, palaikymui ar didinimui.",
+  // },
   {
     name: "Vandens suvartojimo poreikis",
     href: "/vandens-norma",

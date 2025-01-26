@@ -4,6 +4,7 @@ import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import HeroSection from "../components/HeroSection";
 import PageContentSection from "../components/PageContentSection";
 import BackToTopButton from "../components/BackToTopButton";
+import InputField from "../components/InputField";
 import useScrollEffects from "../hooks/useScrollEffects";
 
 function classNames(...classes) {
@@ -102,11 +103,9 @@ export default function CalorieBurnCalculator() {
 
     if (!isValid) return;
 
-    // MET formula
     const calories = selectedActivity.value * weightInKg * durationInHours;
     setCaloriesBurned(calories.toFixed(2));
 
-    // Trigger the effect that scrolls to results
     setCalcTimestamp(Date.now());
   };
 
@@ -128,62 +127,38 @@ export default function CalorieBurnCalculator() {
       energijos sąnaudas pagal Jūsų svorį ir veiklos trukmę."
         calculatorTitle="Apskaičiuokite sudeginamas kalorijas"
         calculatorForm={
-          <form onSubmit={handleCalculate} className="space-y-5">
-            <div>
-              <label
-                htmlFor="weight"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Svoris (kg)
-              </label>
-              <input
-                type="number"
-                name="weight"
-                id="weight"
-                value={weight}
-                onChange={(e) => setWeight(e.target.value)}
-                placeholder="pvz. 70"
-                className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:ring-emerald-600 focus:border-emerald-600"
-              />
-              {weightError && (
-                <p className="text-sm text-red-600 mt-1">{weightError}</p>
-              )}
-            </div>
+          <form onSubmit={handleCalculate} className="space-y-6">
+            <InputField
+              label="Svoris (kg)"
+              id="weight"
+              value={weight}
+              onChange={(newVal) => setWeight(newVal)}
+              placeholder="pvz. 70"
+              error={weightError}
+              type="number"
+            />
 
-            <div>
-              <label
-                htmlFor="duration"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Trukmė (valandomis)
-              </label>
-              <input
-                type="number"
-                step="0.1"
-                min="0"
-                name="duration"
-                id="duration"
-                value={duration}
-                onChange={(e) => setDuration(e.target.value)}
-                placeholder="pvz. 1.5"
-                className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:ring-emerald-600 focus:border-emerald-600"
-              />
-              {durationError && (
-                <p className="text-sm text-red-600 mt-1">{durationError}</p>
-              )}
-            </div>
+            <InputField
+              label="Trukmė (valandomis)"
+              id="duration"
+              value={duration}
+              onChange={(newVal) => setDuration(newVal)}
+              placeholder="pvz. 1.5"
+              error={durationError}
+              type="number"
+            />
 
             <div>
               <label
                 htmlFor="activity"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="block text-sm font-medium leading-6 text-gray-900"
               >
                 Pasirinkite veiklą
               </label>
               <Listbox value={selectedActivity} onChange={setSelectedActivity}>
                 {({ open }) => (
                   <>
-                    <div className="relative">
+                    <div className="relative mt-2">
                       <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-2 pl-3 pr-10 text-left border border-gray-300 shadow-sm focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm">
                         <span className="block truncate">
                           {selectedActivity.name}
