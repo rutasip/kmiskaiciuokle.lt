@@ -236,10 +236,9 @@ export default function BodyMassIndexCalc() {
       </style>
 
       <HeroSection
-        title="Kūno masės indeksas (KMI)"
+        title="Kūno masės indekso skaičiuoklė"
         subtitle="Greitas būdas įvertinti, ar jūsų svoris yra normalus, per mažas ar
         per didelis. Jei norite, galite sužinoti ir idealų svorį."
-        calculatorTitle="Apskaičiuokite KMI"
         calculatorForm={
           <form onSubmit={handleSubmit} className="space-y-6">
             <InputField

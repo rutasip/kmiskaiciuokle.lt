@@ -7,7 +7,6 @@ const backgroundImageUrl =
 interface HeroSectionProps {
   title: string;
   subtitle: string;
-  calculatorTitle: string;
   calculatorForm: ReactNode;
   scrolled: boolean;
 }
@@ -15,7 +14,6 @@ interface HeroSectionProps {
 const HeroSection: FC<HeroSectionProps> = ({
   title,
   subtitle,
-  calculatorTitle,
   calculatorForm,
   scrolled,
 }) => {
@@ -32,7 +30,7 @@ const HeroSection: FC<HeroSectionProps> = ({
       <div className="relative z-10 mx-auto max-w-5xl w-full px-6 py-16 sm:py-20 md:py-24">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div className="order-2 md:order-1 md:col-span-1 text-white space-y-5 sm:space-y-6">
-            <h1 className="text-2xl font-bold tracking-tight text-white">
+            <h1 className="text-4xl font-bold tracking-tight text-white">
               {title}
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-300">
@@ -41,9 +39,6 @@ const HeroSection: FC<HeroSectionProps> = ({
           </div>
           <div className="order-1 md:order-2 md:col-span-1 flex justify-center md:justify-end">
             <div className="bg-white p-6 shadow-2xl sm:rounded-lg max-w-md w-full">
-              <h2 className="text-xl font-bold tracking-tight mb-10 text-emerald-700">
-                {calculatorTitle}
-              </h2>
               {calculatorForm}
             </div>
           </div>

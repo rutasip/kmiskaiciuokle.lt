@@ -125,7 +125,6 @@ export default function CalorieBurnCalculator() {
         subtitle="Sužinokite, kiek kalorijų sudeginate įvairios veiklos metu. Ši
       skaičiuoklė remiasi MET metodu, kad tiksliai įvertintų Jūsų
       energijos sąnaudas pagal Jūsų svorį ir veiklos trukmę."
-        calculatorTitle="Apskaičiuokite sudeginamas kalorijas"
         calculatorForm={
           <form onSubmit={handleCalculate} className="space-y-6">
             <InputField

@@ -150,11 +150,6 @@ export default function WaterIntakeCalculator() {
         title="Vandens suvartojimo skaičiuoklė"
         subtitle="Sužinokite, kiek vandens per dieną jums gali reikėti, atsižvelgiant 
         į jūsų amžių, ūgį, svorį, fizinio aktyvumo lygį ir klimatą."
-        calculatorTitle={
-          step === 1
-            ? "Jūsų fiziniai duomenys"
-            : "Fizinis aktyvumas ir klimatas"
-        }
         calculatorForm={
           <form
             onSubmit={step === 1 ? handleNext : handleCalculate}
@@ -293,7 +288,7 @@ export default function WaterIntakeCalculator() {
               </>
             )}
 
-            <div className="flex justify-end items-center pt-4">
+            <div className="flex items-center">
               {step === 2 && (
                 <button
                   type="button"
