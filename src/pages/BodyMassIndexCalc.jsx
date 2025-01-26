@@ -4,6 +4,7 @@ import PageContentSection from "../components/PageContentSection";
 import BackToTopButton from "../components/BackToTopButton";
 import InputField from "../components/InputField";
 import RadioGroupInput from "../components/RadioGroupInput";
+import ResultsDisclaimer from "../components/ResultsDisclaimer";
 
 import useScrollEffects from "../hooks/useScrollEffects";
 
@@ -305,12 +306,8 @@ export default function BodyMassIndexCalc() {
         {bmi && (
           <PageContentSection ref={resultsRef} scrolled={scrolled}>
             <div>
-              <div className="mb-8 space-y-4 text-center">
-                <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900">
-                  Rezultatai
-                </h2>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-16">
+              <ResultsDisclaimer/>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-8 mb-16">
                 <div className="bg-white rounded-lg shadow p-5 flex flex-col items-center">
                   <h3 className="text-sm font-semibold text-gray-500 mb-1">
                     KMI

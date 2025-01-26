@@ -5,6 +5,7 @@ import BackToTopButton from "../components/BackToTopButton";
 import RecommendedCalculatorsSection from "../components/RecommendedCalculatorsSection";
 import InputField from "../components/InputField";
 import RadioGroupInput from "../components/RadioGroupInput";
+import ResultsDisclaimer from "../components/ResultsDisclaimer";
 import useScrollEffects from "../hooks/useScrollEffects";
 
 import { RadioGroup } from "@headlessui/react";
@@ -289,16 +290,9 @@ export default function WaterIntakeCalculator() {
         {totalIntake && (
           <PageContentSection ref={resultsRef} scrolled={scrolled}>
             <div>
-              <div className="mb-8 text-center">
-                <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-4">
-                  Rezultatai
-                </h2>
-                <p className="text-sm sm:text-base text-gray-600">
-                  Remiantis jūsų įvestimi, žemiau pateikiamos rekomendacijos
-                </p>
-              </div>
+              <ResultsDisclaimer/>
 
-              <div className="rounded-md bg-emerald-50 p-6 mb-8">
+              <div className="rounded-md bg-emerald-50 p-6 my-8">
                 <h3 className="text-lg font-semibold text-emerald-800">
                   Rekomenduojamas vandens suvartojimas
                 </h3>
