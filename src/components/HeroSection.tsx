@@ -17,7 +17,7 @@ const HeroSection: FC<HeroSectionProps> = ({
 }) => {
   return (
     <section
-      className="relative min-h-screen flex items-center justify-center bg-fixed bg-center bg-no-repeat shadow-xl"
+      className="relative min-h-screen flex items-center justify-center bg-fixed bg-center bg-no-repeat shadow-lg"
       style={{
         backgroundImage: `url(${backgroundImageUrl})`,
         backgroundSize: "cover",

@@ -7,8 +7,8 @@ import {
   ChevronUpIcon,
   ScaleIcon,
   FireIcon,
-  // DocumentTextIcon,
-  // BeakerIcon,
+  DocumentTextIcon,
+  BeakerIcon,
 } from "@heroicons/react/24/outline";
 
 const healthNav = [
@@ -26,20 +26,20 @@ const healthNav = [
   },
 ];
 
-// const nutritionNav = [
-//   {
-//     name: "Dienos kalorijų poreikis",
-//     href: "/kaloriju-poreikiai",
-//     icon: DocumentTextIcon,
-//     description: "Sužinokite optimalų dienos kalorijų kiekį svorio mažinimui, palaikymui ar didinimui.",
-//   },
-//   {
-//     name: "Vandens suvartojimo poreikis",
-//     href: "/vandens-norma",
-//     icon: BeakerIcon,
-//     description: "Apskaičiuokite reikalingą vandens kiekį įvairiose situacijose – sportuojant, karštomis dienomis, dirbant biure.",
-//   },
-// ];
+const nutritionNav = [
+  {
+    name: "Dienos kalorijų poreikis",
+    href: "/kaloriju-poreikiai",
+    icon: DocumentTextIcon,
+    description: "Sužinokite optimalų dienos kalorijų kiekį svorio mažinimui, palaikymui ar didinimui.",
+  },
+  {
+    name: "Vandens suvartojimo poreikis",
+    href: "/vandens-norma",
+    icon: BeakerIcon,
+    description: "Apskaičiuokite reikalingą vandens kiekį įvairiose situacijose – sportuojant, karštomis dienomis, dirbant biure.",
+  },
+];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -85,12 +85,12 @@ export function Sidebar() {
               onMouseEnter={() => handleMouseEnter("health")}
               onMouseLeave={handleMouseLeave}
             >
-              <div className="flex items-center gap-1 px-7 py-2 text-sm font-medium text-gray-700 hover:text-emerald-600 cursor-pointer">
+              <div className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-gray-700 hover:text-emerald-600 cursor-pointer">
                 Sveikatos skaičiuoklės
                 {renderCaret("health")}
               </div>
               {openMenu === "health" && (
-                <div className="absolute right-0 mt-2 bg-white shadow-lg border border-gray-200 rounded-lg z-50 overflow-hidden w-96">
+                <div className="absolute right-0 mt-2 bg-white shadow border border-gray-200 rounded-lg z-50 overflow-hidden w-96">
                   {healthNav.map((item) => (
                     <a
                       key={item.name}
@@ -118,17 +118,17 @@ export function Sidebar() {
                 </div>
               )}
             </div>
-            {/* <div
+            <div
               className="relative"
               onMouseEnter={() => handleMouseEnter("nutrition")}
               onMouseLeave={handleMouseLeave}
             >
-              <div className="flex items-center gap-1 px-7 py-2 text-sm font-medium text-gray-700 hover:text-emerald-600 cursor-pointer">
+              <div className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-gray-700 hover:text-emerald-600 cursor-pointer">
                 Mitybos skaičiuoklės
                 {renderCaret("nutrition")}
               </div>
               {openMenu === "nutrition" && (
-                <div className="absolute right-0 mt-2 bg-white shadow-lg border border-gray-200 rounded-lg z-50 overflow-hidden w-96">
+                <div className="absolute right-0 mt-2 bg-white shadow border border-gray-200 rounded-lg z-50 overflow-hidden w-96">
                   {nutritionNav.map((item) => (
                     <a
                       key={item.name}
@@ -155,7 +155,7 @@ export function Sidebar() {
                   ))}
                 </div>
               )}
-            </div> */}
+            </div>
           </div>
           <div className="flex lg:hidden">
             <button
@@ -204,7 +204,7 @@ export function Sidebar() {
               </Link>
             ))}
           </div>
-          {/* <div>
+          <div>
             <div className="text-sm font-semibold uppercase tracking-wide mb-3">
               Mitybos skaičiuoklės
             </div>
@@ -233,7 +233,7 @@ export function Sidebar() {
                 </div>
               </Link>
             ))}
-          </div> */}
+          </div>
         </div>
       )}
     </nav>
