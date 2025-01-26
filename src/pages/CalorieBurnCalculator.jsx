@@ -122,181 +122,163 @@ export default function CalorieBurnCalculator() {
       </style>
 
       <HeroSection
-        scrolled={scrolled}
-        heroContentLeft={
-          <>
-            <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight drop-shadow-lg">
-              Kalorijų sudeginimo skaičiuoklė
-            </h1>
-            <p className="text-base sm:text-lg leading-relaxed max-w-lg drop-shadow-md">
-              Sužinokite, kiek kalorijų sudeginate įvairios veiklos metu. Ši
-              skaičiuoklė remiasi MET metodu, kad tiksliai įvertintų Jūsų
-              energijos sąnaudas pagal Jūsų svorį ir veiklos trukmę.
-            </p>
-            {/* <p className="text-sm sm:text-base text-emerald-100 drop-shadow-md">
-              Rezultatai yra orientaciniai...
-            </p> */}
-          </>
-        }
-        heroContentRight={
-          <div className="bg-white rounded-xl p-6 sm:p-8 text-gray-900 shadow-2xl max-w-md w-full">
-            <h2 className="text-xl font-bold mb-6 text-emerald-700">
-              Apskaičiuokite sudeginamas kalorijas
-            </h2>
-            <form onSubmit={handleCalculate} className="space-y-5">
-              <div>
-                <label
-                  htmlFor="weight"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Svoris (kg)
-                </label>
-                <input
-                  type="number"
-                  name="weight"
-                  id="weight"
-                  value={weight}
-                  onChange={(e) => setWeight(e.target.value)}
-                  placeholder="pvz. 70"
-                  className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:ring-emerald-600 focus:border-emerald-600"
-                />
-                {weightError && (
-                  <p className="text-sm text-red-600 mt-1">{weightError}</p>
-                )}
-              </div>
+        title="Kalorijų sudeginimo skaičiuoklė"
+        subtitle="Sužinokite, kiek kalorijų sudeginate įvairios veiklos metu. Ši
+      skaičiuoklė remiasi MET metodu, kad tiksliai įvertintų Jūsų
+      energijos sąnaudas pagal Jūsų svorį ir veiklos trukmę."
+        calculatorTitle="Apskaičiuokite sudeginamas kalorijas"
+        calculatorForm={
+          <form onSubmit={handleCalculate} className="space-y-5">
+            <div>
+              <label
+                htmlFor="weight"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Svoris (kg)
+              </label>
+              <input
+                type="number"
+                name="weight"
+                id="weight"
+                value={weight}
+                onChange={(e) => setWeight(e.target.value)}
+                placeholder="pvz. 70"
+                className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:ring-emerald-600 focus:border-emerald-600"
+              />
+              {weightError && (
+                <p className="text-sm text-red-600 mt-1">{weightError}</p>
+              )}
+            </div>
 
-              <div>
-                <label
-                  htmlFor="duration"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Trukmė (valandomis)
-                </label>
-                <input
-                  type="number"
-                  step="0.1"
-                  min="0"
-                  name="duration"
-                  id="duration"
-                  value={duration}
-                  onChange={(e) => setDuration(e.target.value)}
-                  placeholder="pvz. 1.5"
-                  className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:ring-emerald-600 focus:border-emerald-600"
-                />
-                {durationError && (
-                  <p className="text-sm text-red-600 mt-1">{durationError}</p>
-                )}
-              </div>
+            <div>
+              <label
+                htmlFor="duration"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Trukmė (valandomis)
+              </label>
+              <input
+                type="number"
+                step="0.1"
+                min="0"
+                name="duration"
+                id="duration"
+                value={duration}
+                onChange={(e) => setDuration(e.target.value)}
+                placeholder="pvz. 1.5"
+                className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:ring-emerald-600 focus:border-emerald-600"
+              />
+              {durationError && (
+                <p className="text-sm text-red-600 mt-1">{durationError}</p>
+              )}
+            </div>
 
-              <div>
-                <label
-                  htmlFor="activity"
-                  className="block text-sm font-medium text-gray-700 mb-1"
-                >
-                  Pasirinkite veiklą
-                </label>
-                <Listbox
-                  value={selectedActivity}
-                  onChange={setSelectedActivity}
-                >
-                  {({ open }) => (
-                    <>
-                      <div className="relative">
-                        <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-2 pl-3 pr-10 text-left border border-gray-300 shadow-sm focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm">
-                          <span className="block truncate">
-                            {selectedActivity.name}
-                          </span>
-                          <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                            <ChevronUpDownIcon
-                              className="h-5 w-5 text-gray-400"
-                              aria-hidden="true"
-                            />
-                          </span>
-                        </Listbox.Button>
-                        <Transition
-                          show={open}
-                          as={Fragment}
-                          leave="transition ease-in duration-100"
-                          leaveFrom="opacity-100"
-                          leaveTo="opacity-0"
+            <div>
+              <label
+                htmlFor="activity"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
+                Pasirinkite veiklą
+              </label>
+              <Listbox value={selectedActivity} onChange={setSelectedActivity}>
+                {({ open }) => (
+                  <>
+                    <div className="relative">
+                      <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-2 pl-3 pr-10 text-left border border-gray-300 shadow-sm focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm">
+                        <span className="block truncate">
+                          {selectedActivity.name}
+                        </span>
+                        <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                          <ChevronUpDownIcon
+                            className="h-5 w-5 text-gray-400"
+                            aria-hidden="true"
+                          />
+                        </span>
+                      </Listbox.Button>
+                      <Transition
+                        show={open}
+                        as={Fragment}
+                        leave="transition ease-in duration-100"
+                        leaveFrom="opacity-100"
+                        leaveTo="opacity-0"
+                      >
+                        <Listbox.Options
+                          static
+                          className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
                         >
-                          <Listbox.Options
-                            static
-                            className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
-                          >
-                            {activities.map((group) => (
-                              <Fragment key={group.category}>
-                                {/* Group Title */}
+                          {activities.map((group) => (
+                            <Fragment key={group.category}>
+                              {/* Group Title */}
+                              <Listbox.Option
+                                disabled
+                                value=""
+                                className="cursor-default select-none py-2 pl-3 pr-9 text-gray-900 bg-gray-100 font-semibold"
+                              >
+                                {group.category}
+                              </Listbox.Option>
+                              {group.options.map((activity) => (
                                 <Listbox.Option
-                                  disabled
-                                  value=""
-                                  className="cursor-default select-none py-2 pl-3 pr-9 text-gray-900 bg-gray-100 font-semibold"
+                                  key={activity.id}
+                                  value={activity}
+                                  className={({ active }) =>
+                                    classNames(
+                                      active
+                                        ? "bg-emerald-600 text-white"
+                                        : "text-gray-900",
+                                      "relative cursor-default select-none py-2 pl-3 pr-9"
+                                    )
+                                  }
                                 >
-                                  {group.category}
-                                </Listbox.Option>
-                                {group.options.map((activity) => (
-                                  <Listbox.Option
-                                    key={activity.id}
-                                    value={activity}
-                                    className={({ active }) =>
-                                      classNames(
-                                        active
-                                          ? "bg-emerald-600 text-white"
-                                          : "text-gray-900",
-                                        "relative cursor-default select-none py-2 pl-3 pr-9"
-                                      )
-                                    }
-                                  >
-                                    {({ selected, active }) => (
-                                      <>
+                                  {({ selected, active }) => (
+                                    <>
+                                      <span
+                                        className={classNames(
+                                          selected
+                                            ? "font-semibold"
+                                            : "font-normal",
+                                          "block truncate"
+                                        )}
+                                      >
+                                        {activity.name}
+                                      </span>
+                                      {selected ? (
                                         <span
                                           className={classNames(
-                                            selected
-                                              ? "font-semibold"
-                                              : "font-normal",
-                                            "block truncate"
+                                            active
+                                              ? "text-white"
+                                              : "text-emerald-600",
+                                            "absolute inset-y-0 right-0 flex items-center pr-4"
                                           )}
                                         >
-                                          {activity.name}
+                                          <CheckIcon
+                                            className="h-5 w-5"
+                                            aria-hidden="true"
+                                          />
                                         </span>
-                                        {selected ? (
-                                          <span
-                                            className={classNames(
-                                              active
-                                                ? "text-white"
-                                                : "text-emerald-600",
-                                              "absolute inset-y-0 right-0 flex items-center pr-4"
-                                            )}
-                                          >
-                                            <CheckIcon
-                                              className="h-5 w-5"
-                                              aria-hidden="true"
-                                            />
-                                          </span>
-                                        ) : null}
-                                      </>
-                                    )}
-                                  </Listbox.Option>
-                                ))}
-                              </Fragment>
-                            ))}
-                          </Listbox.Options>
-                        </Transition>
-                      </div>
-                    </>
-                  )}
-                </Listbox>
-              </div>
+                                      ) : null}
+                                    </>
+                                  )}
+                                </Listbox.Option>
+                              ))}
+                            </Fragment>
+                          ))}
+                        </Listbox.Options>
+                      </Transition>
+                    </div>
+                  </>
+                )}
+              </Listbox>
+            </div>
 
-              <button
-                type="submit"
-                className="inline-flex items-center px-5 py-2 rounded-md bg-emerald-600 text-sm font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
-              >
-                Skaičiuoti
-              </button>
-            </form>
-          </div>
+            <button
+              type="submit"
+              className="inline-flex items-center px-5 py-2 rounded-md bg-emerald-600 text-sm font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
+            >
+              Skaičiuoti
+            </button>
+          </form>
         }
+        scrolled={scrolled}
       />
 
       <div className="flex flex-col gap-8 sm:gap-14">

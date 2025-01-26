@@ -235,129 +235,114 @@ export default function BodyMassIndexCalc() {
       </style>
 
       <HeroSection
-        scrolled={scrolled}
-        heroContentLeft={
-          <>
-            <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight drop-shadow-lg">
-              Kūno masės indeksas (KMI)
-            </h1>
-            <p className="text-base sm:text-lg leading-relaxed max-w-lg drop-shadow-md">
-              Greitas būdas įvertinti, ar jūsų svoris yra normalus, per mažas ar
-              per didelis. Jei norite, galite sužinoti ir idealų svorį.
-            </p>
-            {/* <p className="text-sm sm:text-base text-emerald-100 drop-shadow-md">
-              Rezultatai – orientaciniai...
-            </p> */}
-          </>
-        }
-        heroContentRight={
-          <div className="bg-white rounded-xl p-6 sm:p-8 text-gray-900 shadow-2xl max-w-md w-full">
-            <h2 className="text-xl font-bold mb-6 text-emerald-700">
-              Apskaičiuokite KMI
-            </h2>
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <div>
-                <label
-                  htmlFor="height"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Ūgis (cm)
-                </label>
-                <input
-                  type="number"
-                  id="height"
-                  placeholder="pvz. 170"
-                  value={height}
-                  onChange={(e) => setHeight(e.target.value)}
-                  className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:ring-emerald-600 focus:border-emerald-600"
-                />
-                {heightError && (
-                  <p className="text-sm text-red-600 mt-1">{heightError}</p>
-                )}
-              </div>
-              <div>
-                <label
-                  htmlFor="weight"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Svoris (kg)
-                </label>
-                <input
-                  type="number"
-                  id="weight"
-                  placeholder="pvz. 70"
-                  value={weight}
-                  onChange={(e) => setWeight(e.target.value)}
-                  className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:ring-emerald-600 focus:border-emerald-600"
-                />
-                {weightError && (
-                  <p className="text-sm text-red-600 mt-1">{weightError}</p>
-                )}
-              </div>
-              <div className="flex items-center">
-                <input
-                  type="checkbox"
-                  id="showIdealWeight"
-                  checked={showIdealWeight}
-                  onChange={(e) => setShowIdealWeight(e.target.checked)}
-                  className="h-4 w-4 border-gray-300 rounded text-emerald-600 focus:ring-emerald-600"
-                />
-                <label
-                  htmlFor="showIdealWeight"
-                  className="ml-2 text-sm text-gray-700"
-                >
-                  Noriu sužinoti idealų svorį
-                </label>
-              </div>
-              {showIdealWeight && (
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Pasirinkite lytį
-                  </label>
-                  <div className="flex space-x-6">
-                    <div className="flex items-center">
-                      <input
-                        type="radio"
-                        id="female"
-                        name="gender"
-                        value="female"
-                        checked={gender === "female"}
-                        onChange={(e) => setGender(e.target.value)}
-                        className="h-4 w-4 text-emerald-600 border-gray-300 focus:ring-emerald-600"
-                      />
-                      <label htmlFor="female" className="ml-2 text-sm">
-                        Moteris
-                      </label>
-                    </div>
-                    <div className="flex items-center">
-                      <input
-                        type="radio"
-                        id="male"
-                        name="gender"
-                        value="male"
-                        checked={gender === "male"}
-                        onChange={(e) => setGender(e.target.value)}
-                        className="h-4 w-4 text-emerald-600 border-gray-300 focus:ring-emerald-600"
-                      />
-                      <label htmlFor="male" className="ml-2 text-sm">
-                        Vyras
-                      </label>
-                    </div>
-                  </div>
-                  {genderError && (
-                    <p className="text-sm text-red-600 mt-1">{genderError}</p>
-                  )}
-                </div>
-              )}
-              <button
-                type="submit"
-                className="inline-flex items-center px-5 py-2 rounded-md bg-emerald-600 text-sm font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
+        title="Kūno masės indeksas (KMI)"
+        subtitle="Greitas būdas įvertinti, ar jūsų svoris yra normalus, per mažas ar
+        per didelis. Jei norite, galite sužinoti ir idealų svorį."
+        calculatorTitle="Apskaičiuokite KMI"
+        calculatorForm={
+          <form onSubmit={handleSubmit} className="space-y-5">
+            <div>
+              <label
+                htmlFor="height"
+                className="block text-sm font-medium text-gray-700"
               >
-                Skaičiuoti
-              </button>
-            </form>
-          </div>
+                Ūgis (cm)
+              </label>
+              <input
+                type="number"
+                id="height"
+                placeholder="pvz. 170"
+                value={height}
+                onChange={(e) => setHeight(e.target.value)}
+                className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:ring-emerald-600 focus:border-emerald-600"
+              />
+              {heightError && (
+                <p className="text-sm text-red-600 mt-1">{heightError}</p>
+              )}
+            </div>
+            <div>
+              <label
+                htmlFor="weight"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Svoris (kg)
+              </label>
+              <input
+                type="number"
+                id="weight"
+                placeholder="pvz. 70"
+                value={weight}
+                onChange={(e) => setWeight(e.target.value)}
+                className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:ring-emerald-600 focus:border-emerald-600"
+              />
+              {weightError && (
+                <p className="text-sm text-red-600 mt-1">{weightError}</p>
+              )}
+            </div>
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                id="showIdealWeight"
+                checked={showIdealWeight}
+                onChange={(e) => setShowIdealWeight(e.target.checked)}
+                className="h-4 w-4 border-gray-300 rounded text-emerald-600 focus:ring-emerald-600"
+              />
+              <label
+                htmlFor="showIdealWeight"
+                className="ml-2 text-sm text-gray-700"
+              >
+                Noriu sužinoti idealų svorį
+              </label>
+            </div>
+            {showIdealWeight && (
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Pasirinkite lytį
+                </label>
+                <div className="flex space-x-6">
+                  <div className="flex items-center">
+                    <input
+                      type="radio"
+                      id="female"
+                      name="gender"
+                      value="female"
+                      checked={gender === "female"}
+                      onChange={(e) => setGender(e.target.value)}
+                      className="h-4 w-4 text-emerald-600 border-gray-300 focus:ring-emerald-600"
+                    />
+                    <label htmlFor="female" className="ml-2 text-sm">
+                      Moteris
+                    </label>
+                  </div>
+                  <div className="flex items-center">
+                    <input
+                      type="radio"
+                      id="male"
+                      name="gender"
+                      value="male"
+                      checked={gender === "male"}
+                      onChange={(e) => setGender(e.target.value)}
+                      className="h-4 w-4 text-emerald-600 border-gray-300 focus:ring-emerald-600"
+                    />
+                    <label htmlFor="male" className="ml-2 text-sm">
+                      Vyras
+                    </label>
+                  </div>
+                </div>
+                {genderError && (
+                  <p className="text-sm text-red-600 mt-1">{genderError}</p>
+                )}
+              </div>
+            )}
+            <button
+              type="submit"
+              className="inline-flex items-center px-5 py-2 rounded-md bg-emerald-600 text-sm font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
+            >
+              Skaičiuoti
+            </button>
+          </form>
         }
+        scrolled={scrolled}
       />
 
       <div className="flex flex-col gap-8 sm:gap-14">
