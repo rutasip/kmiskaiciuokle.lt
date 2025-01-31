@@ -16,13 +16,15 @@ const healthNav = [
     name: "Kūno masės indeksas (KMI)",
     href: "/",
     icon: ScaleIcon,
-    description: "Pasitikrinkite, kokią svorio kategoriją atitinkate pagal standartinius sveikatos rodiklius.",
+    description:
+      "Pasitikrinkite, kokią svorio kategoriją atitinkate pagal standartinius sveikatos rodiklius. Sužinokite individualiai apskaičiuotą idealų svorį.",
   },
   {
     name: "Kalorijų sudeginimas",
     href: "/sudeginamos-kalorijos",
     icon: FireIcon,
-    description: "Sužinokite, kiek kalorijų sudeginate įvairių veiklų ir pratimų metu.",
+    description:
+      "Sužinokite, kiek kalorijų sudeginate įvairių veiklų ir pratimų metu.",
   },
 ];
 
@@ -37,7 +39,8 @@ const nutritionNav = [
     name: "Vandens suvartojimo poreikis",
     href: "/vandens-norma",
     icon: BeakerIcon,
-    description: "Apskaičiuokite reikalingą vandens kiekį įvairiose situacijose – sportuojant, karštomis dienomis, dirbant biure.",
+    description:
+      "Sužinokite, kiek vandens reikia suvartoti įvairiose situacijose – sportuojant, karštomis dienomis, dirbant biure.",
   },
 ];
 
@@ -58,8 +61,8 @@ export function Sidebar() {
 
   const handleMouseLeave = () => {
     closeTimerRef.current = setTimeout(() => {
-      setOpenMenu(null)
-    }, 600)
+      setOpenMenu(null);
+    }, 600);
   };
 
   const renderCaret = (menuName) =>
@@ -78,10 +81,10 @@ export function Sidebar() {
               <span className="text-white font-extrabold text-sm">KMI</span>
             </div>
           </a>
-          
+
           <div className="hidden lg:flex lg:items-center">
             <div
-              className="relative"
+              className="relative gap-x-8"
               onMouseEnter={() => handleMouseEnter("health")}
               onMouseLeave={handleMouseLeave}
             >
@@ -90,30 +93,29 @@ export function Sidebar() {
                 {renderCaret("health")}
               </div>
               {openMenu === "health" && (
-                <div className="absolute right-0 mt-2 bg-white shadow border border-gray-200 rounded-lg z-50 overflow-hidden w-96">
+                <div className="absolute right-0 mt-2 bg-white shadow border border-gray-200 rounded-lg z-50 overflow-hidden w-[28rem]">
                   {healthNav.map((item) => (
-                    <a
+                    <div
                       key={item.name}
-                      href={item.href}
-                      className={classNames(
-                        location.pathname === item.href
-                          ? "bg-emerald-50 text-emerald-800"
-                          : "text-emerald-700 hover:bg-gray-50 hover:text-emerald-800",
-                        "block px-5 py-4 rounded-md text-sm"
-                      )}
+                      className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-gray-50"
                     >
-                      <div className="flex items-start gap-3">
-                        <item.icon className="shrink-0 w-6 h-6 text-emerald-500" />
-                        <div>
-                          <p className="font-semibold pb-1">
-                            {item.name}
-                          </p>
-                          <p className="text-xs text-gray-500 leading-snug">
-                            {item.description}
-                          </p>
-                        </div>
+                      <div className="flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50">
+                        <item.icon
+                          aria-hidden="true"
+                          className="size-6 text-gray-600 group-hover:text-emerald-500"
+                        />
                       </div>
-                    </a>
+                      <div className="flex-auto">
+                        <a
+                          href={item.href}
+                          className="block font-semibold text-gray-900"
+                        >
+                          {item.name}
+                          <span className="absolute inset-0" />
+                        </a>
+                        <p className="mt-1 text-gray-600">{item.description}</p>
+                      </div>
+                    </div>
                   ))}
                 </div>
               )}
@@ -128,30 +130,29 @@ export function Sidebar() {
                 {renderCaret("nutrition")}
               </div>
               {openMenu === "nutrition" && (
-                <div className="absolute right-0 mt-2 bg-white shadow border border-gray-200 rounded-lg z-50 overflow-hidden w-96">
+                <div className="absolute right-0 mt-2 bg-white shadow border border-gray-200 rounded-lg z-50 overflow-hidden w-[28rem]">
                   {nutritionNav.map((item) => (
-                    <a
+                    <div
                       key={item.name}
-                      href={item.href}
-                      className={classNames(
-                        location.pathname === item.href
-                          ? "bg-emerald-50 text-emerald-800"
-                          : "text-emerald-700 hover:bg-gray-50 hover:text-emerald-800",
-                        "block px-5 py-4 rounded-md text-sm"
-                      )}
+                      className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-gray-50"
                     >
-                      <div className="flex items-start gap-3">
-                        <item.icon className="shrink-0 w-6 h-6 text-emerald-500" />
-                        <div>
-                          <p className="font-semibold pb-1">
-                            {item.name}
-                          </p>
-                          <p className="text-xs text-gray-500 leading-snug">
-                            {item.description}
-                          </p>
-                        </div>
+                      <div className="flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50">
+                        <item.icon
+                          aria-hidden="true"
+                          className="size-6 text-gray-600 group-hover:text-emerald-500"
+                        />
                       </div>
-                    </a>
+                      <div className="flex-auto">
+                        <a
+                          href={item.href}
+                          className="block font-semibold text-gray-900"
+                        >
+                          {item.name}
+                          <span className="absolute inset-0" />
+                        </a>
+                        <p className="mt-1 text-gray-600">{item.description}</p>
+                      </div>
+                    </div>
                   ))}
                 </div>
               )}
@@ -193,9 +194,7 @@ export function Sidebar() {
                 <div className="flex items-start gap-3">
                   <item.icon className="shrink-0 w-6 h-6 text-emerald-500" />
                   <div>
-                    <p className="font-semibold pb-1">
-                      {item.name}
-                    </p>
+                    <p className="font-semibold pb-1">{item.name}</p>
                     <p className="text-xs text-gray-500 leading-snug">
                       {item.description}
                     </p>
@@ -223,9 +222,7 @@ export function Sidebar() {
                 <div className="flex items-start gap-3">
                   <item.icon className="shrink-0 w-6 h-6 text-emerald-500" />
                   <div>
-                    <p className="font-semibold pb-1">
-                      {item.name}
-                    </p>
+                    <p className="font-semibold pb-1">{item.name}</p>
                     <p className="text-xs text-gray-500 leading-snug">
                       {item.description}
                     </p>
