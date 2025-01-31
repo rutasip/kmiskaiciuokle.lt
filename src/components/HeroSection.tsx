@@ -28,7 +28,7 @@ const HeroSection: FC<HeroSectionProps> = ({
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/90" />
 
       <div className="relative z-10 w-full max-w-5xl">
-        <div className="block md:hidden px-6 py-16 sm:py-20 md:py-24">
+        <div className="block md:hidden px-6 py-20 sm:py-20 md:py-24">
           <div className="flex flex-col items-center space-y-6 text-white">
             <h1 className="text-2xl font-bold tracking-tight">{title}</h1>
             <div className="bg-white p-6 shadow-2xl rounded-lg max-w-md w-full text-gray-900">

@@ -112,15 +112,6 @@ export default function CalorieBurnCalculator() {
 
   return (
     <>
-      <style>
-        {`
-          @keyframes horizontalBounce {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(5px); }
-          }
-        `}
-      </style>
-
       <HeroSection
         title="Kalorijų sudeginimo skaičiuoklė"
         subtitle="Sužinokite, kiek kalorijų sudeginate įvairios veiklos metu. Ši

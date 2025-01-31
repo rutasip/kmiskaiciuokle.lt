@@ -233,15 +233,6 @@ export default function BodyMassIndexCalc() {
 
   return (
     <>
-      <style>
-        {`
-          @keyframes horizontalBounce {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(5px); }
-          }
-        `}
-      </style>
-
       <HeroSection
         title="Kūno masės indekso skaičiuoklė"
         subtitle="Greitas būdas įvertinti, ar jūsų svoris yra normalus, per mažas ar

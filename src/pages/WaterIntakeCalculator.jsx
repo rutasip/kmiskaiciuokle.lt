@@ -74,6 +74,7 @@ export default function WaterIntakeCalculator() {
 
   const handleNext = (e) => {
     e.preventDefault();
+
     setAgeError("");
     setWeightError("");
     setHeightError("");
@@ -83,25 +84,30 @@ export default function WaterIntakeCalculator() {
     const ageInYears = parseFloat(age);
 
     let isValid = true;
+
     if (isNaN(weightInKg) || weightInKg <= 0) {
       setWeightError("Prašome įvesti teisingą svorį.");
       isValid = false;
     }
+
     if (isNaN(heightInCm) || heightInCm <= 0) {
       setHeightError("Prašome įvesti teisingą ūgį.");
       isValid = false;
     }
+
     if (isNaN(ageInYears) || ageInYears <= 0) {
       setAgeError("Prašome įvesti teisingą amžių.");
       isValid = false;
     }
 
     if (!isValid) return;
+
     setStep(2);
   };
 
   const handleCalculate = (e) => {
     e.preventDefault();
+
     if (isNaN(exerciseHours) || exerciseHours < 0) {
       alert("Prašome įvesti teisingą fizinio aktyvumo laiką.");
       return;
@@ -112,6 +118,7 @@ export default function WaterIntakeCalculator() {
     const ageInYears = parseFloat(age);
 
     let calculatedBMR;
+
     if (gender === "male") {
       calculatedBMR = 10 * weightInKg + 6.25 * heightInCm - 5 * ageInYears + 5;
     } else {
@@ -144,15 +151,6 @@ export default function WaterIntakeCalculator() {
 
   return (
     <>
-      <style>
-        {`
-          @keyframes horizontalBounce {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(5px); }
-          }
-        `}
-      </style>
-
       <HeroSection
         title="Vandens suvartojimo skaičiuoklė"
         subtitle="Sužinokite, kiek vandens per dieną jums gali reikėti, atsižvelgiant 
@@ -226,10 +224,10 @@ export default function WaterIntakeCalculator() {
                     onChange={setClimate}
                     className="mt-3 grid gap-y-4"
                   >
-                    {climates.map((clim) => (
+                    {climates.map((climate) => (
                       <RadioGroup.Option
-                        key={clim.id}
-                        value={clim}
+                        key={climate.id}
+                        value={climate}
                         className={({ checked }) =>
                           classNames(
                             checked
@@ -246,7 +244,7 @@ export default function WaterIntakeCalculator() {
                                 as="span"
                                 className="block text-sm font-medium"
                               >
-                                {clim.name}
+                                {climate.name}
                               </RadioGroup.Label>
                             </div>
                             {checked && (
@@ -323,7 +321,6 @@ export default function WaterIntakeCalculator() {
         </PageContentSection>
       </div>
 
-      {/* Back to top button */}
       <BackToTopButton show={showBackToTop} onClick={scrollToTop} />
     </>
   );
