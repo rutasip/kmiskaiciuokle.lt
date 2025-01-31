@@ -19,7 +19,7 @@ const HeroSection: FC<HeroSectionProps> = ({
 }) => {
   return (
     <section
-      className="relative min-h-screen flex items-center justify-center bg-fixed bg-center bg-no-repeat shadow-lg"
+      className="relative min-h-screen bg-fixed bg-center bg-no-repeat shadow-lg flex items-center justify-center"
       style={{
         backgroundImage: `url(${backgroundImageUrl})`,
         backgroundSize: "cover",
@@ -27,19 +27,27 @@ const HeroSection: FC<HeroSectionProps> = ({
     >
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/90" />
 
-      <div className="relative z-10 mx-auto max-w-5xl w-full px-6 py-16 sm:py-20 md:py-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <div className="order-2 md:order-1 md:col-span-1 text-white space-y-5 sm:space-y-6">
-            <h1 className="text-4xl font-bold tracking-tight text-white">
-              {title}
-            </h1>
-            <p className="mt-6 text-lg leading-8 text-gray-300">
-              {subtitle}
-            </p>
-          </div>
-          <div className="order-1 md:order-2 md:col-span-1 flex justify-center md:justify-end">
-            <div className="bg-white p-6 shadow-2xl sm:rounded-lg max-w-md w-full">
+      <div className="relative z-10 w-full max-w-5xl">
+        <div className="block md:hidden px-6 py-16 sm:py-20 md:py-24">
+          <div className="flex flex-col items-center space-y-6 text-white">
+            <h1 className="text-2xl font-bold tracking-tight">{title}</h1>
+            <div className="bg-white p-6 shadow-2xl rounded-lg max-w-md w-full text-gray-900">
               {calculatorForm}
+            </div>
+            <p className="text-base leading-8 text-gray-300">{subtitle}</p>
+          </div>
+        </div>
+
+        <div className="hidden md:block px-6 py-16 sm:py-20 md:py-24">
+          <div className="grid grid-cols-2 gap-8 items-center">
+            <div className="text-white space-y-6">
+              <h1 className="text-4xl font-bold tracking-tight">{title}</h1>
+              <p className="text-lg leading-8 text-gray-300">{subtitle}</p>
+            </div>
+            <div className="flex justify-end">
+              <div className="bg-white p-6 shadow-2xl rounded-lg max-w-md w-full text-gray-900">
+                {calculatorForm}
+              </div>
             </div>
           </div>
         </div>
