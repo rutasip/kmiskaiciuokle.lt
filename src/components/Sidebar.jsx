@@ -7,7 +7,7 @@ import {
   ChevronUpIcon,
   ScaleIcon,
   FireIcon,
-  // DocumentTextIcon,
+  DocumentTextIcon,
   BeakerIcon,
 } from "@heroicons/react/24/outline";
 
@@ -20,7 +20,7 @@ const healthNav = [
       "Pasitikrinkite, kokią svorio kategoriją atitinkate pagal standartinius sveikatos rodiklius. Sužinokite individualiai apskaičiuotą idealų svorį.",
   },
   {
-    name: "Kalorijų sudeginimas",
+    name: "Aktyvus kalorijų deginimas",
     href: "/sudeginamos-kalorijos",
     icon: FireIcon,
     description:
@@ -29,12 +29,12 @@ const healthNav = [
 ];
 
 const nutritionNav = [
-  // {
-  //   name: "Dienos kalorijų poreikis",
-  //   href: "/kaloriju-poreikiai",
-  //   icon: DocumentTextIcon,
-  //   description: "Sužinokite optimalų dienos kalorijų kiekį svorio mažinimui, palaikymui ar didinimui.",
-  // },
+  {
+    name: "Dienos kalorijų poreikis",
+    href: "/kaloriju-poreikiai",
+    icon: DocumentTextIcon,
+    description: "Sužinokite optimalų dienos kalorijų kiekį svorio mažinimui, palaikymui ar didinimui.",
+  },
   {
     name: "Vandens suvartojimo poreikis",
     href: "/vandens-norma",

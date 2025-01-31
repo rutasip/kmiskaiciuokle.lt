@@ -1,6 +1,14 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { RadioGroup } from "@headlessui/react";
-import { CheckCircleIcon, ArrowLeftIcon } from "@heroicons/react/20/solid";
+import { CheckCircleIcon } from "@heroicons/react/20/solid";
+import useScrollEffects from "../hooks/useScrollEffects";
+import PageContentSection from "../components/PageContentSection";
+import RecommendedCalculatorsSection from "../components/RecommendedCalculatorsSection";
+import BackToTopButton from "../components/BackToTopButton";
+import InputField from "../components/InputField";
+import RadioGroupInput from "../components/RadioGroupInput";
+import ResultsDisclaimer from "../components/ResultsDisclaimer";
+import HeroSection from "../components/HeroSection";
 
 const faqs = [
   {
@@ -69,7 +77,17 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
+const genderOptions = [
+  { value: "female", label: "Moteris" },
+  { value: "male", label: "Vyras" },
+];
+
 export default function BasalMetabolicRateCalc() {
+  const { scrolled, showBackToTop, scrollToTop, setCalcTimestamp, resultsRef } =
+    useScrollEffects();
+
+  const [step, setStep] = useState(1);
+
   const [age, setAge] = useState("");
   const [height, setHeight] = useState("");
   const [weight, setWeight] = useState("");
@@ -78,12 +96,10 @@ export default function BasalMetabolicRateCalc() {
   const [calories, setCalories] = useState(null);
   const [weightLossCalories, setWeightLossCalories] = useState(null);
   const [weightGainCalories, setWeightGainCalories] = useState(null);
-  const [step, setStep] = useState(1);
+
   const [ageError, setAgeError] = useState("");
   const [weightError, setWeightError] = useState("");
   const [heightError, setHeightError] = useState("");
-
-  const resultsRef = useRef(null);
 
   const calculateBMR = (weight, height, age, gender) => {
     if (gender === "male") {
@@ -121,9 +137,7 @@ export default function BasalMetabolicRateCalc() {
       isValid = false;
     }
 
-    if (!isValid) {
-      return;
-    }
+    if (!isValid) return;
 
     setStep(2);
   };
@@ -160,394 +174,248 @@ export default function BasalMetabolicRateCalc() {
       "1kg": caloriesForWeightGain1kg.toFixed(0),
     });
 
-    resultsRef.current?.scrollIntoView({ behavior: "smooth" });
+    setCalcTimestamp(Date.now());
   };
 
   return (
-    <div className="container mx-auto p-6">
-      <h1 className="text-3xl font-light text-gray-800 mb-8">
-        Kalorijų suvartojimo skaičiuoklė
-      </h1>
-      <form
-        onSubmit={step === 1 ? handleNext : handleCalculateCalories}
-        className="grid gap-8 bg-white rounded-lg ring-1 ring-slate-200 p-6"
-      >
-        {step === 1 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div>
-              <label
-                htmlFor="age"
-                className="block text-base font-medium text-gray-700"
-              >
-                Amžius
-              </label>
-              <div className="mt-1 relative rounded-md shadow-sm">
-                <input
-                  type="number"
-                  name="age"
-                  id="age"
-                  value={age}
-                  onChange={(e) => setAge(e.target.value)}
-                  className="block w-full rounded-md border-gray-300 focus:ring-secondary focus:border-secondary sm:text-sm"
-                  placeholder="25"
-                />
-              </div>
-              {ageError && (
-                <p className="mt-2 text-sm text-red-600">{ageError}</p>
-              )}
-            </div>
-            <div>
-              <label
-                htmlFor="height"
-                className="block text-base font-medium text-gray-700"
-              >
-                Ūgis
-              </label>
-              <div className="mt-1 relative rounded-md shadow-sm">
-                <input
-                  type="number"
-                  name="height"
+    <>
+      <HeroSection
+        title="Kalorijų suvartojimo skaičiuoklė"
+        subtitle="Sužinokite, kiek kalorijų reikėtų sunaudoti norint palaikyti esamą svorį, arba numesti, arba priaugti svorio"
+        calculatorForm={
+          <form
+            onSubmit={step === 1 ? handleNext : handleCalculateCalories}
+            className="space-y-6"
+          >
+            {step === 1 && (
+              <>
+                <InputField
+                  label="Ūgis (cm)"
                   id="height"
                   value={height}
-                  onChange={(e) => setHeight(e.target.value)}
-                  className="block w-full rounded-md border-gray-300 focus:ring-secondary focus:border-secondary sm:text-sm"
-                  placeholder="170"
-                />
-                <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                  <span className="text-gray-500 sm:text-sm">cm</span>
-                </div>
-              </div>
-              {heightError && (
-                <p className="mt-2 text-sm text-red-600">{heightError}</p>
-              )}
-            </div>
-            <div>
-              <label
-                htmlFor="weight"
-                className="block text-base font-medium text-gray-700"
-              >
-                Svoris
-              </label>
-              <div className="mt-1 relative rounded-md shadow-sm">
-                <input
+                  onChange={(newVal) => setHeight(newVal)}
+                  placeholder="pvz. 170"
+                  error={heightError}
                   type="number"
-                  name="weight"
+                />
+
+                <InputField
+                  label="Svoris (kg)"
                   id="weight"
                   value={weight}
-                  onChange={(e) => setWeight(e.target.value)}
-                  className="block w-full rounded-md border-gray-300 focus:ring-secondary focus:border-secondary sm:text-sm"
-                  placeholder="70"
+                  onChange={(newVal) => setWeight(newVal)}
+                  placeholder="pvz. 70"
+                  error={weightError}
+                  type="number"
                 />
-                <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                  <span className="text-gray-500 sm:text-sm">kg</span>
+
+                <InputField
+                  label="Amžius"
+                  id="age"
+                  value={age}
+                  onChange={(newVal) => setAge(newVal)}
+                  placeholder="pvz. 25"
+                  error={ageError}
+                  type="number"
+                />
+
+                <RadioGroupInput
+                  label="Pasirinkite lytį"
+                  name="gender"
+                  options={genderOptions}
+                  selectedValue={gender}
+                  onChange={(val) => setGender(val)}
+                />
+              </>
+            )}
+
+            {step === 2 && (
+              <>
+                <div>
+                  <label className="block text-base font-medium text-gray-700">
+                    Aktyvumo lygis
+                  </label>
+                  <RadioGroup
+                    value={activityLevel}
+                    onChange={setActivityLevel}
+                    className="mt-3 grid gap-y-4"
+                  >
+                    {activityLevels.map((activity) => (
+                      <RadioGroup.Option
+                        key={activity.id}
+                        value={activity}
+                        className={({ checked }) =>
+                          classNames(
+                            checked
+                              ? "border-transparent bg-emerald-600 text-white"
+                              : "border-gray-300 bg-white text-gray-900",
+                            "relative flex cursor-pointer rounded-md border p-4 shadow-sm focus:outline-none"
+                          )
+                        }
+                      >
+                        {({ checked }) => (
+                          <>
+                            <div className="flex flex-1">
+                              <div className="flex flex-col">
+                                <RadioGroup.Label
+                                  as="span"
+                                  className="block text-sm font-medium"
+                                >
+                                  {activity.name}
+                                </RadioGroup.Label>
+                                <RadioGroup.Description
+                                  as="span"
+                                  className="mt-1 text-sm"
+                                >
+                                  {activity.description}
+                                </RadioGroup.Description>
+                              </div>
+                            </div>
+                            {checked && (
+                              <CheckCircleIcon
+                                className="h-5 w-5 text-white"
+                                aria-hidden="true"
+                              />
+                            )}
+                          </>
+                        )}
+                      </RadioGroup.Option>
+                    ))}
+                  </RadioGroup>
                 </div>
-              </div>
-              {weightError && (
-                <p className="mt-2 text-sm text-red-600">{weightError}</p>
-              )}
-            </div>
-            <div>
-              <label
-                htmlFor="gender"
-                className="block text-base font-medium text-gray-700"
-              >
-                Lytis
-              </label>
-              <fieldset className="mt-2">
-                <legend className="sr-only">Lyties pasirinkimas</legend>
-                <div className="flex items-center space-x-6">
-                  <div className="flex items-center">
-                    <input
-                      id="female"
-                      name="gender"
-                      type="radio"
-                      value="female"
-                      checked={gender === "female"}
-                      onChange={(e) => setGender(e.target.value)}
-                      className="h-4 w-4 text-secondary focus:ring-secondary border-gray-300"
-                    />
-                    <label
-                      htmlFor="female"
-                      className="ml-2 block text-base text-gray-700"
-                    >
-                      Moteris
-                    </label>
-                  </div>
-                  <div className="flex items-center">
-                    <input
-                      id="male"
-                      name="gender"
-                      type="radio"
-                      value="male"
-                      checked={gender === "male"}
-                      onChange={(e) => setGender(e.target.value)}
-                      className="h-4 w-4 text-secondary focus:ring-secondary border-gray-300"
-                    />
-                    <label
-                      htmlFor="male"
-                      className="ml-2 block text-base text-gray-700"
-                    >
-                      Vyras
-                    </label>
-                  </div>
-                </div>
-              </fieldset>
-            </div>
-          </div>
-        )}
-        {step === 2 && (
-          <div className="mt-6">
-            <label className="block text-base font-medium text-gray-700">
-              Aktyvumo lygis
-            </label>
-            <RadioGroup
-              value={activityLevel}
-              onChange={setActivityLevel}
-              className="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4"
-            >
-              {activityLevels.map((activity) => (
-                <RadioGroup.Option
-                  key={activity.id}
-                  value={activity}
-                  className={({ checked }) =>
-                    classNames(
-                      checked
-                        ? "border-transparent bg-secondary text-white"
-                        : "border-gray-300 bg-white text-gray-900",
-                      "relative flex cursor-pointer rounded-md border p-4 shadow-sm focus:outline-none"
-                    )
-                  }
+              </>
+            )}
+
+            <div className="flex items-center">
+              {step === 2 && (
+                <button
+                  type="button"
+                  onClick={() => setStep(1)}
+                  className="text-sm text-gray-500 hover:text-gray-700 mr-auto"
                 >
-                  {({ checked }) => (
-                    <>
-                      <div className="flex flex-1">
-                        <div className="flex flex-col">
-                          <RadioGroup.Label
-                            as="span"
-                            className="block text-sm font-medium"
-                          >
-                            {activity.name}
-                          </RadioGroup.Label>
-                          <RadioGroup.Description
-                            as="span"
-                            className="mt-1 text-sm"
-                          >
-                            {activity.description}
-                          </RadioGroup.Description>
-                        </div>
-                      </div>
-                      {checked && (
-                        <CheckCircleIcon
-                          className="h-5 w-5 text-white"
-                          aria-hidden="true"
-                        />
-                      )}
-                    </>
-                  )}
-                </RadioGroup.Option>
-              ))}
-            </RadioGroup>
-          </div>
+                  Grįžti atgal
+                </button>
+              )}
+              <button
+                type="submit"
+                className="inline-flex items-center px-5 py-2 rounded-md bg-emerald-600 text-sm font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
+              >
+                {step === 1 ? "Toliau" : "Skaičiuoti"}
+              </button>
+            </div>
+          </form>
+        }
+        scrolled={scrolled}
+      />
+
+      <div className="flex flex-col gap-10 sm:gap-14">
+        {calories && (
+          <PageContentSection ref={resultsRef} scrolled={scrolled}>
+            <div>
+              <ResultsDisclaimer />
+
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                <div className="rounded-md bg-gray-50 p-6">
+                  <h3 className="text-lg font-medium text-gray-900">
+                    Svorio palaikymui
+                  </h3>
+                  <p className="mt-2 text-3xl font-bold text-gray-900">
+                    {calories} kcal
+                  </p>
+                </div>
+
+                <div className="rounded-md bg-gray-50 p-6">
+                  <h3 className="text-lg font-medium text-gray-900">
+                    Svorio priaugimui
+                  </h3>
+                  <div className="mt-4 space-y-2">
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-gray-700">
+                        Priaugti <span className="font-semibold">0.25 kg</span>
+                        /sav
+                      </span>
+                      <span className="text-xl font-medium text-gray-900">
+                        {weightGainCalories["0.25kg"]} kcal
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-gray-700">
+                        Priaugti <span className="font-semibold">0.5 kg</span>
+                        /sav
+                      </span>
+                      <span className="text-xl font-medium text-gray-900">
+                        {weightGainCalories["0.5kg"]} kcal
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-gray-700">
+                        Priaugti <span className="font-semibold">1 kg</span>/sav
+                      </span>
+                      <span className="text-xl font-medium text-gray-900">
+                        {weightGainCalories["1kg"]} kcal
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="rounded-md bg-gray-50 p-6 sm:col-span-2">
+                  <h3 className="text-lg font-medium text-gray-900">
+                    Svorio metimui
+                  </h3>
+                  <div className="mt-4 space-y-2">
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-gray-700">
+                        Numesti <span className="font-semibold">0.25 kg</span>
+                        /sav
+                      </span>
+                      <span className="text-xl font-medium text-gray-900">
+                        {weightLossCalories["0.25kg"]} kcal
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-gray-700">
+                        Numesti <span className="font-semibold">0.5 kg</span>
+                        /sav
+                      </span>
+                      <span className="text-xl font-medium text-gray-900">
+                        {weightLossCalories["0.5kg"]} kcal
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-gray-700">
+                        Numesti <span className="font-semibold">1 kg</span>/sav
+                      </span>
+                      <span className="text-xl font-medium text-gray-900">
+                        {weightLossCalories["1kg"]} kcal
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <RecommendedCalculatorsSection
+                showBodyMassIndexCalculator
+                showCalorieBurnCalculator
+                showWaterIntakeCalculator={false}
+              />
+            </div>
+          </PageContentSection>
         )}
-        <div className="flex justify-between items-center mt-8">
-          {step === 2 && (
-            <button
-              type="button"
-              onClick={() => setStep(1)}
-              className="inline-flex items-center gap-x-2 text-sm font-semibold text-gray-700"
-            >
-              <ArrowLeftIcon className="h-5 w-5" aria-hidden="true" />
-              Atgal
-            </button>
-          )}
-          <button
-            type="submit"
-            className="inline-flex items-center px-6 py-2 border border-transparent text-base font-medium rounded-md text-white bg-accent hover:bg-accent-darker focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-darker"
-          >
-            {step === 1 ? "Toliau" : "Skaičiuoti"}
-          </button>
-        </div>
-      </form>
 
-      {calories && (
-        <div
-          ref={resultsRef}
-          style={{ scrollMarginTop: "80px" }}
-          className="bg-white ring-1 ring-slate-200 rounded-lg p-6 mt-10"
-        >
-          <div className="pb-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">
-              Rezultatai
-            </h2>
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-              <div className="rounded-md bg-gray-50 p-6">
-                <h3 className="text-lg font-medium text-gray-900">
-                  Svorio palaikymui
-                </h3>
-                <p className="mt-2 text-3xl font-bold text-gray-900">
-                  {calories} kcal
-                </p>
-              </div>
-
-              <div className="rounded-md bg-gray-50 p-6">
-                <h3 className="text-lg font-medium text-gray-900">
-                  Svorio priaugimui
-                </h3>
-                <div className="mt-4 space-y-2">
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-700">
-                      Priaugti <span className="font-semibold">0.25 kg</span>/sav
-                    </span>
-                    <span className="text-xl font-medium text-gray-900">
-                      {weightGainCalories["0.25kg"]} kcal
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-700">
-                      Priaugti <span className="font-semibold">0.5 kg</span>/sav
-                    </span>
-                    <span className="text-xl font-medium text-gray-900">
-                      {weightGainCalories["0.5kg"]} kcal
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-700">
-                      Priaugti <span className="font-semibold">1 kg</span>/sav
-                    </span>
-                    <span className="text-xl font-medium text-gray-900">
-                      {weightGainCalories["1kg"]} kcal
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="rounded-md bg-gray-50 p-6 sm:col-span-2">
-                <h3 className="text-lg font-medium text-gray-900">
-                  Svorio metimui
-                </h3>
-                <div className="mt-4 space-y-2">
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-700">
-                      Numesti <span className="font-semibold">0.25 kg</span>/sav
-                    </span>
-                    <span className="text-xl font-medium text-gray-900">
-                      {weightLossCalories["0.25kg"]} kcal
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-700">
-                      Numesti <span className="font-semibold">0.5 kg</span>/sav
-                    </span>
-                    <span className="text-xl font-medium text-gray-900">
-                      {weightLossCalories["0.5kg"]} kcal
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-700">
-                      Numesti <span className="font-semibold">1 kg</span>/sav
-                    </span>
-                    <span className="text-xl font-medium text-gray-900">
-                      {weightLossCalories["1kg"]} kcal
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-6">
-            <p className="mb-3">Rekomenduojamos skaičiuoklės:</p>
-            <div className="grid gap-4">
-              <a
-                href="/kuno-mases-indeksas"
-                className="block p-4 rounded-md transition bg-gray-50 hover:bg-gray-100"
-              >
-                <div className="flex items-center">
-                  <div className="flex-shrink-0">
-                    <svg
-                      className="h-7 w-7 text-secondary"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                  </div>
-                  <div className="ml-3 flex-1">
-                    <b>Kūno masės indekso skaičiuoklė</b>
-                    <p className="text-base text-gray-600">
-                      Sužinokite savo kūno masės indeksą.
-                    </p>
-                  </div>
-                  <div className="ml-auto">
-                    <svg
-                      className="h-5 w-5 text-gray-500"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
-                </div>
-              </a>
-              <a
-                href="/sudeginamos-kalorijos"
-                className="block p-4 rounded-md transition bg-gray-50 hover:bg-gray-100"
-              >
-                <div className="flex items-center">
-                  <div className="flex-shrink-0">
-                    <svg
-                      className="h-7 w-7 text-secondary"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M12 12c2.21 0 4-1.79 4-4S14.21 4 12 4 8 5.79 8 8s1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-                    </svg>
-                  </div>
-                  <div className="ml-3 flex-1">
-                    <b>Kalorijų sudeginimo skaičiuoklė</b>
-                    <p className="text-base text-gray-600">
-                      Sužinokite, kiek kalorijų sudeginate įvairių veiklų metu.
-                    </p>
-                  </div>
-                  <div className="ml-auto">
-                    <svg
-                      className="h-5 w-5 text-gray-500"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-      )}
-
-      <div className="mt-16">
-        <div className="bg-white ring-1 ring-slate-200 rounded-lg p-6">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">D. U. K.</h2>
-          <div className="space-y-6">
+        <PageContentSection ref={resultsRef} scrolled={scrolled}>
+          <section className="space-y-6">
             {faqs.map((faq, index) => (
               <div key={index}>
-                <h3 className="text-lg font-medium text-gray-800 mb-2">
+                <h3 className="text-lg font-semibold text-gray-800">
                   {faq.question}
                 </h3>
-                <p className="text-base text-gray-700">{faq.answer}</p>
+                <div className="mt-1 text-gray-700">{faq.answer}</div>
               </div>
             ))}
-          </div>
-        </div>
+          </section>
+        </PageContentSection>
       </div>
-    </div>
+
+      <BackToTopButton show={showBackToTop} onClick={scrollToTop} />
+    </>
   );
 }
