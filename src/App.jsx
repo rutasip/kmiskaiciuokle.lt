@@ -35,20 +35,20 @@ export default function App() {
               </p>
             </div>
           </div>
-          {/* <div className="flex flex-wrap gap-4 text-sm text-emerald-100 border-t border-emerald-700 pt-4">
+          <div className="flex flex-wrap gap-4 text-sm text-emerald-100 border-t border-emerald-700 pt-4">
             <a
               href="/atsakomybes-ribojimas"
               className="hover:text-white transition"
             >
               Atsakomybės ribojimas
             </a>
-            <a href="#" className="hover:text-white transition">
+            {/* <a href="#" className="hover:text-white transition">
               Privatumo politika
             </a>
             <a href="#" className="hover:text-white transition">
               Kontaktai
-            </a>
-          </div> */}
+            </a> */}
+          </div>
           <div className="border-t border-emerald-700 pt-4">
             <p className="text-sm text-emerald-100">
               Sukurta <a href="https://rekvizitai.vz.lt/imone/bloku_grandine/" target="_blank" className="font-semibold text-white hover:underline">Blokų grandinė, MB</a>.

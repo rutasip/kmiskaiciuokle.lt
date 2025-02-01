@@ -1,29 +1,42 @@
+import PageContentSection from "../components/PageContentSection";
+
 export default function Disclaimer() {
   return (
-    <div className="max-w-3xl mx-auto p-8 bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-md">
-      <h1 className="text-xl font-semibold leading-7 text-gray-900 mb-6">
-        Atsakomybės ribojimas
-      </h1>
-      <div className="space-y-6 text-base leading-7 text-gray-700">
-        <p>
-          Ši svetainė ir joje esančios skaičiuoklės yra skirti tik informaciniams
-          tikslams ir neturėtų būti laikomi medicininiais patarimais. Pateikiami
-          rezultatai yra apytikslės vertės, pagrįstos standartinėmis formulėmis,
-          ir neatsižvelgia į individualias sveikatos sąlygas ar aplinkybes.
-        </p>
-        <p>
-          Mes neprisiimame atsakomybės už jokius veiksmus, atliktus remiantis šioje
-          svetainėje pateikta informacija. Prieš atlikdami bet kokius pakeitimus
-          savo mityboje, fiziniame aktyvume ar sveikatos režime, visada pasitarkite
-          su kvalifikuotu sveikatos priežiūros specialistu.
-        </p>
-        <p>
-          Naudodamiesi šia svetaine, Jūs sutinkate, kad bet kokia informacija ar
-          paslaugos yra naudojamos Jūsų pačių rizika. Svetainės savininkai ir
-          kūrėjai neprisiima atsakomybės už jokius tiesioginius ar netiesioginius
-          nuostolius ar žalą, atsiradusią dėl naudojimosi šia svetaine.
-        </p>
-      </div>
+    <div className="mt-40">
+      <PageContentSection>
+        <div className="space-y-6 text-base leading-7 text-gray-700">
+          <h2 className="text-xl font-bold text-gray-900 mb-4">
+            Informacinio pobūdžio turinys
+          </h2>
+          <p>
+            Šioje svetainėje pateikta informacija ir skaičiuoklės remiasi bendro
+            pobūdžio informacija, kuri nėra lygiavertė profesionaliems gydytojų
+            patarimams. Jei kyla klausimų dėl konkrečių sveikatos sutrikimų,
+            diagnozių ar gydymo, kreipkitės į kvalifikuotus sveikatos priežiūros
+            specialistus.
+          </p>
+
+          <h2 className="text-xl font-bold text-gray-900 mb-4">
+            Jūsų atsakomybė
+          </h2>
+          <p>
+            Svetainės kūrėjai neprisiima atsakomybės už sprendimus ar pasekmes,
+            atsirandančias dėl čia pateiktų rezultatų naudojimo. Kiekvienas
+            asmuo yra unikalus, todėl prieš keisdami mitybos įpročius ar fizinį
+            aktyvumą, pasitarkite su specialistu.
+          </p>
+
+          <h2 className="text-xl font-bold text-gray-900 mb-4">
+            Amžiaus apribojimai
+          </h2>
+          <p>
+            Dauguma skaičiuoklių šioje svetainėje yra pritaikytos suaugusiems
+            asmenims (18 metų ir vyresniems). Vaikų ir paauglių atvejais būtinos
+            kitokios vertinimo metodikos; norint taikyti šiuos rezultatus
+            jaunesniems asmenims, rekomenduojama profesionali konsultacija.
+          </p>
+        </div>
+      </PageContentSection>
     </div>
   );
 }
