@@ -17,7 +17,7 @@ const healthNav = [
     href: "/",
     icon: ScaleIcon,
     description:
-      "Pasitikrinkite, kokią svorio kategoriją atitinkate pagal standartinius sveikatos rodiklius. Sužinokite individualiai apskaičiuotą idealų svorį.",
+      "Pasitikrinkite, kurią svorio kategoriją atitinkate pagal standartinius sveikatos rodiklius.",
   },
   {
     name: "Aktyvus kalorijų deginimas",
@@ -40,7 +40,7 @@ const nutritionNav = [
     href: "/vandens-norma",
     icon: BeakerIcon,
     description:
-      "Sužinokite, kiek vandens reikia suvartoti įvairiose situacijose – sportuojant, karštomis dienomis, dirbant biure.",
+      "Sužinokite, kiek vandens suvartoti įvairiose situacijose – sportuojant, karštomis dienomis, dirbant biure.",
   },
 ];
 
