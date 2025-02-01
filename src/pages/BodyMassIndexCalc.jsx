@@ -143,15 +143,17 @@ export default function BodyMassIndexCalc() {
 
   const [weight, setWeight] = useState("");
   const [height, setHeight] = useState("");
+  const [age, setAge] = useState("");
+  const [gender, setGender] = useState("");
   const [bmi, setBmi] = useState(null);
   const [categories, setCategories] = useState(categoryList);
   const [currentCategory, setCurrentCategory] = useState(null);
   const [showIdealWeight, setShowIdealWeight] = useState(false);
-  const [gender, setGender] = useState("");
   const [idealWeight, setIdealWeight] = useState(null);
 
   const [weightError, setWeightError] = useState("");
   const [heightError, setHeightError] = useState("");
+  const [ageError, setAgeError] = useState("");
   const [genderError, setGenderError] = useState("");
 
   useEffect(() => {
@@ -163,46 +165,68 @@ export default function BodyMassIndexCalc() {
     }
   }, [calcTimestamp]);
 
-  const calculateBMI = (w, h) => {
-    const m = h / 100;
-    return parseFloat((w / (m * m)).toFixed(2));
+  const calculateBMI = (weight, height) => {
+    const m = height / 100;
+
+    return parseFloat((weight / (m * m)).toFixed(2));
   };
 
-  const calcIdealWeight = (hVal, gVal) => {
-    const m = hVal / 100;
-    let result = gVal === "male" ? 22.5 : 21;
+  const calculateIdealWeight = (height, gender) => {
+    const m = height / 100;
+    let result = gender === "male" ? 22.5 : 21;
+
     return (result * m * m).toFixed(1);
   };
 
   const updateCategories = (val) => {
-    const matched = categoryList.find((c) => val >= c.min && val <= c.max);
+    const matched = categoryList.find(
+      (category) => val >= category.min && val <= category.max
+    );
+
     if (!matched) return;
-    const updated = categoryList.map((c) => ({
-      ...c,
-      isCurrent: c.id === matched.id,
+
+    const updated = categoryList.map((category) => ({
+      ...category,
+      isCurrent: category.id === matched.id,
     }));
+
     setCategories(updated);
     setCurrentCategory(matched);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     setWeightError("");
     setHeightError("");
+    setAgeError("");
     setGenderError("");
 
-    const wVal = parseFloat(weight);
-    const hVal = parseFloat(height);
+    const weightValue = parseFloat(weight);
+    const heightValue = parseFloat(height);
+    const ageValue = parseFloat(age);
     let valid = true;
 
-    if (isNaN(wVal) || wVal <= 0) {
-      setWeightError("Prašome įvesti teisingą svorį.");
+    if (isNaN(weightValue) || weightValue <= 0) {
+      setWeightError("Prašome įvesti svorį.");
       valid = false;
     }
-    if (isNaN(hVal) || hVal <= 0) {
-      setHeightError("Prašome įvesti teisingą ūgį.");
+
+    if (isNaN(heightValue) || heightValue <= 0) {
+      setHeightError("Prašome įvesti ūgį.");
       valid = false;
     }
+
+    if (isNaN(ageValue)) {
+      setAgeError("Prašome įvesti amžių.");
+      valid = false;
+    }
+
+    if (ageValue < 18) {
+      setAgeError("Ši skaičiuoklė skirta suaugusiesiems (nuo 18 metų).");
+      valid = false;
+    }
+
     if (showIdealWeight && !gender) {
       setGenderError("Prašome pasirinkti lytį.");
       valid = false;
@@ -210,13 +234,13 @@ export default function BodyMassIndexCalc() {
 
     if (!valid) return;
 
-    const newBmi = calculateBMI(wVal, hVal);
+    const newBmi = calculateBMI(weightValue, heightValue);
     setBmi(newBmi);
     updateCategories(newBmi);
 
     if (showIdealWeight && gender) {
-      const wIdeal = calcIdealWeight(hVal, gender);
-      setIdealWeight(wIdeal);
+      const idealWeight = calculateIdealWeight(height, gender);
+      setIdealWeight(idealWeight);
     } else {
       setIdealWeight(null);
     }
@@ -255,6 +279,15 @@ export default function BodyMassIndexCalc() {
               onChange={(newVal) => setWeight(newVal)}
               placeholder="pvz. 70"
               error={weightError}
+              type="number"
+            />
+            <InputField
+              label="Amžius"
+              id="age"
+              value={age}
+              onChange={setAge}
+              placeholder="pvz. 25"
+              error={ageError}
               type="number"
             />
             <div className="flex items-center">
@@ -297,7 +330,7 @@ export default function BodyMassIndexCalc() {
         {bmi && (
           <PageContentSection ref={resultsRef} scrolled={scrolled}>
             <div>
-              <ResultsDisclaimer/>
+              <ResultsDisclaimer />
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-8 mb-16">
                 <div className="bg-white rounded-lg shadow p-5 flex flex-col items-center">
                   <h3 className="text-sm font-semibold text-gray-500 mb-1">
