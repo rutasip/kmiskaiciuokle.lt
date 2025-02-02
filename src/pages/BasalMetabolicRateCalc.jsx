@@ -314,7 +314,7 @@ export default function BasalMetabolicRateCalc() {
             <div>
               <ResultsDisclaimer />
 
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 mb-12">
                 <div className="rounded-md bg-gray-50 p-6">
                   <h3 className="text-lg font-medium text-gray-900">
                     Svorio palaikymui
@@ -392,11 +392,7 @@ export default function BasalMetabolicRateCalc() {
                   </div>
                 </div>
               </div>
-              <RecommendedCalculatorsSection
-                showBodyMassIndexCalculator
-                showCalorieBurnCalculator
-                showWaterIntakeCalculator={false}
-              />
+              <RecommendedCalculatorsSection showCalorieBurnCalculator/>
             </div>
           </PageContentSection>
         )}

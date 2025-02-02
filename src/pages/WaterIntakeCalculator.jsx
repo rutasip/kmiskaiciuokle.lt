@@ -288,7 +288,7 @@ export default function WaterIntakeCalculator() {
         {totalIntake && (
           <PageContentSection ref={resultsRef} scrolled={scrolled}>
             <div>
-              <ResultsDisclaimer/>
+              <ResultsDisclaimer />
 
               <div className="rounded-md bg-emerald-50 p-6 my-8">
                 <h3 className="text-lg font-semibold text-emerald-800">
@@ -298,11 +298,7 @@ export default function WaterIntakeCalculator() {
                   {(Number(totalIntake) / 1000).toFixed(2)} l / dieną
                 </p>
               </div>
-              <RecommendedCalculatorsSection
-                showBodyMassIndexCalculator
-                showCalorieBurnCalculator
-                showWaterIntakeCalculator={false}
-              />
+              <RecommendedCalculatorsSection showBasalMetabolicRateCalculator />
             </div>
           </PageContentSection>
         )}

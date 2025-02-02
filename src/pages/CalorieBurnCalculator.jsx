@@ -7,6 +7,7 @@ import BackToTopButton from "../components/BackToTopButton";
 import InputField from "../components/InputField";
 import ResultsDisclaimer from "../components/ResultsDisclaimer";
 import useScrollEffects from "../hooks/useScrollEffects";
+import RecommendedCalculatorsSection from "../components/RecommendedCalculatorsSection";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -270,64 +271,7 @@ export default function CalorieBurnCalculator() {
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4">
-                <a
-                  href="/"
-                  className="relative flex items-center bg-white p-5 rounded-md sm:w-1/2 hover:bg-gray-50 transition shadow"
-                >
-                  <div className="mr-8">
-                    <h5 className="text-base font-semibold leading-normal text-neutral-700 hover:text-gray-900">
-                      Kūno masės indekso skaičiuoklė
-                    </h5>
-                    <p className="text-xs text-gray-600 mt-1">
-                      Sužinokite savo KMI (kūno masės indeksą).
-                    </p>
-                  </div>
-                  <div
-                    className="absolute right-4"
-                    style={{ animation: "horizontalBounce 1.5s infinite" }}
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-5 h-5 text-gray-500 hover:text-emerald-700"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                    >
-                      <path d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
-                </a>
-                {/* <a
-                href="/kaloriju-poreikiai"
-                className="relative flex items-center bg-white p-5 rounded-md sm:w-1/2 hover:bg-gray-50 transition shadow"
-              >
-                <div className="mr-8">
-                  <h5 className="text-base font-semibold leading-normal text-neutral-700 hover:text-gray-900">
-                    Dienos kalorijų poreikio skaičiuoklė
-                  </h5>
-                  <p className="text-xs text-gray-600 mt-1">
-                    Sužinokite, kiek kalorijų reikia suvartoti per dieną.
-                  </p>
-                </div>
-                <div
-                  className="absolute right-4"
-                  style={{ animation: "horizontalBounce 1.5s infinite" }}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-5 h-5 text-gray-500 hover:text-emerald-700"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path d="M9 5l7 7-7 7" />
-                  </svg>
-                </div>
-              </a> */}
-              </div>
+              <RecommendedCalculatorsSection showWaterIntakeCalculator />
             </div>
           </PageContentSection>
         )}

@@ -7,6 +7,7 @@ import RadioGroupInput from "../components/RadioGroupInput";
 import ResultsDisclaimer from "../components/ResultsDisclaimer";
 
 import useScrollEffects from "../hooks/useScrollEffects";
+import RecommendedCalculatorsSection from "../components/RecommendedCalculatorsSection";
 
 const categoryList = [
   {
@@ -95,34 +96,6 @@ const normalIndexRanges = [
     age: "Daugiau nei 55",
     women: 27.3,
     men: 26.6,
-  },
-];
-
-const faqs = [
-  {
-    question: "Kas yra idealus svoris?",
-    answer:
-      "Idealus svoris – tai apytikslė kūno svorio reikšmė, atsižvelgiant į Jūsų ūgį, amžių ir lytį. Jis padeda įvertinti, koks svoris gali būti laikomas sveiku Jums individualiai.",
-  },
-  {
-    question: "Ar KMI tinka visiems žmonėms?",
-    answer:
-      "Ne visada. KMI gali būti netikslus sportininkams, nėščioms moterims, vaikams, paaugliams ir vyresnio amžiaus žmonėms.",
-  },
-  {
-    question: "Ar turėčiau remtis tik KMI vertindamas savo sveikatą?",
-    answer:
-      "Ne. KMI yra tik vienas iš įrankių. Svarbu atsižvelgti į kitus veiksnius, tokius kaip kūno riebalų procentas, juosmens apimtis, mityba, fizinis aktyvumas ir bendras gyvenimo būdas.",
-  },
-  {
-    question: "Ką daryti, jei mano KMI yra per didelis arba per mažas?",
-    answer:
-      "Pasitarkite su sveikatos priežiūros specialistu. Jie gali padėti nustatyti priežastis ir pasiūlyti tinkamą veiksmų planą.",
-  },
-  {
-    question: "Ar galiu pasikliauti KMI skaičiuoklės rezultatais?",
-    answer:
-      "KMI skaičiuoklės rezultatai yra orientaciniai. Jei turite klausimų ar rūpesčių dėl savo sveikatos, kreipkitės į profesionalą.",
   },
 ];
 
@@ -407,65 +380,7 @@ export default function BodyMassIndexCalc() {
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4">
-                <a
-                  href="/sudeginamos-kalorijos"
-                  className="relative flex items-center bg-white p-5 rounded-md sm:w-1/2 hover:bg-gray-100 transition shadow"
-                >
-                  <div className="mr-8">
-                    <h5 className="text-base font-semibold leading-normal text-neutral-700 hover:text-gray-900">
-                      Kalorijų sudeginimo skaičiuoklė
-                    </h5>
-                    <p className="text-xs text-gray-600 mt-1">
-                      Sužinokite, kiek kalorijų sudeginate įvairių veiklų metu.
-                    </p>
-                  </div>
-                  <div
-                    className="absolute right-4"
-                    style={{ animation: "horizontalBounce 1.5s infinite" }}
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-5 h-5 text-gray-500 hover:text-emerald-700"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                    >
-                      <path d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
-                </a>
-                {/* <a
-                href="/kaloriju-poreikiai"
-                className="relative flex items-center bg-white p-5 rounded-md sm:w-1/2 hover:bg-gray-100 transition shadow"
-              >
-                <div className="mr-8">
-                  <h5 className="text-base font-semibold leading-normal text-neutral-700 hover:text-gray-900">
-                    Dienos kalorijų poreikio skaičiuoklė
-                  </h5>
-                  <p className="text-xs text-gray-600 mt-1">
-                    Sužinokite, kiek kalorijų reikia suvartoti per dieną pagal
-                    Jūsų aktyvumo lygį.
-                  </p>
-                </div>
-                <div
-                  className="absolute right-4"
-                  style={{ animation: "horizontalBounce 1.5s infinite" }}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-5 h-5 text-gray-500 hover:text-emerald-700"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path d="M9 5l7 7-7 7" />
-                  </svg>
-                </div>
-              </a> */}
-              </div>
+              <RecommendedCalculatorsSection showBasalMetabolicRateCalculator />
             </div>
           </PageContentSection>
         )}
@@ -667,22 +582,6 @@ export default function BodyMassIndexCalc() {
               <li>Venkite žalingų įpročių (rūkymas, alkoholis)</li>
               <li>Pakankamas miegas ir streso valdymas</li>
             </ol>
-          </section>
-
-          <section className="space-y-4 mt-8">
-            <h2 className="text-xl font-bold text-gray-900">
-              D.U.K. (Dažniausiai užduodami klausimai)
-            </h2>
-            <div className="space-y-5 mt-2">
-              {faqs.map((faq, idx) => (
-                <div key={idx}>
-                  <h3 className="text-lg font-semibold text-gray-800">
-                    {faq.question}
-                  </h3>
-                  <p className="mt-1 text-gray-700">{faq.answer}</p>
-                </div>
-              ))}
-            </div>
           </section>
         </PageContentSection>
       </div>
