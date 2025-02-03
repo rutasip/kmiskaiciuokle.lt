@@ -34,7 +34,7 @@ const PageContentSection: ForwardRefRenderFunction<
         className
       )}
     >
-      <div className="max-w-3xl mx-auto sm:px-4 -mt-12 sm:-mt-16 pb-10">
+      <div className="max-w-3xl mx-auto sm:px-4 -mt-12 sm:-mt-16 pb-20">
         <div className="bg-white rounded-xl p-4 sm:p-8 relative z-10 shadow text-base sm:text-md">
           {children}
         </div>

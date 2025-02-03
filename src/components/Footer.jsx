@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useScrollEffects from "../hooks/useScrollEffects";
 
 const healthLinks = [
   { name: "Kūno masės indeksas (KMI)", href: "/" },
@@ -11,6 +12,18 @@ const nutritionLinks = [
 ];
 
 export default function Footer() {
+    const { scrollToTop } = useScrollEffects();
+    const navigate = useNavigate();
+  
+    const handleNavigation = (event, href) => {
+      event.preventDefault();
+      scrollToTop();
+  
+      setTimeout(() => {
+        navigate(href);
+      }, 400);
+    };
+
   return (
     <footer className="bg-gradient-to-r from-emerald-800 to-emerald-900 text-emerald-100 pt-10 pb-6">
       <div className="max-w-7xl mx-auto px-6">
@@ -23,6 +36,7 @@ export default function Footer() {
               {healthLinks.map((link) => (
                 <li key={link.name}>
                   <Link
+                    onClick={(e) => handleNavigation(e, link.href)}
                     to={link.href}
                     className="hover:text-white transition-colors"
                   >
@@ -41,6 +55,7 @@ export default function Footer() {
               {nutritionLinks.map((link) => (
                 <li key={link.name}>
                   <Link
+                    onClick={(e) => handleNavigation(e, link.href)}
                     to={link.href}
                     className="hover:text-white transition-colors"
                   >
@@ -55,9 +70,10 @@ export default function Footer() {
             <h3 className="text-sm font-semibold text-white uppercase mb-3 cursor-default">
               Naudinga
             </h3>
-            <ul className="space-y-2 text-sm mb-6">
+            <ul className="space-y-2 text-sm">
               <li>
                 <Link
+                  onClick={(e) => handleNavigation(e, "/atsakomybes-ribojimas")}
                   to="/atsakomybes-ribojimas"
                   className="hover:text-white transition-colors"
                 >
@@ -102,7 +118,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-emerald-700 mt-10 pt-10 text-center text-sm">
+        <div className="border-t border-emerald-700 mt-10 pt-6 text-center text-sm">
           <p>
             © {new Date().getFullYear()} Sveikatos skaičiuoklės. Visos teisės
             saugomos.

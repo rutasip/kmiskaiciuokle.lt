@@ -30,7 +30,7 @@ const HeroSection: FC<HeroSectionProps> = ({
       <div className="relative z-10 w-full max-w-5xl">
         <div className="block md:hidden px-6 py-20 sm:py-20 md:py-24">
           <div className="flex flex-col items-center space-y-6 text-white">
-            <h2 className="text-2xl font-bold tracking-tight">{title}</h2>
+            <h2 className="text-xl font-bold tracking-tight">{title}</h2>
             <div className="bg-white p-6 shadow-2xl rounded-lg max-w-md w-full text-gray-900">
               {calculatorForm}
             </div>

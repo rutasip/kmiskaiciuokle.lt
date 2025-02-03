@@ -432,7 +432,7 @@ export default function BodyMassIndexCalc() {
               Toliau pateikiami bendrieji KMI intervalai ir galimos sveikatos
               būklės:
             </p>
-            <div className="overflow-hidden shadow sm:rounded-lg">
+            <div className="overflow-scroll shadow sm:rounded-lg">
               <table className="min-w-full divide-y divide-gray-300">
                 <thead className="bg-slate-50 text-slate-900">
                   <tr>
@@ -488,7 +488,7 @@ export default function BodyMassIndexCalc() {
               Įvairiame amžiuje ir priklausomai nuo lyties KMI gali būti
               interpretuojamas skirtingai.
             </p>
-            <div className="overflow-hidden shadow sm:rounded-lg">
+            <div className="overflow-scroll shadow sm:rounded-lg">
               <table className="min-w-full divide-y divide-gray-300">
                 <thead className="bg-slate-50 text-slate-900">
                   <tr>

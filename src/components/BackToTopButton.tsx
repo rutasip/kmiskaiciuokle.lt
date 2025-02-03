@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from "react";
+import React from "react";
 import { ArrowUpIcon } from "@heroicons/react/24/solid";
 
 interface BackToTopButtonProps {
