@@ -390,7 +390,7 @@ export default function BodyMassIndexCalc() {
             <h2 className="text-xl font-bold text-gray-900">Kas yra KMI?</h2>
             <p>
               Kūno masės indeksas (<b>KMI</b>) – tai skaičius, gautas kūno svorį
-              kilogramais padalijus iš ūgio metrais kvadratu. Šis indeksas
+              kilogramais padalinus iš ūgio metrais kvadratu. Šis indeksas
               padeda nustatyti, ar kūno svoris yra per mažas, normalus, ar per
               didelis.
             </p>
@@ -433,24 +433,24 @@ export default function BodyMassIndexCalc() {
               būklės:
             </p>
             <div className="overflow-scroll shadow sm:rounded-lg">
-              <table className="min-w-full divide-y divide-gray-300">
-                <thead className="bg-slate-50 text-slate-900">
+              <table className="min-w-full">
+                <thead className="bg-emerald-50 text-emerald-900">
                   <tr>
                     <th
                       scope="col"
-                      className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
+                      className="py-3.5 pl-4 pr-3 text-left font-semibold text-gray-900 sm:pl-6"
                     >
                       KMI
                     </th>
                     <th
                       scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                      className="px-3 py-3.5 text-left font-semibold text-gray-900"
                     >
                       Būklė
                     </th>
                     <th
                       scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                      className="px-3 py-3.5 text-left font-semibold text-gray-900"
                     >
                       Rizika
                     </th>
@@ -459,7 +459,7 @@ export default function BodyMassIndexCalc() {
                 <tbody className="divide-y divide-gray-200 bg-white">
                   {categories.map((category) => (
                     <tr key={category.id}>
-                      <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                      <td className="whitespace-nowrap py-4 pl-4 pr-3 font-medium text-gray-900 sm:pl-6">
                         {category.index}
                         {category.isCurrent && (
                           <span className="ml-2 inline-flex items-center rounded bg-emerald-50 px-2 py-0.5 text-xs text-emerald-700">
@@ -467,10 +467,10 @@ export default function BodyMassIndexCalc() {
                           </span>
                         )}
                       </td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                      <td className="whitespace-nowrap px-3 py-4 text-gray-500">
                         {category.category}
                       </td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                      <td className="whitespace-nowrap px-3 py-4 text-gray-500">
                         {category.risks}
                       </td>
                     </tr>
@@ -489,24 +489,24 @@ export default function BodyMassIndexCalc() {
               interpretuojamas skirtingai.
             </p>
             <div className="overflow-scroll shadow sm:rounded-lg">
-              <table className="min-w-full divide-y divide-gray-300">
-                <thead className="bg-slate-50 text-slate-900">
+              <table className="min-w-full">
+                <thead className="bg-emerald-50 text-emerald-900">
                   <tr>
                     <th
                       scope="col"
-                      className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
+                      className="py-3.5 pl-4 pr-3 text-left font-semibold text-gray-900 sm:pl-6"
                     >
                       Amžius
                     </th>
                     <th
                       scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                      className="px-3 py-3.5 text-left font-semibold text-gray-900"
                     >
                       Moterų KMI
                     </th>
                     <th
                       scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                      className="px-3 py-3.5 text-left font-semibold text-gray-900"
                     >
                       Vyrų KMI
                     </th>
@@ -515,13 +515,13 @@ export default function BodyMassIndexCalc() {
                 <tbody className="divide-y divide-gray-200 bg-white">
                   {normalIndexRanges.map((range) => (
                     <tr key={range.id}>
-                      <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                      <td className="whitespace-nowrap py-4 pl-4 pr-3 font-medium text-gray-900 sm:pl-6">
                         {range.age}
                       </td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                      <td className="whitespace-nowrap px-3 py-4 text-gray-500">
                         {range.women}
                       </td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                      <td className="whitespace-nowrap px-3 py-4 text-gray-500">
                         {range.men}
                       </td>
                     </tr>

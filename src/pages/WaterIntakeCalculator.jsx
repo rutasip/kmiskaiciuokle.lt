@@ -153,8 +153,8 @@ export default function WaterIntakeCalculator() {
     <>
       <HeroSection
         title="Vandens suvartojimo skaičiuoklė"
-        subtitle="Sužinokite, kiek vandens per dieną jums gali reikėti, atsižvelgiant 
-        į jūsų amžių, ūgį, svorį, fizinio aktyvumo lygį ir klimatą."
+        subtitle="Sužinokite, kiek vandens reikia išgerti per dieną, atsižvelgiant 
+        į amžių, ūgį, svorį, fizinio aktyvumo lygį ir klimatą."
         calculatorForm={
           <form
             onSubmit={step === 1 ? handleNext : handleCalculate}

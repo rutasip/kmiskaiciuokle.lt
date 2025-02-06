@@ -12,17 +12,17 @@ const nutritionLinks = [
 ];
 
 export default function Footer() {
-    const { scrollToTop } = useScrollEffects();
-    const navigate = useNavigate();
-  
-    const handleNavigation = (event, href) => {
-      event.preventDefault();
-      scrollToTop();
-  
-      setTimeout(() => {
-        navigate(href);
-      }, 400);
-    };
+  const { scrollToTop } = useScrollEffects();
+  const navigate = useNavigate();
+
+  const handleNavigation = (event, href) => {
+    event.preventDefault();
+    scrollToTop();
+
+    setTimeout(() => {
+      navigate(href);
+    }, 400);
+  };
 
   return (
     <footer className="bg-gradient-to-r from-emerald-800 to-emerald-900 text-emerald-100 pt-10 pb-6">
@@ -78,6 +78,15 @@ export default function Footer() {
                   className="hover:text-white transition-colors"
                 >
                   Atsakomybės ribojimas
+                </Link>
+              </li>
+              <li>
+                <Link
+                  onClick={(e) => handleNavigation(e, "/privatumo-politika")}
+                  to="/privatumo-politika"
+                  className="hover:text-white transition-colors"
+                >
+                  Privatumo politika
                 </Link>
               </li>
             </ul>
