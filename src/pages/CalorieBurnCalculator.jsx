@@ -114,7 +114,7 @@ export default function CalorieBurnCalculator() {
   return (
     <>
       <HeroSection
-        title="Kalorijų sudeginimo skaičiuoklė"
+        title="Kiek kalorijų sudeginu?"
         subtitle="Sužinokite, kiek kalorijų sudeginate įvairios veiklos metu. Ši
       skaičiuoklė remiasi MET metodu, kad tiksliai įvertintų Jūsų
       energijos sąnaudas pagal Jūsų svorį ir veiklos trukmę."

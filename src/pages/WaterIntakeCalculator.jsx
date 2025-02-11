@@ -152,7 +152,7 @@ export default function WaterIntakeCalculator() {
   return (
     <>
       <HeroSection
-        title="Vandens suvartojimo skaičiuoklė"
+        title="Kiek vandens reikia išgerti per dieną?"
         subtitle="Sužinokite, kiek vandens reikia išgerti per dieną, atsižvelgiant 
         į amžių, ūgį, svorį, fizinio aktyvumo lygį ir klimatą."
         calculatorForm={

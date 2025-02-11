@@ -180,7 +180,7 @@ export default function BasalMetabolicRateCalc() {
   return (
     <>
       <HeroSection
-        title="Kalorijų suvartojimo skaičiuoklė"
+        title="Kiek kalorijų reikia suvartoti per dieną?"
         subtitle="Sužinokite, kiek kalorijų reikėtų sunaudoti norint palaikyti esamą svorį, arba numesti, arba priaugti svorio"
         calculatorForm={
           <form

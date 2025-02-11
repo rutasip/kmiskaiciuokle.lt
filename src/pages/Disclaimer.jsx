@@ -20,8 +20,8 @@ export default function Disclaimer() {
             Jūsų atsakomybė
           </h2>
           <p>
-            Svetainės kūrėjai neprisiima atsakomybės už sprendimus ar pasekmes,
-            atsirandančias dėl čia pateiktų rezultatų naudojimo. Kiekvienas
+            Svetainės kūrėjas neprisiima atsakomybės už sprendimus ar pasekmes,
+            atsirandusias dėl šioje svetaiinėje pateiktos informacijos naudojimo. Kiekvienas
             asmuo yra unikalus, todėl prieš keisdami mitybos įpročius ar fizinį
             aktyvumą, pasitarkite su specialistu.
           </p>

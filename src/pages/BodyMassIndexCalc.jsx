@@ -386,55 +386,73 @@ export default function BodyMassIndexCalc() {
         )}
 
         <PageContentSection ref={resultsRef} scrolled={scrolled}>
-          <section className="space-y-4">
-            <h2 className="text-xl font-bold text-gray-900">Kas yra KMI?</h2>
+          {/* <section>
             <p>
-              Kūno masės indeksas (<b>KMI</b>) – tai skaičius, gautas kūno svorį
-              kilogramais padalinus iš ūgio metrais kvadratu. Šis indeksas
-              padeda nustatyti, ar kūno svoris yra per mažas, normalus, ar per
-              didelis.
+              Šiame straipsnyje rasite daugiau informacijos apie kūno masės
+              indeksą (KMI), gausite sveikos mitybos patarimų, sužinosite apie
+              populiariausias dietas, įvertinant jų privalumus ir trūkumus.
             </p>
-          </section>
-
-          <section className="space-y-4 mt-8">
-            <h2 className="text-xl font-bold text-gray-900">
-              Trumpa KMI istorija
+          </section> */}
+          <section className="space-y-4">
+            <h2 className="text-2xl font-bold text-gray-900">
+              Kas yra kūno masės indeksas (KMI)?
             </h2>
+            <p>
+              <b>Kūno masės indeksas</b> (angl. Body Mass Index, BMI) – tai
+              tarptautinis rodiklis, padedantis įvertinti žmogaus svorio ir ūgio
+              santykį. Jis dažnai naudojamas kaip paprastas pirminis būdas
+              nustatyti, ar žmogus turi nepakankamą svorį, normalų svorį,
+              antsvorį ar nutukimą.
+            </p>
             <p>
               KMI sukūrė <b>1832 m.</b> belgų matematikas{" "}
               <b>Lamberto A. J. Quetelet</b>, siekdamas įvertinti populiacijos
               antsvorio lygį.
             </p>
-          </section>
-
-          <section className="space-y-4 mt-8">
-            <h2 className="text-xl font-bold text-gray-900">
-              Nutukimo Lietuvoje statistika
-            </h2>
+            <h3 className="font-bold text-gray-900 pt-4">
+              Apskaičiavimo formulė
+            </h3>
+            {/* <div className="inline-flex items-center space-x-3">
+              <span className="text-lg font-medium">KMI =</span>
+              <div className="flex flex-col items-center">
+                <div className="border-b border-gray-300 px-2">
+                  kūno masė (kg)
+                </div>
+                <div>
+                  (ūgis (m))<sup>2</sup>
+                </div>
+              </div>
+            </div> */}
             <p>
-              Apie <b>38%</b> saugusiųjų Lietuvoje turi antsvorį (KMI 25–30), o{" "}
-              <b>19%</b> – nutukimą (KMI &gt; 30).
-            </p>
-          </section>
-
-          <section className="space-y-4 mt-8">
-            <h2 className="text-xl font-bold text-gray-900">
-              Kaip apskaičiuoti KMI?
-            </h2>
-            <p>
-              Formulė: <b>KMI = svoris (kg) / [ūgis (m)]².</b>
-            </p>
-            <p>Pvz., sveriant 70 kg ir esant 1,75 m ūgio:</p>
-            <p className="italic">
-              <b>KMI = 70 / (1,75)² ≈ 22,86.</b>
+              <b>KMI = svoris (kg) / (ūgis (m))²</b>
             </p>
             <p>
-              Toliau pateikiami bendrieji KMI intervalai ir galimos sveikatos
-              būklės:
+              Pavyzdžiui, jei žmogaus svoris yra <b>70 kg</b>, o ūgis{" "}
+              <b>1,75 m</b>:
+            </p>
+            {/* <div className="inline-flex items-center space-x-3">
+              <span className="text-lg font-medium">KMI =</span>
+              <div className="flex flex-col items-center">
+                <div className="border-b border-gray-300 px-4">70</div>
+                <div>
+                  (1,75)<sup>2</sup>
+                </div>
+              </div>
+              <span className="text-lg font-medium">≈ 22,86</span>
+            </div> */}
+            <p>
+              <b>KMI = 70 / (1,75)² ≈ 22,86</b>
+            </p>
+            <h3 className="font-bold text-gray-900 pt-4">
+              Reikšmių intervalai
+            </h3>
+            <p>
+              Dažnai naudojami šie <b>Pasaulio sveikatos organizacijos (PSO)</b>{" "}
+              nustatyti intervalai:
             </p>
             <div className="overflow-scroll shadow sm:rounded-lg">
               <table className="min-w-full">
-                <thead className="bg-emerald-50 text-emerald-900">
+                <thead className="bg-gray-50 text-gray-900 text-sm">
                   <tr>
                     <th
                       scope="col"
@@ -456,7 +474,7 @@ export default function BodyMassIndexCalc() {
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-200 bg-white">
+                <tbody className="divide-y divide-gray-200 bg-white text-sm">
                   {categories.map((category) => (
                     <tr key={category.id}>
                       <td className="whitespace-nowrap py-4 pl-4 pr-3 font-medium text-gray-900 sm:pl-6">
@@ -478,6 +496,103 @@ export default function BodyMassIndexCalc() {
                 </tbody>
               </table>
             </div>
+            <div className="mt-2 text-gray-600">
+              Šaltinis:{" "}
+              <a
+                href="https://www.who.int/europe/news-room/fact-sheets/item/a-healthy-lifestyle---who-recommendations"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 underline"
+              >
+                Pasaulio sveikatos organizacija
+              </a>
+            </div>
+          </section>
+
+          {/* <section className="space-y-4 mt-8">
+            <h2 className="text-xl font-bold text-gray-900">
+              Nutukimo Lietuvoje statistika
+            </h2>
+            <p>
+              Apie <b>38%</b> saugusiųjų Lietuvoje turi antsvorį (KMI 25–30), o{" "}
+              <b>19%</b> – nutukimą (KMI &gt; 30).
+            </p>
+          </section> */}
+
+          <section className="space-y-4 mt-10">
+            <h2 className="text-2xl font-bold text-gray-900">
+              Kaip pasiekti ir palaikyti sveiką KMI?
+            </h2>
+            <p>
+              Palaikyti sveiką kūno masės indeksą (KMI) nėra vien tik estetikos
+              klausimas – tai svarbus žingsnis rūpinantis bendra sveikata bei
+              savijauta. Sveikas KMI gali padėti{" "}
+              <b>sumažinti lėtinių ligų riziką</b>, užtikrinti{" "}
+              <b>geresnę savijautą</b> bei <b>didesnį energijos lygį</b>{" "}
+              kasdienėje veikloje. Norėdami pasiekti ir išlaikyti norimą KMI,
+              rekomenduojame atkreipti dėmesį į keletą pagrindinių aspektų.
+            </p>
+            <ol className="list-decimal list-inside pl-4 space-y-1">
+              <li>
+                <b>Tikslo nustatymas:</b>
+                <br /> Išsikelkite konkretų, realistišką tikslą. Pavyzdžiui,
+                norėti numesti 5 kg per 2–3 mėnesius yra realiau, nei tikėtis
+                numesti 10 kg per mėnesį.
+                <br />
+                Norėdami sužinoti kiek kalorijų reikia suvartoti per dieną
+                norint išlaikyti, numesti arba priaugti svorio, pasinaudokite
+                mūsų{" "}
+                <a
+                  href="http://localhost:5173/kaloriju-poreikiai"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 underline"
+                >
+                  kalorijų poreikio skaičiuokle
+                </a>
+                .
+              </li>
+              <li>
+                <b>Balansas lėkštėje:</b>
+                <br /> Pusę lėkštės turėtų sudaryti daržovės, ketvirtadalį –
+                neriebūs baltymai (pvz., vištiena, žuvis, ankštinės daržovės), o
+                likusią dalį – sudėtiniai angliavandeniai (pvz., pilno grūdo
+                produktai).
+              </li>
+              <li>
+                <b>Fizinis aktyvumas:</b>
+                <br /> Rekomenduojama bent 150 min. vidutinio intensyvumo
+                fizinio krūvio per savaitę. Pasivaikščiojimas, bėgimas,
+                važiavimas dviračiu ar plaukimas gali padėti deginti kalorijas
+                ir gerinti širdies bei kraujagyslių sveikatą.
+                <br /> Norėdami sužinoti kiek kalorijų sudeginate užsiimdami
+                įvairia veikla ir sportu, pasinaudokite mūsų{" "}
+                <a
+                  href="http://localhost:5173/sudeginamos-kalorijos"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 underline"
+                >
+                  skaičiuokle
+                </a>.
+              </li>
+              <li>
+                <b>Pakankamas skysčių vartojimas:</b>
+                <br /> Gerkite pakankamai vandens – apie 30 ml kilogramui kūno
+                svorio. Pavyzdžiui, jei sveriate 70 kg, reikėtų ~2,1 litro
+                vandens per dieną (priklausomai nuo aktyvumo lygio ir kitų
+                faktorių). Norėdami sužinoti savo asmeninį vandens suvartojimo
+                poreikį pasinaudokite mūsų{" "}
+                <a
+                  href="http://localhost:5173/vandens-norma"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 underline"
+                >
+                  skaičiuokle.
+                </a>
+              </li>
+            </ol>
           </section>
 
           <section className="space-y-4 mt-8">
@@ -490,7 +605,7 @@ export default function BodyMassIndexCalc() {
             </p>
             <div className="overflow-scroll shadow sm:rounded-lg">
               <table className="min-w-full">
-                <thead className="bg-emerald-50 text-emerald-900">
+                <thead className="bg-gray-50 text-gray-900 text-sm">
                   <tr>
                     <th
                       scope="col"
@@ -512,7 +627,7 @@ export default function BodyMassIndexCalc() {
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-200 bg-white">
+                <tbody className="divide-y divide-gray-200 bg-white text-sm">
                   {normalIndexRanges.map((range) => (
                     <tr key={range.id}>
                       <td className="whitespace-nowrap py-4 pl-4 pr-3 font-medium text-gray-900 sm:pl-6">
@@ -570,18 +685,6 @@ export default function BodyMassIndexCalc() {
                 <li>Miego apnėja</li>
               </ul>
             </div>
-          </section>
-
-          <section className="space-y-4 mt-8">
-            <h2 className="text-xl font-bold text-gray-900">
-              Kaip palaikyti sveiką KMI?
-            </h2>
-            <ol className="list-decimal list-inside pl-4 space-y-1 text-gray-700">
-              <li>Subalansuota mityba (daug daržovių, vaisių)</li>
-              <li>Reguliarus fizinis aktyvumas</li>
-              <li>Venkite žalingų įpročių (rūkymas, alkoholis)</li>
-              <li>Pakankamas miegas ir streso valdymas</li>
-            </ol>
           </section>
         </PageContentSection>
       </div>

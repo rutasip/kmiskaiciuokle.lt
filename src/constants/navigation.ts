@@ -16,7 +16,7 @@ export const healthNav = [
       "Pasitikrinkite, kurią svorio kategoriją atitinkate pagal standartinius sveikatos rodiklius.",
   },
   {
-    name: "Aktyvus kalorijų deginimas",
+    name: "Kiek kalorijų sudeginu?",
     href: "/sudeginamos-kalorijos",
     icon: FireIcon,
     description:
@@ -26,14 +26,14 @@ export const healthNav = [
 
 export const nutritionNav = [
   {
-    name: "Dienos kalorijų poreikis",
+    name: "Kiek kalorijų reikia suvartoti per dieną?",
     href: "/kaloriju-poreikiai",
     icon: CakeIcon,
     description:
       "Nustatykite savo kasdienį kalorijų poreikį norimam svoriui pasiekti.",
   },
   {
-    name: "Vandens suvartojimo poreikis",
+    name: "Kiek vandens reikia išgerti per dieną?",
     href: "/vandens-norma",
     icon: BeakerIcon,
     description:

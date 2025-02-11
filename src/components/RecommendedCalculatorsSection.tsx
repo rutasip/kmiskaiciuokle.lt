@@ -34,7 +34,7 @@ const RecommendedCalculatorsSection: FC<RecommendedCalculatorsSectionProps> = ({
       id: "bmr",
       show: showBasalMetabolicRateCalculator,
       href: "/kaloriju-poreikiai",
-      title: "Dienos kalorijų poreikio skaičiuoklė",
+      title: "Kiek kalorijų reikia suvartoti per dieną?",
       description:
         "Sužinokite savo kasdienį kalorijų poreikį norimam svoriui pasiekti.",
     },
@@ -42,7 +42,7 @@ const RecommendedCalculatorsSection: FC<RecommendedCalculatorsSectionProps> = ({
       id: "water",
       show: showWaterIntakeCalculator,
       href: "/vandens-norma",
-      title: "Vandens suvartojimo poreikio skaičiuoklė",
+      title: "Kiek vandens reikia išgerti per dieną?",
       description:
         "Apskaičiuokite optimalų vandens kiekį kasdienėms situacijoms – nuo sporto iki darbo biure ar karštų orų.",
     },
