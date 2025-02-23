@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   Bars3Icon,
   XMarkIcon,
@@ -13,7 +13,6 @@ function classNames(...classes) {
 }
 
 export function Sidebar() {
-  const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState(null);
   const closeTimerRef = useRef(null);
@@ -38,7 +37,7 @@ export function Sidebar() {
 
   return (
     <nav className="fixed w-full z-50 bg-white shadow">
-      <div className="max-w-8xl mx-auto px-4">
+      <div className="max-w-8xl mx-auto px-8">
         <div className="flex h-14 items-center justify-between">
           <a href="/" className="flex items-center gap-2">
             <div className="w-9 h-9 bg-emerald-600 rounded-full flex items-center justify-center">
@@ -46,7 +45,7 @@ export function Sidebar() {
             </div>
           </a>
 
-          <div className="hidden lg:flex lg:items-center">
+          <div className="hidden lg:flex lg:items-center -mr-4">
             <div
               className="relative gap-x-8"
               onMouseEnter={() => handleMouseEnter("health")}
@@ -56,35 +55,41 @@ export function Sidebar() {
                 Sveikatos skaičiuoklės
                 {renderCaret("health")}
               </div>
-              {openMenu === "health" && (
-                <div className="absolute right-0 mt-2 bg-white shadow border border-neutral-200 rounded-lg z-50 overflow-hidden w-[30rem]">
-                  {healthNav.map((item) => (
-                    <div
-                      key={item.name}
-                      className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-neutral-50"
-                    >
-                      <div className="flex size-11 flex-none items-center justify-center rounded-lg bg-neutral-50">
-                        <item.icon
-                          aria-hidden="true"
-                          className="size-6 text-neutral-600 group-hover:text-emerald-500"
-                        />
-                      </div>
-                      <div className="flex-auto">
-                        <a
-                          href={item.href}
-                          className="block font-semibold text-neutral-900"
-                        >
-                          {item.name}
-                          <span className="absolute inset-0" />
-                        </a>
-                        <p className="mt-1 text-neutral-600">
-                          {item.description}
-                        </p>
-                      </div>
+              <div
+                className={classNames(
+                  "absolute right-0 mt-2 bg-white shadow border border-neutral-200 rounded-lg z-50 overflow-hidden w-[30rem]",
+                  "transition-all duration-200 transform ease-out origin-top-right",
+                  openMenu === "health"
+                    ? "opacity-100 scale-100 pointer-events-auto"
+                    : "opacity-0 scale-95 pointer-events-none"
+                )}
+              >
+                {healthNav.map((item) => (
+                  <div
+                    key={item.name}
+                    className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-neutral-50"
+                  >
+                    <div className="flex size-11 flex-none items-center justify-center rounded-lg bg-neutral-50">
+                      <item.icon
+                        aria-hidden="true"
+                        className="size-6 text-neutral-600 group-hover:text-emerald-500"
+                      />
                     </div>
-                  ))}
-                </div>
-              )}
+                    <div className="flex-auto">
+                      <a
+                        href={item.href}
+                        className="block font-semibold text-neutral-900"
+                      >
+                        {item.name}
+                        <span className="absolute inset-0" />
+                      </a>
+                      <p className="mt-1 text-neutral-600">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
             <div
               className="relative"
@@ -95,41 +100,48 @@ export function Sidebar() {
                 Mitybos skaičiuoklės
                 {renderCaret("nutrition")}
               </div>
-              {openMenu === "nutrition" && (
-                <div className="absolute right-0 mt-2 bg-white shadow border border-neutral-200 rounded-lg z-50 overflow-hidden w-[30rem]">
-                  {nutritionNav.map((item) => (
-                    <div
-                      key={item.name}
-                      className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-neutral-50"
-                    >
-                      <div className="flex size-11 flex-none items-center justify-center rounded-lg bg-neutral-50">
-                        <item.icon
-                          aria-hidden="true"
-                          className="size-6 text-neutral-600 group-hover:text-emerald-500"
-                        />
-                      </div>
-                      <div className="flex-auto">
-                        <a
-                          href={item.href}
-                          className="block font-semibold text-neutral-900"
-                        >
-                          {item.name}
-                          <span className="absolute inset-0" />
-                        </a>
-                        <p className="mt-1 text-neutral-600">
-                          {item.description}
-                        </p>
-                      </div>
+              <div
+                className={classNames(
+                  "absolute right-0 mt-2 bg-white shadow border border-neutral-200 rounded-lg z-50 overflow-hidden w-[30rem]",
+                  "transition-all duration-200 transform ease-out origin-top-right",
+                  openMenu === "nutrition"
+                    ? "opacity-100 scale-100 pointer-events-auto"
+                    : "opacity-0 scale-95 pointer-events-none"
+                )}
+              >
+                {nutritionNav.map((item) => (
+                  <div
+                    key={item.name}
+                    className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-neutral-50"
+                  >
+                    <div className="flex size-11 flex-none items-center justify-center rounded-lg bg-neutral-50">
+                      <item.icon
+                        aria-hidden="true"
+                        className="size-6 text-neutral-600 group-hover:text-emerald-500"
+                      />
                     </div>
-                  ))}
-                </div>
-              )}
+                    <div className="flex-auto">
+                      <a
+                        href={item.href}
+                        className="block font-semibold text-neutral-900"
+                      >
+                        {item.name}
+                        <span className="absolute inset-0" />
+                      </a>
+                      <p className="mt-1 text-neutral-600">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
+
           <div className="flex lg:hidden">
             <button
               className="inline-flex items-center justify-center rounded-md p-2 text-neutral-700 hover:bg-neutral-100"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              onClick={() => setMobileMenuOpen((prev) => !prev)}
             >
               <span className="sr-only">Open main menu</span>
               {mobileMenuOpen ? (
@@ -141,66 +153,67 @@ export function Sidebar() {
           </div>
         </div>
       </div>
-      {mobileMenuOpen && (
-        <div className="lg:hidden z-50 bg-white border-t border-neutral-200 px-4 pt-3 pb-4 space-y-6">
-          <div>
-            <div className="text-sm font-semibold uppercase tracking-wide mb-3">
-              Sveikatos skaičiuoklės
-            </div>
-            {healthNav.map((item) => (
-              <Link
-                key={item.name}
-                to={item.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className={classNames(
-                  location.pathname === item.href
-                    ? "bg-emerald-50 text-emerald-700"
-                    : "text-emerald-700 hover:bg-neutral-50 hover:text-emerald-800",
-                  "block px-3 py-3 rounded-md text-sm"
-                )}
-              >
-                <div className="flex items-start gap-3">
-                  <item.icon className="shrink-0 w-6 h-6 text-emerald-500" />
-                  <div>
-                    <p className="font-semibold pb-1">{item.name}</p>
-                    <p className="text-xs text-neutral-500 leading-snug">
-                      {item.description}
-                    </p>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-          <div>
-            <div className="text-sm font-semibold uppercase tracking-wide mb-3">
-              Mitybos skaičiuoklės
-            </div>
-            {nutritionNav.map((item) => (
-              <Link
-                key={item.name}
-                to={item.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className={classNames(
-                  location.pathname === item.href
-                    ? "bg-emerald-50 text-emerald-700"
-                    : "text-emerald-700 hover:bg-neutral-50 hover:text-emerald-800",
-                  "block px-3 py-3 rounded-md text-sm"
-                )}
-              >
-                <div className="flex items-start gap-3">
-                  <item.icon className="shrink-0 w-6 h-6 text-emerald-500" />
-                  <div>
-                    <p className="font-semibold pb-1">{item.name}</p>
-                    <p className="text-xs text-neutral-500 leading-snug">
-                      {item.description}
-                    </p>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
+      <div
+        className={classNames(
+          "lg:hidden mx-3 origin-top transition-all duration-200 transform ease-out overflow-hidden",
+          mobileMenuOpen
+            ? "opacity-100 scale-100 pointer-events-auto max-h-[800px] py-4"
+            : "opacity-0 scale-95 pointer-events-none max-h-0 py-0"
+        )}
+      >
+        <div className="px-4">
+          <h3 className="pb-2 text-sm font-semibold text-neutral-700">
+            Sveikatos skaičiuoklės
+          </h3>
+          {healthNav.map((item) => (
+            <Link
+              key={item.name}
+              to={item.href}
+              onClick={() => setMobileMenuOpen(false)}
+              className="group relative flex items-center gap-x-4 rounded-lg p-3 text-sm/6 hover:bg-neutral-50"
+            >
+              <div className="flex h-10 w-10 flex-none items-center justify-center rounded-lg bg-neutral-50">
+                <item.icon
+                  aria-hidden="true"
+                  className="h-5 w-5 text-neutral-600 group-hover:text-emerald-500"
+                />
+              </div>
+              <div className="flex-auto">
+                <p className="font-semibold text-neutral-900">{item.name}</p>
+                <p className="mt-1 text-xs text-neutral-600">
+                  {item.description}
+                </p>
+              </div>
+            </Link>
+          ))}
         </div>
-      )}
+        <div className="px-4 pt-4 pb-2">
+          <h3 className="pb-2 text-sm font-semibold text-neutral-700">
+            Mitybos skaičiuoklės
+          </h3>
+          {nutritionNav.map((item) => (
+            <Link
+              key={item.name}
+              to={item.href}
+              onClick={() => setMobileMenuOpen(false)}
+              className="group relative flex items-center gap-x-4 rounded-lg p-3 text-sm/6 hover:bg-neutral-50"
+            >
+              <div className="flex h-10 w-10 flex-none items-center justify-center rounded-lg bg-neutral-50">
+                <item.icon
+                  aria-hidden="true"
+                  className="h-5 w-5 text-neutral-600 group-hover:text-emerald-500"
+                />
+              </div>
+              <div className="flex-auto">
+                <p className="font-semibold text-neutral-900">{item.name}</p>
+                <p className="mt-1 text-xs text-neutral-600">
+                  {item.description}
+                </p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
     </nav>
   );
 }

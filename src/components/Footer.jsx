@@ -26,7 +26,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-gradient-to-r from-emerald-800 to-emerald-900 text-emerald-100 pt-10 pb-6">
-      <div className="max-w-8xl mx-auto px-4">
+      <div className="max-w-8xl mx-auto px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           <div>
             <h3 className="text-sm font-semibold text-white uppercase mb-3 cursor-default">

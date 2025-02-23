@@ -66,38 +66,38 @@ const categoryList = [
   },
 ];
 
-const normalIndexRanges = [
-  {
-    id: 1,
-    age: "19–24 metai",
-    women: 19.5,
-    men: 21.4,
-  },
-  {
-    id: 2,
-    age: "25–34 metai",
-    women: 23.2,
-    men: 21.6,
-  },
-  {
-    id: 3,
-    age: "35–44 metai",
-    women: 23.4,
-    men: 22.9,
-  },
-  {
-    id: 4,
-    age: "45–54 metai",
-    women: 25.2,
-    men: 25.8,
-  },
-  {
-    id: 5,
-    age: "Daugiau nei 55",
-    women: 27.3,
-    men: 26.6,
-  },
-];
+// const normalIndexRanges = [
+//   {
+//     id: 1,
+//     age: "19–24 metai",
+//     women: 19.5,
+//     men: 21.4,
+//   },
+//   {
+//     id: 2,
+//     age: "25–34 metai",
+//     women: 23.2,
+//     men: 21.6,
+//   },
+//   {
+//     id: 3,
+//     age: "35–44 metai",
+//     women: 23.4,
+//     men: 22.9,
+//   },
+//   {
+//     id: 4,
+//     age: "45–54 metai",
+//     women: 25.2,
+//     men: 25.8,
+//   },
+//   {
+//     id: 5,
+//     age: "Daugiau nei 55",
+//     women: 27.3,
+//     men: 26.6,
+//   },
+// ];
 
 const genderOptions = [
   { value: "female", label: "Moteris" },
@@ -398,16 +398,15 @@ export default function BodyMassIndexCalc() {
               Kas yra kūno masės indeksas (KMI)?
             </h2>
             <p>
-              <b>Kūno masės indeksas</b> (angl. Body Mass Index, BMI) – tai
+              Kūno masės indeksas (angl. Body Mass Index, BMI) – tai
               tarptautinis rodiklis, padedantis įvertinti žmogaus svorio ir ūgio
               santykį. Jis dažnai naudojamas kaip paprastas pirminis būdas
               nustatyti, ar žmogus turi nepakankamą svorį, normalų svorį,
               antsvorį ar nutukimą.
             </p>
             <p>
-              KMI sukūrė <b>1832 m.</b> belgų matematikas{" "}
-              <b>Lamberto A. J. Quetelet</b>, siekdamas įvertinti populiacijos
-              antsvorio lygį.
+              KMI sukūrė 1832 m. belgų matematikas Lamberto A. J. Quetelet,
+              siekdamas įvertinti populiacijos antsvorio lygį.
             </p>
             <h3 className="font-bold text-gray-900 pt-4">
               Apskaičiavimo formulė
@@ -424,12 +423,9 @@ export default function BodyMassIndexCalc() {
               </div>
             </div> */}
             <p>
-              <b>KMI = svoris (kg) / (ūgis (m))²</b>
+              KMI = svoris (kg) / (ūgis (m))²
             </p>
-            <p>
-              Pavyzdžiui, jei žmogaus svoris yra <b>70 kg</b>, o ūgis{" "}
-              <b>1,75 m</b>:
-            </p>
+            <p>Pavyzdžiui, jei žmogaus svoris yra 70 kg, o ūgis 1,75 m:</p>
             {/* <div className="inline-flex items-center space-x-3">
               <span className="text-lg font-medium">KMI =</span>
               <div className="flex flex-col items-center">
@@ -440,14 +436,13 @@ export default function BodyMassIndexCalc() {
               </div>
               <span className="text-lg font-medium">≈ 22,86</span>
             </div> */}
-            <p>
-              <b>KMI = 70 / (1,75)² ≈ 22,86</b>
-            </p>
+            <p>KMI = 70 / (1,75)² ≈ 22,86</p>
+
             <h3 className="font-bold text-gray-900 pt-4">
               Reikšmių intervalai
             </h3>
             <p>
-              Dažnai naudojami šie <b>Pasaulio sveikatos organizacijos (PSO)</b>{" "}
+              Dažnai naudojami šie Pasaulio sveikatos organizacijos (PSO){" "}
               nustatyti intervalai:
             </p>
             <div className="overflow-scroll shadow sm:rounded-lg">
@@ -507,98 +502,22 @@ export default function BodyMassIndexCalc() {
                 Pasaulio sveikatos organizacija
               </a>
             </div>
-          </section>
 
-          {/* <section className="space-y-4 mt-8">
-            <h2 className="text-xl font-bold text-gray-900">
-              Nutukimo Lietuvoje statistika
-            </h2>
+            <h3 className="font-bold text-gray-900 pt-4">KMI ribotumai</h3>
             <p>
-              Apie <b>38%</b> saugusiųjų Lietuvoje turi antsvorį (KMI 25–30), o{" "}
-              <b>19%</b> – nutukimą (KMI &gt; 30).
+              KMI neatsižvelgia į skirtingus kūno sudėties aspektus ir kitus
+              sveikatos rodiklius, todėl ne visada gali būti taikomas. Keletas
+              iš ribotumų:
             </p>
-          </section> */}
+            <ul className="list-disc list-inside pl-4 space-y-1 text-gray-700">
+              <li>Negali atskirti raumenų masės nuo riebalų masės.</li>
+              <li>Netinka nėščioms, vaikams, sportininkams.</li>
+              <li>Skiriasi pagal amžių, etninę kilmę, rasę.</li>
+            </ul>
 
-          <section className="space-y-4 mt-10">
-            <h2 className="text-2xl font-bold text-gray-900">
-              Kaip pasiekti ir palaikyti sveiką KMI?
-            </h2>
-            <p>
-              Palaikyti sveiką kūno masės indeksą (KMI) nėra vien tik estetikos
-              klausimas – tai svarbus žingsnis rūpinantis bendra sveikata bei
-              savijauta. Sveikas KMI gali padėti{" "}
-              <b>sumažinti lėtinių ligų riziką</b>, užtikrinti{" "}
-              <b>geresnę savijautą</b> bei <b>didesnį energijos lygį</b>{" "}
-              kasdienėje veikloje. Norėdami pasiekti ir išlaikyti norimą KMI,
-              rekomenduojame atkreipti dėmesį į keletą pagrindinių aspektų.
-            </p>
-            <ol className="list-decimal list-inside pl-4 space-y-1">
-              <li>
-                <b>Tikslo nustatymas:</b>
-                <br /> Išsikelkite konkretų, realistišką tikslą. Pavyzdžiui,
-                norėti numesti 5 kg per 2–3 mėnesius yra realiau, nei tikėtis
-                numesti 10 kg per mėnesį.
-                <br />
-                Norėdami sužinoti kiek kalorijų reikia suvartoti per dieną
-                norint išlaikyti, numesti arba priaugti svorio, pasinaudokite
-                mūsų{" "}
-                <a
-                  href="http://localhost:5173/kaloriju-poreikiai"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 underline"
-                >
-                  kalorijų poreikio skaičiuokle
-                </a>
-                .
-              </li>
-              <li>
-                <b>Balansas lėkštėje:</b>
-                <br /> Pusę lėkštės turėtų sudaryti daržovės, ketvirtadalį –
-                neriebūs baltymai (pvz., vištiena, žuvis, ankštinės daržovės), o
-                likusią dalį – sudėtiniai angliavandeniai (pvz., pilno grūdo
-                produktai).
-              </li>
-              <li>
-                <b>Fizinis aktyvumas:</b>
-                <br /> Rekomenduojama bent 150 min. vidutinio intensyvumo
-                fizinio krūvio per savaitę. Pasivaikščiojimas, bėgimas,
-                važiavimas dviračiu ar plaukimas gali padėti deginti kalorijas
-                ir gerinti širdies bei kraujagyslių sveikatą.
-                <br /> Norėdami sužinoti kiek kalorijų sudeginate užsiimdami
-                įvairia veikla ir sportu, pasinaudokite mūsų{" "}
-                <a
-                  href="http://localhost:5173/sudeginamos-kalorijos"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 underline"
-                >
-                  skaičiuokle
-                </a>.
-              </li>
-              <li>
-                <b>Pakankamas skysčių vartojimas:</b>
-                <br /> Gerkite pakankamai vandens – apie 30 ml kilogramui kūno
-                svorio. Pavyzdžiui, jei sveriate 70 kg, reikėtų ~2,1 litro
-                vandens per dieną (priklausomai nuo aktyvumo lygio ir kitų
-                faktorių). Norėdami sužinoti savo asmeninį vandens suvartojimo
-                poreikį pasinaudokite mūsų{" "}
-                <a
-                  href="http://localhost:5173/vandens-norma"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 underline"
-                >
-                  skaičiuokle.
-                </a>
-              </li>
-            </ol>
-          </section>
-
-          <section className="space-y-4 mt-8">
-            <h2 className="text-xl font-bold text-gray-900">
+            {/* <h3 className="font-bold text-gray-900 pt-4">
               KMI pagal amžių ir lytį
-            </h2>
+            </h3>
             <p>
               Įvairiame amžiuje ir priklausomai nuo lyties KMI gali būti
               interpretuojamas skirtingai.
@@ -643,24 +562,247 @@ export default function BodyMassIndexCalc() {
                   ))}
                 </tbody>
               </table>
+            </div> */}
+          </section>
+
+          {/* <section className="space-y-4 mt-8">
+            <h2 className="text-xl font-bold text-gray-900">
+              Nutukimo Lietuvoje statistika
+            </h2>
+            <p>
+              Apie <b>38%</b> saugusiųjų Lietuvoje turi antsvorį (KMI 25–30), o{" "}
+              <b>19%</b> – nutukimą (KMI &gt; 30).
+            </p>
+          </section> */}
+
+          <section className="space-y-4 mt-10">
+            <h2 className="text-2xl font-bold text-gray-900">
+              Kaip pasiekti ir palaikyti sveiką KMI?
+            </h2>
+            <p>
+              Palaikyti sveiką kūno masės indeksą nėra vien tik estetikos
+              klausimas – tai svarbus žingsnis rūpinantis bendra sveikata bei
+              savijauta. Sveikas KMI gali padėti sumažinti lėtinių ligų riziką,
+              užtikrinti geresnę savijautą bei didesnį energijos lygį kasdienėje
+              veikloje. Norėdami pasiekti ir išlaikyti norimą KMI,
+              rekomenduojame atkreipti dėmesį į keletą pagrindinių aspektų.
+            </p>
+            <ol className="list-decimal list-outside pl-4 space-y-3">
+              <li>
+                <b>Tikslo nustatymas</b>: išsikelkite{" "}
+                <b>konkretų, realistišką tikslą</b>. Pavyzdžiui, norėti numesti
+                5 kg per 2–3 mėnesius yra realiau, nei tikėtis numesti 10 kg per
+                mėnesį.
+                <br />
+                Norite sužinoti kiek kalorijų reikia suvartoti norint numesti
+                arba priaugti svorio? Pasinaudokite{" "}
+                <a
+                  href="http://localhost:5173/kaloriju-poreikiai"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 underline"
+                >
+                  šia skaičiuokle
+                </a>
+                .
+              </li>
+              <li>
+                <b>Balansas lėkštėje</b>: pusę lėkštės turėtų sudaryti <b>daržovės</b>,
+                ketvirtadalį – <b>neriebūs baltymai</b> (pvz., vištiena, žuvis,
+                ankštinės daržovės), o likusią dalį –{" "}
+                <b>sudėtiniai angliavandeniai</b> (pvz., pilno grūdo produktai).
+              </li>
+              <li>
+                <b>Fizinis aktyvumas</b>: rekomenduojama bent <b>150 min.</b> vidutinio
+                intensyvumo fizinio krūvio <b>per savaitę</b>. Pasivaikščiojimas,
+                bėgimas, važiavimas dviračiu ar plaukimas gali padėti deginti
+                kalorijas ir gerinti širdies bei kraujagyslių sveikatą.
+                <br /> Norėdami sužinoti kiek kalorijų sudeginate užsiimdami
+                įvairia veikla ir sportu, pasinaudokite{" "}
+                <a
+                  href="http://localhost:5173/sudeginamos-kalorijos"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 underline"
+                >
+                  skaičiuokle
+                </a>
+                .
+              </li>
+              <li>
+                <b>Pakankamas skysčių vartojimas</b>: gerkite pakankamai vandens – apie{" "}
+                <b>30 ml kilogramui kūno svorio</b>. Pavyzdžiui, jei sveriate 70
+                kg, reikėtų ~2,1 litro vandens per dieną (priklausomai nuo
+                aktyvumo lygio ir kitų faktorių). <br />
+                Norėdami sužinoti savo asmeninį vandens suvartojimo poreikį,
+                pasinaudokite{" "}
+                <a
+                  href="http://localhost:5173/vandens-norma"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 underline"
+                >
+                  skaičiuokle
+                </a>
+                .
+              </li>
+              <li>
+                <b>Pakankamas miegas</b>: miegas yra neatsiejama sveiko gyvenimo būdo
+                dalis. Rekomenduojama miegoti <b>7–9 valandas per parą</b>, kad
+                organizmas galėtų atsigauti, subalansuoti hormonus bei palaikyti{" "}
+                sveiką svorį ir bendrą savijautą.
+              </li>
+            </ol>
+          </section>
+
+          <section className="space-y-4 mt-10">
+            <h2 className="text-2xl font-bold text-gray-900">
+              Populiarios dietos: privalumai ir trūkumai
+            </h2>
+            <h3 className="font-bold text-gray-900 pt-4">
+              Viduržemio jūros dieta
+            </h3>
+            <p>
+              Raciono pagrindą sudaro daržovės, vaisiai, neskaldyti grūdai,
+              alyvuogių aliejus, žuvis, paukštiena ir nedidelis raudonos mėsos
+              (kiauliena, jautiena ir kt.) kiekis.
+            </p>
+            <div>
+              <p>Privalumai:</p>
+              <ul className="list-disc list-inside">
+                <li>
+                  Moksliškai įrodyta, kad padeda sumažinti širdies ir
+                  kraujagyslių ligų riziką.
+                </li>
+                <li>
+                  Gausu antioksidantų, kurie padeda kovoti su laisvaisiais
+                  radikalais ir lėtina senėjimo procesus.
+                </li>
+              </ul>
+            </div>
+            <div>
+              <p>Trūkumai:</p>
+              <ul className="list-disc list-inside">
+                <li>
+                  Dieta gali būti brangi, jei renkatės kokybišką šviežią žuvį,
+                  alyvuogių aliejų, sezonines daržoves.
+                </li>
+              </ul>
+            </div>
+
+            <h3 className="font-bold text-gray-900 pt-4">
+              Mažai angliavandenių turinčios dietos (pvz., keto)
+            </h3>
+            <p>
+              Angliavandenių kiekis sumažinamas iki minimumo, o riebalų
+              suvartojimo kiekis padidinamas. Kūnas pereina į ketozės būseną,
+              kurios metu riebalai yra naudojami kaip pagrindinis energijos
+              šaltinis.
+            </p>
+            <div>
+              <p>Privalumai:</p>
+              <ul className="list-disc list-inside">
+                <li>
+                  Gali padėti greitai sumažinti svorį (ypač pradžioje dėl
+                  skysčių netekimo).
+                </li>
+                <li>
+                  Kai kuriems asmenims padeda kontroliuoti cukraus kiekį
+                  kraujyje.
+                </li>
+              </ul>
+            </div>
+            <div>
+              <p>Trūkumai:</p>
+              <ul className="list-disc list-inside">
+                <li>
+                  Gali trūkti tam tikrų maistinių medžiagų (skaidulų, vitaminų,
+                  mineralų).
+                </li>
+                <li>
+                  Neretai sukelia šalutinius poveikius (nuovargį, vidurių
+                  užkietėjimą, energijos trūkumą).
+                </li>
+                <li>
+                  Sunku ilgai laikytis dietos dėl griežto angliavandenių
+                  ribojimo.
+                </li>
+              </ul>
+            </div>
+
+            <h3 className="font-bold text-gray-900 pt-4">
+              Protarpinis badavimas (angl. Intermittent Fasting)
+            </h3>
+            <p>
+              Valgoma tik tam tikru laiko tarpu (pvz., 8 val. per parą) arba tam
+              tikromis dienomis laikomasi itin mažo kalorijų kiekio, o kitomis
+              dienomis valgoma įprastai.
+            </p>
+            <div>
+              <p>Privalumai:</p>
+              <ul className="list-disc list-inside">
+                <li>
+                  Gali padėti sumažinti suvartojamų kalorijų kiekį, taip
+                  padedant numesti nereikalingą svorį.
+                </li>
+                <li>
+                  Kai kuriems žmonėms paprasčiau nevalgyti tik tam tikromis
+                  valandomis, nei kasdien skaičiuoti kalorijas norint numesti
+                  svorio.
+                </li>
+              </ul>
+            </div>
+            <div>
+              <p>Trūkumai:</p>
+              <ul className="list-disc list-inside">
+                <li>
+                  Netinka kai kuriems asmenims, pvz., turintiems valgymo
+                  sutrikimų, nėščioms ar žindančioms moterims.
+                </li>
+                <li>
+                  Gali būti sunku išlaikyti fizinį ir protinį darbingumą, kol
+                  organizmas pripranta.
+                </li>
+              </ul>
+            </div>
+
+            <h3 className="font-bold text-gray-900 pt-4">
+              Vegetariška / veganiška dieta
+            </h3>
+            <p>
+              Ribojama arba visiškai atsisakoma mėsos, žuvies, jūrų gėrybių,
+              pieno produktų, kiaušinių (priklausomai nuo to, ar vegetariška, ar
+              veganiška dieta).
+            </p>
+            <div>
+              <p>Privalumai:</p>
+              <ul className="list-disc list-inside">
+                <li>
+                  Daug vaisių, daržovių, ankštinių kultūrų, gausu skaidulų.
+                </li>
+                <li>
+                  Dėl didelio antioksidantų kiekio gali būti naudinga širdžiai,
+                  kraujagyslėms.
+                </li>
+              </ul>
+            </div>
+            <div>
+              <p>Trūkumai:</p>
+              <ul className="list-disc list-inside">
+                <li>
+                  Gali susidurti su vitamino B12, geležies, omega-3 riebalų
+                  rūgščių, cinko, kalcio ir baltymų trūkumu, jei mityba nėra
+                  subalansuota.
+                </li>
+                <li>
+                  Norint gauti visus reikalingus baltymus, aminorūgštis ir
+                  mikroelementus, reikalingas kruopštus maisto planavimas.
+                </li>
+              </ul>
             </div>
           </section>
 
-          <section className="space-y-4 mt-8">
-            <h2 className="text-xl font-bold text-gray-900">KMI ribotumai</h2>
-            <p>
-              KMI neatsižvelgia į skirtingus kūno sudėties aspektus ir kitus
-              sveikatos rodiklius, todėl ne visada gali būti taikomas. Keletas
-              iš ribotumų:
-            </p>
-            <ul className="list-disc list-inside pl-4 space-y-1 text-gray-700">
-              <li>Negali atskirti raumenų masės nuo riebalų masės.</li>
-              <li>Netinka nėščioms, vaikams, sportininkams.</li>
-              <li>Skiriasi pagal amžių, etninę kilmę, rasę.</li>
-            </ul>
-          </section>
-
-          <section className="space-y-4 mt-8">
+          {/* <section className="space-y-4 mt-8">
             <h2 className="text-xl font-bold text-gray-900">
               Sveikatos rizikos
             </h2>
@@ -685,7 +827,7 @@ export default function BodyMassIndexCalc() {
                 <li>Miego apnėja</li>
               </ul>
             </div>
-          </section>
+          </section> */}
         </PageContentSection>
       </div>
 

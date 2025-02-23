@@ -1,6 +1,10 @@
 import { Fragment, useState, useEffect } from "react";
-import { Listbox, Transition } from "@headlessui/react";
-import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
+import { Combobox } from "@headlessui/react";
+import {
+  CheckIcon,
+  ChevronUpDownIcon,
+  XMarkIcon,
+} from "@heroicons/react/20/solid";
 import HeroSection from "../components/HeroSection";
 import PageContentSection from "../components/PageContentSection";
 import BackToTopButton from "../components/BackToTopButton";
@@ -17,14 +21,14 @@ const activities = [
   {
     category: "Sportas",
     options: [
-      { id: 1, name: "Bėgimas (8 km/h)", value: 8.0 },
-      { id: 2, name: "Vaikščiojimas (5 km/h)", value: 3.5 },
-      { id: 3, name: "Dviračių sportas (16-19 km/h)", value: 7.5 },
-      { id: 4, name: "Plaukimas (vidutiniu tempu)", value: 6.0 },
-      { id: 5, name: "Joga", value: 2.5 },
-      { id: 6, name: "Svorio kilnojimas (vidutinio sunkumo)", value: 4.0 },
-      { id: 7, name: "Bėgimas (12 km/h)", value: 11.0 },
-      { id: 8, name: "Intensyvus plaukimas", value: 9.8 },
+      { id: 1, name: "Vaikščiojimas (5 km/h)", value: 3.5 },
+      { id: 2, name: "Bėgimas (8 km/h)", value: 8.0 },
+      { id: 3, name: "Bėgimas (12 km/h)", value: 11.0 },
+      { id: 4, name: "Dviračių sportas (16-19 km/h)", value: 7.5 },
+      { id: 5, name: "Plaukimas (vidutiniu tempu)", value: 6.0 },
+      { id: 6, name: "Plaukimas (intensyvus)", value: 9.8 },
+      { id: 7, name: "Joga", value: 2.5 },
+      { id: 8, name: "Svorio kilnojimas (vidutinio sunkumo)", value: 4.0 },
       { id: 9, name: "Boksas", value: 9.0 },
       { id: 10, name: "Krepšinis", value: 6.5 },
       { id: 11, name: "Futbolas", value: 7.0 },
@@ -35,6 +39,15 @@ const activities = [
       { id: 16, name: "Žygiai pėsčiomis", value: 6.0 },
       { id: 17, name: "Aerobika (vidutinio intensyvumo)", value: 5.0 },
       { id: 18, name: "Pilates", value: 3.0 },
+      { id: 28, name: "Zumba", value: 6.0 },
+      { id: 29, name: "Šokiai (vidutinio intensyvumo)", value: 5.5 },
+      { id: 30, name: "Šokiai (intensyvūs)", value: 7.8 },
+      { id: 31, name: "Elliptical treniruoklis (vidutinis)", value: 5.0 },
+      { id: 32, name: "Irklavimas (vidutinė jėga)", value: 6.0 },
+      { id: 33, name: "Stalo tenisas", value: 4.0 },
+      { id: 34, name: "Riedučiai (vidutinis tempas)", value: 7.0 },
+      { id: 35, name: "Treniruotė su kūno svoriu (vidutinė)", value: 5.0 },
+      { id: 36, name: "Kopinėjimas uolomis", value: 7.5 },
     ],
   },
   {
@@ -49,6 +62,22 @@ const activities = [
       { id: 25, name: "Maisto pirkimas", value: 2.3 },
       { id: 26, name: "Automobilio plovimas", value: 3.0 },
       { id: 27, name: "Žolės pjovimas", value: 5.0 },
+      { id: 41, name: "Baldų perstumdymas", value: 5.5 },
+      { id: 42, name: "Skalbiniai (lyginti)", value: 2.3 },
+      { id: 43, name: "Vaikštant kalbėti telefonu", value: 2.0 },
+      { id: 44, name: "Žaidimai su šunimi", value: 5.0 },
+      { id: 45, name: "Nešiojimas daiktų (iki ~9 kg)", value: 4.0 },
+      { id: 46, name: "Laiptų lipimas (lėtas)", value: 4.0 },
+      { id: 47, name: "Laiptų lipimas (greitas)", value: 8.0 },
+    ],
+  },
+  {
+    category: "Žiemos veikla",
+    options: [
+      { id: 37, name: "Čiuožimas pačiūžomis (vidutinis)", value: 7.0 },
+      { id: 38, name: "Čiuožimas pačiūžomis (greitas)", value: 9.0 },
+      { id: 39, name: "Snieglentė (vidutinio intensyvumo)", value: 5.0 },
+      { id: 40, name: "Rogės (bėgimas į kalną)", value: 7.0 },
     ],
   },
 ];
@@ -62,38 +91,31 @@ export default function CalorieBurnCalculator() {
     setCalcTimestamp,
     resultsRef,
   } = useScrollEffects();
-
-  const [selectedActivity, setSelectedActivity] = useState(
-    activities[0].options[0]
-  );
+  const [selectedActivity, setSelectedActivity] = useState(null);
   const [weight, setWeight] = useState("");
   const [duration, setDuration] = useState("");
   const [caloriesBurned, setCaloriesBurned] = useState(null);
-
   const [weightError, setWeightError] = useState("");
   const [durationError, setDurationError] = useState("");
+  const [query, setQuery] = useState("");
+  const [open, setOpen] = useState(false);
+  const [userNavigated, setUserNavigated] = useState(false);
 
-  // Smooth scroll to results when we set calcTimestamp
   useEffect(() => {
     if (calcTimestamp !== 0 && resultsRef.current) {
       const offset = 360;
-      const elementTop =
-        resultsRef.current.getBoundingClientRect().top + window.scrollY;
+      const elementTop = resultsRef.current.getBoundingClientRect().top + window.scrollY;
       window.scrollTo({ top: elementTop - offset, behavior: "smooth" });
     }
-  }, [calcTimestamp]);
+  }, [calcTimestamp, resultsRef]);
 
-  // Handle calculation
   const handleCalculate = (e) => {
     e.preventDefault();
     setWeightError("");
     setDurationError("");
-
     const weightInKg = parseFloat(weight);
     const durationInHours = parseFloat(duration);
-
     let isValid = true;
-
     if (isNaN(weightInKg) || weightInKg <= 0) {
       setWeightError("Prašome įvesti teisingą svorį.");
       isValid = false;
@@ -102,14 +124,28 @@ export default function CalorieBurnCalculator() {
       setDurationError("Prašome įvesti teisingą trukmę.");
       isValid = false;
     }
-
     if (!isValid) return;
-
+    if (!selectedActivity) return;
     const calories = selectedActivity.value * weightInKg * durationInHours;
     setCaloriesBurned(calories.toFixed(2));
-
     setCalcTimestamp(Date.now());
   };
+
+  useEffect(() => {
+    if (!open) {
+      setQuery("");
+      setUserNavigated(false);
+    }
+  }, [open]);
+
+  const groupedActivities = activities
+    .map((group) => {
+      const filteredOptions = group.options.filter((act) =>
+        act.name.toLowerCase().includes(query.toLowerCase())
+      );
+      return { ...group, options: filteredOptions };
+    })
+    .filter((group) => group.options.length > 0);
 
   return (
     <>
@@ -129,7 +165,6 @@ export default function CalorieBurnCalculator() {
               error={weightError}
               type="number"
             />
-
             <InputField
               label="Trukmė (valandomis)"
               id="duration"
@@ -139,7 +174,6 @@ export default function CalorieBurnCalculator() {
               error={durationError}
               type="number"
             />
-
             <div>
               <label
                 htmlFor="activity"
@@ -147,95 +181,120 @@ export default function CalorieBurnCalculator() {
               >
                 Pasirinkite veiklą
               </label>
-              <Listbox value={selectedActivity} onChange={setSelectedActivity}>
-                {({ open }) => (
-                  <>
+              <Combobox
+                value={selectedActivity}
+                onChange={setSelectedActivity}
+                nullable
+                initialActiveIndex={null}
+              >
+                {({ open: isOpen }) => {
+                  useEffect(() => {
+                    setOpen(isOpen);
+                  }, [isOpen]);
+                  return (
                     <div className="relative mt-2">
-                      <Listbox.Button className="relative w-full cursor-default rounded-md bg-white py-2 pl-3 pr-10 text-left border border-gray-300 shadow-sm focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 sm:text-sm">
-                        <span className="block truncate">
-                          {selectedActivity.name}
-                        </span>
-                        <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                          <ChevronUpDownIcon
-                            className="h-5 w-5 text-gray-400"
-                            aria-hidden="true"
-                          />
-                        </span>
-                      </Listbox.Button>
-                      <Transition
-                        show={open}
-                        as={Fragment}
-                        leave="transition ease-in duration-100"
-                        leaveFrom="opacity-100"
-                        leaveTo="opacity-0"
+                      <div className="relative w-full cursor-default overflow-hidden rounded-md border border-gray-300 bg-white text-left shadow-sm focus-within:ring-1 focus-within:ring-emerald-500 focus-within:border-emerald-500 text-sm">
+                        <Combobox.Input
+                          className="w-full border-none py-2 pl-3 pr-10 text-gray-900 focus:outline-none"
+                          placeholder="Pradėkite rašyti veiklos pavadinimą..."
+                          displayValue={(activity) =>
+                            activity ? activity.name : ""
+                          }
+                          onChange={(e) => {
+                            setQuery(e.target.value);
+                            setUserNavigated(false);
+                          }}
+                          onKeyDown={(e) => {
+                            if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+                              setUserNavigated(true);
+                            }
+                          }}
+                        />
+                        <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
+                          <ChevronUpDownIcon className="h-5 w-5 text-gray-400" />
+                        </Combobox.Button>
+                        {(query || selectedActivity) && (
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setSelectedActivity(null);
+                              setQuery("");
+                              setUserNavigated(false);
+                            }}
+                            className="absolute inset-y-0 right-7 flex items-center px-2"
+                          >
+                            <XMarkIcon className="h-4 w-4 text-gray-400" />
+                          </button>
+                        )}
+                      </div>
+                      <Combobox.Options
+                        className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none text-sm"
+                        onMouseMove={() => setUserNavigated(true)}
                       >
-                        <Listbox.Options
-                          static
-                          className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
-                        >
-                          {activities.map((group) => (
-                            <Fragment key={group.category}>
-                              <Listbox.Option
-                                disabled
-                                value=""
-                                className="cursor-default select-none py-2 pl-3 pr-9 text-gray-900 bg-gray-100 font-semibold"
-                              >
-                                {group.category}
-                              </Listbox.Option>
-                              {group.options.map((activity) => (
-                                <Listbox.Option
-                                  key={activity.id}
-                                  value={activity}
-                                  className={({ active }) =>
-                                    classNames(
-                                      active
-                                        ? "bg-emerald-600 text-white"
-                                        : "text-gray-900",
-                                      "relative cursor-default select-none py-2 pl-3 pr-9"
-                                    )
+                        {groupedActivities.length === 0 && (
+                          <div className="cursor-default select-none py-2 px-4 text-gray-700">
+                            Veikla nerasta.
+                          </div>
+                        )}
+                        {groupedActivities.map((group) => (
+                          <Fragment key={group.category}>
+                            <div className="cursor-default select-none py-2 pl-3 pr-9 bg-gray-100 font-semibold text-gray-900">
+                              {group.category}
+                            </div>
+                            {group.options.map((activity) => (
+                              <Combobox.Option
+                                key={activity.id}
+                                value={activity}
+                                className={({ active, selected }) => {
+                                  if (selected && !userNavigated) {
+                                    return classNames(
+                                      "bg-emerald-600 text-white font-semibold",
+                                      "relative cursor-pointer select-none py-2 pl-3 pr-9"
+                                    );
                                   }
-                                >
-                                  {({ selected, active }) => (
-                                    <>
+                                  if (!userNavigated) {
+                                    return classNames(
+                                      "bg-white text-gray-900 font-normal",
+                                      "relative cursor-pointer select-none py-2 pl-3 pr-9 hover:bg-emerald-600 hover:text-white hover:font-semibold"
+                                    );
+                                  }
+                                  return classNames(
+                                    active || selected
+                                      ? "bg-emerald-600 text-white font-semibold"
+                                      : "bg-white text-gray-900 font-normal",
+                                    "relative cursor-pointer select-none py-2 pl-3 pr-9 hover:bg-emerald-600 hover:text-white hover:font-semibold"
+                                  );
+                                }}
+                              >
+                                {({ active, selected }) => (
+                                  <>
+                                    <span className="block truncate">
+                                      {activity.name}
+                                    </span>
+                                    {(active || selected) && (
                                       <span
                                         className={classNames(
-                                          selected
-                                            ? "font-semibold"
-                                            : "font-normal",
-                                          "block truncate"
+                                          "absolute inset-y-0 right-0 flex items-center pr-4",
+                                          active || selected
+                                            ? "text-white"
+                                            : "text-emerald-600"
                                         )}
                                       >
-                                        {activity.name}
+                                        <CheckIcon className="h-5 w-5" />
                                       </span>
-                                      {selected ? (
-                                        <span
-                                          className={classNames(
-                                            active
-                                              ? "text-white"
-                                              : "text-emerald-600",
-                                            "absolute inset-y-0 right-0 flex items-center pr-4"
-                                          )}
-                                        >
-                                          <CheckIcon
-                                            className="h-5 w-5"
-                                            aria-hidden="true"
-                                          />
-                                        </span>
-                                      ) : null}
-                                    </>
-                                  )}
-                                </Listbox.Option>
-                              ))}
-                            </Fragment>
-                          ))}
-                        </Listbox.Options>
-                      </Transition>
+                                    )}
+                                  </>
+                                )}
+                              </Combobox.Option>
+                            ))}
+                          </Fragment>
+                        ))}
+                      </Combobox.Options>
                     </div>
-                  </>
-                )}
-              </Listbox>
+                  );
+                }}
+              </Combobox>
             </div>
-
             <button
               type="submit"
               className="inline-flex items-center px-5 py-2 rounded-md bg-emerald-600 text-sm font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
@@ -246,12 +305,11 @@ export default function CalorieBurnCalculator() {
         }
         scrolled={scrolled}
       />
-
       <div className="flex flex-col gap-8 sm:gap-14">
         {caloriesBurned && (
           <PageContentSection ref={resultsRef} scrolled={scrolled}>
             <div>
-              <ResultsDisclaimer/>
+              <ResultsDisclaimer />
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 my-8">
                 <div className="bg-white rounded-lg shadow p-5 flex flex-col items-center">
                   <h3 className="text-sm font-semibold text-gray-500 mb-1">
@@ -266,16 +324,14 @@ export default function CalorieBurnCalculator() {
                     Veikla
                   </h3>
                   <span className="text-lg sm:text-xl font-semibold text-gray-900">
-                    {selectedActivity.name}
+                    {selectedActivity?.name}
                   </span>
                 </div>
               </div>
-
               <RecommendedCalculatorsSection showWaterIntakeCalculator />
             </div>
           </PageContentSection>
         )}
-
         <PageContentSection ref={resultsRef} scrolled={scrolled}>
           <section className="space-y-4">
             <h2 className="text-xl font-bold text-gray-900">
@@ -291,7 +347,6 @@ export default function CalorieBurnCalculator() {
               reikšmes.
             </p>
           </section>
-
           <section className="space-y-4 mt-8">
             <h2 className="text-xl font-bold text-gray-900">Kas yra MET?</h2>
             <p>
@@ -304,7 +359,6 @@ export default function CalorieBurnCalculator() {
               ramybės metabolizmą.
             </p>
           </section>
-
           <section className="space-y-4 mt-8">
             <h2 className="text-xl font-bold text-gray-900">Formulė</h2>
             <p className="italic">
@@ -319,7 +373,6 @@ export default function CalorieBurnCalculator() {
           </section>
         </PageContentSection>
       </div>
-
       <BackToTopButton show={showBackToTop} onClick={scrollToTop} />
     </>
   );
