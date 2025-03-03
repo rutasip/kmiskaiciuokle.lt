@@ -16,27 +16,30 @@ export const healthNav = [
       "Pasitikrinkite, kurią svorio kategoriją atitinkate pagal standartinius sveikatos rodiklius.",
   },
   {
-    name: "Kiek kalorijų sudeginu?",
+    // name: "Kiek kalorijų sudeginu?",
+    name: "Kalorijų deginimas",
     href: "/sudeginamos-kalorijos",
     icon: FireIcon,
     description:
-      "Sužinokite, kiek kalorijų sudeginate užsiimdami kasdiene veikla ir sportu.",
+      "Sužinokite, kiek kalorijų sudeginate užsiimdami įvairia kasdiene veikla ir sportu.",
   },
 ];
 
 export const nutritionNav = [
   {
-    name: "Kiek kalorijų reikia suvartoti per dieną?",
+    // name: "Kiek kalorijų reikia suvartoti per dieną?",
+    name: "Kalorijų poreikis",
     href: "/kaloriju-poreikiai",
     icon: CakeIcon,
     description:
       "Nustatykite savo kasdienį kalorijų poreikį norimam svoriui pasiekti.",
   },
   {
-    name: "Kiek vandens reikia išgerti per dieną?",
+    // name: "Kiek vandens reikia išgerti per dieną?",
+    name: "Vandens poreikis",
     href: "/vandens-norma",
     icon: BeakerIcon,
     description:
-      "Apskaičiuokite optimalų vandens kiekį kasdienėms situacijoms – nuo sporto iki darbo biure ar karštų orų.",
+      "Apskaičiuokite vandens poreikį kasdienėms situacijoms – nuo sporto iki darbo biure ar karštų orų.",
   },
 ];

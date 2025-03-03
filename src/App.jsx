@@ -6,7 +6,7 @@ import "./styles/checkmark.scss";
 import "./styles/heart.css";
 import Footer from "./components/Footer";
 import { initGA, trackPageView } from "./utils/analytics";
-import CookieConsent from "./components/CookieConsent";
+// import CookieConsent from "./components/CookieConsent";
 
 export default function App() {
   const location = useLocation();
@@ -20,7 +20,7 @@ export default function App() {
     <div className="flex flex-col min-h-screen text-gray-900 relative overflow-x-hidden">
       <Sidebar />
       <main className="flex-1">
-      <CookieConsent />
+      {/* <CookieConsent /> */}
         <Outlet />
       </main>
       <Footer />

@@ -37,7 +37,7 @@ export function Sidebar() {
 
   return (
     <nav className="fixed w-full z-50 bg-white shadow">
-      <div className="max-w-8xl mx-auto px-8">
+      <div className="max-w-6xl mx-auto px-8">
         <div className="flex h-14 items-center justify-between">
           <a href="/" className="flex items-center gap-2">
             <div className="w-9 h-9 bg-emerald-600 rounded-full flex items-center justify-center">
@@ -45,19 +45,19 @@ export function Sidebar() {
             </div>
           </a>
 
-          <div className="hidden lg:flex lg:items-center -mr-4">
+          <div className="hidden lg:flex lg:items-center gap-5">
             <div
               className="relative gap-x-8"
               onMouseEnter={() => handleMouseEnter("health")}
               onMouseLeave={handleMouseLeave}
             >
-              <div className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-neutral-700 cursor-pointer">
+              <div className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-neutral-700 tracking-wide bg-gray-100 rounded-lg cursor-pointer">
                 Sveikatos skaičiuoklės
                 {renderCaret("health")}
               </div>
               <div
                 className={classNames(
-                  "absolute right-0 mt-2 bg-white shadow border border-neutral-200 rounded-lg z-50 overflow-hidden w-[30rem]",
+                  "absolute right-0 mt-2 bg-white shadow border border-neutral-200 rounded-lg z-50 overflow-hidden w-[30.8rem]",
                   "transition-all duration-200 transform ease-out origin-top-right",
                   openMenu === "health"
                     ? "opacity-100 scale-100 pointer-events-auto"
@@ -78,12 +78,12 @@ export function Sidebar() {
                     <div className="flex-auto">
                       <a
                         href={item.href}
-                        className="block font-semibold text-neutral-900"
+                        className="block font-semibold text-neutral-700 tracking-wide"
                       >
                         {item.name}
                         <span className="absolute inset-0" />
                       </a>
-                      <p className="mt-1 text-neutral-600">
+                      <p className="mt-1 text-neutral-700 tracking-wide">
                         {item.description}
                       </p>
                     </div>
@@ -96,13 +96,13 @@ export function Sidebar() {
               onMouseEnter={() => handleMouseEnter("nutrition")}
               onMouseLeave={handleMouseLeave}
             >
-              <div className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-neutral-700 cursor-pointer">
+              <div className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-neutral-700 tracking-wide bg-gray-100 rounded-lg cursor-pointer">
                 Mitybos skaičiuoklės
                 {renderCaret("nutrition")}
               </div>
               <div
                 className={classNames(
-                  "absolute right-0 mt-2 bg-white shadow border border-neutral-200 rounded-lg z-50 overflow-hidden w-[30rem]",
+                  "absolute right-0 mt-2 bg-white shadow border border-neutral-200 rounded-lg z-50 overflow-hidden w-[30.8rem]",
                   "transition-all duration-200 transform ease-out origin-top-right",
                   openMenu === "nutrition"
                     ? "opacity-100 scale-100 pointer-events-auto"
@@ -123,12 +123,12 @@ export function Sidebar() {
                     <div className="flex-auto">
                       <a
                         href={item.href}
-                        className="block font-semibold text-neutral-900"
+                        className="block font-semibold text-neutral-700 tracking-wide"
                       >
                         {item.name}
                         <span className="absolute inset-0" />
                       </a>
-                      <p className="mt-1 text-neutral-600">
+                      <p className="mt-1 text-neutral-700 tracking-wide">
                         {item.description}
                       </p>
                     </div>
@@ -179,8 +179,8 @@ export function Sidebar() {
                 />
               </div>
               <div className="flex-auto">
-                <p className="font-semibold text-neutral-900">{item.name}</p>
-                <p className="mt-1 text-xs text-neutral-600">
+                <p className="font-medium text-neutral-900">{item.name}</p>
+                <p className="mt-1 text-neutral-600">
                   {item.description}
                 </p>
               </div>
@@ -205,8 +205,8 @@ export function Sidebar() {
                 />
               </div>
               <div className="flex-auto">
-                <p className="font-semibold text-neutral-900">{item.name}</p>
-                <p className="mt-1 text-xs text-neutral-600">
+                <p className="font-medium text-neutral-900">{item.name}</p>
+                <p className="mt-1 text-neutral-600">
                   {item.description}
                 </p>
               </div>

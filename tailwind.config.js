@@ -28,6 +28,7 @@ module.exports = {
         'accent': '#C62828',
         'accent-darker': '#bc2626',
         'on-accent': '#ffffff',
+        'dark-slate-gray': '#1E293B',
       },
       maxWidth: {
         '8xl': '88rem',

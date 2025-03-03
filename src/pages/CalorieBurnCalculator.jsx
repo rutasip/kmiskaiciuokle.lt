@@ -91,12 +91,14 @@ export default function CalorieBurnCalculator() {
     setCalcTimestamp,
     resultsRef,
   } = useScrollEffects();
+
   const [selectedActivity, setSelectedActivity] = useState(null);
   const [weight, setWeight] = useState("");
   const [duration, setDuration] = useState("");
   const [caloriesBurned, setCaloriesBurned] = useState(null);
   const [weightError, setWeightError] = useState("");
   const [durationError, setDurationError] = useState("");
+  const [activityError, setActivityError] = useState("");
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
   const [userNavigated, setUserNavigated] = useState(false);
@@ -104,7 +106,8 @@ export default function CalorieBurnCalculator() {
   useEffect(() => {
     if (calcTimestamp !== 0 && resultsRef.current) {
       const offset = 360;
-      const elementTop = resultsRef.current.getBoundingClientRect().top + window.scrollY;
+      const elementTop =
+        resultsRef.current.getBoundingClientRect().top + window.scrollY;
       window.scrollTo({ top: elementTop - offset, behavior: "smooth" });
     }
   }, [calcTimestamp, resultsRef]);
@@ -113,9 +116,12 @@ export default function CalorieBurnCalculator() {
     e.preventDefault();
     setWeightError("");
     setDurationError("");
+    setActivityError("");
+
     const weightInKg = parseFloat(weight);
     const durationInHours = parseFloat(duration);
     let isValid = true;
+
     if (isNaN(weightInKg) || weightInKg <= 0) {
       setWeightError("Prašome įvesti teisingą svorį.");
       isValid = false;
@@ -124,8 +130,12 @@ export default function CalorieBurnCalculator() {
       setDurationError("Prašome įvesti teisingą trukmę.");
       isValid = false;
     }
+    if (!selectedActivity) {
+      setActivityError("Prašome pasirinkti veiklą.");
+      isValid = false;
+    }
     if (!isValid) return;
-    if (!selectedActivity) return;
+
     const calories = selectedActivity.value * weightInKg * durationInHours;
     setCaloriesBurned(calories.toFixed(2));
     setCalcTimestamp(Date.now());
@@ -181,21 +191,19 @@ export default function CalorieBurnCalculator() {
               >
                 Pasirinkite veiklą
               </label>
-              <Combobox
-                value={selectedActivity}
-                onChange={setSelectedActivity}
-                nullable
-                initialActiveIndex={null}
-              >
+              <Combobox value={selectedActivity} onChange={setSelectedActivity}>
                 {({ open: isOpen }) => {
-                  useEffect(() => {
-                    setOpen(isOpen);
-                  }, [isOpen]);
+                  setOpen(isOpen);
+
                   return (
                     <div className="relative mt-2">
-                      <div className="relative w-full cursor-default overflow-hidden rounded-md border border-gray-300 bg-white text-left shadow-sm focus-within:ring-1 focus-within:ring-emerald-500 focus-within:border-emerald-500 text-sm">
+                      <div
+                        className={`relative w-full cursor-default overflow-hidden rounded-md border ${
+                          activityError ? "border-red-500" : "border-gray-300"
+                        } bg-white text-left shadow-sm focus-within:ring-1 focus-within:ring-emerald-500 focus-within:border-emerald-500 text-sm`}
+                      >
                         <Combobox.Input
-                          className="w-full border-none py-2 pl-3 pr-10 text-gray-900 focus:outline-none"
+                          className="w-full border-none py-2 pl-3 pr-10 text-gray-900 focus:outline-none text-sm"
                           placeholder="Pradėkite rašyti veiklos pavadinimą..."
                           displayValue={(activity) =>
                             activity ? activity.name : ""
@@ -210,9 +218,6 @@ export default function CalorieBurnCalculator() {
                             }
                           }}
                         />
-                        <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
-                          <ChevronUpDownIcon className="h-5 w-5 text-gray-400" />
-                        </Combobox.Button>
                         {(query || selectedActivity) && (
                           <button
                             type="button"
@@ -226,11 +231,12 @@ export default function CalorieBurnCalculator() {
                             <XMarkIcon className="h-4 w-4 text-gray-400" />
                           </button>
                         )}
+                        <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
+                          <ChevronUpDownIcon className="h-5 w-5 text-gray-400" />
+                        </Combobox.Button>
                       </div>
-                      <Combobox.Options
-                        className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none text-sm"
-                        onMouseMove={() => setUserNavigated(true)}
-                      >
+
+                      <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none text-sm">
                         {groupedActivities.length === 0 && (
                           <div className="cursor-default select-none py-2 px-4 text-gray-700">
                             Veikla nerasta.
@@ -290,6 +296,11 @@ export default function CalorieBurnCalculator() {
                           </Fragment>
                         ))}
                       </Combobox.Options>
+                      {activityError && (
+                        <p className="text-sm text-red-600 mt-1">
+                          {activityError}
+                        </p>
+                      )}
                     </div>
                   );
                 }}

@@ -232,8 +232,7 @@ export default function BodyMassIndexCalc() {
     <>
       <HeroSection
         title="Kūno masės indekso skaičiuoklė"
-        subtitle="Greitas būdas įvertinti, ar jūsų svoris yra normalus, per mažas ar
-        per didelis. Jei norite, galite sužinoti ir idealų svorį."
+        subtitle="Ši skaičiuoklė ne tik padės nustatyti, ar esate sveikame svorio diapazone, bet ir leis atrasti idealų svorį bei pasisemti žinių apie subalansuotą mitybą, populiarias dietas ir kasdienius sveikos gyvensenos patarimus, kad galėtumėte išlaikyti gerą savijautą."
         calculatorForm={
           <form onSubmit={handleSubmit} className="space-y-6">
             <InputField
@@ -304,40 +303,36 @@ export default function BodyMassIndexCalc() {
           <PageContentSection ref={resultsRef} scrolled={scrolled}>
             <div>
               <ResultsDisclaimer />
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-8 mb-16">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-10 mb-20">
                 <div className="bg-white rounded-lg shadow p-5 flex flex-col items-center">
-                  <h3 className="text-sm font-semibold text-gray-500 mb-1">
+                  <h3 className="text-sm font-medium text-neutral-700 tracking-wide mb-1">
                     KMI
                   </h3>
-                  <span className="text-2xl sm:text-3xl font-bold text-gray-900">
+                  <span className="text-2xl sm:text-3xl font-semibold text-gray-900">
                     {bmi}
                   </span>
                 </div>
                 <div className="bg-white rounded-lg shadow p-5 flex flex-col items-center">
-                  <h3 className="text-sm font-semibold text-gray-500 mb-1">
-                    Kategorija
+                  <h3 className="text-sm font-medium text-neutral-700 tracking-wide mb-1">
+                    Svorio kategorija
                   </h3>
                   <span className="text-lg sm:text-xl font-semibold text-gray-900">
                     {currentCategory?.category}
                   </span>
                 </div>
-                <div className="bg-white rounded-lg shadow p-5 flex flex-col items-center">
-                  <h3 className="text-sm font-semibold text-gray-500 mb-1">
-                    Idealus svoris
-                  </h3>
-                  {idealWeight ? (
+                {idealWeight && (
+                  <div className="bg-white rounded-lg shadow p-5 flex flex-col items-center">
+                    <h3 className="text-sm font-medium text-neutral-700 tracking-wide mb-1">
+                      Idealus svoris
+                    </h3>
                     <span className="text-lg sm:text-xl font-semibold text-gray-900">
                       {idealWeight} kg
                     </span>
-                  ) : (
-                    <span className="text-xs text-gray-400 mt-2">
-                      Nenurodytas
-                    </span>
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
 
-              <div className="mb-14">
+              <div className="mb-20 hidden sm:block">
                 <div
                   className="relative w-full h-4 rounded-full"
                   style={{
@@ -346,32 +341,32 @@ export default function BodyMassIndexCalc() {
                   }}
                 >
                   <span
-                    className="absolute -top-7 left-0 text-xs font-semibold px-2 py-1 rounded-full bg-sky-100 text-sky-800"
+                    className="absolute -top-9 left-0 px-3 py-1.5 rounded-full bg-sky-100 text-sm font-medium text-neutral-700 tracking-wide"
                     style={{ transform: "translateX(0)" }}
                   >
                     Mažas
                   </span>
                   <span
-                    className="absolute -top-7 left-1/3 text-xs font-semibold px-2 py-1 rounded-full bg-green-100 text-green-800"
+                    className="absolute -top-9 left-1/3 px-3 py-1.5 rounded-full bg-green-100 text-sm font-medium text-neutral-700 tracking-wide"
                     style={{ transform: "translate(-50%, 0)" }}
                   >
                     Normalus
                   </span>
                   <span
-                    className="absolute -top-7 left-2/3 text-xs font-semibold px-2 py-1 rounded-full bg-yellow-100 text-yellow-800"
+                    className="absolute -top-9 left-2/3 px-3 py-1.5 rounded-full bg-yellow-100 text-sm font-medium text-neutral-700 tracking-wide"
                     style={{ transform: "translate(-50%, 0)" }}
                   >
                     Antsvoris
                   </span>
                   <span
-                    className="absolute -top-7 right-0 text-xs font-semibold px-2 py-1 rounded-full bg-red-100 text-red-800"
+                    className="absolute -top-9 right-0 px-3 py-1.5 rounded-full bg-red-100 text-sm font-medium text-neutral-700 tracking-wide"
                     style={{ transform: "translateX(0)" }}
                   >
                     Nutukimas
                   </span>
 
                   <div
-                    className="absolute top-1/2 w-5 h-5 rounded-full bg-gray-800 border-2 border-white"
+                    className="absolute top-1/2 w-5 h-5 rounded-full bg-gray-700 border-2 border-white"
                     style={{
                       left: `${calcPinPos(bmi)}%`,
                       transform: "translate(-50%, -50%)",
@@ -422,9 +417,7 @@ export default function BodyMassIndexCalc() {
                 </div>
               </div>
             </div> */}
-            <p>
-              KMI = svoris (kg) / (ūgis (m))²
-            </p>
+            <p>KMI = svoris (kg) / (ūgis (m))²</p>
             <p>Pavyzdžiui, jei žmogaus svoris yra 70 kg, o ūgis 1,75 m:</p>
             {/* <div className="inline-flex items-center space-x-3">
               <span className="text-lg font-medium">KMI =</span>
@@ -497,7 +490,7 @@ export default function BodyMassIndexCalc() {
                 href="https://www.who.int/europe/news-room/fact-sheets/item/a-healthy-lifestyle---who-recommendations"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-600 underline"
+                className="text-blue-600 hover:underline opacity-90"
               >
                 Pasaulio sveikatos organizacija
               </a>
@@ -589,10 +582,10 @@ export default function BodyMassIndexCalc() {
             </p>
             <ol className="list-decimal list-outside pl-4 space-y-3">
               <li>
-                <b>Tikslo nustatymas</b>: išsikelkite{" "}
-                <b>konkretų, realistišką tikslą</b>. Pavyzdžiui, norėti numesti
-                5 kg per 2–3 mėnesius yra realiau, nei tikėtis numesti 10 kg per
-                mėnesį.
+                Tikslo nustatymas:{" "}
+                <b>išsikelkite konkretų, realistišką tikslą</b>. Pavyzdžiui,
+                norėti numesti 5 kg per 2–3 mėnesius yra realiau, nei tikėtis
+                numesti 10 kg per mėnesį.
                 <br />
                 Norite sužinoti kiek kalorijų reikia suvartoti norint numesti
                 arba priaugti svorio? Pasinaudokite{" "}
@@ -600,57 +593,58 @@ export default function BodyMassIndexCalc() {
                   href="http://localhost:5173/kaloriju-poreikiai"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-600 underline"
+                  className="text-blue-600 hover:underline opacity-90"
                 >
                   šia skaičiuokle
                 </a>
                 .
               </li>
               <li>
-                <b>Balansas lėkštėje</b>: pusę lėkštės turėtų sudaryti <b>daržovės</b>,
+                Balansas lėkštėje: pusę lėkštės turėtų sudaryti <b>daržovės</b>,
                 ketvirtadalį – <b>neriebūs baltymai</b> (pvz., vištiena, žuvis,
                 ankštinės daržovės), o likusią dalį –{" "}
                 <b>sudėtiniai angliavandeniai</b> (pvz., pilno grūdo produktai).
               </li>
               <li>
-                <b>Fizinis aktyvumas</b>: rekomenduojama bent <b>150 min.</b> vidutinio
-                intensyvumo fizinio krūvio <b>per savaitę</b>. Pasivaikščiojimas,
-                bėgimas, važiavimas dviračiu ar plaukimas gali padėti deginti
-                kalorijas ir gerinti širdies bei kraujagyslių sveikatą.
+                <b>Fizinis aktyvumas</b>: rekomenduojama bent <b>150 min.</b>{" "}
+                vidutinio intensyvumo fizinio krūvio <b>per savaitę</b>.
+                Pasivaikščiojimas, bėgimas, važiavimas dviračiu ar plaukimas
+                gali padėti deginti kalorijas ir gerinti širdies bei
+                kraujagyslių sveikatą.
                 <br /> Norėdami sužinoti kiek kalorijų sudeginate užsiimdami
                 įvairia veikla ir sportu, pasinaudokite{" "}
                 <a
                   href="http://localhost:5173/sudeginamos-kalorijos"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-600 underline"
+                  className="text-blue-600 hover:underline opacity-90"
                 >
                   skaičiuokle
                 </a>
                 .
               </li>
               <li>
-                <b>Pakankamas skysčių vartojimas</b>: gerkite pakankamai vandens – apie{" "}
-                <b>30 ml kilogramui kūno svorio</b>. Pavyzdžiui, jei sveriate 70
-                kg, reikėtų ~2,1 litro vandens per dieną (priklausomai nuo
-                aktyvumo lygio ir kitų faktorių). <br />
+                Pakankamas skysčių vartojimas: gerkite pakankamai <b>vandens</b>{" "}
+                – apie <b>30 ml kilogramui kūno svorio</b>. Pavyzdžiui, jei
+                sveriate 70 kg, reikėtų ~2,1 litro vandens per dieną
+                (priklausomai nuo aktyvumo lygio ir kitų faktorių). <br />
                 Norėdami sužinoti savo asmeninį vandens suvartojimo poreikį,
                 pasinaudokite{" "}
                 <a
                   href="http://localhost:5173/vandens-norma"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-600 underline"
+                  className="text-blue-600 hover:underline opacity-90"
                 >
                   skaičiuokle
                 </a>
                 .
               </li>
               <li>
-                <b>Pakankamas miegas</b>: miegas yra neatsiejama sveiko gyvenimo būdo
-                dalis. Rekomenduojama miegoti <b>7–9 valandas per parą</b>, kad
-                organizmas galėtų atsigauti, subalansuoti hormonus bei palaikyti{" "}
-                sveiką svorį ir bendrą savijautą.
+                Pakankamas <b>miegas</b>: miegas yra neatsiejama sveiko gyvenimo
+                būdo dalis. Rekomenduojama miegoti <b>7–9 valandas per parą</b>,
+                kad organizmas galėtų atsigauti, subalansuoti hormonus bei
+                palaikyti sveiką svorį ir bendrą savijautą.
               </li>
             </ol>
           </section>

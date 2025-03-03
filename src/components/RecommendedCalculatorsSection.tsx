@@ -50,7 +50,6 @@ const RecommendedCalculatorsSection: FC<RecommendedCalculatorsSectionProps> = ({
 
   return (
     <section>
-      <p className="mb-4">Rekomenduojama skaičiuoklė:</p>
       <div className="flex gap-4">
         {links
           .filter((link) => link.show)
@@ -58,11 +57,11 @@ const RecommendedCalculatorsSection: FC<RecommendedCalculatorsSectionProps> = ({
             <a
               key={link.id}
               href={link.href}
-              className="relative flex w-full items-center bg-neutral-100 p-5 rounded-md shadow"
+              className="relative flex w-full items-center bg-gray-50 p-5 rounded-md shadow"
             >
               <div className="mr-10">
-                <h5 className="font-semibold text-neutral-600">{link.title}</h5>
-                <p className="text-sm text-neutral-600 mt-1">
+                <h5 className="font-medium text-gray-900">{link.title}</h5>
+                <p className="text-sm text-gray-900 mt-1">
                   {link.description}
                 </p>
               </div>
@@ -72,7 +71,7 @@ const RecommendedCalculatorsSection: FC<RecommendedCalculatorsSectionProps> = ({
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="w-5 h-5 text-gray-500"
+                  className="w-5 h-5 text-gray-900"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
