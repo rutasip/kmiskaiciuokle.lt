@@ -30,7 +30,12 @@ const HeroSection: FC<HeroSectionProps> = ({
       <div className="relative z-10 w-full max-w-4xl">
         <div className="block md:hidden px-6 py-20 sm:py-20 md:py-24">
           <div className="flex flex-col items-center space-y-6 text-white">
-            <h2 className="text-3xl text-center font-bold tracking-tight">{title}</h2>
+            <h2 className="text-3xl text-center font-bold tracking-tight">
+              {title}
+            </h2>
+            <p className="text-base text-center text-gray-200 max-w-sm">
+              {subtitle}
+            </p>
             <div className="bg-white p-6 shadow-2xl rounded-lg max-w-md w-full text-gray-900">
               {calculatorForm}
             </div>
@@ -39,9 +44,13 @@ const HeroSection: FC<HeroSectionProps> = ({
 
         <div className="hidden md:block px-6 py-16 sm:py-20 md:py-24">
           <div className="grid grid-cols-2 gap-8 items-center">
-            <div className="text-white space-y-6">
-              <h1 className="text-4xl font-bold tracking-tight">{title}</h1>
-              <p className="text-lg leading-8 text-gray-300">{subtitle}</p>
+            <div className="text-white space-y-6 md:max-w-3xl">
+              <h1 className="text-[2.4rem] leading-tight font-bold">
+                {title}
+              </h1>
+              <p className="text-lg leading-8 text-gray-300">
+                {subtitle}
+              </p>
             </div>
             <div className="flex justify-end">
               <div className="bg-white p-6 shadow-2xl rounded-lg max-w-md w-full text-gray-900">

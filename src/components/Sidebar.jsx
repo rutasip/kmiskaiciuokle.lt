@@ -51,7 +51,7 @@ export function Sidebar() {
               onMouseEnter={() => handleMouseEnter("health")}
               onMouseLeave={handleMouseLeave}
             >
-              <div className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-neutral-700 tracking-wide bg-gray-100 rounded-lg cursor-pointer">
+              <div className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-neutral-700 tracking-wide bg-neutral-100 rounded-lg cursor-pointer">
                 Sveikatos skaičiuoklės
                 {renderCaret("health")}
               </div>
@@ -96,7 +96,7 @@ export function Sidebar() {
               onMouseEnter={() => handleMouseEnter("nutrition")}
               onMouseLeave={handleMouseLeave}
             >
-              <div className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-neutral-700 tracking-wide bg-gray-100 rounded-lg cursor-pointer">
+              <div className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-neutral-700 tracking-wide bg-neutral-100 rounded-lg cursor-pointer">
                 Mitybos skaičiuoklės
                 {renderCaret("nutrition")}
               </div>

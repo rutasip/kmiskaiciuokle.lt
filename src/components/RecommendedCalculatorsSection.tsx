@@ -57,11 +57,11 @@ const RecommendedCalculatorsSection: FC<RecommendedCalculatorsSectionProps> = ({
             <a
               key={link.id}
               href={link.href}
-              className="relative flex w-full items-center bg-gray-50 p-5 rounded-md shadow"
+              className="relative flex w-full items-center bg-emerald-600 p-5 rounded-md shadow"
             >
               <div className="mr-10">
-                <h5 className="font-medium text-gray-900">{link.title}</h5>
-                <p className="text-sm text-gray-900 mt-1">
+                <h5 className="font-semibold text-white">{link.title}</h5>
+                <p className="text-sm text-white mt-1">
                   {link.description}
                 </p>
               </div>
@@ -71,7 +71,7 @@ const RecommendedCalculatorsSection: FC<RecommendedCalculatorsSectionProps> = ({
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="w-5 h-5 text-gray-900"
+                  className="w-5 h-5 text-white"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"

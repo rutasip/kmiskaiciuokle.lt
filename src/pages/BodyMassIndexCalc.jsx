@@ -232,7 +232,7 @@ export default function BodyMassIndexCalc() {
     <>
       <HeroSection
         title="Kūno masės indekso skaičiuoklė"
-        subtitle="Ši skaičiuoklė ne tik padės nustatyti, ar esate sveikame svorio diapazone, bet ir leis atrasti idealų svorį bei pasisemti žinių apie subalansuotą mitybą, populiarias dietas ir kasdienius sveikos gyvensenos patarimus, kad galėtumėte išlaikyti gerą savijautą."
+        subtitle="Sužinokite KMI bei idealų svorį, gaukite naudingų mitybos patarimų ir pradėkite savo sveikos gyvensenos pokyčius jau šiandien."
         calculatorForm={
           <form onSubmit={handleSubmit} className="space-y-6">
             <InputField
@@ -304,16 +304,16 @@ export default function BodyMassIndexCalc() {
             <div>
               <ResultsDisclaimer />
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-10 mb-20">
-                <div className="bg-white rounded-lg shadow p-5 flex flex-col items-center">
-                  <h3 className="text-sm font-medium text-neutral-700 tracking-wide mb-1">
+                <div className="bg-white rounded-lg shadow p-5 flex flex-col">
+                  <h3 className="text-sm font-medium text-neutral-700 tracking-wide mb-2">
                     KMI
                   </h3>
-                  <span className="text-2xl sm:text-3xl font-semibold text-gray-900">
+                  <span className="text-2xl sm:text-2xl font-semibold text-gray-900">
                     {bmi}
                   </span>
                 </div>
-                <div className="bg-white rounded-lg shadow p-5 flex flex-col items-center">
-                  <h3 className="text-sm font-medium text-neutral-700 tracking-wide mb-1">
+                <div className="bg-white rounded-lg shadow p-5 flex flex-col">
+                  <h3 className="text-sm font-medium text-neutral-700 tracking-wide mb-2">
                     Svorio kategorija
                   </h3>
                   <span className="text-lg sm:text-xl font-semibold text-gray-900">
@@ -321,8 +321,8 @@ export default function BodyMassIndexCalc() {
                   </span>
                 </div>
                 {idealWeight && (
-                  <div className="bg-white rounded-lg shadow p-5 flex flex-col items-center">
-                    <h3 className="text-sm font-medium text-neutral-700 tracking-wide mb-1">
+                  <div className="bg-white rounded-lg shadow p-5 flex flex-col">
+                    <h3 className="text-sm font-medium text-neutral-700 tracking-wide mb-2">
                       Idealus svoris
                     </h3>
                     <span className="text-lg sm:text-xl font-semibold text-gray-900">
@@ -332,41 +332,41 @@ export default function BodyMassIndexCalc() {
                 )}
               </div>
 
-              <div className="mb-20 hidden sm:block">
+              <div className="mb-14 hidden sm:block">
                 <div
                   className="relative w-full h-4 rounded-full"
                   style={{
                     background:
-                      "linear-gradient(to right, #BAE6FD 0%, #BBF7D0 33%, #FEF08A 66%, #FCA5A5 100%)",
+                      "linear-gradient(to right, rgb(191 219 254) 0%, rgb(187 247 208) 33%, rgb(254 240 138) 66%, rgb(254 202 202) 100%)",
                   }}
                 >
                   <span
-                    className="absolute -top-9 left-0 px-3 py-1.5 rounded-full bg-sky-100 text-sm font-medium text-neutral-700 tracking-wide"
+                    className="absolute -top-8 left-0 px-2 py-1 rounded-full bg-sky-100 text-xs font-semibold text-sky-700 tracking-wide"
                     style={{ transform: "translateX(0)" }}
                   >
                     Mažas
                   </span>
                   <span
-                    className="absolute -top-9 left-1/3 px-3 py-1.5 rounded-full bg-green-100 text-sm font-medium text-neutral-700 tracking-wide"
+                    className="absolute -top-8 left-1/3 px-2 py-1 rounded-full bg-green-100 text-xs font-semibold text-green-700 tracking-wide"
                     style={{ transform: "translate(-50%, 0)" }}
                   >
                     Normalus
                   </span>
                   <span
-                    className="absolute -top-9 left-2/3 px-3 py-1.5 rounded-full bg-yellow-100 text-sm font-medium text-neutral-700 tracking-wide"
+                    className="absolute -top-8 left-2/3 px-2 py-1 rounded-full bg-yellow-100 text-xs font-semibold text-yellow-700 tracking-wide"
                     style={{ transform: "translate(-50%, 0)" }}
                   >
                     Antsvoris
                   </span>
                   <span
-                    className="absolute -top-9 right-0 px-3 py-1.5 rounded-full bg-red-100 text-sm font-medium text-neutral-700 tracking-wide"
+                    className="absolute -top-8 right-0 px-2 py-1 rounded-full bg-red-100 text-xs font-semibold text-red-700 tracking-wide"
                     style={{ transform: "translateX(0)" }}
                   >
                     Nutukimas
                   </span>
 
                   <div
-                    className="absolute top-1/2 w-5 h-5 rounded-full bg-gray-700 border-2 border-white"
+                    className="absolute top-1/2 w-4 h-4 rounded-full bg-emerald-900 border-2 border-white"
                     style={{
                       left: `${calcPinPos(bmi)}%`,
                       transform: "translate(-50%, -50%)",

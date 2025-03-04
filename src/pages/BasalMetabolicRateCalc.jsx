@@ -180,7 +180,7 @@ export default function BasalMetabolicRateCalc() {
   return (
     <>
       <HeroSection
-        title="Kiek kalorijų reikia suvartoti per dieną?"
+        title="Kalorijų poreikio skaičiuoklė"
         subtitle="Sužinokite, kiek kalorijų reikėtų sunaudoti norint palaikyti esamą svorį, arba numesti, arba priaugti svorio"
         calculatorForm={
           <form
@@ -314,85 +314,76 @@ export default function BasalMetabolicRateCalc() {
             <div>
               <ResultsDisclaimer />
 
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 mb-12">
-                <div className="rounded-md bg-gray-50 p-6">
-                  <h3 className="text-lg font-medium text-gray-900">
-                    Svorio palaikymui
-                  </h3>
-                  <p className="mt-2 text-3xl font-bold text-gray-900">
-                    {calories} kcal
-                  </p>
-                </div>
+              <div className="font-semibold text-gray-900 mt-6 mb-10">
+                Norint išlaikyti esamą svorį reikia{" "}
+                <span className="text-2xl">{calories} kcal</span> per dieną
+              </div>
 
+              <div className="grid gap-6 mb-12">
                 <div className="rounded-md bg-gray-50 p-6">
-                  <h3 className="text-lg font-medium text-gray-900">
-                    Svorio priaugimui
-                  </h3>
-                  <div className="mt-4 space-y-2">
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-700">
-                        Priaugti <span className="font-semibold">0.25 kg</span>
-                        /sav
-                      </span>
-                      <span className="text-xl font-medium text-gray-900">
-                        {weightGainCalories["0.25kg"]} kcal
-                      </span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-700">
-                        Priaugti <span className="font-semibold">0.5 kg</span>
-                        /sav
-                      </span>
-                      <span className="text-xl font-medium text-gray-900">
-                        {weightGainCalories["0.5kg"]} kcal
-                      </span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-700">
-                        Priaugti <span className="font-semibold">1 kg</span>/sav
-                      </span>
-                      <span className="text-xl font-medium text-gray-900">
-                        {weightGainCalories["1kg"]} kcal
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="rounded-md bg-gray-50 p-6 sm:col-span-2">
-                  <h3 className="text-lg font-medium text-gray-900">
+                  <h3 className="font-medium text-gray-900">
                     Svorio metimui
                   </h3>
                   <div className="mt-4 space-y-2">
                     <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-700">
-                        Numesti <span className="font-semibold">0.25 kg</span>
-                        /sav
+                      <span>
+                        Numesti <span className="font-semibold">0.25kg/sav</span>
                       </span>
-                      <span className="text-xl font-medium text-gray-900">
+                      <span className="text-2xl font-semibold text-gray-900">
                         {weightLossCalories["0.25kg"]} kcal
                       </span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-700">
-                        Numesti <span className="font-semibold">0.5 kg</span>
-                        /sav
+                      <span>
+                        Numesti <span className="font-semibold">0.5kg/sav</span>
                       </span>
-                      <span className="text-xl font-medium text-gray-900">
+                      <span className="text-2xl font-semibold text-gray-900">
                         {weightLossCalories["0.5kg"]} kcal
                       </span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-700">
-                        Numesti <span className="font-semibold">1 kg</span>/sav
+                      <span>
+                        Numesti <span className="font-semibold">1 kg/sav</span>
                       </span>
-                      <span className="text-xl font-medium text-gray-900">
+                      <span className="text-2xl font-semibold text-gray-900">
                         {weightLossCalories["1kg"]} kcal
                       </span>
                     </div>
                   </div>
                 </div>
+                <div className="rounded-md bg-gray-50 p-6">
+                  <h3 className="font-medium text-gray-900">
+                    Svorio priaugimui
+                  </h3>
+                  <div className="mt-4 space-y-2">
+                    <div className="flex justify-between items-center">
+                      <span>
+                        Priaugti <span className="font-semibold">0.25 kg/sav</span>
+                      </span>
+                      <span className="text-2xl font-semibold text-gray-900">
+                        {weightGainCalories["0.25kg"]} kcal
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span >
+                        Priaugti <span className="font-semibold">0.5 kg/sav</span>
+                      </span>
+                      <span className="text-2xl font-semibold text-gray-900">
+                        {weightGainCalories["0.5kg"]} kcal
+                      </span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span>
+                        Priaugti <span className="font-semibold">1 kg/sav</span>
+                      </span>
+                      <span className="text-2xl font-semibold text-gray-900">
+                        {weightGainCalories["1kg"]} kcal
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <RecommendedCalculatorsSection showCalorieBurnCalculator/>
+              <RecommendedCalculatorsSection showCalorieBurnCalculator />
             </div>
           </PageContentSection>
         )}

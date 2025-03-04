@@ -5,7 +5,7 @@ const ResultsDisclaimer: FC = () => {
     <div className="space-y-4">
       <h2 className="text-xl font-bold text-gray-900">Rezultatai</h2>
       <p>
-        Kiekvienas žmogus yra unikalus, todėl svarbu prieš priimant su sveikata susijusius sprendimus pasitarti su specialistu.
+        Kiekvienas žmogus yra unikalus, todėl prieš priimant su sveikata susijusius sprendimus rekomenduojame pasitarti su specialistu.
       </p>
     </div>
   );

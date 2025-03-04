@@ -32,7 +32,7 @@ export const nutritionNav = [
     href: "/kaloriju-poreikiai",
     icon: CakeIcon,
     description:
-      "Nustatykite savo kasdienį kalorijų poreikį norimam svoriui pasiekti.",
+      "Nustatykite savo kasdienį kalorijų poreikį norimam svoriui pasiekti arba išlaikyti.",
   },
   {
     // name: "Kiek vandens reikia išgerti per dieną?",
