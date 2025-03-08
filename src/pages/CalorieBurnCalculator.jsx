@@ -123,13 +123,18 @@ export default function CalorieBurnCalculator() {
     let isValid = true;
 
     if (isNaN(weightInKg) || weightInKg <= 0) {
-      setWeightError("Prašome įvesti teisingą svorį.");
+      setWeightError("Prašome įvesti svorį.");
+      isValid = false;
+    } else if (weightInKg < 30 || weightInKg > 300) {
+      setWeightError("Prašome įvesti teisingą svorį (30–300 kg).");
       isValid = false;
     }
+
     if (isNaN(durationInHours) || durationInHours <= 0) {
-      setDurationError("Prašome įvesti teisingą trukmę.");
+      setDurationError("Prašome įvesti trukmę.");
       isValid = false;
     }
+
     if (!selectedActivity) {
       setActivityError("Prašome pasirinkti veiklą.");
       isValid = false;
@@ -160,10 +165,8 @@ export default function CalorieBurnCalculator() {
   return (
     <>
       <HeroSection
-        title="Kiek kalorijų sudeginu?"
-        subtitle="Sužinokite, kiek kalorijų sudeginate įvairios veiklos metu. Ši
-      skaičiuoklė remiasi MET metodu, kad tiksliai įvertintų Jūsų
-      energijos sąnaudas pagal Jūsų svorį ir veiklos trukmę."
+        title="Kalorijų deginimo skaičiuoklė"
+        subtitle="Kiek kalorijų išeikvojate per dieną? Nesvarbu, ar bėgate, šokate, ar tiesiog tvarkote namus – ši skaičiuoklė padės tiksliai apskaičiuoti Jūsų energijos sąnaudas pagal svorį ir veiklos trukmę."
         calculatorForm={
           <form onSubmit={handleCalculate} className="space-y-6">
             <InputField
@@ -321,20 +324,20 @@ export default function CalorieBurnCalculator() {
           <PageContentSection ref={resultsRef} scrolled={scrolled}>
             <div>
               <ResultsDisclaimer />
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 my-8">
-                <div className="bg-white rounded-lg shadow p-5 flex flex-col items-center">
-                  <h3 className="text-sm font-semibold text-gray-500 mb-1">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 my-6">
+                <div className="bg-white rounded-lg shadow p-5 flex flex-col">
+                  <h3 className="text-sm font-medium text-neutral-700 tracking-wide mb-2">
                     Sudegintos kalorijos
                   </h3>
-                  <span className="text-2xl sm:text-3xl font-bold text-gray-900">
+                  <span className="text-2xl font-semibold text-gray-900">
                     {caloriesBurned} kcal
                   </span>
                 </div>
-                <div className="bg-white rounded-lg shadow p-5 flex flex-col items-center">
-                  <h3 className="text-sm font-semibold text-gray-500 mb-1">
+                <div className="bg-white rounded-lg shadow p-5 flex flex-col">
+                  <h3 className="text-sm font-medium text-neutral-700 tracking-wide mb-1">
                     Veikla
                   </h3>
-                  <span className="text-lg sm:text-xl font-semibold text-gray-900">
+                  <span className="font-semibold text-gray-900">
                     {selectedActivity?.name}
                   </span>
                 </div>
@@ -354,32 +357,28 @@ export default function CalorieBurnCalculator() {
               trukmę.
             </p>
             <p>
-              Skaičiavimai atliekami pagal MET (Metabolic Equivalent of Task)
-              reikšmes.
+              Skaičiavimai atliekami pagal{" "}
+              <b>MET (Metabolic Equivalent of Task)</b> reikšmes.
             </p>
           </section>
           <section className="space-y-4 mt-8">
             <h2 className="text-xl font-bold text-gray-900">Kas yra MET?</h2>
             <p>
-              MET (Metabolic Equivalent of Task) – tai vienetas, nurodantis
-              energijos sunaudojimą. 1 MET atitinka energijos kiekį, reikalingą
-              žmogaus organizmui ramybės būsenoje.
-            </p>
-            <p>
-              Pavyzdžiui, veikla su 2 MET yra dvigubai intensyvesnė už bazinį
-              ramybės metabolizmą.
+              MET (Metabolic Equivalent of Task) apibrėžia veiklos intensyvumą.
+              1 MET prilygsta įprastoms kūno energijos sąnaudoms sėdint ar
+              gulint, o didesnės MET reikšmės rodo sudėtingesnę, daugiau
+              energijos reikalaujančią veiklą.
             </p>
           </section>
           <section className="space-y-4 mt-8">
             <h2 className="text-xl font-bold text-gray-900">Formulė</h2>
-            <p className="italic">
-              <b>
-                Sudegintos kalorijos = MET × svoris (kg) × trukmė (valandomis)
-              </b>
+            <p>Sudeginamų kalorijų kiekis apskaičiuojamas taip:</p>
+            <p className="font-medium">
+              Sudegintos kalorijos = MET × svoris (kg) × trukmė (valandomis)
             </p>
             <p>
-              Pvz., jei veiklos MET = 6, sveriate 70 kg ir veikla trunka 1
-              valandą, sudeginate: 6 × 70 × 1 = 420 kcal.
+              Tarkime, jei veiklos MET = 5, sveriate 70 kg ir veikla trunka 1
+              valandą, sudeginate 350 kcal (5 × 70 × 1).
             </p>
           </section>
         </PageContentSection>

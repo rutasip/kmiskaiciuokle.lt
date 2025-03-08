@@ -170,7 +170,7 @@ export function Sidebar() {
               key={item.name}
               to={item.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="group relative flex items-center gap-x-4 rounded-lg p-3 text-sm/6 hover:bg-neutral-50"
+              className="group relative flex items-center gap-x-4 rounded-lg p-3 text-sm/6 hover:bg-neutral-50 -ml-3"
             >
               <div className="flex h-10 w-10 flex-none items-center justify-center rounded-lg bg-neutral-50">
                 <item.icon
@@ -196,7 +196,7 @@ export function Sidebar() {
               key={item.name}
               to={item.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="group relative flex items-center gap-x-4 rounded-lg p-3 text-sm/6 hover:bg-neutral-50"
+              className="group relative flex items-center gap-x-4 rounded-lg p-3 text-sm/6 hover:bg-neutral-50 -ml-3"
             >
               <div className="flex h-10 w-10 flex-none items-center justify-center rounded-lg bg-neutral-50">
                 <item.icon

@@ -14,17 +14,12 @@ const faqs = [
   {
     question: "Kaip apskaičiuojamas dienos kalorijų poreikis?",
     answer:
-      "Dienos kalorijų poreikis apskaičiuojamas naudojant Mifflin-St Jeor formulę baziniam metabolizmo greičiui (BMR) nustatyti ir koreguojamas pagal jūsų fizinio aktyvumo lygį.",
+      "Dienos kalorijų poreikis apskaičiuojamas naudojant Mifflin-St Jeor formulę baziniam metabolizmo greičiui (BMR) nustatyti ir koreguojamas pagal Jūsų fizinio aktyvumo lygį.",
   },
   {
     question: "Ar skaičiuoklės rezultatai yra tikslūs?",
     answer:
       "Skaičiuoklė pateikia apytikslius rezultatus, pagrįstus standartinėmis formulėmis. Individualūs poreikiai gali skirtis, todėl rekomenduojama pasitarti su sveikatos priežiūros specialistu.",
-  },
-  {
-    question: "Ar galiu pasikliauti šia skaičiuokle planuodamas mitybą?",
-    answer:
-      "Nors skaičiuoklė suteikia naudingų įžvalgų, ji neturėtų būti vienintelis šaltinis planuojant mitybą. Pasitarkite su dietologu ar sveikatos priežiūros specialistu dėl individualizuotų rekomendacijų.",
   },
   {
     question: "Ar ši skaičiuoklė tinka visiems?",
@@ -123,17 +118,29 @@ export default function BasalMetabolicRateCalc() {
     let isValid = true;
 
     if (isNaN(weightInKg) || weightInKg <= 0) {
-      setWeightError("Prašome įvesti teisingą svorį.");
+      setWeightError("Prašome įvesti svorį.");
+      isValid = false;
+    } else if (weightInKg < 30 || weightInKg > 300) {
+      setWeightError("Prašome įvesti teisingą svorį (30–300 kg).");
       isValid = false;
     }
 
     if (isNaN(heightInCm) || heightInCm <= 0) {
-      setHeightError("Prašome įvesti teisingą ūgį.");
+      setHeightError("Prašome įvesti ūgį.");
+      isValid = false;
+    } else if (heightInCm < 100 || heightInCm > 272) {
+      setHeightError("Prašome įvesti teisingą ūgį (100–272 cm).");
       isValid = false;
     }
 
-    if (isNaN(ageInYears) || ageInYears <= 0) {
-      setAgeError("Prašome įvesti teisingą amžių.");
+    if (isNaN(ageInYears)) {
+      setAgeError("Prašome įvesti amžių.");
+      isValid = false;
+    } else if (ageInYears < 18) {
+      setAgeError("Ši skaičiuoklė skirta suaugusiesiems (nuo 18 metų).");
+      isValid = false;
+    } else if (ageInYears > 120) {
+      setAgeError("Prašome įvesti teisingą amžių (iki 120 metų).");
       isValid = false;
     }
 

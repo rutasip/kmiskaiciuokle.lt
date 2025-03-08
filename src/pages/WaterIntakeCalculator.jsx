@@ -69,6 +69,7 @@ export default function WaterIntakeCalculator() {
   const [ageError, setAgeError] = useState("");
   const [weightError, setWeightError] = useState("");
   const [heightError, setHeightError] = useState("");
+  const [exerciseError, setExerciseError] = useState("");
 
   const [totalIntake, setTotalIntake] = useState(null);
 
@@ -86,17 +87,29 @@ export default function WaterIntakeCalculator() {
     let isValid = true;
 
     if (isNaN(weightInKg) || weightInKg <= 0) {
-      setWeightError("Prašome įvesti teisingą svorį.");
+      setWeightError("Prašome įvesti svorį.");
+      isValid = false;
+    } else if (weightInKg < 30 || weightInKg > 300) {
+      setWeightError("Prašome įvesti teisingą svorį (30–300 kg).");
       isValid = false;
     }
 
     if (isNaN(heightInCm) || heightInCm <= 0) {
-      setHeightError("Prašome įvesti teisingą ūgį.");
+      setHeightError("Prašome įvesti ūgį.");
+      isValid = false;
+    } else if (heightInCm < 100 || heightInCm > 272) {
+      setHeightError("Prašome įvesti teisingą ūgį (100–272 cm).");
       isValid = false;
     }
 
-    if (isNaN(ageInYears) || ageInYears <= 0) {
-      setAgeError("Prašome įvesti teisingą amžių.");
+    if (isNaN(ageInYears)) {
+      setAgeError("Prašome įvesti amžių.");
+      isValid = false;
+    } else if (ageInYears < 18) {
+      setAgeError("Ši skaičiuoklė skirta suaugusiesiems (nuo 18 metų).");
+      isValid = false;
+    } else if (ageInYears > 120) {
+      setAgeError("Prašome įvesti teisingą amžių (iki 120 metų).");
       isValid = false;
     }
 
@@ -108,8 +121,13 @@ export default function WaterIntakeCalculator() {
   const handleCalculate = (e) => {
     e.preventDefault();
 
+    setExerciseError("");
+
     if (isNaN(exerciseHours) || exerciseHours < 0) {
-      alert("Prašome įvesti teisingą fizinio aktyvumo laiką.");
+      setExerciseError("Prašome įvesti fizinio aktyvumo laiką.");
+      return;
+    } else if (exerciseHours > 24) {
+      setExerciseError("Negali viršyti 24 valandų.");
       return;
     }
 
@@ -209,6 +227,7 @@ export default function WaterIntakeCalculator() {
                   id="exerciseHours"
                   value={exerciseHours}
                   onChange={(newVal) => setExerciseHours(newVal)}
+                  error={exerciseError}
                   type="number"
                 />
 

@@ -175,39 +175,46 @@ export default function BodyMassIndexCalc() {
     setAgeError("");
     setGenderError("");
 
-    const weightValue = parseFloat(weight);
-    const heightValue = parseFloat(height);
-    const ageValue = parseFloat(age);
-    let valid = true;
+    const weightInKg = parseFloat(weight);
+    const heightInCm = parseFloat(height);
+    const ageInYears = parseFloat(age);
+    let isValid = true;
 
-    if (isNaN(weightValue) || weightValue <= 0) {
+    if (isNaN(weightInKg) || weightInKg <= 0) {
       setWeightError("Prašome įvesti svorį.");
-      valid = false;
+      isValid = false;
+    } else if (weightInKg < 30 || weightInKg > 300) {
+      setWeightError("Prašome įvesti teisingą svorį (30–300 kg).");
+      isValid = false;
     }
 
-    if (isNaN(heightValue) || heightValue <= 0) {
+    if (isNaN(heightInCm) || heightInCm <= 0) {
       setHeightError("Prašome įvesti ūgį.");
-      valid = false;
+      isValid = false;
+    } else if (heightInCm < 100 || heightInCm > 272) {
+      setHeightError("Prašome įvesti teisingą ūgį (100–272 cm).");
+      isValid = false;
     }
 
-    if (isNaN(ageValue)) {
+    if (isNaN(ageInYears)) {
       setAgeError("Prašome įvesti amžių.");
-      valid = false;
-    }
-
-    if (ageValue < 18) {
+      isValid = false;
+    } else if (ageInYears < 18) {
       setAgeError("Ši skaičiuoklė skirta suaugusiesiems (nuo 18 metų).");
-      valid = false;
+      isValid = false;
+    } else if (ageInYears > 120) {
+      setAgeError("Prašome įvesti teisingą amžių (iki 120 metų).");
+      isValid = false;
     }
 
     if (showIdealWeight && !gender) {
       setGenderError("Prašome pasirinkti lytį.");
-      valid = false;
+      isValid = false;
     }
 
-    if (!valid) return;
+    if (!isValid) return;
 
-    const newBmi = calculateBMI(weightValue, heightValue);
+    const newBmi = calculateBMI(weightInKg, heightInCm);
     setBmi(newBmi);
     updateCategories(newBmi);
 
@@ -303,36 +310,43 @@ export default function BodyMassIndexCalc() {
           <PageContentSection ref={resultsRef} scrolled={scrolled}>
             <div>
               <ResultsDisclaimer />
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-10 mb-20">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-6 mb-10">
                 <div className="bg-white rounded-lg shadow p-5 flex flex-col">
                   <h3 className="text-sm font-medium text-neutral-700 tracking-wide mb-2">
                     KMI
                   </h3>
-                  <span className="text-2xl sm:text-2xl font-semibold text-gray-900">
+                  <span className="text-2xl font-semibold text-gray-900">
                     {bmi}
                   </span>
                 </div>
                 <div className="bg-white rounded-lg shadow p-5 flex flex-col">
-                  <h3 className="text-sm font-medium text-neutral-700 tracking-wide mb-2">
+                  <h3 className="text-sm font-medium text-neutral-700 tracking-wide mb-1">
                     Svorio kategorija
                   </h3>
-                  <span className="text-lg sm:text-xl font-semibold text-gray-900">
+                  <span className="font-semibold text-gray-900">
                     {currentCategory?.category}
                   </span>
                 </div>
                 {idealWeight && (
                   <div className="bg-white rounded-lg shadow p-5 flex flex-col">
-                    <h3 className="text-sm font-medium text-neutral-700 tracking-wide mb-2">
+                    <h3 className="text-sm font-medium text-neutral-700 tracking-wide mb-1">
                       Idealus svoris
                     </h3>
-                    <span className="text-lg sm:text-xl font-semibold text-gray-900">
+                    <span className="font-semibold text-gray-900">
                       {idealWeight} kg
                     </span>
                   </div>
                 )}
               </div>
 
-              <div className="mb-14 hidden sm:block">
+              <div className="mb-10 hidden sm:grid gap-4">
+                <h3 className="font-bold text-gray-900">
+                  Kūno masės indekso vizualus įvertinimas
+                </h3>
+                <p className="mb-10">
+                  Žemiau pateikiama šviesoforo principu pagrįsta skalė atspindi
+                  svorio intervalus nuo nepakankamo iki per didelio.
+                </p>
                 <div
                   className="relative w-full h-4 rounded-full"
                   style={{
@@ -372,6 +386,75 @@ export default function BodyMassIndexCalc() {
                       transform: "translate(-50%, -50%)",
                     }}
                   />
+                </div>
+              </div>
+
+              <div className="grid gap-4 mb-6">
+                <h3 className="font-bold text-gray-900">
+                  KMI intervalai ir rizikos
+                </h3>
+                <p>
+                  Lentelėje rasite dažniausiai taikomus KMI kategorijų
+                  intervalus bei susijusias sveikatos rizikas. Tai naudinga
+                  pradinė priemonė vertinant, ar reikia koreguoti mitybą ar
+                  fizinį aktyvumą.
+                </p>
+                <div className="overflow-scroll shadow sm:rounded-lg">
+                  <table className="min-w-full">
+                    <thead className="bg-gray-50 text-gray-900 text-sm">
+                      <tr>
+                        <th
+                          scope="col"
+                          className="py-3.5 pl-4 pr-3 text-left font-semibold text-gray-900 sm:pl-6"
+                        >
+                          KMI
+                        </th>
+                        <th
+                          scope="col"
+                          className="px-3 py-3.5 text-left font-semibold text-gray-900"
+                        >
+                          Būklė
+                        </th>
+                        <th
+                          scope="col"
+                          className="px-3 py-3.5 text-left font-semibold text-gray-900"
+                        >
+                          Rizika
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-200 bg-white text-sm">
+                      {categories.map((category) => (
+                        <tr key={category.id}>
+                          <td className="whitespace-nowrap py-4 pl-4 pr-3 font-medium text-gray-900 sm:pl-6">
+                            {category.index}
+                            {category.isCurrent && (
+                              <span className="ml-2 items-center px-2 py-1 rounded-full bg-green-100 text-xs font-semibold text-green-700 tracking-wide">
+                                Jūsų KMI
+                              </span>
+                            )}
+                          </td>
+                          <td className="whitespace-nowrap px-3 py-4 text-gray-500">
+                            {category.category}
+                          </td>
+                          <td className="whitespace-nowrap px-3 py-4 text-gray-500">
+                            {category.risks}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <div className="mt-2 text-gray-600">
+                  Šaltinis:{" "}
+                  <a
+                    href="https://www.who.int/europe/news-room/fact-sheets/item/a-healthy-lifestyle---who-recommendations"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:underline opacity-90"
+                  >
+                    Pasaulio sveikatos organizacija
+                  </a>
                 </div>
               </div>
 
@@ -467,11 +550,6 @@ export default function BodyMassIndexCalc() {
                     <tr key={category.id}>
                       <td className="whitespace-nowrap py-4 pl-4 pr-3 font-medium text-gray-900 sm:pl-6">
                         {category.index}
-                        {category.isCurrent && (
-                          <span className="ml-2 inline-flex items-center rounded bg-emerald-50 px-2 py-0.5 text-xs text-emerald-700">
-                            Jūsų KMI
-                          </span>
-                        )}
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-gray-500">
                         {category.category}
