@@ -5,6 +5,7 @@ import BackToTopButton from "../components/BackToTopButton";
 import InputField from "../components/InputField";
 import RadioGroupInput from "../components/RadioGroupInput";
 import ResultsDisclaimer from "../components/ResultsDisclaimer";
+import CollapsibleSection from "../components/CollapsibleSection";
 
 import useScrollEffects from "../hooks/useScrollEffects";
 import RecommendedCalculatorsSection from "../components/RecommendedCalculatorsSection";
@@ -141,7 +142,7 @@ export default function BodyMassIndexCalc() {
   const calculateBMI = (weight, height) => {
     const m = height / 100;
 
-    return parseFloat((weight / (m * m)).toFixed(2));
+    return parseFloat(weight / (m * m));
   };
 
   const calculateIdealWeight = (height, gender) => {
@@ -231,7 +232,9 @@ export default function BodyMassIndexCalc() {
   const calcPinPos = (val) => {
     const min = 15.8;
     const max = 33.2;
-    const clamped = Math.min(Math.max(val || 0, min), max);
+
+    const clamped = Math.min(Math.max(val, min), max);
+
     return ((clamped - min) / (max - min)) * 100;
   };
 
@@ -316,7 +319,7 @@ export default function BodyMassIndexCalc() {
                     KMI
                   </h3>
                   <span className="text-2xl font-semibold text-gray-900">
-                    {bmi}
+                    {bmi.toFixed(2)}
                   </span>
                 </div>
                 <div className="bg-white rounded-lg shadow p-5 flex flex-col">
@@ -580,8 +583,14 @@ export default function BodyMassIndexCalc() {
               sveikatos rodiklius, todėl ne visada gali būti taikomas. Keletas
               iš ribotumų:
             </p>
-            <ul className="list-disc list-inside pl-4 space-y-1 text-gray-700">
-              <li>Negali atskirti raumenų masės nuo riebalų masės.</li>
+            <ul className="list-disc list-outside pl-4 space-y-1 text-gray-700">
+              <li>
+                Negali atskirti raumenų masės nuo riebalų masės. Dėl to KMI gali
+                klaidingai rodyti „antsvorį“ ar „nutukimą“ žmonėms, kurie turi
+                didesnę raumenų masę, pavyzdžiui, sportininkams. Raumenų audinys
+                yra sunkesnis už riebalinį, todėl vien iš KMI ne visada galima
+                objektyviai įvertinti kūno sudėtį.
+              </li>
               <li>Netinka nėščioms, vaikams, sportininkams.</li>
               <li>Skiriasi pagal amžių, etninę kilmę, rasę.</li>
             </ul>
@@ -731,147 +740,149 @@ export default function BodyMassIndexCalc() {
             <h2 className="text-2xl font-bold text-gray-900">
               Populiarios dietos: privalumai ir trūkumai
             </h2>
-            <h3 className="font-bold text-gray-900 pt-4">
-              Viduržemio jūros dieta
-            </h3>
-            <p>
-              Raciono pagrindą sudaro daržovės, vaisiai, neskaldyti grūdai,
-              alyvuogių aliejus, žuvis, paukštiena ir nedidelis raudonos mėsos
-              (kiauliena, jautiena ir kt.) kiekis.
+            <p className="pb-4">
+              Yra daugybė mitybos strategijų ir dietų, kurias žmonės renkasi
+              sveikatai gerinti ar svoriui reguliuoti. Žemiau pateikiame trumpą
+              kelių populiarių dietų apžvalgą, įskaitant jų naudą bei galimus
+              trūkumus
             </p>
-            <div>
-              <p>Privalumai:</p>
-              <ul className="list-disc list-inside">
-                <li>
-                  Moksliškai įrodyta, kad padeda sumažinti širdies ir
-                  kraujagyslių ligų riziką.
-                </li>
-                <li>
-                  Gausu antioksidantų, kurie padeda kovoti su laisvaisiais
-                  radikalais ir lėtina senėjimo procesus.
-                </li>
-              </ul>
-            </div>
-            <div>
-              <p>Trūkumai:</p>
-              <ul className="list-disc list-inside">
-                <li>
-                  Dieta gali būti brangi, jei renkatės kokybišką šviežią žuvį,
-                  alyvuogių aliejų, sezonines daržoves.
-                </li>
-              </ul>
-            </div>
+            <CollapsibleSection title="Viduržemio jūros dieta">
+              <p>
+                Raciono pagrindą sudaro daržovės, vaisiai, neskaldyti grūdai,
+                alyvuogių aliejus, žuvis, paukštiena ir nedidelis raudonos mėsos
+                (kiauliena, jautiena ir kt.) kiekis.
+              </p>
+              <div>
+                <p className="font-medium mt-4">Privalumai:</p>
+                <ul className="list-disc list-outside pl-4 space-y-1 text-gray-700">
+                  <li>
+                    Moksliškai įrodyta, kad padeda sumažinti širdies ir
+                    kraujagyslių ligų riziką.
+                  </li>
+                  <li>
+                    Gausu antioksidantų, kurie padeda kovoti su laisvaisiais
+                    radikalais ir lėtina senėjimo procesus.
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <p className="font-medium mt-4">Trūkumai:</p>
+                <ul className="list-disc list-outside pl-4 space-y-1 text-gray-700">
+                  <li>
+                    Dieta gali būti brangi, jei renkatės kokybišką šviežią žuvį,
+                    alyvuogių aliejų, sezonines daržoves.
+                  </li>
+                </ul>
+              </div>
+            </CollapsibleSection>
 
-            <h3 className="font-bold text-gray-900 pt-4">
-              Mažai angliavandenių turinčios dietos (pvz., keto)
-            </h3>
-            <p>
-              Angliavandenių kiekis sumažinamas iki minimumo, o riebalų
-              suvartojimo kiekis padidinamas. Kūnas pereina į ketozės būseną,
-              kurios metu riebalai yra naudojami kaip pagrindinis energijos
-              šaltinis.
-            </p>
-            <div>
-              <p>Privalumai:</p>
-              <ul className="list-disc list-inside">
-                <li>
-                  Gali padėti greitai sumažinti svorį (ypač pradžioje dėl
-                  skysčių netekimo).
-                </li>
-                <li>
-                  Kai kuriems asmenims padeda kontroliuoti cukraus kiekį
-                  kraujyje.
-                </li>
-              </ul>
-            </div>
-            <div>
-              <p>Trūkumai:</p>
-              <ul className="list-disc list-inside">
-                <li>
-                  Gali trūkti tam tikrų maistinių medžiagų (skaidulų, vitaminų,
-                  mineralų).
-                </li>
-                <li>
-                  Neretai sukelia šalutinius poveikius (nuovargį, vidurių
-                  užkietėjimą, energijos trūkumą).
-                </li>
-                <li>
-                  Sunku ilgai laikytis dietos dėl griežto angliavandenių
-                  ribojimo.
-                </li>
-              </ul>
-            </div>
+            <CollapsibleSection title="Mažai angliavandenių turinčios dietos (pvz., keto)">
+              <p>
+                Angliavandenių kiekis sumažinamas iki minimumo, o riebalų
+                suvartojimo kiekis padidinamas. Kūnas pereina į ketozės būseną,
+                kurios metu riebalai yra naudojami kaip pagrindinis energijos
+                šaltinis.
+              </p>
+              <div>
+                <p className="font-medium mt-4">Privalumai:</p>
+                <ul className="list-disc list-outside pl-4 space-y-1 text-gray-700">
+                  <li>
+                    Gali padėti greitai sumažinti svorį (ypač pradžioje dėl
+                    skysčių netekimo).
+                  </li>
+                  <li>
+                    Kai kuriems asmenims padeda kontroliuoti cukraus kiekį
+                    kraujyje.
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <p className="font-medium mt-4">Trūkumai:</p>
+                <ul className="list-disc list-outside pl-4 space-y-1 text-gray-700">
+                  <li>
+                    Gali trūkti tam tikrų maistinių medžiagų (skaidulų,
+                    vitaminų, mineralų).
+                  </li>
+                  <li>
+                    Neretai sukelia šalutinius poveikius (nuovargį, vidurių
+                    užkietėjimą, energijos trūkumą).
+                  </li>
+                  <li>
+                    Sunku ilgai laikytis dietos dėl griežto angliavandenių
+                    ribojimo.
+                  </li>
+                </ul>
+              </div>
+            </CollapsibleSection>
 
-            <h3 className="font-bold text-gray-900 pt-4">
-              Protarpinis badavimas (angl. Intermittent Fasting)
-            </h3>
-            <p>
-              Valgoma tik tam tikru laiko tarpu (pvz., 8 val. per parą) arba tam
-              tikromis dienomis laikomasi itin mažo kalorijų kiekio, o kitomis
-              dienomis valgoma įprastai.
-            </p>
-            <div>
-              <p>Privalumai:</p>
-              <ul className="list-disc list-inside">
-                <li>
-                  Gali padėti sumažinti suvartojamų kalorijų kiekį, taip
-                  padedant numesti nereikalingą svorį.
-                </li>
-                <li>
-                  Kai kuriems žmonėms paprasčiau nevalgyti tik tam tikromis
-                  valandomis, nei kasdien skaičiuoti kalorijas norint numesti
-                  svorio.
-                </li>
-              </ul>
-            </div>
-            <div>
-              <p>Trūkumai:</p>
-              <ul className="list-disc list-inside">
-                <li>
-                  Netinka kai kuriems asmenims, pvz., turintiems valgymo
-                  sutrikimų, nėščioms ar žindančioms moterims.
-                </li>
-                <li>
-                  Gali būti sunku išlaikyti fizinį ir protinį darbingumą, kol
-                  organizmas pripranta.
-                </li>
-              </ul>
-            </div>
+            <CollapsibleSection title="Protarpinis badavimas (angl. Intermittent Fasting)">
+              <p>
+                Valgoma tik tam tikru laiko tarpu (pvz., 8 val. per parą) arba
+                tam tikromis dienomis laikomasi itin mažo kalorijų kiekio, o
+                kitomis dienomis valgoma įprastai.
+              </p>
+              <div>
+                <p className="font-medium mt-4">Privalumai:</p>
+                <ul className="list-disc list-outside pl-4 space-y-1 text-gray-700">
+                  <li>
+                    Gali padėti sumažinti suvartojamų kalorijų kiekį, taip
+                    padedant numesti nereikalingą svorį.
+                  </li>
+                  <li>
+                    Kai kuriems žmonėms paprasčiau nevalgyti tik tam tikromis
+                    valandomis, nei kasdien skaičiuoti kalorijas norint numesti
+                    svorio.
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <p className="font-medium mt-4">Trūkumai:</p>
+                <ul className="list-disc list-outside pl-4 space-y-1 text-gray-700">
+                  <li>
+                    Netinka kai kuriems asmenims, pvz., turintiems valgymo
+                    sutrikimų, nėščioms ar žindančioms moterims.
+                  </li>
+                  <li>
+                    Gali būti sunku išlaikyti fizinį ir protinį darbingumą, kol
+                    organizmas pripranta.
+                  </li>
+                </ul>
+              </div>
+            </CollapsibleSection>
 
-            <h3 className="font-bold text-gray-900 pt-4">
-              Vegetariška / veganiška dieta
-            </h3>
-            <p>
-              Ribojama arba visiškai atsisakoma mėsos, žuvies, jūrų gėrybių,
-              pieno produktų, kiaušinių (priklausomai nuo to, ar vegetariška, ar
-              veganiška dieta).
-            </p>
-            <div>
-              <p>Privalumai:</p>
-              <ul className="list-disc list-inside">
-                <li>
-                  Daug vaisių, daržovių, ankštinių kultūrų, gausu skaidulų.
-                </li>
-                <li>
-                  Dėl didelio antioksidantų kiekio gali būti naudinga širdžiai,
-                  kraujagyslėms.
-                </li>
-              </ul>
-            </div>
-            <div>
-              <p>Trūkumai:</p>
-              <ul className="list-disc list-inside">
-                <li>
-                  Gali susidurti su vitamino B12, geležies, omega-3 riebalų
-                  rūgščių, cinko, kalcio ir baltymų trūkumu, jei mityba nėra
-                  subalansuota.
-                </li>
-                <li>
-                  Norint gauti visus reikalingus baltymus, aminorūgštis ir
-                  mikroelementus, reikalingas kruopštus maisto planavimas.
-                </li>
-              </ul>
-            </div>
+            <CollapsibleSection title="Vegetariška / veganiška dieta">
+              <p>
+                Ribojama arba visiškai atsisakoma mėsos, žuvies, jūrų gėrybių,
+                pieno produktų, kiaušinių (priklausomai nuo to, ar vegetariška,
+                ar veganiška dieta).
+              </p>
+              <div>
+                <p className="font-medium mt-4">Privalumai:</p>
+                <ul className="list-disc list-outside pl-4 space-y-1 text-gray-700">
+                  <li>
+                    Daug vaisių, daržovių, ankštinių kultūrų, gausu skaidulų.
+                  </li>
+                  <li>
+                    Dėl didelio antioksidantų kiekio gali būti naudinga
+                    širdžiai, kraujagyslėms.
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <p className="font-medium mt-4">Trūkumai:</p>
+                <ul className="list-disc list-outside pl-4 space-y-1 text-gray-700">
+                  <li>
+                    Gali susidurti su vitamino B12, geležies, omega-3 riebalų
+                    rūgščių, cinko, kalcio ir baltymų trūkumu, jei mityba nėra
+                    subalansuota.
+                  </li>
+                  <li>
+                    Norint gauti visus reikalingus baltymus, aminorūgštis ir
+                    mikroelementus, reikalingas kruopštus maisto planavimas.
+                  </li>
+                </ul>
+              </div>
+            </CollapsibleSection>
           </section>
 
           {/* <section className="space-y-4 mt-8">
