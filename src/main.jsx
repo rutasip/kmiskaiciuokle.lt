@@ -10,7 +10,6 @@ import SleepCalculator from "./pages/SleepCalculator";
 // import MacronutrientCalc from './pages/MacronutrientCalc';
 import Disclaimer from "./pages/Disclaimer";
 import NotFound from "./pages/NotFound";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -30,7 +29,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path="miego-ciklai" element={<SleepCalculator />} />
           {/* <Route path="Makroelementai" element={<MacronutrientCalc />} /> */}
           <Route path="atsakomybes-ribojimas" element={<Disclaimer />} />
-          <Route path="privatumo-politika" element={<PrivacyPolicy />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

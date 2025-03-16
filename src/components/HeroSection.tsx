@@ -2,7 +2,7 @@ import React, { FC, ReactNode } from "react";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 
 const backgroundImageUrl =
-  "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?fit=crop&w=1920&q=80";
+  "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?fit=crop&w=1280&q=20";
 
 interface HeroSectionProps {
   title: string;
@@ -21,6 +21,7 @@ const HeroSection: FC<HeroSectionProps> = ({
     <section
       className="relative bg-center bg-no-repeat shadow-lg flex items-center justify-center md:min-h-screen md:bg-fixed pt-10 md:pt-0"
       style={{
+        // backgroundImage: 'url("/images/hero-bg.webp")',
         backgroundImage: `url(${backgroundImageUrl})`,
         backgroundSize: "cover",
       }}
@@ -45,12 +46,8 @@ const HeroSection: FC<HeroSectionProps> = ({
         <div className="hidden md:block px-6 py-16 sm:py-20 md:py-24">
           <div className="grid grid-cols-2 gap-8 items-center">
             <div className="text-white space-y-6 md:max-w-3xl">
-              <h1 className="text-[2.4rem] leading-tight font-bold">
-                {title}
-              </h1>
-              <p className="text-lg leading-8 text-gray-300">
-                {subtitle}
-              </p>
+              <h1 className="text-[2.4rem] leading-tight font-bold">{title}</h1>
+              <p className="text-lg leading-8 text-gray-300">{subtitle}</p>
             </div>
             <div className="flex justify-end">
               <div className="bg-white p-6 shadow-2xl rounded-lg max-w-md w-full text-gray-900">
