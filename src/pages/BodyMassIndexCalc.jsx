@@ -402,7 +402,7 @@ export default function BodyMassIndexCalc() {
                 </p>
                 <div className="overflow-scroll shadow rounded-lg">
                   <table className="min-w-full">
-                    <thead className="bg-gray-50 text-gray-900 text-sm">
+                    <thead className="bg-gray-100 text-gray-900 text-sm">
                       <tr>
                         <th
                           scope="col"
@@ -532,7 +532,7 @@ export default function BodyMassIndexCalc() {
             </p>
             <div className="overflow-scroll shadow rounded-lg">
               <table className="min-w-full">
-                <thead className="bg-gray-50 text-gray-900 text-sm">
+                <thead className="bg-gray-100 text-gray-900 text-sm">
                   <tr>
                     <th
                       scope="col"
