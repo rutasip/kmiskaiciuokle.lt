@@ -11,10 +11,10 @@ const CollapsibleSection: FC<CollapsibleSectionProps> = ({ title, children }) =>
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="border border-gray-200 rounded-lg shadow-sm bg-white">
+    <div className="rounded-lg bg-gray-50 shadow">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex w-full gap-4 items-center text-start justify-between px-4 py-3 font-medium text-sm text-neutral-700 hover:bg-gray-100 transition-colors duration-200 rounded-t-lg"
+        className="flex w-full gap-4 items-center text-start justify-between px-4 py-3 text-sm font-medium text-neutral-700 hover:bg-gray-100 transition-colors duration-200 rounded-t-lg"
       >
         <span>{title}</span>
         {isOpen ? (

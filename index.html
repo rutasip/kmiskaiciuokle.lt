@@ -2,27 +2,47 @@
 <html lang="lt">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Icons and manifest -->
     <link rel="icon" type="image/png" href="/favicon.ico">
     <link rel="apple-touch-icon" href="/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#ffffff" />
 
+    <!-- SEO meta tags -->
+    <title>Sveikatos ir mitybos skaičiuoklės – KMI, kalorijos, BMR</title>
     <meta
       name="description"
       content="Sužinokite savo kūno masės indeksą (KMI) ir bazinį metabolizmą. Apskaičiuokite, kiek kalorijų sudeginate kasdien ir optimizuokite savo mitybą."
     />
+    <meta name="robots" content="index, follow" />
 
-    <title>Sveikatos ir mitybos skaičiuoklės – KMI, kalorijos, BMR</title>
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://kmiskaiciuokle.lt/" />
 
-    <link rel="canonical" href="https://kmiskaiciuokle.lt" />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://kmiskaiciuokle.lt/" />
+    <meta property="og:title" content="Sveikatos ir mitybos skaičiuoklės – KMI, kalorijos, BMR" />
+    <meta property="og:description" content="Sužinokite savo kūno masės indeksą (KMI) ir bazinį metabolizmą. Apskaičiuokite, kiek kalorijų sudeginate kasdien ir optimizuokite savo mitybą." />
+    <!-- Replace the image URL with an actual image on your site (e.g. /images/og-image.png) -->
+    <!-- <meta property="og:image" content="https://kmiskaiciuokle.lt/images/og-image.png" /> -->
 
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://kmiskaiciuokle.lt/" />
+    <meta name="twitter:title" content="Sveikatos ir mitybos skaičiuoklės – KMI, kalorijos, BMR" />
+    <meta name="twitter:description" content="Sužinokite savo kūno masės indeksą (KMI) ir bazinį metabolizmą. Apskaičiuokite, kiek kalorijų sudeginate kasdien ir optimizuokite savo mitybą." />
+    <!-- <meta name="twitter:image" content="https://kmiskaiciuokle.lt/images/og-image.png" /> -->
+
+    <!-- JSON-LD structured data (existing snippet slightly refined) -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "WebPage",
         "name": "Sveikatos ir mitybos skaičiuoklės – KMI, kalorijos, BMR",
-        "url": "https://example.com/",
+        "url": "https://kmiskaiciuokle.lt/",
         "description": "Sužinokite savo KMI (kūno masės indeksą), bazinį metabolizmą ir kalorijų poreikį. Rūpinkitės sveikata ir svoriu.",
         "publisher": {
           "@type": "Organization",
@@ -33,8 +53,12 @@
     </script>
   </head>
   <body class="overscroll-none">
+    <!-- H1 fallback for SEO if JS is disabled -->
+    <h1 style="display:none;">
+      Sveikatos ir mitybos skaičiuoklės – KMI, kalorijos, BMR
+    </h1>
+
     <div id="root"></div>
-    <a target="_blank" href="http://www.hey.lt/details.php?id=bmi" style="position: fixed;"><img width="88" height="31" border="0" src="http://www.hey.lt/count.php?id=bmi" alt="Hey.lt - Nemokamas lankytojų skaitliukas"></a>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

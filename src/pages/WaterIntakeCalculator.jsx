@@ -293,7 +293,7 @@ export default function WaterIntakeCalculator() {
               )}
               <button
                 type="submit"
-                className="inline-flex items-center px-5 py-2 rounded-md bg-emerald-600 text-sm font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
+                className="inline-flex items-center px-5 py-2 rounded-md bg-emerald-600 text-sm font-medium text-white shadow hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
               >
                 {step === 1 ? "Toliau" : "Skaičiuoti"}
               </button>

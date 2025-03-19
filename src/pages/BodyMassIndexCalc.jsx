@@ -299,7 +299,7 @@ export default function BodyMassIndexCalc() {
             )}
             <button
               type="submit"
-              className="inline-flex items-center px-5 py-2 rounded-md bg-emerald-600 text-sm font-medium text-white hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
+              className="inline-flex items-center px-5 py-2 rounded-md bg-emerald-600 text-sm font-medium text-white shadow hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500"
             >
               Skaičiuoti
             </button>
@@ -315,15 +315,15 @@ export default function BodyMassIndexCalc() {
               <ResultsDisclaimer />
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-6 mb-10">
                 <div className="bg-white rounded-lg shadow p-5 flex flex-col">
-                  <h3 className="text-sm font-medium text-neutral-700 tracking-wide mb-2">
-                    KMI
+                  <h3 className="text-sm font-medium text-gray-700 tracking-wide mb-2">
+                    Jūsų KMI
                   </h3>
                   <span className="text-2xl font-semibold text-gray-900">
                     {bmi.toFixed(2)}
                   </span>
                 </div>
                 <div className="bg-white rounded-lg shadow p-5 flex flex-col">
-                  <h3 className="text-sm font-medium text-neutral-700 tracking-wide mb-1">
+                  <h3 className="text-sm font-medium text-gray-700 tracking-wide mb-1">
                     Svorio kategorija
                   </h3>
                   <span className="font-semibold text-gray-900">
@@ -332,7 +332,7 @@ export default function BodyMassIndexCalc() {
                 </div>
                 {idealWeight && (
                   <div className="bg-white rounded-lg shadow p-5 flex flex-col">
-                    <h3 className="text-sm font-medium text-neutral-700 tracking-wide mb-1">
+                    <h3 className="text-sm font-medium text-gray-700 tracking-wide mb-1">
                       Idealus svoris
                     </h3>
                     <span className="font-semibold text-gray-900">
@@ -347,8 +347,8 @@ export default function BodyMassIndexCalc() {
                   Kūno masės indekso vizualus įvertinimas
                 </h3>
                 <p className="mb-10">
-                  Žemiau pateikiama šviesoforo principu pagrįsta skalė atspindi
-                  svorio intervalus nuo nepakankamo iki per didelio.
+                  Žemiau pateikiama skalė padeda įvertinti KMI nuo
+                  mažo iki per didelio.
                 </p>
                 <div
                   className="relative w-full h-4 rounded-full"
@@ -397,12 +397,10 @@ export default function BodyMassIndexCalc() {
                   KMI intervalai ir rizikos
                 </h3>
                 <p>
-                  Lentelėje rasite dažniausiai taikomus KMI kategorijų
-                  intervalus bei susijusias sveikatos rizikas. Tai naudinga
-                  pradinė priemonė vertinant, ar reikia koreguoti mitybą ar
-                  fizinį aktyvumą.
+                  Šioje lentelėje rodomi įprasti KMI intervalai ir atitinkamos
+                  sveikatos rizikos.
                 </p>
-                <div className="overflow-scroll shadow sm:rounded-lg">
+                <div className="overflow-scroll shadow rounded-lg">
                   <table className="min-w-full">
                     <thead className="bg-gray-50 text-gray-900 text-sm">
                       <tr>
@@ -461,7 +459,15 @@ export default function BodyMassIndexCalc() {
                 </div>
               </div>
 
-              <RecommendedCalculatorsSection showBasalMetabolicRateCalculator />
+              <div className="grid gap-4 mb-6">
+                <h3 className="font-bold text-gray-900">
+                  Rekomenduojama skaičiuoklė
+                </h3>
+                <p>Norite išbandyti dar vieną naudingą skaičiuoklę?</p>
+                <RecommendedCalculatorsSection
+                  showBasalMetabolicRateCalculator
+                />
+              </div>
             </div>
           </PageContentSection>
         )}
@@ -524,7 +530,7 @@ export default function BodyMassIndexCalc() {
               Dažnai naudojami šie Pasaulio sveikatos organizacijos (PSO){" "}
               nustatyti intervalai:
             </p>
-            <div className="overflow-scroll shadow sm:rounded-lg">
+            <div className="overflow-scroll shadow rounded-lg">
               <table className="min-w-full">
                 <thead className="bg-gray-50 text-gray-900 text-sm">
                   <tr>

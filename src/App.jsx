@@ -1,8 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { Sidebar } from "./components/Sidebar";
 import "./styles/tailwind.css";
-import "./styles/checkmark.scss";
-import "./styles/heart.css";
 import Footer from "./components/Footer";
 
 export default function App() {
