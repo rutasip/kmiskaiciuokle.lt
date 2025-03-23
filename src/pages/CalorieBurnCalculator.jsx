@@ -100,8 +100,8 @@ export default function CalorieBurnCalculator() {
   const [durationError, setDurationError] = useState("");
   const [activityError, setActivityError] = useState("");
   const [query, setQuery] = useState("");
-  const [open, setOpen] = useState(false);
   const [userNavigated, setUserNavigated] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     if (calcTimestamp !== 0 && resultsRef.current) {
@@ -147,11 +147,11 @@ export default function CalorieBurnCalculator() {
   };
 
   useEffect(() => {
-    if (!open) {
+    if (!isOpen) {
       setQuery("");
       setUserNavigated(false);
     }
-  }, [open]);
+  }, [isOpen, selectedActivity]);
 
   const groupedActivities = activities
     .map((group) => {
@@ -195,118 +195,113 @@ export default function CalorieBurnCalculator() {
                 Pasirinkite veiklą
               </label>
               <Combobox value={selectedActivity} onChange={setSelectedActivity}>
-                {({ open: isOpen }) => {
-                  setOpen(isOpen);
-
-                  return (
-                    <div className="relative mt-2">
-                      <div
-                        className={`relative w-full cursor-default overflow-hidden rounded-md border ${
-                          activityError ? "border-red-500" : "border-gray-300"
-                        } bg-white text-left shadow-sm focus-within:ring-1 focus-within:ring-emerald-500 focus-within:border-emerald-500 text-sm`}
+                <div className="relative mt-2">
+                  <div
+                    className={`relative w-full cursor-default overflow-hidden rounded-md border ${
+                      activityError ? "border-red-500" : "border-gray-300"
+                    } bg-white text-left shadow-sm focus-within:ring-1 focus-within:ring-emerald-500 focus-within:border-emerald-500 text-sm`}
+                  >
+                    <Combobox.Input
+                      className="w-full border-none py-2 pl-3 pr-10 text-gray-900 focus:outline-none text-sm"
+                      placeholder="Pradėkite rašyti veiklos pavadinimą..."
+                      displayValue={(activity) =>
+                        activity ? activity.name : ""
+                      }
+                      onFocus={() => setIsOpen(true)}
+                      onBlur={() => setIsOpen(false)}
+                      onChange={(e) => {
+                        setQuery(e.target.value);
+                        setUserNavigated(false);
+                      }}
+                      onKeyDown={(e) => {
+                        if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+                          setUserNavigated(true);
+                        }
+                      }}
+                    />
+                    {(query || selectedActivity) && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setSelectedActivity(null);
+                          setQuery("");
+                          setUserNavigated(false);
+                        }}
+                        className="absolute inset-y-0 right-7 flex items-center px-2"
                       >
-                        <Combobox.Input
-                          className="w-full border-none py-2 pl-3 pr-10 text-gray-900 focus:outline-none text-sm"
-                          placeholder="Pradėkite rašyti veiklos pavadinimą..."
-                          displayValue={(activity) =>
-                            activity ? activity.name : ""
-                          }
-                          onChange={(e) => {
-                            setQuery(e.target.value);
-                            setUserNavigated(false);
-                          }}
-                          onKeyDown={(e) => {
-                            if (e.key === "ArrowDown" || e.key === "ArrowUp") {
-                              setUserNavigated(true);
-                            }
-                          }}
-                        />
-                        {(query || selectedActivity) && (
-                          <button
-                            type="button"
-                            onClick={() => {
-                              setSelectedActivity(null);
-                              setQuery("");
-                              setUserNavigated(false);
-                            }}
-                            className="absolute inset-y-0 right-7 flex items-center px-2"
-                          >
-                            <XMarkIcon className="h-4 w-4 text-gray-400" />
-                          </button>
-                        )}
-                        <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
-                          <ChevronUpDownIcon className="h-5 w-5 text-gray-400" />
-                        </Combobox.Button>
-                      </div>
+                        <XMarkIcon className="h-4 w-4 text-gray-400" />
+                      </button>
+                    )}
+                    <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
+                      <ChevronUpDownIcon className="h-5 w-5 text-gray-400" />
+                    </Combobox.Button>
+                  </div>
 
-                      <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none text-sm">
-                        {groupedActivities.length === 0 && (
-                          <div className="cursor-default select-none py-2 px-4 text-gray-700">
-                            Veikla nerasta.
-                          </div>
-                        )}
-                        {groupedActivities.map((group) => (
-                          <Fragment key={group.category}>
-                            <div className="cursor-default select-none py-2 pl-3 pr-9 bg-gray-100 font-semibold text-gray-900">
-                              {group.category}
-                            </div>
-                            {group.options.map((activity) => (
-                              <Combobox.Option
-                                key={activity.id}
-                                value={activity}
-                                className={({ active, selected }) => {
-                                  if (selected && !userNavigated) {
-                                    return classNames(
-                                      "bg-emerald-600 text-white font-semibold",
-                                      "relative cursor-pointer select-none py-2 pl-3 pr-9"
-                                    );
-                                  }
-                                  if (!userNavigated) {
-                                    return classNames(
-                                      "bg-white text-gray-900 font-normal",
-                                      "relative cursor-pointer select-none py-2 pl-3 pr-9 hover:bg-emerald-600 hover:text-white hover:font-semibold"
-                                    );
-                                  }
-                                  return classNames(
-                                    active || selected
-                                      ? "bg-emerald-600 text-white font-semibold"
-                                      : "bg-white text-gray-900 font-normal",
-                                    "relative cursor-pointer select-none py-2 pl-3 pr-9 hover:bg-emerald-600 hover:text-white hover:font-semibold"
-                                  );
-                                }}
-                              >
-                                {({ active, selected }) => (
-                                  <>
-                                    <span className="block truncate">
-                                      {activity.name}
-                                    </span>
-                                    {(active || selected) && (
-                                      <span
-                                        className={classNames(
-                                          "absolute inset-y-0 right-0 flex items-center pr-4",
-                                          active || selected
-                                            ? "text-white"
-                                            : "text-emerald-600"
-                                        )}
-                                      >
-                                        <CheckIcon className="h-5 w-5" />
-                                      </span>
+                  <Combobox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none text-sm">
+                    {groupedActivities.length === 0 && (
+                      <div className="cursor-default select-none py-2 px-4 text-gray-700">
+                        Veikla nerasta.
+                      </div>
+                    )}
+                    {groupedActivities.map((group) => (
+                      <Fragment key={group.category}>
+                        <div className="cursor-default select-none py-2 pl-3 pr-9 bg-gray-100 font-semibold text-gray-900">
+                          {group.category}
+                        </div>
+                        {group.options.map((activity) => (
+                          <Combobox.Option
+                            key={activity.id}
+                            value={activity}
+                            className={({ active, selected }) => {
+                              if (selected && !userNavigated) {
+                                return classNames(
+                                  "bg-emerald-600 text-white font-semibold",
+                                  "relative cursor-pointer select-none py-2 pl-3 pr-9"
+                                );
+                              }
+                              if (!userNavigated) {
+                                return classNames(
+                                  "bg-white text-gray-900 font-normal",
+                                  "relative cursor-pointer select-none py-2 pl-3 pr-9 hover:bg-emerald-600 hover:text-white hover:font-semibold"
+                                );
+                              }
+                              return classNames(
+                                active || selected
+                                  ? "bg-emerald-600 text-white font-semibold"
+                                  : "bg-white text-gray-900 font-normal",
+                                "relative cursor-pointer select-none py-2 pl-3 pr-9 hover:bg-emerald-600 hover:text-white hover:font-semibold"
+                              );
+                            }}
+                          >
+                            {({ active, selected }) => (
+                              <>
+                                <span className="block truncate">
+                                  {activity.name}
+                                </span>
+                                {(active || selected) && (
+                                  <span
+                                    className={classNames(
+                                      "absolute inset-y-0 right-0 flex items-center pr-4",
+                                      active || selected
+                                        ? "text-white"
+                                        : "text-emerald-600"
                                     )}
-                                  </>
+                                  >
+                                    <CheckIcon className="h-5 w-5" />
+                                  </span>
                                 )}
-                              </Combobox.Option>
-                            ))}
-                          </Fragment>
+                              </>
+                            )}
+                          </Combobox.Option>
                         ))}
-                      </Combobox.Options>
-                      {activityError && (
-                        <p className="text-sm text-red-600 mt-1">
-                          {activityError}
-                        </p>
-                      )}
-                    </div>
-                  );
-                }}
+                      </Fragment>
+                    ))}
+                  </Combobox.Options>
+
+                  {activityError && (
+                    <p className="text-sm text-red-600 mt-1">{activityError}</p>
+                  )}
+                </div>
               </Combobox>
             </div>
             <button
@@ -346,7 +341,7 @@ export default function CalorieBurnCalculator() {
             </div>
           </PageContentSection>
         )}
-        <PageContentSection ref={resultsRef} scrolled={scrolled}>
+        <PageContentSection scrolled={scrolled}>
           <section className="space-y-4">
             <h2 className="text-xl font-bold text-gray-900">
               Kaip veikia ši skaičiuoklė?

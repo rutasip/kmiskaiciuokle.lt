@@ -21,7 +21,6 @@ const HeroSection: FC<HeroSectionProps> = ({
     <section
       className="relative bg-center bg-no-repeat shadow-lg flex items-center justify-center md:min-h-screen md:bg-fixed pt-10 md:pt-0"
       style={{
-        // backgroundImage: 'url("/images/hero-bg.webp")',
         backgroundImage: `url(${backgroundImageUrl})`,
         backgroundSize: "cover",
       }}
@@ -34,7 +33,7 @@ const HeroSection: FC<HeroSectionProps> = ({
             <h2 className="text-3xl text-center font-bold tracking-tight">
               {title}
             </h2>
-            <p className="text-base text-center text-gray-200 max-w-sm">
+            <p className="text-base text-center text-gray-200 font-medium max-w-sm">
               {subtitle}
             </p>
             <div className="bg-white p-6 shadow-2xl rounded-lg max-w-md w-full text-gray-900">
@@ -47,7 +46,10 @@ const HeroSection: FC<HeroSectionProps> = ({
           <div className="grid grid-cols-2 gap-8 items-center">
             <div className="text-white space-y-6 md:max-w-3xl">
               <h1 className="text-[2.4rem] leading-tight font-bold">{title}</h1>
-              <p className="text-lg leading-8 text-gray-300">{subtitle}</p>
+              <div className="w-16 border-b-2 border-emerald-500 mt-4"/>
+              <p className="leading-8 text-gray-300 font-medium">
+                {subtitle}
+              </p>
             </div>
             <div className="flex justify-end">
               <div className="bg-white p-6 shadow-2xl rounded-lg max-w-md w-full text-gray-900">

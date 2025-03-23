@@ -101,6 +101,7 @@ export default function Footer() {
                 href="https://rekvizitai.vz.lt/imone/bloku_grandine/"
                 target="_blank"
                 rel="noreferrer"
+                className="hover:underline font-semibold text-white"
               >
                 Blokų grandinė, MB
               </a>

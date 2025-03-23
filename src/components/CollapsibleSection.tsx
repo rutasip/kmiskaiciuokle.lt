@@ -26,7 +26,7 @@ const CollapsibleSection: FC<CollapsibleSectionProps> = ({ title, children }) =>
 
       <div
         className={`
-          px-5 overflow-hidden transition-all duration-300
+          px-5 overflow-hidden transition-all duration-300 bg-white rounded-b-lg
           ${isOpen ? "max-h-[1000px] py-4" : "max-h-0 py-0"}
         `}
       >
